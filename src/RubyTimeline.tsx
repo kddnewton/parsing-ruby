@@ -43,17 +43,12 @@ const RubyTimeline: React.FC = () => (
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2001, 0, 10))} title="Robert Feldt releases v0.0.1 of Ruth">
       <TimelineMarker>
-        <Modal>
-          <ModalTrigger>
-            <RubyMarker />
-            Robert Feldt releases v0.0.1 of Ruth
-          </ModalTrigger>
-          <ModalContent>
-            <TimelineLink href="https://sourceforge.net/projects/rubyvm/files/ruth/" />
-            <p>Extends Ruby 1.6 internals to support inspecting Ruby ASTs</p>
-          </ModalContent>
-        </Modal>
+        <RubyMarker />
       </TimelineMarker>
+      <TimelineTooltip>
+        <TimelineLink href="https://sourceforge.net/projects/rubyvm/files/ruth/" />
+        <p>Extends Ruby 1.6 internals to support inspecting Ruby ASTs</p>
+      </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2001, 9, 20))} title="Minero Aoki releases v0.0.1 of ripper">
       <TimelineMarker>

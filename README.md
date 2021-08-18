@@ -110,8 +110,14 @@ Over time the community has developed a massive amount of projects whose goal is
 - `RubyVM::AbstractSyntaxTree`
 
 2019-12-25 - Ruby 2.7.0
+- Rightward assignment
+- Pattern matching
+- Block numbered variables
 
 2020-12-25 - Ruby 3.0.0
+
+- Refinements
+- Flip flop
 
 ## Projects
 
@@ -127,6 +133,8 @@ mruby
 [rts](https://www.cs.tufts.edu/~jfoster/papers/oops13.pdf)
 [ecstatic](https://projekter.aau.dk/projekter/files/61071016/1181807983.pdf)
 [tree-sitter-ruby](https://github.com/tree-sitter/tree-sitter-ruby)
+ironruby
+macruby
 
 ## Derivative projects
 
