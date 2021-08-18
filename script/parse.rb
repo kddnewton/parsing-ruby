@@ -7,7 +7,9 @@ parsing = false
 entries = []
 
 File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
-  parsing |= line.start_with?("### Timeline")
+  parsing = true if line.start_with?("## Timeline")
+  parsing = false if line.start_with?("## Projects")
+
   next if !parsing || line.empty?
 
   case line

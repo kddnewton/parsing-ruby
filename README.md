@@ -1,64 +1,10 @@
-### Notes
+# Parsing Ruby
 
-rdoc
-opal
-truffleruby
-jruby
-rubinius
-[topaz](https://github.com/topazproject/topaz)
-mruby
-[sorbet](https://sorbet.org/)
-[druby](http://www.cs.umd.edu/projects/PL/druby/)
-[rts](https://www.cs.tufts.edu/~jfoster/papers/oops13.pdf)
-[ecstatic](https://projekter.aau.dk/projekter/files/61071016/1181807983.pdf)
-[tree-sitter-ruby](https://github.com/tree-sitter/tree-sitter-ruby)
+This repository is an attempt to distill the history of efforts relating to parsing the Ruby programming language over time. That includes various implementations of Ruby (`MRI`, `YARV`, `Rubinius`, `JRuby`, `TruffleRuby`, etc.), gems that parse Ruby (`parser`, `ruby_parser`, `ripper`, etc.), as well as other projects that parse Ruby source for various reasons (`sorbet`, `tree-sitter`, `druby`, etc.).
 
-#### parser
+Over time the community has developed a massive amount of projects whose goal is to understand Ruby source at a deeper level. This has resulted in myriad approaches to parsing, with various tradeoffs. They have all had to evolve with the language as new features have been proposed, created, and merged. Below is a list of this archaeological dig through history of parsing Ruby.
 
-[code-explorer]
-[covered]
-[dawnscanner]
-[deep-cover]
-[dependabot-core]
-[erb-lint](https://github.com/Shopify/erb-lint) - lints .erb files
-[fast]
-[packwerk](https://github.com/Shopify/packwerk) - analyzes Ruby for modularity
-[rdl](https://github.com/tupl-tufts/rdl)
-[reek](https://github.com/troessner/reek) - analyzes Ruby for code smells
-[rubocop](https://docs.rubocop.org/rubocop)
-[rubrowser](https://github.com/emad-elsaid/rubrowser) - renders a force-directed graph of module relationships
-[ruby-lint](https://github.com/YorickPeterse/ruby-lint)
-[ruby-next]
-[ruby_detective]
-[rubycritic](https://github.com/whitesmith/rubycritic) - wraps other static analysis tools to give code quality reports
-[seeing_is_believing]
-[solargraph]
-[standard](https://github.com/testdouble/standard)
-[steep](https://github.com/soutaro/steep)
-[typed.rb]
-[unparser]
-[vernacular]
-[visualize_ruby]
-[yoda](https://github.com/tomoasleep/yoda) - static analyzer and language server for Ruby
-
-#### ruby_parser
-
-[dawnscanner]
-[debride]
-[fasterer]
-[flay]
-[flog]
-[quality]
-[railroader](https://github.com/david-a-wheeler/railroader) - static security analyzer
-[roodi]
-
-#### ripper
-
-[rufo](https://github.com/ruby-formatter/rufo) - a formatter for Ruby code
-[sandi_meter](https://github.com/makaroni4/sandi_meter) - analyzes Ruby code for violations of Sandi Metz's four rules
-[yard](https://github.com/lsegal/yard)
-
-### Timeline
+## Timeline
 
 1995-12-21 - Ruby 0.95
 
@@ -166,3 +112,65 @@ mruby
 2019-12-25 - Ruby 2.7.0
 
 2020-12-25 - Ruby 3.0.0
+
+## Projects
+
+rdoc
+opal
+truffleruby
+jruby
+rubinius
+[topaz](https://github.com/topazproject/topaz)
+mruby
+[sorbet](https://sorbet.org/)
+[druby](http://www.cs.umd.edu/projects/PL/druby/)
+[rts](https://www.cs.tufts.edu/~jfoster/papers/oops13.pdf)
+[ecstatic](https://projekter.aau.dk/projekter/files/61071016/1181807983.pdf)
+[tree-sitter-ruby](https://github.com/tree-sitter/tree-sitter-ruby)
+
+## Derivative projects
+
+### parser
+
+[code-explorer]
+[covered]
+[dawnscanner]
+[deep-cover]
+[dependabot-core]
+[erb-lint](https://github.com/Shopify/erb-lint) - lints .erb files
+[fast]
+[packwerk](https://github.com/Shopify/packwerk) - analyzes Ruby for modularity
+[rdl](https://github.com/tupl-tufts/rdl)
+[reek](https://github.com/troessner/reek) - analyzes Ruby for code smells
+[rubocop](https://docs.rubocop.org/rubocop)
+[rubrowser](https://github.com/emad-elsaid/rubrowser) - renders a force-directed graph of module relationships
+[ruby-lint](https://github.com/YorickPeterse/ruby-lint)
+[ruby-next]
+[ruby_detective]
+[rubycritic](https://github.com/whitesmith/rubycritic) - wraps other static analysis tools to give code quality reports
+[seeing_is_believing]
+[solargraph]
+[standard](https://github.com/testdouble/standard)
+[steep](https://github.com/soutaro/steep)
+[typed.rb]
+[unparser]
+[vernacular]
+[visualize_ruby]
+[yoda](https://github.com/tomoasleep/yoda) - static analyzer and language server for Ruby
+
+### ruby_parser
+
+[dawnscanner]
+[debride]
+[fasterer]
+[flay]
+[flog]
+[quality]
+[railroader](https://github.com/david-a-wheeler/railroader) - static security analyzer
+[roodi]
+
+### ripper
+
+[rufo](https://github.com/ruby-formatter/rufo) - a formatter for Ruby code
+[sandi_meter](https://github.com/makaroni4/sandi_meter) - analyzes Ruby code for violations of Sandi Metz's four rules
+[yard](https://github.com/lsegal/yard)
