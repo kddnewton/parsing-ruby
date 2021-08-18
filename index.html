@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Parsing Ruby</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style type="text/css">
+body {
+  margin: 0;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.timeline {
+  --color: darkslategray;
+  background-color: var(--color);
+  height: 2px;
+  position: relative;
+  width: 100%;
+}
+
+.timeline--entry {
+  position: relative;
+}
+
+.timeline--entry::after {
+  background-color: var(--color);
+  content: "";
+  height: 10px;
+  position: absolute;
+  transform: rotate(45deg) translateY(-50%);
+  width: 10px;
+}
+
+.timeline--tick {
+  position: relative;
+}
+
+.timeline--tick::after {
+  background-color: var(--color);
+  content: "";
+  height: 10px;
+  position: absolute;
+  transform: translateY(-40%);
+  width: 2px;
+}
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+const { useContext, useReducer } = React;
+
+// type Entry = { date: Date, title: string, description: string, link: string }
+
+const initialState = {
+  startDate: new Date(Date.UTC(1995, 0, 1)),
+  endDate: new Date()
+};
+
+const reducer = (state, action) => {
+  return state;
+};
+
+const TimelineContext = React.createContext(initialState);
+
+const Timeline = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <TimelineContext.Provider value={state}>
+      <div className="timeline">
+        <TimelineTicks />
+        {children}
+      </div>
+    </TimelineContext.Provider>
+  );
+};
+
+const getTimelinePercentage = (startDate, endDate, date) => {
+  return (date - startDate) / (endDate - startDate) * 100;
+};
+
+const TimelineTicks = () => {
+  const { startDate, endDate } = useContext(TimelineContext);
+
+  if ((endDate - startDate) >= 3 * 365 * 24 * 60 * 60 * 1000) {
+    return <TimelineYearTicks />;
+  }
+
+  if ((endDate - startDate) >= 3 * 30 * 24 * 60 * 60 * 1000) {
+    return <TimelineMonthTicks />;
+  }
+
+  return <TimelineDayTicks />;
+};
+
+const TimelineYearTicks = () => {
+  const { startDate, endDate } = useContext(TimelineContext);
+
+  const minimum = startDate.getUTCFullYear() + 1;
+  const maximum = endDate.getUTCFullYear();
+
+  return new Array(maximum - minimum).fill().map((_value, index) => {
+    const year = minimum + index;
+
+    return (
+      <TimelineTick key={year} date={new Date(Date.UTC(year, 0, 1))}>
+        {year}
+      </TimelineTick>
+    );
+  });
+};
+
+const TimelineMonthTicks = () => {
+
+};
+
+const TimelineDayTicks = () => {
+
+};
+
+const TimelineTick = ({ children, date }) => {
+  const { startDate, endDate } = useContext(TimelineContext);
+  const percentage = getTimelinePercentage(startDate, endDate, date);
+
+  return <div className="timeline--tick" style={{ left: `${percentage}%` }} />;
+};
+
+const TimelineEntry = ({ children, date, title }) => {
+  const { startDate, endDate } = useContext(TimelineContext);
+
+  if (startDate > date || endDate < date) {
+    return null;
+  }
+
+  const percentage = getTimelinePercentage(startDate, endDate, date);
+
+  return <div className="timeline--entry" style={{ left: `${percentage}%` }} />;
+};
+
+const TimelineLink = ({ href }) => (
+  <a href={href}>&#f35d;</a>
+);
+
+const App = () => (
+  <div className="container">
+    <Timeline>
+      <TimelineEntry date={new Date(Date.UTC(2016, 9, 10))} title="Soutaro Matsumoto releases v0.1.0 of querly">
+        <TimelineLink href="https://github.com/soutaro/querly" />
+        Uses the `parser` gem to find method calls with configured rules
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2016, 11, 25))} title="Ruby 2.4.0" />
+      <TimelineEntry date={new Date(Date.UTC(2017, 11, 25))} title="Ruby 2.5.0">
+        <TimelineLink href="https://www.ruby-lang.org/en/news/2017/12/25/ruby-2-5-0-released/" />
+        `rescue` and `ensure` at the block and method level
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2018, 11, 25))} title="Ruby 2.6.0">
+        `RubyVM::AbstractSyntaxTree`
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2019, 11, 25))} title="Ruby 2.7.0" />
+      <TimelineEntry date={new Date(Date.UTC(2020, 11, 25))} title="Ruby 3.0.0" />
+    </Timeline>
+  </div>
+);
+
+ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
