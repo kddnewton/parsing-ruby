@@ -29,7 +29,7 @@
 
 .marker:hover {
   transform: scale(3, 5);
-  transform-origin: bottom center;
+  transform-origin: center 1.2em;
   transition: transform 100ms ease;
 }
 

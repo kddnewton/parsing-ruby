@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Timeline, TimelineEntry, TimelineMarker, TimelineLink, TimelineTooltip } from "./Timeline";
+import { Timeline, TimelineEntry, TimelineMarker, TimelineLink, TimelineTooltip } from "./display/Timeline";
+import { Modal, ModalTrigger, ModalContent } from "./display/Modal";
 import RubyMarker from "./RubyMarker";
 
 const RubyTimeline: React.FC = () => (
@@ -42,12 +43,17 @@ const RubyTimeline: React.FC = () => (
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2001, 0, 10))} title="Robert Feldt releases v0.0.1 of Ruth">
       <TimelineMarker>
-        <RubyMarker />
+        <Modal>
+          <ModalTrigger>
+            <RubyMarker />
+            Robert Feldt releases v0.0.1 of Ruth
+          </ModalTrigger>
+          <ModalContent>
+            <TimelineLink href="https://sourceforge.net/projects/rubyvm/files/ruth/" />
+            <p>Extends Ruby 1.6 internals to support inspecting Ruby ASTs</p>
+          </ModalContent>
+        </Modal>
       </TimelineMarker>
-      <TimelineTooltip>
-        <TimelineLink href="https://sourceforge.net/projects/rubyvm/files/ruth/" />
-        <p>Extends Ruby 1.6 internals to support inspecting Ruby ASTs</p>
-      </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2001, 9, 20))} title="Minero Aoki releases v0.0.1 of ripper">
       <TimelineMarker>

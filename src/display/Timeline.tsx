@@ -1,5 +1,6 @@
 import React, { Reducer, useContext, useReducer } from "react";
 
+import { Modal, ModalContent, ModalTrigger } from "./Modal";
 import styles from "./timeline.module.css";
 
 type State = {
