@@ -231,13 +231,109 @@ const App = () => (
   <div className="container">
     <Header />
     <Timeline>
+      <TimelineEntry date={new Date(Date.UTC(1995, 11, 21))} title="Ruby 0.95" />
+      <TimelineEntry date={new Date(Date.UTC(1996, 11, 25))} title="Ruby 1.0" />
+      <TimelineEntry date={new Date(Date.UTC(1998, 11, 15))} title="Ruby 1.2" />
+      <TimelineEntry date={new Date(Date.UTC(1999, 7, 15))} title="Ruby 1.4" />
+      <TimelineEntry date={new Date(Date.UTC(2000, 8, 15))} title="Ruby 1.6" />
+      <TimelineEntry date={new Date(Date.UTC(2001, 0, 10))} title="Robert Feldt releases v0.0.1 of Ruth">
+        <TimelineLink href="https://sourceforge.net/projects/rubyvm/files/ruth/" />
+        Extends Ruby 1.6 internals to support inspecting Ruby ASTs
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2001, 9, 20))} title="Minero Aoki releases v0.0.1 of ripper">
+        <TimelineLink href="https://i.loveruby.net/archive/ripper/" />
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2002, 2, 1))} title="Ruby 1.6.7" />
+      <TimelineEntry date={new Date(Date.UTC(2002, 9, 9))} title="Mathieu Bouchard releases v0.7.0 of MetaRuby">
+        <TimelineLink href="http://artengine.ca/matju/MetaRuby/" />
+        Includes `RubySchema.rb`, a schema for validating Ruby ASTs
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2003, 0, 14))} title="Yuya Kato releases v0.0.1 of bruby">
+        <TimelineLink href="http://bruby.osdn.jp/" />
+        Extends Ruby 1.6 internals to support dumping and loading a Ruby AST to a binary format
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2003, 7, 4))} title="Ruby 1.8.0" />
+      <TimelineEntry date={new Date(Date.UTC(2004, 10, 10))} title="Ryan Davis releases v1.0.0 of ParseTree">
+        <TimelineLink href="https://github.com/seattlerb/parsetree" />
+        Extends Ruby 1.8 internals to support returning an AST by converting to Ruby objects
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2005, 9, 23))} title="Zev Blut releases v0.1.0 of saikuro">
+        <TimelineLink href="https://metricfu.github.io/Saikuro" />
+        Uses `irb/ruby-lex` to analyze Ruby code for for cyclomatic complexity
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2006, 5, 5))} title="Dominik Bathon releases v0.1.0 of RubyNode">
+        <TimelineLink href="https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/" />
+        Extends Ruby 1.8 internals to support returning an AST by wrapping the NODE struct
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2007, 7, 1))} title="Ryan Davis releases v1.0.1 of flog">
+        <TimelineLink href="https://github.com/seattlerb/flog" />
+        Uses `ParseTree` to determine how difficult code is to read
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2007, 10, 14))} title="Ryan Davis releases v1.0.0 of ruby_parser">
+        <TimelineLink href="https://github.com/seattlerb/ruby_parser" />
+        Uses a `racc`-based compiler to generate s-expressions
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2007, 11, 25))} title="Ruby 1.9.0">
+        `YARV`
+        block local variables
+        lambda literal syntax
+        new hash key syntax
+        `Ripper` merged in as standard library
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2008, 10, 6))} title="Ryan Davis releases v1.0.0 of flay">
+        <TimelineLink href="https://github.com/seattlerb/flay" />
+        Uses `ruby_parser` to analyze code for structural similarities
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2009, 6, 25))} title="Paul Brannan releases v0.5.0 of nodewrap">
+        <TimelineLink href="http://rubystuff.org/nodewrap/" />
+        Allows dumping/loading the Ruby nodes and instruction sequences to a binary format
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2010, 7, 27))} title="Michael Edgar releases v0.0.1 of laser">
+        <TimelineLink href="https://github.com/michaeledgar/laser" />
+        Originally named Wool
+        Originally parsed with regular expressions to determine style violations
+        Eventually switched over to using `Ripper` to parse Ruby
+        Features a type system, semantic analysis, documentation generation, and a plugin system
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2011, 4, 15))} title="Michael Edgar publishes senior thesis on laser">
+        <TimelineLink href="https://digitalcommons.dartmouth.edu/cgi/viewcontent.cgi?article=1071&context=senior_theses" />
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2011, 2, 22))} title="JIS X 3017" />
+      <TimelineEntry date={new Date(Date.UTC(2011, 9, 31))} title="Ruby 1.9.3" />
+      <TimelineEntry date={new Date(Date.UTC(2012, 1, 14))} title="Josep Bach releases v0.0.1 of pelusa">
+        <TimelineLink href="https://github.com/codegram/pelusa" />
+        Uses `Rubinius` to perform basic linting
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2012, 2, 24))} title="Xavier Shay releases v1.1.0 of cane">
+        <TimelineLink href="https://github.com/square/cane" />
+        Uses `Ripper` to determine assignment, branch, conditional metrics
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2012, 3, 15))} title="ISO/IEC 30170:2012" />
+      <TimelineEntry date={new Date(Date.UTC(2013, 1, 24))} title="Ruby 2.0.0">
+        keyword arguments
+        `Module#prepend`
+        `%i` symbol array literals
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2013, 3, 15))} title="Peter Zotov releases v0.9.0 of parser">
+        <TimelineLink href="https://github.com/whitequark/parser" />
+        Derives a new parser from `parse.y` in Ruby and a lexer test suite from `ruby_parser`
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2013, 11, 25))} title="Ruby 2.1.0" />
+      <TimelineEntry date={new Date(Date.UTC(2014, 11, 25))} title="Ruby 2.2.0" />
+      <TimelineEntry date={new Date(Date.UTC(2015, 1, 23))} title="Damir Svrtan releases v0.1.0 of fasterer">
+        <TimelineLink href="https://github.com/DamirSvrtan/fasterer" />
+        Uses `ruby_parser` to check for various code paths that can be made faster
+      </TimelineEntry>
+      <TimelineEntry date={new Date(Date.UTC(2015, 11, 25))} title="Ruby 2.3.0">
+        `# frozen_string_literal: true`
+        `&.` operator
+      </TimelineEntry>
       <TimelineEntry date={new Date(Date.UTC(2016, 9, 10))} title="Soutaro Matsumoto releases v0.1.0 of querly">
         <TimelineLink href="https://github.com/soutaro/querly" />
         Uses the `parser` gem to find method calls with configured rules
       </TimelineEntry>
       <TimelineEntry date={new Date(Date.UTC(2016, 11, 25))} title="Ruby 2.4.0" />
       <TimelineEntry date={new Date(Date.UTC(2017, 11, 25))} title="Ruby 2.5.0">
-        <TimelineLink href="https://www.ruby-lang.org/en/news/2017/12/25/ruby-2-5-0-released/" />
         `rescue` and `ensure` at the block and method level
       </TimelineEntry>
       <TimelineEntry date={new Date(Date.UTC(2018, 11, 25))} title="Ruby 2.6.0">

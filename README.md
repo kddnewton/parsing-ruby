@@ -110,7 +110,7 @@ mruby
 2008-11-06 - [Ryan Davis releases v1.0.0 of flay](https://github.com/seattlerb/flay)
 - Uses `ruby_parser` to analyze code for structural similarities
 
-2009-07-25 - [Paul Brannan releases v0.5.0 of nodewrap](http://rubystuff.org/nodewrap/)]
+2009-07-25 - [Paul Brannan releases v0.5.0 of nodewrap](http://rubystuff.org/nodewrap/)
 - Allows dumping/loading the Ruby nodes and instruction sequences to a binary format
 
 2010-08-27 - [Michael Edgar releases v0.0.1 of laser](https://github.com/michaeledgar/laser)
