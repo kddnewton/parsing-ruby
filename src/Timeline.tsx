@@ -81,7 +81,7 @@ const TimelineDayTicks: React.FC = () => {
   throw "Not yet implemented";
 };
 
-const TimelineTick: React.FC<{ date: Date }> = ({ children, date }) => {
+const TimelineTick: React.FC<{ date: Date }> = ({ date }) => {
   const { startDate, endDate } = useContext(TimelineContext);
   const percentage = getTimelinePercentage(startDate, endDate, date);
 

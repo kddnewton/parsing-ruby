@@ -68,7 +68,7 @@ const RubyTimeline: React.FC = () => (
       </TimelineMarker>
       <TimelineTooltip>
         <TimelineLink href="https://sourceforge.net/projects/rubyvm/files/ruth/" />
-        Extends Ruby 1.6 internals to support inspecting Ruby ASTs
+        <p>Extends Ruby 1.6 internals to support inspecting Ruby ASTs</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2001, 9, 20))} title="Minero Aoki releases v0.0.1 of ripper">
@@ -92,7 +92,7 @@ const RubyTimeline: React.FC = () => (
       </TimelineMarker>
       <TimelineTooltip>
         <TimelineLink href="http://artengine.ca/matju/MetaRuby/" />
-        Includes `RubySchema.rb`, a schema for validating Ruby ASTs
+        <p>Includes `RubySchema.rb`, a schema for validating Ruby ASTs</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2003, 0, 14))} title="Yuya Kato releases v0.0.1 of bruby">
@@ -101,7 +101,7 @@ const RubyTimeline: React.FC = () => (
       </TimelineMarker>
       <TimelineTooltip>
         <TimelineLink href="http://bruby.osdn.jp/" />
-        Extends Ruby 1.6 internals to support dumping and loading a Ruby AST to a binary format
+        <p>Extends Ruby 1.6 internals to support dumping and loading a Ruby AST to a binary format</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2003, 7, 4))} title="Ruby 1.8.0">
@@ -117,7 +117,7 @@ const RubyTimeline: React.FC = () => (
       </TimelineMarker>
       <TimelineTooltip>
         <TimelineLink href="https://github.com/seattlerb/parsetree" />
-        Extends Ruby 1.8 internals to support returning an AST by converting to Ruby objects
+        <p>Extends Ruby 1.8 internals to support returning an AST by converting to Ruby objects</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2005, 9, 23))} title="Zev Blut releases v0.1.0 of saikuro">
@@ -126,7 +126,7 @@ const RubyTimeline: React.FC = () => (
       </TimelineMarker>
       <TimelineTooltip>
         <TimelineLink href="https://metricfu.github.io/Saikuro" />
-        Uses `irb/ruby-lex` to analyze Ruby code for for cyclomatic complexity
+        <p>Uses `irb/ruby-lex` to analyze Ruby code for for cyclomatic complexity</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2006, 5, 5))} title="Dominik Bathon releases v0.1.0 of RubyNode">
@@ -135,7 +135,7 @@ const RubyTimeline: React.FC = () => (
       </TimelineMarker>
       <TimelineTooltip>
         <TimelineLink href="https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/" />
-        Extends Ruby 1.8 internals to support returning an AST by wrapping the NODE struct
+        <p>Extends Ruby 1.8 internals to support returning an AST by wrapping the NODE struct</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2007, 7, 1))} title="Ryan Davis releases v1.0.1 of flog">
@@ -144,7 +144,7 @@ const RubyTimeline: React.FC = () => (
       </TimelineMarker>
       <TimelineTooltip>
         <TimelineLink href="https://github.com/seattlerb/flog" />
-        Uses `ParseTree` to determine how difficult code is to read
+        <p>Uses `ParseTree` to determine how difficult code is to read</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2007, 10, 14))} title="Ryan Davis releases v1.0.0 of ruby_parser">
@@ -153,7 +153,7 @@ const RubyTimeline: React.FC = () => (
       </TimelineMarker>
       <TimelineTooltip>
         <TimelineLink href="https://github.com/seattlerb/ruby_parser" />
-        Uses a `racc`-based compiler to generate s-expressions
+        <p>Uses a `racc`-based compiler to generate s-expressions</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2007, 11, 25))} title="Ruby 1.9.0">
@@ -161,11 +161,11 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        `YARV`
-        block local variables
-        lambda literal syntax
-        new hash key syntax
-        `Ripper` merged in as standard library
+        <p>`YARV`</p>
+        <p>block local variables</p>
+        <p>lambda literal syntax</p>
+        <p>new hash key syntax</p>
+        <p>`Ripper` merged in as standard library</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2008, 10, 6))} title="Ryan Davis releases v1.0.0 of flay">
@@ -174,7 +174,7 @@ const RubyTimeline: React.FC = () => (
       </TimelineMarker>
       <TimelineTooltip>
         <TimelineLink href="https://github.com/seattlerb/flay" />
-        Uses `ruby_parser` to analyze code for structural similarities
+        <p>Uses `ruby_parser` to analyze code for structural similarities</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2009, 6, 25))} title="Paul Brannan releases v0.5.0 of nodewrap">
@@ -183,7 +183,7 @@ const RubyTimeline: React.FC = () => (
       </TimelineMarker>
       <TimelineTooltip>
         <TimelineLink href="http://rubystuff.org/nodewrap/" />
-        Allows dumping/loading the Ruby nodes and instruction sequences to a binary format
+        <p>Allows dumping/loading the Ruby nodes and instruction sequences to a binary format</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2010, 7, 27))} title="Michael Edgar releases v0.0.1 of laser">
@@ -192,10 +192,10 @@ const RubyTimeline: React.FC = () => (
       </TimelineMarker>
       <TimelineTooltip>
         <TimelineLink href="https://github.com/michaeledgar/laser" />
-        Originally named Wool
-        Originally parsed with regular expressions to determine style violations
-        Eventually switched over to using `Ripper` to parse Ruby
-        Features a type system, semantic analysis, documentation generation, and a plugin system
+        <p>Originally named Wool</p>
+        <p>Originally parsed with regular expressions to determine style violations</p>
+        <p>Eventually switched over to using `Ripper` to parse Ruby</p>
+        <p>Features a type system, semantic analysis, documentation generation, and a plugin system</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2011, 4, 15))} title="Michael Edgar publishes senior thesis on laser">
@@ -226,7 +226,7 @@ const RubyTimeline: React.FC = () => (
       </TimelineMarker>
       <TimelineTooltip>
         <TimelineLink href="https://github.com/codegram/pelusa" />
-        Uses `Rubinius` to perform basic linting
+        <p>Uses `Rubinius` to perform basic linting</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2012, 2, 24))} title="Xavier Shay releases v1.1.0 of cane">
@@ -235,7 +235,7 @@ const RubyTimeline: React.FC = () => (
       </TimelineMarker>
       <TimelineTooltip>
         <TimelineLink href="https://github.com/square/cane" />
-        Uses `Ripper` to determine assignment, branch, conditional metrics
+        <p>Uses `Ripper` to determine assignment, branch, conditional metrics</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2012, 3, 15))} title="ISO/IEC 30170:2012">
@@ -250,9 +250,9 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        keyword arguments
-        `Module#prepend`
-        `%i` symbol array literals
+        <p>keyword arguments</p>
+        <p>`Module#prepend`</p>
+        <p>`%i` symbol array literals</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2013, 3, 15))} title="Peter Zotov releases v0.9.0 of parser">
@@ -261,7 +261,7 @@ const RubyTimeline: React.FC = () => (
       </TimelineMarker>
       <TimelineTooltip>
         <TimelineLink href="https://github.com/whitequark/parser" />
-        Derives a new parser from `parse.y` in Ruby and a lexer test suite from `ruby_parser`
+        <p>Derives a new parser from `parse.y` in Ruby and a lexer test suite from `ruby_parser`</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2013, 11, 25))} title="Ruby 2.1.0">
@@ -284,7 +284,7 @@ const RubyTimeline: React.FC = () => (
       </TimelineMarker>
       <TimelineTooltip>
         <TimelineLink href="https://github.com/DamirSvrtan/fasterer" />
-        Uses `ruby_parser` to check for various code paths that can be made faster
+        <p>Uses `ruby_parser` to check for various code paths that can be made faster</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2015, 11, 25))} title="Ruby 2.3.0">
@@ -292,8 +292,8 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        `# frozen_string_literal: true`
-        `&.` operator
+        <p>`# frozen_string_literal: true`</p>
+        <p>`&.` operator</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2016, 9, 10))} title="Soutaro Matsumoto releases v0.1.0 of querly">
@@ -302,7 +302,7 @@ const RubyTimeline: React.FC = () => (
       </TimelineMarker>
       <TimelineTooltip>
         <TimelineLink href="https://github.com/soutaro/querly" />
-        Uses the `parser` gem to find method calls with configured rules
+        <p>Uses the `parser` gem to find method calls with configured rules</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2016, 11, 25))} title="Ruby 2.4.0">
@@ -317,7 +317,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        `rescue` and `ensure` at the block and method level
+        <p>`rescue` and `ensure` at the block and method level</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2018, 11, 25))} title="Ruby 2.6.0">
@@ -325,7 +325,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        `RubyVM::AbstractSyntaxTree`
+        <p>`RubyVM::AbstractSyntaxTree`</p>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(2019, 11, 25))} title="Ruby 2.7.0">

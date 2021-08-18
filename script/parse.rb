@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-indent = "      "
-
 parsing = false
 entries = []
 
@@ -18,21 +16,20 @@ File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
     day = day == "??" ? 15 : day.to_i(10)
 
     title = $5 ? $4 : $6
-    entry = <<~JSX
-      #{indent}<TimelineEntry date={new Date(Date.UTC(#{year}, #{month}, #{day}))} title=\"#{title}\">
-      #{indent}  <TimelineMarker>
-      #{indent}    <RubyMarker />
-      #{indent}  </TimelineMarker>
-      #{indent}  <TimelineTooltip>
-      #{indent}  </TimelineTooltip>
-      #{indent}</TimelineEntry>
+    entries += <<~JSX.split("\n")
+      <TimelineEntry date={new Date(Date.UTC(#{year}, #{month}, #{day}))} title=\"#{title}\">
+        <TimelineMarker>
+          <RubyMarker />
+        </TimelineMarker>
+        <TimelineTooltip>
+        </TimelineTooltip>
+      </TimelineEntry>
     JSX
 
-    entry = entry.split("\n").insert(-3, "#{indent}    <TimelineLink href=\"#{$5}\" />").join("\n") if $5
-    entries << entry
+    entries.insert(-3, "    <TimelineLink href=\"#{$5}\" />") if $5
   when /^- (.+)$/
-    entries[-1] = entries[-1].split("\n").insert(-3, "#{indent}    #{$1}").join("\n")
+    entries.insert(-3, "    <p>#{$1}</p>")
   end
 end
 
-puts entries
+puts ["  <Timeline>", *entries.map { |line| "    #{line}" }.join("\n"), "  </Timeline>"].join("\n")

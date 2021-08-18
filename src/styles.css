@@ -45,7 +45,7 @@ body {
 }
 
 .timeline--entry {
-  position: relative;
+  position: absolute;
 }
 
 .timeline--marker {
@@ -57,7 +57,8 @@ body {
 }
 
 .timeline--marker:hover {
-  transform: scale(3, 5) translateY(-33%);
+  transform: scale(3, 5);
+  transform-origin: bottom center;
   transition: transform 100ms ease;
 }
 
@@ -65,12 +66,8 @@ body {
   stroke-width: 2;
 }
 
-.ruby-marker {
-  stroke: var(--primary-color);
-}
-
 .timeline--tick {
-  position: relative;
+  position: absolute;
 }
 
 .timeline--tick::after {
@@ -83,6 +80,12 @@ body {
 }
 
 .timeline--tooltip {
+  display: none;
+  max-width: 10em;
   opacity: 0;
   position: absolute;
+}
+
+.ruby-marker {
+  stroke: var(--primary-color);
 }
