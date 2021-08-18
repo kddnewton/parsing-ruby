@@ -1,5 +1,7 @@
 import React, { Reducer, useContext, useReducer } from "react";
 
+import styles from "./timeline.module.css";
+
 type State = {
   startDate: Date,
   endDate: Date
@@ -23,8 +25,8 @@ export const Timeline: React.FC = ({ children }) => {
 
   return (
     <TimelineContext.Provider value={state}>
-      <div className="timeline">
-        <div className="timeline--line">
+      <div className={styles.timeline}>
+        <div className={styles.line}>
           <TimelineTicks />
           {children}
         </div>
@@ -85,7 +87,7 @@ const TimelineTick: React.FC<{ date: Date }> = ({ date }) => {
   const { startDate, endDate } = useContext(TimelineContext);
   const percentage = getTimelinePercentage(startDate, endDate, date);
 
-  return <div className="timeline--tick" style={{ left: `${percentage}%` }} />;
+  return <div className={styles.tick} style={{ left: `${percentage}%` }} />;
 };
 
 export const TimelineEntry: React.FC<{ date: Date, title: string }> = ({ children, date, title }) => {
@@ -98,18 +100,18 @@ export const TimelineEntry: React.FC<{ date: Date, title: string }> = ({ childre
   const percentage = getTimelinePercentage(startDate, endDate, date);
 
   return (
-    <div className="timeline--entry" style={{ left: `${percentage}%` }}>
+    <div className={styles.entry} style={{ left: `${percentage}%` }}>
       {children}
     </div>
   );
 };
 
 export const TimelineMarker: React.FC = ({ children }) => (
-  <div className="timeline--marker">{children}</div>
+  <div className={styles.marker}>{children}</div>
 );
 
 export const TimelineTooltip: React.FC = ({ children }) => (
-  <div className="timeline--tooltip">{children}</div>
+  <div className={styles.tooltip}>{children}</div>
 );
 
 export const TimelineLink: React.FC<{ href: string }> = ({ href }) => (

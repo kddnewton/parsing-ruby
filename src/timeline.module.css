@@ -1,0 +1,58 @@
+.timeline {
+  align-items: flex-end;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  padding: 10em 0;
+  width: 100%;
+}
+
+.line {
+  background-color: var(--secondary-color);
+  height: 2px;
+  position: relative;
+  width: 100%;
+}
+
+.entry {
+  position: absolute;
+}
+
+.marker {
+  bottom: -2px;
+  height: 1.5em;
+  left: -0.75em;
+  position: absolute;
+  width: 1.5em;
+}
+
+.marker:hover {
+  transform: scale(3, 5);
+  transform-origin: bottom center;
+  transition: transform 100ms ease;
+}
+
+.marker:hover path {
+  stroke-width: 2;
+}
+
+.tick {
+  position: absolute;
+}
+
+.tick::after {
+  background-color: var(--secondary-color);
+  content: "";
+  height: 10px;
+  position: absolute;
+  transform: translateY(-40%);
+  width: 1px;
+}
+
+.tooltip {
+  display: none;
+  max-width: 10em;
+  opacity: 0;
+  position: absolute;
+}

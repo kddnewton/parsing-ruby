@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  padding: 2em;
+}
+
+.github {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.ruby {
+  margin-right: 2em;
+}
+
+.title {
+  color: var(--secondary-color);
+  font-weight: normal;
+}

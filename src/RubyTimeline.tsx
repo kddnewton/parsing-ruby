@@ -1,29 +1,7 @@
 import React from "react";
 
 import { Timeline, TimelineEntry, TimelineMarker, TimelineLink, TimelineTooltip } from "./Timeline";
-
-const RubyMarker: React.FC = () => (
-  <svg viewBox="-1 -1 136 117" version="1.1" xmlns="http://www.w3.org/2000/svg" className="ruby-marker">
-    <g fill="none">
-      <g strokeWidth="6">
-        <path d="M24.2479013,0.221260022 L0.452034891,46.3285725 L24.2479013,0.221260022 Z" />
-        <path d="M0.452034891,46.3285725 L67.079193,114.413094 L0.452034891,46.3285725 Z" />
-        <path d="M67.079193,114.413094 L133.706351,46.3285725 L67.079193,114.413094 Z" />
-        <path d="M109.466768,0.221260022 L133.706351,46.3285725 L109.466768,0.221260022 Z" />
-        <path d="M109.910485,0.221260022 L24.6916175,0.221260022 L109.910485,0.221260022 Z" />
-      </g>
-      <path d="M0.452668771,46 L133.704872,46" strokeWidth="3"></path>
-      <g strokeWidth="3">
-        <path d="M24.2479013,0.221260022 L37.2276568,46.3285725" />
-        <path d="M67.0802494,114.412462 L37.2266004,46.3279412" />
-        <path d="M67.0802494,0.221260022 L37.2266004,46.3285725" />
-        <path d="M109.910485,0.221260022 L96.9307291,46.3285725" />
-        <path d="M67.0802494,114.412462 L96.9317856,46.3279412" />
-        <path d="M67.0802494,0.221260022 L96.9317856,46.3285725" />
-      </g>
-    </g>
-  </svg>
-);
+import RubyMarker from "./RubyMarker";
 
 const RubyTimeline: React.FC = () => (
   <Timeline>
