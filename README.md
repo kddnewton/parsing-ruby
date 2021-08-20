@@ -96,6 +96,7 @@ Over time the community has developed a massive amount of projects whose goal is
 - [Endless range](https://bugs.ruby-lang.org/issues/12912)
 - [Non-ASCII constant names](https://bugs.ruby-lang.org/issues/13770)
 - [RubyVM::AbstractSyntaxTree](https://github.com/ruby/ruby/commit/0f3dcbdf38db6c7fb04ca0833bb1f9af2c3e7ca4)
+- [Escape keywords from class/module scope removed](https://bugs.ruby-lang.org/issues/6354)
 
 2019-12-25 - Ruby 2.7.0
 - [Flip-flop (undeprecated)](https://bugs.ruby-lang.org/issues/5400)
@@ -118,28 +119,6 @@ Over time the community has developed a massive amount of projects whose goal is
 
 Future??
 - [Anonymous struct literal](https://bugs.ruby-lang.org/issues/16986)
-
-### Implementations
-
-2007-06-07 - JRuby 1.0.0
-
-2010-05-14 - Rubinius 1.0.0
-
-2013-08-13 - Rubinius 2.0.0
-
-2015-07-21 - JRuby 9.0.0.0
-
-2016-01-01 - Rubinius 3.0
-
-2016-05-02 - JRuby 9.1.0.0
-
-2018-05-24 - JRuby 9.2.0.0
-
-2019-05-04 - Rubinius 4.0
-
-2020-05-16 - Rubinius 5.0
-
-2021-06-15 - JRuby 9.2.19.0
 
 ### Projects
 
@@ -167,128 +146,101 @@ Future??
 - Allows dumping/loading the Ruby nodes and instruction sequences to a binary format
 
 2010-08-27 - [Michael Edgar releases v0.0.1 of laser](https://github.com/michaeledgar/laser)
-- Originally named Wool
-- Originally parsed with regular expressions to determine style violations
-- Eventually switched over to using `Ripper` to parse Ruby
+- Originally parsed regular expressions then `Ripper` to parse Ruby
 - Features a type system, semantic analysis, documentation generation, and a plugin system
-- Later released a [thesis paper](https://digitalcommons.dartmouth.edu/cgi/viewcontent.cgi?article=1071&context=senior_theses)
 
 2013-04-15 - [Peter Zotov releases v0.9.0 of parser](https://github.com/whitequark/parser)
 - Derives a new parser from `parse.y` in Ruby and a lexer test suite from `ruby_parser`
 
-### Derivatives
-
-2005-10-23 - [Zev Blut releases v0.1.0 of saikuro](https://metricfu.github.io/Saikuro)
-- Uses `irb/ruby-lex` to analyze Ruby code for for cyclomatic complexity
-
-2007-08-01 - [Ryan Davis releases v1.0.1 of flog](https://github.com/seattlerb/flog)
-- Uses `ParseTree` to determine how difficult code is to read
-
-2008-11-06 - [Ryan Davis releases v1.0.0 of flay](https://github.com/seattlerb/flay)
-- Uses `ruby_parser` to analyze code for structural similarities
-
-2012-02-14 - [Josep Bach releases v0.0.1 of pelusa](https://github.com/codegram/pelusa)
-- Uses `Rubinius` to perform basic linting
-
-2012-03-24 - [Xavier Shay releases v1.1.0 of cane](https://github.com/square/cane)
-- Uses `Ripper` to determine assignment, branch, conditional metrics
-
-2015-02-23 - [Damir Svrtan releases v0.1.0 of fasterer](https://github.com/DamirSvrtan/fasterer)
-- Uses `ruby_parser` to check for various code paths that can be made faster
-
-2016-10-10 - [Soutaro Matsumoto releases v0.1.0 of querly](https://github.com/soutaro/querly)
-- Uses the `parser` gem to find method calls with configured rules
-
-### Standards
+## Standards
 
 2011-03-22 - JIS X 3017
 
 2012-04-15 - ISO/IEC 30170:2012
 
-## Projects
+## Parsers
 
-https://cache.ruby-lang.org/
-Cardinal (Ruby on Parrot)
-rdoc
-opal
-truffleruby
-jruby
-rubinius
-[topaz](https://github.com/topazproject/topaz)
-mruby
-[sorbet](https://sorbet.org/)
-[druby](http://www.cs.umd.edu/projects/PL/druby/)
-[rts](https://www.cs.tufts.edu/~jfoster/papers/oops13.pdf)
-[ecstatic](https://projekter.aau.dk/projekter/files/61071016/1181807983.pdf)
-[tree-sitter-ruby](https://github.com/tree-sitter/tree-sitter-ruby)
-[IronRuby](http://www.wilcob.com/Wilco/IronRuby/microsoft_ironruby.aspx)
-[MacRuby](http://macruby.org/)
-[llrb](https://github.com/k0kubun/llrb)
-[language_server-ruby](https://github.com/mtsmfm/language_server-ruby)
-ruby-next
-vernacular
-[sorcerer](https://github.com/jimweirich/sorcerer)
-groovy
+[Cardinal](https://github.com/parrot/cardinal) - an implementation on the Parrot VM
+[IronRuby](http://www.wilcob.com/Wilco/IronRuby/microsoft_ironruby.aspx) - an implementation on the .NET framework
+[jruby](https://github.com/jruby/jruby) - an implementation on the JVM
+[MacRuby](http://macruby.org/) - an implementation for objective-c
+[melbourne](https://github.com/carlosbrando/melbourne) - Rubinius's parser as a gem
+[mruby](https://github.com/mruby/mruby) - an embeddable implementation
+[rdoc](https://github.com/ruby/rdoc) - documentation generator
+[RIL](http://www.cs.umd.edu/projects/PL/druby/papers/druby-dls09.pdf) - an intermediate language
+[rubinius](https://github.com/rubinius/rubinius) - an implementation in Ruby
+[saikuro](https://metricfu.github.io/Saikuro) - cyclomatic complexity linter
+[sorbet](https://sorbet.org/) - type system
+[sydparse](https://rubygems.org/gems/sydparse) - a reentrant Ruby parser
+[topaz](https://github.com/topazproject/topaz) - an implementation for RPython
+[tree-sitter-ruby](https://github.com/tree-sitter/tree-sitter-ruby) - a parser aimed at editors
+[TruffleRuby](https://github.com/oracle/truffleruby) - an implementation on the GraalVM
+[typedruby](https://github.com/typedruby/typedruby) - type system
 
-sydney
-[sydparse]()
-smalltalk bluebook
-
-redo keyword
-
-## Derivative projects
+## Projects using existing parsers
 
 ### parser
 
-[code-explorer]
-[covered]
-[dawnscanner]
-[deep-cover]
-[dependabot-core]
-[erb-lint](https://github.com/Shopify/erb-lint) - lints .erb files
-[fast]
-[packwerk](https://github.com/Shopify/packwerk) - analyzes Ruby for modularity
-[rdl](https://github.com/tupl-tufts/rdl)
-[reek](https://github.com/troessner/reek) - analyzes Ruby for code smells
-[rubocop](https://docs.rubocop.org/rubocop)
-[rubrowser](https://github.com/emad-elsaid/rubrowser) - renders a force-directed graph of module relationships
-[ruby-lint](https://github.com/YorickPeterse/ruby-lint)
-[ruby-next]
-[ruby_detective]
-[rubycritic](https://github.com/whitesmith/rubycritic) - wraps other static analysis tools to give code quality reports
-[seeing_is_believing]
-[solargraph]
-[standard](https://github.com/testdouble/standard)
-[steep](https://github.com/soutaro/steep)
-[typed.rb]
-[unparser]
-[vernacular]
-[visualize_ruby]
-[yoda](https://github.com/tomoasleep/yoda) - static analyzer and language server for Ruby
+[covered](https://github.com/ioquatix/covered) - code coverage reporter
+[deep-cover](https://github.com/deep-cover/deep-cover) - code coverage reporter
+[erb-lint](https://github.com/Shopify/erb-lint) - ERB file linter
+[fast](https://github.com/jonatas/fast) - AST editor
+[opal](https://github.com/opal/opal) - Ruby to JavaScript transpiler
+[packwerk](https://github.com/Shopify/packwerk) - encapsulation analyzer
+[querly](https://github.com/soutaro/querly) - method call finder
+[rdl](https://github.com/tupl-tufts/rdl) - type checker
+[reek](https://github.com/troessner/reek) - code smell analyzer
+[rubocop](https://github.com/rubocop/rubocop) - linter
+[rubrowser](https://github.com/emad-elsaid/rubrowser) - module relationship grapher
+[ruby-lint](https://github.com/YorickPeterse/ruby-lint) - linter
+[ruby-next](https://github.com/ruby-next/ruby-next) - transpiler and polyfill
+[ruby_detective](https://github.com/victor-am/ruby_detective) - module relationship grapher
+[rubycritic](https://github.com/whitesmith/rubycritic) - code quality reporter
+[seeing_is_believing](https://github.com/JoshCheek/seeing_is_believing) - editor intermediate value display
+[standard](https://github.com/testdouble/standard) - a rubocop wrapper with fewer options
+[steep](https://github.com/soutaro/steep) - static type checker
+[unparser](https://github.com/mbj/unparser) - code generation from the parser AST
+[vernacular](https://github.com/kddnewton/vernacular) - source code manipulation
+[yoda](https://github.com/tomoasleep/yoda) - static analyzer and language server
 
 ### ruby_parser
 
-[dawnscanner]
-[debride]
-[fasterer]
-[flay]
-[flog]
-[quality]
+[dawnscanner](https://github.com/thesp0nge/dawnscanner) - security analyzer
+[debride](https://github.com/seattlerb/debride) - unused code analyzer
+[fasterer](https://github.com/DamirSvrtan/fasterer) - performance linter
+[flay](https://github.com/seattlerb/flay) - code similarity analyzer
+[flog](https://github.com/seattlerb/flog) - code understandability analyzer
 [railroader](https://github.com/david-a-wheeler/railroader) - static security analyzer
-[roodi]
+[roodi](https://github.com/roodi/roodi) - linter
 
 ### ripper
 
-[prettier](https://github.com/prettier/plugin-ruby) - a formatter for Ruby code
-[rubyfmt](https://github.com/penelopezone/rubyfmt) - a formatter for Ruby code
-[rufo](https://github.com/ruby-formatter/rufo) - a formatter for Ruby code
-[sandi_meter](https://github.com/makaroni4/sandi_meter) - analyzes Ruby code for violations of Sandi Metz's four rules
-[yard](https://github.com/lsegal/yard)
+[cane](https://github.com/square/cane) - linter
+[language_server-ruby](https://github.com/mtsmfm/language_server-ruby) - language server
+[prettier](https://github.com/prettier/plugin-ruby) - formatter
+[rubyfmt](https://github.com/penelopezone/rubyfmt) - formatter
+[rufo](https://github.com/ruby-formatter/rufo) - formatter
+[sandi_meter](https://github.com/makaroni4/sandi_meter) - linter
+[yard](https://github.com/lsegal/yard) - documentation generator
 
 ### RubyVM::AbstractSyntaxTree
 
-[solargraph](https://github.com/castwide/solargraph) - uses `RubyVM::AbstractSyntaxTree` if it's defined, otherwise uses the `parser` gem
+[solargraph](https://github.com/castwide/solargraph) - language server
 
 ### tree-sitter
 
-[vscode-ruby](https://github.com/rubyide/vscode-ruby)
+[vscode-ruby](https://github.com/rubyide/vscode-ruby) - language server
+
+### Rubinius
+
+[pelusa](https://github.com/codegram/pelusa) - linter
+
+## RIL
+
+[druby](http://www.cs.umd.edu/projects/PL/druby/) - type system
+[rtc](https://www.cs.tufts.edu/~jfoster/papers/oops13.pdf) - type system
+[rubydust](http://www.cs.umd.edu/~mwh/papers/rubydust.pdf) - type system
+
+## JRuby
+
+[Ecstatic](https://projekter.aau.dk/projekter/files/61071016/1181807983.pdf) - type system
