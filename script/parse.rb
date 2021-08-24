@@ -52,8 +52,8 @@ entries.map! do |entry|
 end
 
 File.write(
-  File.expand_path("../src/RubyTimeline.tsx", __dir__),
-  ERB.new(DATA.read, trim_mode: "-").result_with_hash(entries: entries)
+  File.expand_path("../src/App.tsx", __dir__),
+  ERB.new(DATA.read).result_with_hash(entries: entries)
 )
 
 __END__
@@ -61,19 +61,24 @@ __END__
 
 import React from "react";
 
+import PageHeader from "./PageHeader";
+import { RubyMarker, RubyTooltip, RubyTimeline } from "./RubyTimeline";
 import { Timeline, TimelineTooltip, TimelineLine, TimelineEntry, TimelineMarker, TimelineEntryTooltip } from "./Timeline";
-import RubyMarker from "./RubyMarker";
-import RubyTooltip from "./RubyTooltip";
 
-const RubyTimeline: React.FC = () => (
-  <Timeline startDate={new Date(Date.UTC(1993, 0, 1))} endDate={new Date(Date.UTC(2021, 11, 31))}>
-    <RubyTooltip>
-      <TimelineTooltip />
-    </RubyTooltip>
-    <TimelineLine>
-<%= entries.join.split("\n").map { |line| "      #{line}" }.join("\n") -%>
-    </TimelineLine>
-  </Timeline>
+const App = () => (
+  <div className="container">
+    <PageHeader />
+    <Timeline startDate={new Date(Date.UTC(1993, 0, 1))} endDate={new Date(Date.UTC(2021, 11, 31))}>
+      <RubyTimeline>
+        <RubyTooltip>
+          <TimelineTooltip />
+        </RubyTooltip>
+        <TimelineLine>
+<%= entries.join.split("\n").map { |line| "        #{line}" }.join("\n") %>
+        </TimelineLine>
+      </RubyTimeline>
+    </Timeline>
+  </div>
 );
 
-export default RubyTimeline;
+export default App;

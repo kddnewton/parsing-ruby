@@ -1,12 +1,3 @@
-.timeline {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  padding: 2em 0 4em;
-  width: 100%;
-}
-
 .line {
   background-color: var(--secondary-color);
   height: 2px;

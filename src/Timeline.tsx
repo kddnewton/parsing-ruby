@@ -80,9 +80,7 @@ export const Timeline: React.FC<{ id?: string, startDate?: Date, endDate?: Date 
     <DescendantProvider context={TimelineEntriesContext} items={entries} set={setEntries}>
       <TimelineStateContext.Provider value={state}>
         <TimelineDispatchContext.Provider value={dispatch}>
-          <div className={styles.timeline} data-react-timeline>
-            {children}
-          </div>
+          {children}
         </TimelineDispatchContext.Provider>
       </TimelineStateContext.Provider>
     </DescendantProvider>
