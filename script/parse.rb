@@ -44,11 +44,11 @@ entries.map! do |entry|
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
-      <TimelineTooltip>
+      <TimelineEntryTooltip>
         <RubyTooltip>
           <h2>#{entry[:title]} <small>#{entry[:year]}-#{"%02d" % entry[:month]}-#{"%02d" % entry[:day]}</small></h2>#{entry[:body]}
         </RubyTooltip>
-      </TimelineTooltip>
+      </TimelineEntryTooltip>
     </TimelineEntry>
   JSX
 end
@@ -64,7 +64,7 @@ JSX
 __END__
 import React from "react";
 
-import { Timeline, TimelineLine, TimelineEntry, TimelineMarker, TimelineTooltip } from "./Timeline";
+import { Timeline, TimelineLine, TimelineEntry, TimelineMarker, TimelineEntryTooltip } from "./Timeline";
 import RubyMarker from "./RubyMarker";
 import RubyTooltip from "./RubyTooltip";
 
