@@ -202,10 +202,6 @@ export const TimelineEntry: React.FC<{ date: Date }> = ({ children, date }) => {
   );
 };
 
-export const TimelineMarker: React.FC = ({ children }) => (
-  <div className={styles.marker}>{children}</div>
-);
-
 export const TimelineEntryTooltip: React.FC = ({ children }) => {
   const { tooltipRef } = useContext(TimelineStateContext);
   const selected = useContext(TimelineEntryContext);

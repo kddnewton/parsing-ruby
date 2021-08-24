@@ -112,3 +112,11 @@
 .tooltip code:first-child {
   padding-left: 0;
 }
+
+.marker {
+  position: absolute;
+  bottom: -3px;
+  height: 1.5em;
+  left: -0.75em;
+  width: 1.5em;
+}

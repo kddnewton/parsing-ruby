@@ -41,9 +41,7 @@ entries.sort_by! { |entry| [entry[:year], entry[:month], entry[:day]] }
 entries.map! do |entry|
   <<~JSX
     <TimelineEntry date={new Date(Date.UTC(#{entry[:year]}, #{entry[:month] - 1}, #{entry[:day]}))}>
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
+      <RubyMarker />
       <TimelineEntryTooltip>
         <h2>#{entry[:title]} <small>#{entry[:year]}-#{"%02d" % entry[:month]}-#{"%02d" % entry[:day]}</small></h2>#{entry[:body]}
       </TimelineEntryTooltip>
@@ -63,7 +61,7 @@ import React from "react";
 
 import PageHeader from "./PageHeader";
 import { RubyMarker, RubyTooltip, RubyTimeline } from "./RubyTimeline";
-import { Timeline, TimelineTooltip, TimelineLine, TimelineEntry, TimelineMarker, TimelineEntryTooltip } from "./Timeline";
+import { Timeline, TimelineTooltip, TimelineLine, TimelineEntry, TimelineEntryTooltip } from "./Timeline";
 
 const App = () => (
   <div className="container">

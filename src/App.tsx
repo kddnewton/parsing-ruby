@@ -4,7 +4,7 @@ import React from "react";
 
 import PageHeader from "./PageHeader";
 import { RubyMarker, RubyTooltip, RubyTimeline } from "./RubyTimeline";
-import { Timeline, TimelineTooltip, TimelineLine, TimelineEntry, TimelineMarker, TimelineEntryTooltip } from "./Timeline";
+import { Timeline, TimelineTooltip, TimelineLine, TimelineEntry, TimelineEntryTooltip } from "./Timeline";
 
 const App = () => (
   <div className="container">
@@ -16,9 +16,7 @@ const App = () => (
         </RubyTooltip>
         <TimelineLine>
         <TimelineEntry date={new Date(Date.UTC(1994, 0, 7))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 0.06 <small>1994-01-07</small></h2>
             
@@ -26,9 +24,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(1995, 4, 19))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 0.76 <small>1995-05-19</small></h2>
             
@@ -36,9 +32,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(1995, 11, 21))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 0.95 <small>1995-12-21</small></h2>
             
@@ -46,9 +40,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(1996, 11, 25))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 1.0-961225 <small>1996-12-25</small></h2>
             
@@ -56,9 +48,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(1998, 11, 24))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 1.3.0 <small>1998-12-24</small></h2>
             
@@ -75,9 +65,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(1998, 11, 25))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 1.2.0 <small>1998-12-25</small></h2>
             
@@ -104,9 +92,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(1999, 7, 13))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 1.4.0 <small>1999-08-13</small></h2>
             
@@ -119,9 +105,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2000, 8, 19))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 1.6.0 <small>2000-09-19</small></h2>
             
@@ -131,9 +115,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2001, 0, 10))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2><a href="https://sourceforge.net/projects/rubyvm/files/ruth/">Robert Feldt releases v0.0.1 of Ruth</a> <small>2001-01-10</small></h2>
             
@@ -143,17 +125,13 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2001, 9, 20))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2><a href="https://i.loveruby.net/archive/ripper/">Minero Aoki releases v0.0.1 of ripper</a> <small>2001-10-20</small></h2>
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2002, 9, 9))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2><a href="http://artengine.ca/matju/MetaRuby/">Mathieu Bouchard releases v0.7.0 of MetaRuby</a> <small>2002-10-09</small></h2>
             
@@ -163,9 +141,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2003, 0, 14))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2><a href="http://bruby.osdn.jp/">Yuya Kato releases v0.0.1 of bruby</a> <small>2003-01-14</small></h2>
             
@@ -175,9 +151,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2003, 7, 4))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 1.8.0 <small>2003-08-04</small></h2>
             
@@ -191,9 +165,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2004, 10, 10))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2><a href="https://github.com/seattlerb/parsetree">Ryan Davis releases v1.0.0 of ParseTree</a> <small>2004-11-10</small></h2>
             
@@ -203,9 +175,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2006, 5, 5))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2><a href="https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/">Dominik Bathon releases v0.1.0 of RubyNode</a> <small>2006-06-05</small></h2>
             
@@ -215,9 +185,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2007, 10, 14))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2><a href="https://github.com/seattlerb/ruby_parser">Ryan Davis releases v1.0.0 of ruby_parser</a> <small>2007-11-14</small></h2>
             
@@ -227,9 +195,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2007, 11, 25))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 1.9.0 <small>2007-12-25</small></h2>
             
@@ -243,9 +209,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2009, 0, 30))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 1.9.1 <small>2009-01-30</small></h2>
             
@@ -258,9 +222,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2009, 6, 25))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2><a href="http://rubystuff.org/nodewrap/">Paul Brannan releases v0.5.0 of nodewrap</a> <small>2009-07-25</small></h2>
             
@@ -270,9 +232,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2010, 7, 27))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2><a href="https://github.com/michaeledgar/laser">Michael Edgar releases v0.0.1 of laser</a> <small>2010-08-27</small></h2>
             
@@ -283,17 +243,13 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2011, 2, 22))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>JIS X 3017 <small>2011-03-22</small></h2>
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2011, 9, 31))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 1.9.3 <small>2011-10-31</small></h2>
             
@@ -303,9 +259,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2013, 1, 24))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 2.0.0 <small>2013-02-24</small></h2>
             
@@ -318,9 +272,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2013, 3, 15))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2><a href="https://github.com/whitequark/parser">Peter Zotov releases v0.9.0 of parser</a> <small>2013-04-15</small></h2>
             
@@ -330,9 +282,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2013, 11, 25))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 2.1.0 <small>2013-12-25</small></h2>
             
@@ -344,9 +294,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2014, 11, 25))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 2.2.0 <small>2014-12-25</small></h2>
             
@@ -356,9 +304,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2015, 11, 25))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 2.3.0 <small>2015-12-25</small></h2>
             
@@ -370,9 +316,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2016, 11, 25))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 2.4.0 <small>2016-12-25</small></h2>
             
@@ -384,9 +328,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2017, 11, 25))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 2.5.0 <small>2017-12-25</small></h2>
             
@@ -397,9 +339,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2018, 11, 25))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 2.6.0 <small>2018-12-25</small></h2>
             
@@ -413,9 +353,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2019, 11, 25))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 2.7.0 <small>2019-12-25</small></h2>
             
@@ -434,9 +372,7 @@ const App = () => (
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2020, 11, 25))}>
-          <TimelineMarker>
-            <RubyMarker />
-          </TimelineMarker>
+          <RubyMarker />
           <TimelineEntryTooltip>
             <h2>Ruby 3.0.0 <small>2020-12-25</small></h2>
             
