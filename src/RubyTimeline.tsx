@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Timeline, TimelineEntry, TimelineMarker, TimelineTooltip } from "./display/Timeline";
+import { Timeline, TimelineEntry, TimelineMarker, TimelineTooltip } from "./Timeline";
 import RubyMarker from "./RubyMarker";
 
 const RubyTimeline: React.FC = () => (

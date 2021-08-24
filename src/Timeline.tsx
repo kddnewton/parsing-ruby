@@ -182,5 +182,8 @@ export const TimelineTooltip: React.FC = ({ children }) => {
     return null;
   }
 
-  return ReactDOM.createPortal(children, tooltipRef.current);
+  return ReactDOM.createPortal(
+    <div className={styles.tooltipBody}>{children}</div>,
+    tooltipRef.current
+  );
 };
