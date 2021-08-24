@@ -10,37 +10,65 @@ Over time the community has developed a massive amount of projects whose goal is
 
 1994-01-07 - Ruby 0.06
 
+This is the earliest [changelog entry](https://cache.ruby-lang.org/pub/ruby/1.0/ChangeLog-pre-alpha) that I could find that had an explicit version on it. At this point Ruby was still a very early idea and the syntax was changing rapidly.
+
 1995-05-19 - Ruby 0.76
+
+The changelog here is still entirely Yukihiro Matsumoto. It's been a year since the last entry on this timeline and a ton has changed. Th choice of including `0.76` is somewhat arbitrary here. It's just that [https://cache.ruby-lang.org](https://cache.ruby-lang.org) happens to have a tar file containing that particular release.
 
 1995-12-21 - Ruby 0.95
 
+This is also somewhat arbitrary, but the cache has an entry for it so I'm including it here. Technically the last pre-1.0 release was `0.99.4-961224`. Between this release and `1.0-961225`, it's mostly cleanup and preparation. At this point there are some other contributors, including Jun Kuroda and Hirofumi Watanabe.
+
 1996-12-25 - Ruby 1.0-961225
 
+This is the first public `1.0` release.
+
 1998-12-24 - Ruby 1.3.0
-- `begin..rescue..else` clauses
-- `<<-` indentable heredocs
-- `::` method calls
+
+This is considered a "development" release, and is meant to be used as a branch for the core developers and not used in production. It is released one day before the "stable" `1.2.0` version. It includes a couple of syntactic additions that are then used for development over the course of the next year before they are included in the `1.4.0` stable version. They are:
+
+- *`begin..rescue..else..end` clauses*  
+`rescue` already existed, but this provided support for the `else` keyword in this chain in the case that no exception was raised
+- *`<<-` indentable heredocs*  
+heredocs already existed, but you always had to put the ending at the beginning of the line; this change allowed the endings to be indented to the same indentation as the code
+- *`::` method calls*  
+effectively an alias for the `.` operator, there was a convention for a while to call class-level methods with `::`
 
 1998-12-25 - Ruby 1.2.0
-- Heredocs
-- `=begin` to `=end`
-- `true` and `false`
-- `BEGIN` and `END`
-- `%w` word lists
-- Top-level constant access
-- Block arguments
-- `||=` and `&&=` operators
+
+This is a "stable" release, and is meant for production. It's the first stable release since `1.0` was released exactly 2 years prior. A lot of new syntax was introduced in those two years, many of which form the foundation of the kind of Ruby that was see today. This includes:
+
+- *heredocs*  
+easily one of the most difficult-to-parse syntax constructs gets introduced
+- *`=begin` to `=end`*  
+multi-line comments now were easier to manage
+- *`true` and `false`*  
+these keywords didn't actually exist before this point
+- *`BEGIN` and `END`*  
+borrowing from awk, this syntax was very useful for scripts
+- *`%w` word lists*  
+here we start to see the beginning of the `%`-lists syntax
+- *top-level constant access*  
+you could now prefix a constant with `::` from within a nested scope to access a top-level constant
+- *block arguments*  
+arguments that were themselves blocks would now resolve
+- *`||=` and `&&=` operators*  
+this further extended the assignment operators with `||` and `&&` support
 
 1999-08-13 - Ruby 1.4.0
+
 - Binary number literals
 - Anonymous `*` in method definitions
 - Nested string interpolation
 - Multibyte character identifiers
 
 2000-09-19 - Ruby 1.6.0
+
 - `rescue` modifier
 
 2003-08-04 - Ruby 1.8.0
+
 - `%W` word lists with interpolation
 - Dynamic symbols
 - `break` and `next` take values
@@ -48,6 +76,7 @@ Over time the community has developed a massive amount of projects whose goal is
 - Nested constant assignment
 
 2007-12-25 - Ruby 1.9.0
+
 - `YARV`
 - Block local variables
 - Lambda literals
@@ -55,43 +84,52 @@ Over time the community has developed a massive amount of projects whose goal is
 - [`ripper` merged](https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?view=revision&revision=6891)
 
 2009-01-30 - Ruby 1.9.1
+
 - Encoding pragma
 - `.()` sugar for `.call`
 - Post arguments
 - Block in block arguments
 
 2011-10-31 - Ruby 1.9.3
+
 - Trailing commas
 
 2013-02-24 - Ruby 2.0.0
+
 - [`Module#prepend`](https://bugs.ruby-lang.org/issues/1102)
 - [Refinements](https://bugs.ruby-lang.org/issues/4085)
 - [`%i` symbol lists](https://bugs.ruby-lang.org/issues/4985)
 - [Keyword arguments](https://bugs.ruby-lang.org/issues/5474)
 
 2013-12-25 - Ruby 2.1.0
+
 - [Required keyword arguments](https://bugs.ruby-lang.org/issues/7701)
 - [Rational and complex literals](https://bugs.ruby-lang.org/issues/8430)
 - [Frozen string literal suffix](https://bugs.ruby-lang.org/issues/8579)
 
 2014-12-25 - Ruby 2.2.0
+
 - [Dynamic symbol hash keys](https://bugs.ruby-lang.org/issues/4276)
 
 2015-12-25 - Ruby 2.3.0
+
 - [frozen_string_literal pragma](https://bugs.ruby-lang.org/issues/8976)
 - [`<<~` heredocs](https://bugs.ruby-lang.org/issues/9098)
 - [`&.` operator](https://bugs.ruby-lang.org/issues/11537)
 
 2016-12-25 - Ruby 2.4.0
+
 - [Top level return](https://bugs.ruby-lang.org/issues/4840)
 - [Refinements in `Symbol#to_proc`](https://bugs.ruby-lang.org/issues/9451)
 - [Multiple assignment in a conditional](https://bugs.ruby-lang.org/issues/10617)
 
 2017-12-25 - Ruby 2.5.0
+
 - [`rescue` and `ensure` at the block level](https://bugs.ruby-lang.org/issues/12906)
 - [Refinements in string interpolations](https://bugs.ruby-lang.org/issues/13812)
 
 2018-12-25 - Ruby 2.6.0
+
 - [Flip-flop (deprecated)](https://bugs.ruby-lang.org/issues/5400)
 - [Endless range](https://bugs.ruby-lang.org/issues/12912)
 - [Non-ASCII constant names](https://bugs.ruby-lang.org/issues/13770)
@@ -99,6 +137,7 @@ Over time the community has developed a massive amount of projects whose goal is
 - [Escape keywords from class/module scope removed](https://bugs.ruby-lang.org/issues/6354)
 
 2019-12-25 - Ruby 2.7.0
+
 - [Flip-flop (undeprecated)](https://bugs.ruby-lang.org/issues/5400)
 - [Method reference operator (added)](https://bugs.ruby-lang.org/issues/13581)
 - [Keyword arguments (warning about hash-based)](https://bugs.ruby-lang.org/issues/14183)
@@ -111,14 +150,12 @@ Over time the community has developed a massive amount of projects whose goal is
 - [Method reference operator (removed)](https://bugs.ruby-lang.org/issues/16275)
 
 2020-12-25 - Ruby 3.0.0
+
 - [Keyword arguments (non-hash-based)](https://bugs.ruby-lang.org/issues/14183)
 - [Single-line methods](https://bugs.ruby-lang.org/issues/16746)
 - [Find pattern matching](https://bugs.ruby-lang.org/issues/16828)
 - [shareable_constant_value pragma](https://bugs.ruby-lang.org/issues/17273)
 - [`in` pattern matching](https://bugs.ruby-lang.org/issues/17371)
-
-Future??
-[Anonymous struct literal](https://bugs.ruby-lang.org/issues/16986)
 
 ### Projects
 
@@ -162,7 +199,7 @@ Future??
 
 - [Cardinal](https://github.com/parrot/cardinal) - an implementation on the Parrot VM
 - [IronRuby](http://www.wilcob.com/Wilco/IronRuby/microsoft_ironruby.aspx) - an implementation on the .NET framework
-- [jruby](https://github.com/jruby/jruby) - an implementation on the JVM
+- [JRuby](https://github.com/jruby/jruby) - an implementation on the JVM
 - [MacRuby](http://macruby.org/) - an implementation for objective-c
 - [melbourne](https://github.com/carlosbrando/melbourne) - Rubinius's parser as a gem
 - [mruby](https://github.com/mruby/mruby) - an embeddable implementation
@@ -235,12 +272,16 @@ Future??
 
 - [pelusa](https://github.com/codegram/pelusa) - linter
 
-## RIL
+### RIL
 
 - [druby](http://www.cs.umd.edu/projects/PL/druby/) - type system
 - [rtc](https://www.cs.tufts.edu/~jfoster/papers/oops13.pdf) - type system
 - [rubydust](http://www.cs.umd.edu/~mwh/papers/rubydust.pdf) - type system
 
-## JRuby
+### JRuby
 
 - [Ecstatic](https://projekter.aau.dk/projekter/files/61071016/1181807983.pdf) - type system
+
+## Potential future syntax
+
+- [Anonymous struct literal](https://bugs.ruby-lang.org/issues/16986)

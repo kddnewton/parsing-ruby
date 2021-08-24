@@ -2,15 +2,7 @@ import React from "react";
 
 import { Timeline, TimelineEntry, TimelineMarker, TimelineTooltip } from "./Timeline";
 import RubyMarker from "./RubyMarker";
-import styles from "./ruby-tooltip.module.css";
-
-const RubyTooltip: React.FC = ({ children }) => (
-  <div className={styles.tooltip}>
-    <div className={styles.body}>
-      {children}
-    </div>
-  </div>
-);
+import RubyTooltip from "./RubyTooltip";
 
 const RubyTimeline: React.FC = () => (
   <Timeline startDate={new Date(Date.UTC(1993, 0, 1))} endDate={new Date(Date.UTC(2021, 11, 31))}>
@@ -21,6 +13,8 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 0.06 <small>1994-01-07</small></h2>
+          
+          <p>This is the earliest <a href="https://cache.ruby-lang.org/pub/ruby/1.0/ChangeLog-pre-alpha">changelog entry</a> that I could find that had an explicit version on it. At this point Ruby was still a very early idea and the syntax was changing rapidly.</p>
         </RubyTooltip>
       </TimelineTooltip>
     </TimelineEntry>
@@ -31,6 +25,8 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 0.76 <small>1995-05-19</small></h2>
+          
+          <p>The changelog here is still entirely Yukihiro Matsumoto. It’s been a year since the last entry on this timeline and a ton has changed. Th choice of including <code>0.76</code> is somewhat arbitrary here. It’s just that <a href="https://cache.ruby-lang.org">https://cache.ruby-lang.org</a> happens to have a tar file containing that particular release.</p>
         </RubyTooltip>
       </TimelineTooltip>
     </TimelineEntry>
@@ -41,6 +37,8 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 0.95 <small>1995-12-21</small></h2>
+          
+          <p>This is also somewhat arbitrary, but the cache has an entry for it so I’m including it here. Technically the last pre-1.0 release was <code>0.99.4-961224</code>. Between this release and <code>1.0-961225</code>, it’s mostly cleanup and preparation. At this point there are some other contributors, including Jun Kuroda and Hirofumi Watanabe.</p>
         </RubyTooltip>
       </TimelineTooltip>
     </TimelineEntry>
@@ -51,6 +49,8 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 1.0-961225 <small>1996-12-25</small></h2>
+          
+          <p>This is the first public <code>1.0</code> release.</p>
         </RubyTooltip>
       </TimelineTooltip>
     </TimelineEntry>
@@ -61,10 +61,16 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 1.3.0 <small>1998-12-24</small></h2>
+          
+          <p>This is considered a “development” release, and is meant to be used as a branch for the core developers and not used in production. It is released one day before the “stable” <code>1.2.0</code> version. It includes a couple of syntactic additions that are then used for development over the course of the next year before they are included in the <code>1.4.0</code> stable version. They are:</p>
+          
           <ul>
-            <li><code>begin..rescue..else</code> clauses</li>
-            <li><code>&lt;&lt;-</code> indentable heredocs</li>
-            <li><code>::</code> method calls</li>
+            <li><em><code>begin..rescue..else..end</code> clauses</em><br />
+          <code>rescue</code> already existed, but this provided support for the <code>else</code> keyword in this chain in the case that no exception was raised</li>
+            <li><em><code>&lt;&lt;-</code> indentable heredocs</em><br />
+          heredocs already existed, but you always had to put the ending at the beginning of the line; this change allowed the endings to be indented to the same indentation as the code</li>
+            <li><em><code>::</code> method calls</em><br />
+          effectively an alias for the <code>.</code> operator, there was a convention for a while to call class-level methods with <code>::</code></li>
           </ul>
         </RubyTooltip>
       </TimelineTooltip>
@@ -76,15 +82,26 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 1.2.0 <small>1998-12-25</small></h2>
+          
+          <p>This is a “stable” release, and is meant for production. It’s the first stable release since <code>1.0</code> was released exactly 2 years prior. A lot of new syntax was introduced in those two years, many of which form the foundation of the kind of Ruby that was see today. This includes:</p>
+          
           <ul>
-            <li>Heredocs</li>
-            <li><code>=begin</code> to <code>=end</code></li>
-            <li><code>true</code> and <code>false</code></li>
-            <li><code>BEGIN</code> and <code>END</code></li>
-            <li><code>%w</code> word lists</li>
-            <li>Top-level constant access</li>
-            <li>Block arguments</li>
-            <li><code>||=</code> and <code>&amp;&amp;=</code> operators</li>
+            <li><em>heredocs</em><br />
+          easily one of the most difficult-to-parse syntax constructs gets introduced</li>
+            <li><em><code>=begin</code> to <code>=end</code></em><br />
+          multi-line comments now were easier to manage</li>
+            <li><em><code>true</code> and <code>false</code></em><br />
+          these keywords didn’t actually exist before this point</li>
+            <li><em><code>BEGIN</code> and <code>END</code></em><br />
+          borrowing from awk, this syntax was very useful for scripts</li>
+            <li><em><code>%w</code> word lists</em><br />
+          here we start to see the beginning of the <code>%</code>-lists syntax</li>
+            <li><em>top-level constant access</em><br />
+          you could now prefix a constant with <code>::</code> from within a nested scope to access a top-level constant</li>
+            <li><em>block arguments</em><br />
+          arguments that were themselves blocks would now resolve</li>
+            <li><em><code>||=</code> and <code>&amp;&amp;=</code> operators</em><br />
+          this further extended the assignment operators with <code>||</code> and <code>&amp;&amp;</code> support</li>
           </ul>
         </RubyTooltip>
       </TimelineTooltip>
@@ -96,6 +113,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 1.4.0 <small>1999-08-13</small></h2>
+          
           <ul>
             <li>Binary number literals</li>
             <li>Anonymous <code>*</code> in method definitions</li>
@@ -112,6 +130,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 1.6.0 <small>2000-09-19</small></h2>
+          
           <ul>
             <li><code>rescue</code> modifier</li>
           </ul>
@@ -125,6 +144,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 1.8.0 <small>2003-08-04</small></h2>
+          
           <ul>
             <li><code>%W</code> word lists with interpolation</li>
             <li>Dynamic symbols</li>
@@ -142,6 +162,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 1.9.0 <small>2007-12-25</small></h2>
+          
           <ul>
             <li><code>YARV</code></li>
             <li>Block local variables</li>
@@ -159,6 +180,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 1.9.1 <small>2009-01-30</small></h2>
+          
           <ul>
             <li>Encoding pragma</li>
             <li><code>.()</code> sugar for <code>.call</code></li>
@@ -175,6 +197,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 1.9.3 <small>2011-10-31</small></h2>
+          
           <ul>
             <li>Trailing commas</li>
           </ul>
@@ -188,6 +211,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 2.0.0 <small>2013-02-24</small></h2>
+          
           <ul>
             <li><a href="https://bugs.ruby-lang.org/issues/1102"><code>Module#prepend</code></a></li>
             <li><a href="https://bugs.ruby-lang.org/issues/4085">Refinements</a></li>
@@ -204,6 +228,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 2.1.0 <small>2013-12-25</small></h2>
+          
           <ul>
             <li><a href="https://bugs.ruby-lang.org/issues/7701">Required keyword arguments</a></li>
             <li><a href="https://bugs.ruby-lang.org/issues/8430">Rational and complex literals</a></li>
@@ -219,6 +244,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 2.2.0 <small>2014-12-25</small></h2>
+          
           <ul>
             <li><a href="https://bugs.ruby-lang.org/issues/4276">Dynamic symbol hash keys</a></li>
           </ul>
@@ -232,6 +258,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 2.3.0 <small>2015-12-25</small></h2>
+          
           <ul>
             <li><a href="https://bugs.ruby-lang.org/issues/8976">frozen_string_literal pragma</a></li>
             <li><a href="https://bugs.ruby-lang.org/issues/9098"><code>&lt;&lt;~</code> heredocs</a></li>
@@ -247,6 +274,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 2.4.0 <small>2016-12-25</small></h2>
+          
           <ul>
             <li><a href="https://bugs.ruby-lang.org/issues/4840">Top level return</a></li>
             <li><a href="https://bugs.ruby-lang.org/issues/9451">Refinements in <code>Symbol#to_proc</code></a></li>
@@ -262,6 +290,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 2.5.0 <small>2017-12-25</small></h2>
+          
           <ul>
             <li><a href="https://bugs.ruby-lang.org/issues/12906"><code>rescue</code> and <code>ensure</code> at the block level</a></li>
             <li><a href="https://bugs.ruby-lang.org/issues/13812">Refinements in string interpolations</a></li>
@@ -276,6 +305,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 2.6.0 <small>2018-12-25</small></h2>
+          
           <ul>
             <li><a href="https://bugs.ruby-lang.org/issues/5400">Flip-flop (deprecated)</a></li>
             <li><a href="https://bugs.ruby-lang.org/issues/12912">Endless range</a></li>
@@ -293,6 +323,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 2.7.0 <small>2019-12-25</small></h2>
+          
           <ul>
             <li><a href="https://bugs.ruby-lang.org/issues/5400">Flip-flop (undeprecated)</a></li>
             <li><a href="https://bugs.ruby-lang.org/issues/13581">Method reference operator (added)</a></li>
@@ -315,6 +346,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2>Ruby 3.0.0 <small>2020-12-25</small></h2>
+          
           <ul>
             <li><a href="https://bugs.ruby-lang.org/issues/14183">Keyword arguments (non-hash-based)</a></li>
             <li><a href="https://bugs.ruby-lang.org/issues/16746">Single-line methods</a></li>

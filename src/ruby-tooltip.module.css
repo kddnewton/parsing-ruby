@@ -1,10 +1,11 @@
 .tooltip {
   --background-color: white;
   --corner-size: 30px;
+  --font-color: #ddd;
 
   background-color: var(--secondary-color);
-  color: white;
-  max-height: 30em;
+  color: var(--font-color);
+  line-height: 1.4;
   margin: 0em auto 2em;
   position: relative;
   width: 50%;
@@ -29,9 +30,9 @@
 }
 
 .body {
-  box-sizing: border-box;
-  padding: 1em 2em 2em;
-  position: relative;
+  max-height: 30em;
+  overflow-y: auto;
+  padding: 1em 2em;
 }
 
 .tooltip::before,
@@ -71,8 +72,13 @@
   border-color: transparent var(--background-color) var(--background-color) transparent;
 }
 
+.body {
+  overflow-y: scroll;
+}
+
 .tooltip h2 {
-  border-bottom: solid 1px white;
+  color: var(--background-color);
+  border-bottom: solid 1px currentColor;
 }
 
 .tooltip h2 small {
@@ -81,4 +87,8 @@
 
 .tooltip a {
   color: white;
+}
+
+.tooltip li + li {
+  margin-top: 0.75em;
 }
