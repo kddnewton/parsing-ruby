@@ -30,4 +30,6 @@ File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
   end
 end
 
-puts ["  <Timeline>", *entries.map { |line| "    #{line}" }.join("\n"), "  </Timeline>"].join("\n")
+puts "  <Timeline startDate={new Date(Date.UTC(1993, 0, 1))} endDate={new Date(Date.UTC(2021, 11, 31))}>"
+puts entries.map { |line| "    #{line}" }
+puts "  </Timeline>"

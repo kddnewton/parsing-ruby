@@ -11,7 +11,7 @@ type State = {
 type Action = {};
 
 const initialState: State = {
-  startDate: new Date(Date.UTC(1995, 0, 1)),
+  startDate: new Date(),
   endDate: new Date()
 };
 
@@ -21,8 +21,12 @@ const reducer: Reducer<State, Action> = (state, action) => {
 
 const TimelineContext = React.createContext<State>(initialState);
 
-export const Timeline: React.FC = ({ children }) => {
-  const [state, dispatch] = useReducer<Reducer<State, Action>>(reducer, initialState);
+export const Timeline: React.FC<{ startDate?: Date, endDate?: Date }> = ({
+  children,
+  startDate = initialState.startDate,
+  endDate = initialState.endDate
+}) => {
+  const [state, dispatch] = useReducer<Reducer<State, Action>>(reducer, { ...initialState, startDate, endDate });
 
   return (
     <TimelineContext.Provider value={state}>

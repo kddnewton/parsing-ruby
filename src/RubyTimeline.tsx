@@ -5,7 +5,10 @@ import { Modal, ModalTrigger, ModalContent } from "./display/Modal";
 import RubyMarker from "./RubyMarker";
 
 const RubyTimeline: React.FC = () => (
-  <Timeline>
+  <Timeline
+    startDate={new Date(Date.UTC(1993, 0, 1))}
+    endDate={new Date(Date.UTC(2021, 11, 31))}
+  >
     <TimelineEntry date={new Date(Date.UTC(1994, 0, 7))}>
       <TimelineMarker>
         <RubyMarker />
