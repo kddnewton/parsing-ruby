@@ -1,4 +1,4 @@
-import React, { Dispatch, Reducer, useCallback, useContext, useMemo, useState, useReducer, useRef } from "react";
+import React, { Dispatch, Reducer, useCallback, useContext, useMemo, useState, useReducer, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useId } from "@reach/auto-id";
 import { createDescendantContext, DescendantProvider, useDescendant, useDescendantsInit } from "@reach/descendants";
@@ -14,7 +14,9 @@ type State = {
 };
 
 type Action = (
-  { type: "select", index: number }
+  | { type: "select", index: number }
+  | { type: "left", length: number }
+  | { type: "right", length: number }
 );
 
 const initialState: State = {
@@ -29,8 +31,12 @@ const reducer: Reducer<State, Action> = (state, action) => {
   switch (action.type) {
     case "select":
       return { ...state, activeEntryIndex: action.index };
+    case "left":
+      return { ...state, activeEntryIndex: (state.activeEntryIndex < 0 ? action.length : state.activeEntryIndex) - 1 };
+    case "right":
+      return { ...state, activeEntryIndex: (state.activeEntryIndex + 1) % action.length };
     default:
-      throw `Unknown action: ${action.type}`;
+      throw `Unknown action: ${(action as any).type}`;
   }
 };
 
@@ -53,6 +59,22 @@ export const Timeline: React.FC<{ id?: string, startDate?: Date, endDate?: Date 
     startDate,
     endDate
   });
+
+  useEffect((): (() => void) => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      switch (event.key) {
+        case "ArrowLeft":
+          dispatch({ type: "left", length: entries.length });
+          break;
+        case "ArrowRight":
+          dispatch({ type: "right", length: entries.length });
+          break;
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [entries.length, dispatch]);
 
   return (
     <DescendantProvider context={TimelineEntriesContext} items={entries} set={setEntries}>
