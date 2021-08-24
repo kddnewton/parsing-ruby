@@ -1,324 +1,223 @@
 import React from "react";
 
-import { Timeline, TimelineEntry, TimelineMarker, TimelineLink, TimelineTooltip } from "./display/Timeline";
+import { Timeline, TimelineEntry, TimelineMarker, TimelineTooltip } from "./display/Timeline";
 import { Modal, ModalTrigger, ModalContent } from "./display/Modal";
 import RubyMarker from "./RubyMarker";
 
 const RubyTimeline: React.FC = () => (
   <Timeline>
-    <TimelineEntry date={new Date(Date.UTC(1995, 11, 21))} title="Ruby 0.95">
+    <TimelineEntry date={new Date(Date.UTC(1994, 0, 7))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(1996, 11, 25))} title="Ruby 1.0">
+    <TimelineEntry date={new Date(Date.UTC(1995, 4, 19))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(1998, 11, 15))} title="Ruby 1.2">
+    <TimelineEntry date={new Date(Date.UTC(1995, 11, 21))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(1999, 7, 15))} title="Ruby 1.4">
+    <TimelineEntry date={new Date(Date.UTC(1996, 11, 25))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2000, 8, 15))} title="Ruby 1.6">
+    <TimelineEntry date={new Date(Date.UTC(1998, 11, 24))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <p><code>begin..rescue..else</code> clauses</p>
+        <p><code>&lt;&lt;-</code> indentable heredocs</p>
+        <p><code>::</code> method calls</p>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2001, 0, 10))} title="Robert Feldt releases v0.0.1 of Ruth">
+    <TimelineEntry date={new Date(Date.UTC(1998, 11, 25))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        <TimelineLink href="https://sourceforge.net/projects/rubyvm/files/ruth/" />
-        <p>Extends Ruby 1.6 internals to support inspecting Ruby ASTs</p>
+        <p>Heredocs</p>
+        <p><code>=begin</code> to <code>=end</code></p>
+        <p><code>true</code> and <code>false</code></p>
+        <p><code>BEGIN</code> and <code>END</code></p>
+        <p><code>%w</code> word lists</p>
+        <p>Top-level constant access</p>
+        <p>Block arguments</p>
+        <p><code>||=</code> and <code>&amp;&amp;=</code> operators</p>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2001, 9, 20))} title="Minero Aoki releases v0.0.1 of ripper">
+    <TimelineEntry date={new Date(Date.UTC(1999, 7, 13))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        <TimelineLink href="https://i.loveruby.net/archive/ripper/" />
+        <p>Binary number literals</p>
+        <p>Anonymous <code>*</code> in method definitions</p>
+        <p>Nested string interpolation</p>
+        <p>Multibyte character identifiers</p>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2002, 2, 1))} title="Ruby 1.6.7">
+    <TimelineEntry date={new Date(Date.UTC(2000, 8, 19))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <p><code>rescue</code> modifier</p>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2002, 9, 9))} title="Mathieu Bouchard releases v0.7.0 of MetaRuby">
+    <TimelineEntry date={new Date(Date.UTC(2003, 7, 4))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        <TimelineLink href="http://artengine.ca/matju/MetaRuby/" />
-        <p>Includes `RubySchema.rb`, a schema for validating Ruby ASTs</p>
+        <p><code>%W</code> word lists with interpolation</p>
+        <p>Dynamic symbols</p>
+        <p><code>break</code> and <code>next</code> take values</p>
+        <p>Nested class definition</p>
+        <p>Nested constant assignment</p>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2003, 0, 14))} title="Yuya Kato releases v0.0.1 of bruby">
+    <TimelineEntry date={new Date(Date.UTC(2007, 11, 25))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        <TimelineLink href="http://bruby.osdn.jp/" />
-        <p>Extends Ruby 1.6 internals to support dumping and loading a Ruby AST to a binary format</p>
+        <p><code>YARV</code></p>
+        <p>Block local variables</p>
+        <p>Lambda literals</p>
+        <p>Symbol hash keys</p>
+        <p><a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?view=revision&amp;revision=6891"><code>ripper</code> merged</a></p>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2003, 7, 4))} title="Ruby 1.8.0">
+    <TimelineEntry date={new Date(Date.UTC(2009, 0, 30))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <p>Encoding pragma</p>
+        <p><code>.()</code> sugar for <code>.call</code></p>
+        <p>Post arguments</p>
+        <p>Block in block arguments</p>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2004, 10, 10))} title="Ryan Davis releases v1.0.0 of ParseTree">
+    <TimelineEntry date={new Date(Date.UTC(2011, 9, 31))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        <TimelineLink href="https://github.com/seattlerb/parsetree" />
-        <p>Extends Ruby 1.8 internals to support returning an AST by converting to Ruby objects</p>
+        <p>Trailing commas</p>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2005, 9, 23))} title="Zev Blut releases v0.1.0 of saikuro">
+    <TimelineEntry date={new Date(Date.UTC(2013, 1, 24))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        <TimelineLink href="https://metricfu.github.io/Saikuro" />
-        <p>Uses `irb/ruby-lex` to analyze Ruby code for for cyclomatic complexity</p>
+        <p><a href="https://bugs.ruby-lang.org/issues/1102"><code>Module#prepend</code></a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/4085">Refinements</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/4985"><code>%i</code> symbol lists</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/5474">Keyword arguments</a></p>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2006, 5, 5))} title="Dominik Bathon releases v0.1.0 of RubyNode">
+    <TimelineEntry date={new Date(Date.UTC(2013, 11, 25))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        <TimelineLink href="https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/" />
-        <p>Extends Ruby 1.8 internals to support returning an AST by wrapping the NODE struct</p>
+        <p><a href="https://bugs.ruby-lang.org/issues/7701">Required keyword arguments</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/8430">Rational and complex literals</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/8579">Frozen string literal suffix</a></p>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2007, 7, 1))} title="Ryan Davis releases v1.0.1 of flog">
+    <TimelineEntry date={new Date(Date.UTC(2014, 11, 25))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        <TimelineLink href="https://github.com/seattlerb/flog" />
-        <p>Uses `ParseTree` to determine how difficult code is to read</p>
+        <p><a href="https://bugs.ruby-lang.org/issues/4276">Dynamic symbol hash keys</a></p>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2007, 10, 14))} title="Ryan Davis releases v1.0.0 of ruby_parser">
+    <TimelineEntry date={new Date(Date.UTC(2015, 11, 25))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        <TimelineLink href="https://github.com/seattlerb/ruby_parser" />
-        <p>Uses a `racc`-based compiler to generate s-expressions</p>
+        <p><a href="https://bugs.ruby-lang.org/issues/8976">frozen_string_literal pragma</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/9098"><code>&lt;&lt;~</code> heredocs</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/11537"><code>&amp;.</code> operator</a></p>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2007, 11, 25))} title="Ruby 1.9.0">
+    <TimelineEntry date={new Date(Date.UTC(2016, 11, 25))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        <p>`YARV`</p>
-        <p>block local variables</p>
-        <p>lambda literal syntax</p>
-        <p>new hash key syntax</p>
-        <p>`Ripper` merged in as standard library</p>
+        <p><a href="https://bugs.ruby-lang.org/issues/4840">Top level return</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/9451">Refinements in <code>Symbol#to_proc</code></a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/10617">Multiple assignment in a conditional</a></p>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2008, 10, 6))} title="Ryan Davis releases v1.0.0 of flay">
+    <TimelineEntry date={new Date(Date.UTC(2017, 11, 25))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        <TimelineLink href="https://github.com/seattlerb/flay" />
-        <p>Uses `ruby_parser` to analyze code for structural similarities</p>
+        <p><a href="https://bugs.ruby-lang.org/issues/12906"><code>rescue</code> and <code>ensure</code> at the block level</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/13812">Refinements in string interpolations</a></p>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2009, 6, 25))} title="Paul Brannan releases v0.5.0 of nodewrap">
+    <TimelineEntry date={new Date(Date.UTC(2018, 11, 25))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        <TimelineLink href="http://rubystuff.org/nodewrap/" />
-        <p>Allows dumping/loading the Ruby nodes and instruction sequences to a binary format</p>
+        <p><a href="https://bugs.ruby-lang.org/issues/5400">Flip-flop (deprecated)</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/12912">Endless range</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/13770">Non-ASCII constant names</a></p>
+        <p><a href="https://github.com/ruby/ruby/commit/0f3dcbdf38db6c7fb04ca0833bb1f9af2c3e7ca4">RubyVM::AbstractSyntaxTree</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/6354">Escape keywords from class/module scope removed</a></p>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2010, 7, 27))} title="Michael Edgar releases v0.0.1 of laser">
+    <TimelineEntry date={new Date(Date.UTC(2019, 11, 25))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        <TimelineLink href="https://github.com/michaeledgar/laser" />
-        <p>Originally named Wool</p>
-        <p>Originally parsed with regular expressions to determine style violations</p>
-        <p>Eventually switched over to using `Ripper` to parse Ruby</p>
-        <p>Features a type system, semantic analysis, documentation generation, and a plugin system</p>
+        <p><a href="https://bugs.ruby-lang.org/issues/5400">Flip-flop (undeprecated)</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/13581">Method reference operator (added)</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/14183">Keyword arguments (warning about hash-based)</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/14183">No other keywords syntax</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/14799">Beginless range</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/14912">Pattern matching</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/15723">Numbered parameters</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/15921">Rightward assignment</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/16253">Argument forwarding</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/16275">Method reference operator (removed)</a></p>
       </TimelineTooltip>
     </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2011, 4, 15))} title="Michael Edgar publishes senior thesis on laser">
+    <TimelineEntry date={new Date(Date.UTC(2020, 11, 25))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
-        <TimelineLink href="https://digitalcommons.dartmouth.edu/cgi/viewcontent.cgi?article=1071&context=senior_theses" />
-      </TimelineTooltip>
-    </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2011, 2, 22))} title="JIS X 3017">
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
-      <TimelineTooltip>
-      </TimelineTooltip>
-    </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2011, 9, 31))} title="Ruby 1.9.3">
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
-      <TimelineTooltip>
-      </TimelineTooltip>
-    </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2012, 1, 14))} title="Josep Bach releases v0.0.1 of pelusa">
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
-      <TimelineTooltip>
-        <TimelineLink href="https://github.com/codegram/pelusa" />
-        <p>Uses `Rubinius` to perform basic linting</p>
-      </TimelineTooltip>
-    </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2012, 2, 24))} title="Xavier Shay releases v1.1.0 of cane">
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
-      <TimelineTooltip>
-        <TimelineLink href="https://github.com/square/cane" />
-        <p>Uses `Ripper` to determine assignment, branch, conditional metrics</p>
-      </TimelineTooltip>
-    </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2012, 3, 15))} title="ISO/IEC 30170:2012">
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
-      <TimelineTooltip>
-      </TimelineTooltip>
-    </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2013, 1, 24))} title="Ruby 2.0.0">
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
-      <TimelineTooltip>
-        <p>keyword arguments</p>
-        <p>`Module#prepend`</p>
-        <p>`%i` symbol array literals</p>
-      </TimelineTooltip>
-    </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2013, 3, 15))} title="Peter Zotov releases v0.9.0 of parser">
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
-      <TimelineTooltip>
-        <TimelineLink href="https://github.com/whitequark/parser" />
-        <p>Derives a new parser from `parse.y` in Ruby and a lexer test suite from `ruby_parser`</p>
-      </TimelineTooltip>
-    </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2013, 11, 25))} title="Ruby 2.1.0">
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
-      <TimelineTooltip>
-      </TimelineTooltip>
-    </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2014, 11, 25))} title="Ruby 2.2.0">
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
-      <TimelineTooltip>
-      </TimelineTooltip>
-    </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2015, 1, 23))} title="Damir Svrtan releases v0.1.0 of fasterer">
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
-      <TimelineTooltip>
-        <TimelineLink href="https://github.com/DamirSvrtan/fasterer" />
-        <p>Uses `ruby_parser` to check for various code paths that can be made faster</p>
-      </TimelineTooltip>
-    </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2015, 11, 25))} title="Ruby 2.3.0">
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
-      <TimelineTooltip>
-        <p>`# frozen_string_literal: true`</p>
-        <p>`&.` operator</p>
-      </TimelineTooltip>
-    </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2016, 9, 10))} title="Soutaro Matsumoto releases v0.1.0 of querly">
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
-      <TimelineTooltip>
-        <TimelineLink href="https://github.com/soutaro/querly" />
-        <p>Uses the `parser` gem to find method calls with configured rules</p>
-      </TimelineTooltip>
-    </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2016, 11, 25))} title="Ruby 2.4.0">
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
-      <TimelineTooltip>
-      </TimelineTooltip>
-    </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2017, 11, 25))} title="Ruby 2.5.0">
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
-      <TimelineTooltip>
-        <p>`rescue` and `ensure` at the block and method level</p>
-      </TimelineTooltip>
-    </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2018, 11, 25))} title="Ruby 2.6.0">
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
-      <TimelineTooltip>
-        <p>`RubyVM::AbstractSyntaxTree`</p>
-      </TimelineTooltip>
-    </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2019, 11, 25))} title="Ruby 2.7.0">
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
-      <TimelineTooltip>
-      </TimelineTooltip>
-    </TimelineEntry>
-    <TimelineEntry date={new Date(Date.UTC(2020, 11, 25))} title="Ruby 3.0.0">
-      <TimelineMarker>
-        <RubyMarker />
-      </TimelineMarker>
-      <TimelineTooltip>
+        <p><a href="https://bugs.ruby-lang.org/issues/14183">Keyword arguments (non-hash-based)</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/16746">Single-line methods</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/16828">Find pattern matching</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/17273">shareable_constant_value pragma</a></p>
+        <p><a href="https://bugs.ruby-lang.org/issues/17371"><code>in</code> pattern matching</a></p>
       </TimelineTooltip>
     </TimelineEntry>
   </Timeline>

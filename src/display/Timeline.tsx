@@ -91,7 +91,7 @@ const TimelineTick: React.FC<{ date: Date }> = ({ date }) => {
   return <div className={styles.tick} style={{ left: `${percentage}%` }} />;
 };
 
-export const TimelineEntry: React.FC<{ date: Date, title: string }> = ({ children, date, title }) => {
+export const TimelineEntry: React.FC<{ date: Date }> = ({ children, date }) => {
   const { startDate, endDate } = useContext(TimelineContext);
 
   if (startDate > date || endDate < date) {
@@ -113,8 +113,4 @@ export const TimelineMarker: React.FC = ({ children }) => (
 
 export const TimelineTooltip: React.FC = ({ children }) => (
   <div className={styles.tooltip}>{children}</div>
-);
-
-export const TimelineLink: React.FC<{ href: string }> = ({ href }) => (
-  <a href={href}>Link</a>
 );
