@@ -30,7 +30,7 @@
 }
 
 .body {
-  max-height: 30em;
+  max-height: 60vh;
   overflow-y: auto;
   padding: 1em 2em;
 }
