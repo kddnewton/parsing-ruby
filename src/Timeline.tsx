@@ -82,20 +82,28 @@ export const Timeline: React.FC<{ id?: string, startDate?: Date, endDate?: Date 
         <TimelineDispatchContext.Provider value={dispatch}>
           <div className={styles.timeline} data-react-timeline>
             <div ref={tooltipRef} />
-            <div
-              className={styles.line}
-              role="menu"
-              aria-labelledby={state.timelineId}
-              aria-activedescendant={state.activeEntryIndex.toString()}
-              tabIndex={-1}
-            >
-              <TimelineTicks />
-              {children}
-            </div>
+            {children}
           </div>
         </TimelineDispatchContext.Provider>
       </TimelineStateContext.Provider>
     </DescendantProvider>
+  );
+};
+
+export const TimelineLine: React.FC = ({ children }) => {
+  const { timelineId, activeEntryIndex } = useContext(TimelineStateContext);
+
+  return (
+    <div
+      className={styles.line}
+      role="menu"
+      aria-labelledby={timelineId}
+      aria-activedescendant={activeEntryIndex.toString()}
+      tabIndex={-1}
+    >
+      <TimelineTicks />
+      {children}
+    </div>
   );
 };
 

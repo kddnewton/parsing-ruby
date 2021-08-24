@@ -55,14 +55,16 @@ end
 
 File.write(File.expand_path("../src/RubyTimeline.tsx", __dir__), ERB.new(DATA.read, trim_mode: "-").result_with_hash(timeline: <<-JSX))
   <Timeline startDate={new Date(Date.UTC(1993, 0, 1))} endDate={new Date(Date.UTC(2021, 11, 31))}>
-#{entries.join.split("\n").map { |line| "    #{line}" }.join("\n")}
+    <TimelineLine>
+#{entries.join.split("\n").map { |line| "      #{line}" }.join("\n")}
+    </TimelineLine>
   </Timeline>
 JSX
 
 __END__
 import React from "react";
 
-import { Timeline, TimelineEntry, TimelineMarker, TimelineTooltip } from "./Timeline";
+import { Timeline, TimelineLine, TimelineEntry, TimelineMarker, TimelineTooltip } from "./Timeline";
 import RubyMarker from "./RubyMarker";
 import RubyTooltip from "./RubyTooltip";
 
