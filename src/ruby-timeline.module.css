@@ -95,7 +95,7 @@
 }
 
 .tooltip a {
-  color: white;
+  color: currentColor;
 }
 
 .tooltip li + li {

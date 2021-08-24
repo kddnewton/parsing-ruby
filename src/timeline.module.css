@@ -2,7 +2,6 @@
   background-color: var(--secondary-color);
   height: 2px;
   position: relative;
-  width: 100%;
 }
 
 .tick {
