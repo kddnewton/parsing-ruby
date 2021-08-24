@@ -92,3 +92,14 @@
 .tooltip li + li {
   margin-top: 0.75em;
 }
+
+.tooltip code {
+  color: var(--ternary-color);
+  font-size: 1.2em;
+  padding: 0 3px;
+}
+
+.tooltip br + code,
+.tooltip code:first-child {
+  padding-left: 0;
+}
