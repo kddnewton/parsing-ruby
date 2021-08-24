@@ -14,6 +14,6 @@ body {
   width: 100vw;
 }
 
-[data-react-timeline] [role="menuitem"][data-selected="true"] path:first-child {
+[data-react-timeline] [data-selected="true"] path:first-child {
   fill: var(--ternary-color);
 }

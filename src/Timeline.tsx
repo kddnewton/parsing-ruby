@@ -32,7 +32,7 @@ const reducer: Reducer<State, Action> = (state, action) => {
     case "select":
       return { ...state, activeEntryIndex: action.index };
     case "left":
-      return { ...state, activeEntryIndex: (state.activeEntryIndex < 0 ? action.length : state.activeEntryIndex) - 1 };
+      return { ...state, activeEntryIndex: (state.activeEntryIndex <= 0 ? action.length : state.activeEntryIndex) - 1 };
     case "right":
       return { ...state, activeEntryIndex: (state.activeEntryIndex + 1) % action.length };
     default:
@@ -106,9 +106,7 @@ export const TimelineLine: React.FC = ({ children }) => {
   );
 };
 
-export const TimelineTooltip: React.FC = ({ children }) => <div>{children}</div>;
-
-export const TimelineTooltipContents: React.FC = ({ children }) => {
+export const TimelineTooltip: React.FC = ({ children }) => {
   const { tooltipRef } = useContext(TimelineStateContext);
 
   return <div ref={tooltipRef}>{children}</div>;
