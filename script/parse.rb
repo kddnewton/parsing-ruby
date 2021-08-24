@@ -19,7 +19,7 @@ File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
         if entry[:body].strip.empty?
           ""
         else
-          "\n#{Kramdown::Document.new(entry[:body]).to_html.chomp.split("\n").map { |line| "      #{line}" }.join("\n")}"
+          "\n#{Kramdown::Document.new(entry[:body]).to_html.chomp.split("\n").map { |line| "    #{line}" }.join("\n")}"
         end
 
       entries << entry
@@ -45,31 +45,35 @@ entries.map! do |entry|
         <RubyMarker />
       </TimelineMarker>
       <TimelineEntryTooltip>
-        <RubyTooltip>
-          <h2>#{entry[:title]} <small>#{entry[:year]}-#{"%02d" % entry[:month]}-#{"%02d" % entry[:day]}</small></h2>#{entry[:body]}
-        </RubyTooltip>
+        <h2>#{entry[:title]} <small>#{entry[:year]}-#{"%02d" % entry[:month]}-#{"%02d" % entry[:day]}</small></h2>#{entry[:body]}
       </TimelineEntryTooltip>
     </TimelineEntry>
   JSX
 end
 
-File.write(File.expand_path("../src/RubyTimeline.tsx", __dir__), ERB.new(DATA.read, trim_mode: "-").result_with_hash(timeline: <<-JSX))
-  <Timeline startDate={new Date(Date.UTC(1993, 0, 1))} endDate={new Date(Date.UTC(2021, 11, 31))}>
-    <TimelineLine>
-#{entries.join.split("\n").map { |line| "      #{line}" }.join("\n")}
-    </TimelineLine>
-  </Timeline>
-JSX
+File.write(
+  File.expand_path("../src/RubyTimeline.tsx", __dir__),
+  ERB.new(DATA.read, trim_mode: "-").result_with_hash(entries: entries)
+)
 
 __END__
 import React from "react";
 
-import { Timeline, TimelineLine, TimelineEntry, TimelineMarker, TimelineEntryTooltip } from "./Timeline";
+import { Timeline, TimelineTooltip, TimelineTooltipContents, TimelineLine, TimelineEntry, TimelineMarker, TimelineEntryTooltip } from "./Timeline";
 import RubyMarker from "./RubyMarker";
 import RubyTooltip from "./RubyTooltip";
 
 const RubyTimeline: React.FC = () => (
-<%= timeline -%>
+  <Timeline startDate={new Date(Date.UTC(1993, 0, 1))} endDate={new Date(Date.UTC(2021, 11, 31))}>
+    <TimelineTooltip>
+      <RubyTooltip>
+        <TimelineTooltipContents />
+      </RubyTooltip>
+    </TimelineTooltip>
+    <TimelineLine>
+<%= entries.join.split("\n").map { |line| "      #{line}" }.join("\n") -%>
+    </TimelineLine>
+  </Timeline>
 );
 
 export default RubyTimeline;

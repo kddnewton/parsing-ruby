@@ -22,7 +22,7 @@ type Action = (
 const initialState: State = {
   tooltipRef: null,
   timelineId: "",
-  activeEntryIndex: -1,
+  activeEntryIndex: 0,
   startDate: new Date(),
   endDate: new Date()
 };
@@ -81,7 +81,6 @@ export const Timeline: React.FC<{ id?: string, startDate?: Date, endDate?: Date 
       <TimelineStateContext.Provider value={state}>
         <TimelineDispatchContext.Provider value={dispatch}>
           <div className={styles.timeline} data-react-timeline>
-            <div ref={tooltipRef} />
             {children}
           </div>
         </TimelineDispatchContext.Provider>
@@ -105,6 +104,14 @@ export const TimelineLine: React.FC = ({ children }) => {
       {children}
     </div>
   );
+};
+
+export const TimelineTooltip: React.FC = ({ children }) => <div>{children}</div>;
+
+export const TimelineTooltipContents: React.FC = ({ children }) => {
+  const { tooltipRef } = useContext(TimelineStateContext);
+
+  return <div ref={tooltipRef}>{children}</div>;
 };
 
 function getTimelinePercentage(startDate: Date, endDate: Date, date: Date) {
