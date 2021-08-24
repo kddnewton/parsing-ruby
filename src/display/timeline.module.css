@@ -27,16 +27,6 @@
   width: 1.5em;
 }
 
-.marker:hover {
-  transform: scale(3, 5);
-  transform-origin: center 1.2em;
-  transition: transform 100ms ease;
-}
-
-.marker:hover path {
-  stroke-width: 2;
-}
-
 .tick {
   position: absolute;
 }
