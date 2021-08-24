@@ -1,10 +1,10 @@
 .timeline {
-  align-items: flex-end;
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
-  padding: 10em 0;
+  padding: 2em 0;
   width: 100%;
 }
 
@@ -41,8 +41,10 @@
 }
 
 .tooltip {
-  display: none;
-  max-width: 10em;
-  opacity: 0;
-  position: absolute;
+  border: var(--secondary-color) solid 1px;
+  box-sizing: border-box;
+  height: 30em;
+  margin: 0em auto;
+  padding: 1em 2em;
+  width: 50%;
 }

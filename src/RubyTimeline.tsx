@@ -1,19 +1,16 @@
 import React from "react";
 
 import { Timeline, TimelineEntry, TimelineMarker, TimelineTooltip } from "./display/Timeline";
-import { Modal, ModalTrigger, ModalContent } from "./display/Modal";
 import RubyMarker from "./RubyMarker";
 
 const RubyTimeline: React.FC = () => (
-  <Timeline
-    startDate={new Date(Date.UTC(1993, 0, 1))}
-    endDate={new Date(Date.UTC(2021, 11, 31))}
-  >
+  <Timeline startDate={new Date(Date.UTC(1993, 0, 1))} endDate={new Date(Date.UTC(2021, 11, 31))}>
     <TimelineEntry date={new Date(Date.UTC(1994, 0, 7))}>
       <TimelineMarker>
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 0.06 <small>1994-01-07</small></h2>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(1995, 4, 19))}>
@@ -21,6 +18,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 0.76 <small>1995-05-19</small></h2>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(1995, 11, 21))}>
@@ -28,6 +26,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 0.95 <small>1995-12-21</small></h2>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(1996, 11, 25))}>
@@ -35,6 +34,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 1.0-961225 <small>1996-12-25</small></h2>
       </TimelineTooltip>
     </TimelineEntry>
     <TimelineEntry date={new Date(Date.UTC(1998, 11, 24))}>
@@ -42,6 +42,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 1.3.0 <small>1998-12-24</small></h2>
         <p><code>begin..rescue..else</code> clauses</p>
         <p><code>&lt;&lt;-</code> indentable heredocs</p>
         <p><code>::</code> method calls</p>
@@ -52,6 +53,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 1.2.0 <small>1998-12-25</small></h2>
         <p>Heredocs</p>
         <p><code>=begin</code> to <code>=end</code></p>
         <p><code>true</code> and <code>false</code></p>
@@ -67,6 +69,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 1.4.0 <small>1999-08-13</small></h2>
         <p>Binary number literals</p>
         <p>Anonymous <code>*</code> in method definitions</p>
         <p>Nested string interpolation</p>
@@ -78,6 +81,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 1.6.0 <small>2000-09-19</small></h2>
         <p><code>rescue</code> modifier</p>
       </TimelineTooltip>
     </TimelineEntry>
@@ -86,6 +90,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 1.8.0 <small>2003-08-04</small></h2>
         <p><code>%W</code> word lists with interpolation</p>
         <p>Dynamic symbols</p>
         <p><code>break</code> and <code>next</code> take values</p>
@@ -98,6 +103,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 1.9.0 <small>2007-12-25</small></h2>
         <p><code>YARV</code></p>
         <p>Block local variables</p>
         <p>Lambda literals</p>
@@ -110,6 +116,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 1.9.1 <small>2009-01-30</small></h2>
         <p>Encoding pragma</p>
         <p><code>.()</code> sugar for <code>.call</code></p>
         <p>Post arguments</p>
@@ -121,6 +128,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 1.9.3 <small>2011-10-31</small></h2>
         <p>Trailing commas</p>
       </TimelineTooltip>
     </TimelineEntry>
@@ -129,6 +137,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 2.0.0 <small>2013-02-24</small></h2>
         <p><a href="https://bugs.ruby-lang.org/issues/1102"><code>Module#prepend</code></a></p>
         <p><a href="https://bugs.ruby-lang.org/issues/4085">Refinements</a></p>
         <p><a href="https://bugs.ruby-lang.org/issues/4985"><code>%i</code> symbol lists</a></p>
@@ -140,6 +149,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 2.1.0 <small>2013-12-25</small></h2>
         <p><a href="https://bugs.ruby-lang.org/issues/7701">Required keyword arguments</a></p>
         <p><a href="https://bugs.ruby-lang.org/issues/8430">Rational and complex literals</a></p>
         <p><a href="https://bugs.ruby-lang.org/issues/8579">Frozen string literal suffix</a></p>
@@ -150,6 +160,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 2.2.0 <small>2014-12-25</small></h2>
         <p><a href="https://bugs.ruby-lang.org/issues/4276">Dynamic symbol hash keys</a></p>
       </TimelineTooltip>
     </TimelineEntry>
@@ -158,6 +169,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 2.3.0 <small>2015-12-25</small></h2>
         <p><a href="https://bugs.ruby-lang.org/issues/8976">frozen_string_literal pragma</a></p>
         <p><a href="https://bugs.ruby-lang.org/issues/9098"><code>&lt;&lt;~</code> heredocs</a></p>
         <p><a href="https://bugs.ruby-lang.org/issues/11537"><code>&amp;.</code> operator</a></p>
@@ -168,6 +180,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 2.4.0 <small>2016-12-25</small></h2>
         <p><a href="https://bugs.ruby-lang.org/issues/4840">Top level return</a></p>
         <p><a href="https://bugs.ruby-lang.org/issues/9451">Refinements in <code>Symbol#to_proc</code></a></p>
         <p><a href="https://bugs.ruby-lang.org/issues/10617">Multiple assignment in a conditional</a></p>
@@ -178,6 +191,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 2.5.0 <small>2017-12-25</small></h2>
         <p><a href="https://bugs.ruby-lang.org/issues/12906"><code>rescue</code> and <code>ensure</code> at the block level</a></p>
         <p><a href="https://bugs.ruby-lang.org/issues/13812">Refinements in string interpolations</a></p>
       </TimelineTooltip>
@@ -187,6 +201,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 2.6.0 <small>2018-12-25</small></h2>
         <p><a href="https://bugs.ruby-lang.org/issues/5400">Flip-flop (deprecated)</a></p>
         <p><a href="https://bugs.ruby-lang.org/issues/12912">Endless range</a></p>
         <p><a href="https://bugs.ruby-lang.org/issues/13770">Non-ASCII constant names</a></p>
@@ -199,6 +214,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 2.7.0 <small>2019-12-25</small></h2>
         <p><a href="https://bugs.ruby-lang.org/issues/5400">Flip-flop (undeprecated)</a></p>
         <p><a href="https://bugs.ruby-lang.org/issues/13581">Method reference operator (added)</a></p>
         <p><a href="https://bugs.ruby-lang.org/issues/14183">Keyword arguments (warning about hash-based)</a></p>
@@ -216,6 +232,7 @@ const RubyTimeline: React.FC = () => (
         <RubyMarker />
       </TimelineMarker>
       <TimelineTooltip>
+        <h2>Ruby 3.0.0 <small>2020-12-25</small></h2>
         <p><a href="https://bugs.ruby-lang.org/issues/14183">Keyword arguments (non-hash-based)</a></p>
         <p><a href="https://bugs.ruby-lang.org/issues/16746">Single-line methods</a></p>
         <p><a href="https://bugs.ruby-lang.org/issues/16828">Find pattern matching</a></p>

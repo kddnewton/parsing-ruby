@@ -14,14 +14,15 @@ File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
 
   case line
   when /^(\d{4})-(\d{2})-(\d{2}) - (.+)$/
-    year, month, day, version = $1, $2.to_i(10) - 1, $3.to_i(10), $4
+    year, month, day, version = $1, $2.to_i(10), $3.to_i(10), $4
 
     entries += <<~JSX.split("\n")
-      <TimelineEntry date={new Date(Date.UTC(#{year}, #{month}, #{day}))}>
+      <TimelineEntry date={new Date(Date.UTC(#{year}, #{month - 1}, #{day}))}>
         <TimelineMarker>
           <RubyMarker />
         </TimelineMarker>
         <TimelineTooltip>
+          <h2>#{version} <small>#{year}-#{"%02d" % month}-#{"%02d" % day}</small></h2>
         </TimelineTooltip>
       </TimelineEntry>
     JSX

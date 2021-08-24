@@ -1,10 +1,12 @@
 import React, { Dispatch, Reducer, useCallback, useContext, useMemo, useState, useReducer, useRef } from "react";
+import ReactDOM from "react-dom";
 import { useId } from "@reach/auto-id";
 import { createDescendantContext, DescendantProvider, useDescendant, useDescendantsInit } from "@reach/descendants";
 
 import styles from "./timeline.module.css";
 
 type State = {
+  tooltipRef: React.RefObject<HTMLDivElement> | null,
   timelineId: string,
   activeEntryIndex: number,
   startDate: Date,
@@ -16,6 +18,7 @@ type Action = (
 );
 
 const initialState: State = {
+  tooltipRef: null,
   timelineId: "",
   activeEntryIndex: -1,
   startDate: new Date(),
@@ -41,9 +44,11 @@ export const Timeline: React.FC<{ id?: string, startDate?: Date, endDate?: Date 
   startDate = initialState.startDate,
   endDate = initialState.endDate
 }) => {
+  const tooltipRef = useRef(null);
   const [entries, setEntries] = useDescendantsInit();
   const [state, dispatch] = useReducer<Reducer<State, Action>>(reducer, {
     ...initialState,
+    tooltipRef,
     timelineId: `timeline-${useId(id)}`,
     startDate,
     endDate
@@ -54,6 +59,7 @@ export const Timeline: React.FC<{ id?: string, startDate?: Date, endDate?: Date 
       <TimelineStateContext.Provider value={state}>
         <TimelineDispatchContext.Provider value={dispatch}>
           <div className={styles.timeline} data-react-timeline>
+            <div ref={tooltipRef} className={styles.tooltip} />
             <div
               className={styles.line}
               role="menu"
@@ -122,6 +128,8 @@ const TimelineTicks: React.FC = () => {
   );
 };
 
+const TimelineEntryContext = React.createContext<boolean>(false);
+
 export const TimelineEntry: React.FC<{ date: Date }> = ({ children, date }) => {
   const { activeEntryIndex, startDate, endDate } = useContext(TimelineStateContext);
   const dispatch = useContext(TimelineDispatchContext);
@@ -142,20 +150,23 @@ export const TimelineEntry: React.FC<{ date: Date }> = ({ children, date }) => {
     return null;
   }
 
+  const selected = entryIndex === activeEntryIndex;
   const percentage = getTimelinePercentage(startDate, endDate, date);
 
   return (
-    <div
-      className={styles.entry}
-      ref={onElementSet}
-      role="menuitem"
-      data-selected={entryIndex === activeEntryIndex}
-      onMouseEnter={() => dispatch({ type: "select", index: entryIndex })}
-      tabIndex={-1}
-      style={{ left: `${percentage}%` }}
-    >
-      {children}
-    </div>
+    <TimelineEntryContext.Provider value={selected}>
+      <div
+        className={styles.entry}
+        ref={onElementSet}
+        role="menuitem"
+        data-selected={selected}
+        onMouseEnter={() => dispatch({ type: "select", index: entryIndex })}
+        tabIndex={-1}
+        style={{ left: `${percentage}%` }}
+      >
+        {children}
+      </div>
+    </TimelineEntryContext.Provider>
   );
 };
 
@@ -163,6 +174,13 @@ export const TimelineMarker: React.FC = ({ children }) => (
   <div className={styles.marker}>{children}</div>
 );
 
-export const TimelineTooltip: React.FC = ({ children }) => (
-  <div className={styles.tooltip}>{children}</div>
-);
+export const TimelineTooltip: React.FC = ({ children }) => {
+  const { tooltipRef } = useContext(TimelineStateContext);
+  const selected = useContext(TimelineEntryContext);
+
+  if (!selected || !tooltipRef || !tooltipRef.current) {
+    return null;
+  }
+
+  return ReactDOM.createPortal(children, tooltipRef.current);
+};
