@@ -9,7 +9,6 @@ entries = []
 File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
   parsing = true if line.start_with?("### Ruby versions")
   parsing = false if line.start_with?("## Parsers")
-
   next if !parsing || line.empty?
 
   case line
@@ -23,12 +22,14 @@ File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
           <RubyMarker />
         </TimelineMarker>
         <TimelineTooltip>
-          <h2>#{title} <small>#{year}-#{"%02d" % month}-#{"%02d" % day}</small></h2>
+          <RubyTooltip>
+            <h2>#{title} <small>#{year}-#{"%02d" % month}-#{"%02d" % day}</small></h2>
+          </RubyTooltip>
         </TimelineTooltip>
       </TimelineEntry>
     JSX
   when /^- (.+)$/
-    entries.insert(-3, "    #{Kramdown::Document.new($1).to_html.chomp}")
+    entries.insert(-4, "      #{Kramdown::Document.new($1).to_html.chomp}")
   end
 end
 

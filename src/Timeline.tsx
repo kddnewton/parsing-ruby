@@ -59,7 +59,7 @@ export const Timeline: React.FC<{ id?: string, startDate?: Date, endDate?: Date 
       <TimelineStateContext.Provider value={state}>
         <TimelineDispatchContext.Provider value={dispatch}>
           <div className={styles.timeline} data-react-timeline>
-            <div ref={tooltipRef} className={styles.tooltip} />
+            <div ref={tooltipRef} />
             <div
               className={styles.line}
               role="menu"
@@ -156,13 +156,12 @@ export const TimelineEntry: React.FC<{ date: Date }> = ({ children, date }) => {
   return (
     <TimelineEntryContext.Provider value={selected}>
       <div
-        className={styles.entry}
         ref={onElementSet}
         role="menuitem"
         data-selected={selected}
         onMouseEnter={() => dispatch({ type: "select", index: entryIndex })}
         tabIndex={-1}
-        style={{ left: `${percentage}%` }}
+        style={{ position: "absolute", left: `${percentage}%` }}
       >
         {children}
       </div>
@@ -182,8 +181,5 @@ export const TimelineTooltip: React.FC = ({ children }) => {
     return null;
   }
 
-  return ReactDOM.createPortal(
-    <div className={styles.tooltipBody}>{children}</div>,
-    tooltipRef.current
-  );
+  return ReactDOM.createPortal(children, tooltipRef.current);
 };

@@ -1,0 +1,84 @@
+.tooltip {
+  --background-color: white;
+  --corner-size: 30px;
+
+  background-color: var(--secondary-color);
+  color: white;
+  max-height: 30em;
+  margin: 0em auto;
+  position: relative;
+  width: 50%;
+}
+
+@media screen and (max-width: 1200px) {
+  .tooltip {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .tooltip {
+    width: 85%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .tooltip {
+    width: 90%;
+  }
+}
+
+.body {
+  box-sizing: border-box;
+  padding: 1em 2em 2em;
+  position: relative;
+}
+
+.tooltip::before,
+.tooltip::after,
+.body::before,
+.body::after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+}
+
+.tooltip::before {
+  top: 0;
+  left: 0;
+  border-width: var(--corner-size) var(--corner-size) 0 0;
+  border-color: var(--background-color) transparent transparent var(--background-color);
+}
+
+.tooltip::after {
+  top: 0;
+  right: 0;
+  border-width: var(--corner-size) 0 0 var(--corner-size);
+  border-color: var(--background-color) var(--background-color) transparent transparent;
+}
+
+.body::before {
+  bottom: 0;
+  left: 0;
+  border-width: 0 var(--corner-size) var(--corner-size) 0;
+  border-color: transparent transparent var(--background-color) var(--background-color);
+}
+
+.body::after {
+  bottom: 0;
+  right: 0;
+  border-width: 0 0 var(--corner-size) var(--corner-size);
+  border-color: transparent var(--background-color) var(--background-color) transparent;
+}
+
+.tooltip h2 {
+  border-bottom: solid 1px white;
+}
+
+.tooltip h2 small {
+  float: right;
+}
+
+.tooltip a {
+  color: white;
+}
