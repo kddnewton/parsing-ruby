@@ -8,23 +8,23 @@ Over time the community has developed a massive amount of projects whose goal is
 
 ### Ruby versions
 
-1994-01-07 - Ruby 0.06
+**1994-01-07 - Ruby 0.06**
 
 This is the earliest [changelog entry](https://cache.ruby-lang.org/pub/ruby/1.0/ChangeLog-pre-alpha) that I could find that had an explicit version on it. At this point Ruby was still a very early idea and the syntax was changing rapidly.
 
-1995-05-19 - Ruby 0.76
+**1995-05-19 - Ruby 0.76**
 
 The changelog here is still entirely Yukihiro Matsumoto. It's been a year since the last entry on this timeline and a ton has changed. Th choice of including `0.76` is somewhat arbitrary here. It's just that [https://cache.ruby-lang.org](https://cache.ruby-lang.org) happens to have a tar file containing that particular release.
 
-1995-12-21 - Ruby 0.95
+**1995-12-21 - Ruby 0.95**
 
 This is also somewhat arbitrary, but the cache has an entry for it so I'm including it here. Technically the last pre-1.0 release was `0.99.4-961224`. Between this release and `1.0-961225`, it's mostly cleanup and preparation. At this point there are some other contributors, including Jun Kuroda and Hirofumi Watanabe.
 
-1996-12-25 - Ruby 1.0-961225
+**1996-12-25 - Ruby 1.0-961225**
 
 This is the first public `1.0` release.
 
-1998-12-24 - Ruby 1.3.0
+**1998-12-24 - Ruby 1.3.0**
 
 This is considered a "development" release, and is meant to be used as a branch for the core developers and not used in production. It is released one day before the "stable" `1.2.0` version. It includes a couple of syntactic additions that are then used for development over the course of the next year before they are included in the `1.4.0` stable version. They are:
 
@@ -35,7 +35,7 @@ heredocs already existed, but you always had to put the ending at the beginning 
 - *`::` method calls*  
 effectively an alias for the `.` operator, there was a convention for a while to call class-level methods with `::`
 
-1998-12-25 - Ruby 1.2.0
+**1998-12-25 - Ruby 1.2.0**
 
 This is a "stable" release, and is meant for production. It's the first stable release since `1.0` was released exactly 2 years prior. A lot of new syntax was introduced in those two years, many of which form the foundation of the kind of Ruby that was see today. This includes:
 
@@ -56,18 +56,18 @@ arguments that were themselves blocks would now resolve
 - *`||=` and `&&=` operators*  
 this further extended the assignment operators with `||` and `&&` support
 
-1999-08-13 - Ruby 1.4.0
+**1999-08-13 - Ruby 1.4.0**
 
 - Binary number literals
 - Anonymous `*` in method definitions
 - Nested string interpolation
 - Multibyte character identifiers
 
-2000-09-19 - Ruby 1.6.0
+**2000-09-19 - Ruby 1.6.0**
 
 - `rescue` modifier
 
-2003-08-04 - Ruby 1.8.0
+**2003-08-04 - Ruby 1.8.0**
 
 - `%W` word lists with interpolation
 - Dynamic symbols
@@ -75,7 +75,7 @@ this further extended the assignment operators with `||` and `&&` support
 - Nested class definition
 - Nested constant assignment
 
-2007-12-25 - Ruby 1.9.0
+**2007-12-25 - Ruby 1.9.0**
 
 - `YARV`
 - Block local variables
@@ -83,52 +83,52 @@ this further extended the assignment operators with `||` and `&&` support
 - Symbol hash keys
 - [`ripper` merged](https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?view=revision&revision=6891)
 
-2009-01-30 - Ruby 1.9.1
+**2009-01-30 - Ruby 1.9.1**
 
 - Encoding pragma
 - `.()` sugar for `.call`
 - Post arguments
 - Block in block arguments
 
-2011-10-31 - Ruby 1.9.3
+**2011-10-31 - Ruby 1.9.3**
 
 - Trailing commas
 
-2013-02-24 - Ruby 2.0.0
+**2013-02-24 - Ruby 2.0.0**
 
 - [`Module#prepend`](https://bugs.ruby-lang.org/issues/1102)
 - [Refinements](https://bugs.ruby-lang.org/issues/4085)
 - [`%i` symbol lists](https://bugs.ruby-lang.org/issues/4985)
 - [Keyword arguments](https://bugs.ruby-lang.org/issues/5474)
 
-2013-12-25 - Ruby 2.1.0
+**2013-12-25 - Ruby 2.1.0**
 
 - [Required keyword arguments](https://bugs.ruby-lang.org/issues/7701)
 - [Rational and complex literals](https://bugs.ruby-lang.org/issues/8430)
 - [Frozen string literal suffix](https://bugs.ruby-lang.org/issues/8579)
 
-2014-12-25 - Ruby 2.2.0
+**2014-12-25 - Ruby 2.2.0**
 
 - [Dynamic symbol hash keys](https://bugs.ruby-lang.org/issues/4276)
 
-2015-12-25 - Ruby 2.3.0
+**2015-12-25 - Ruby 2.3.0**
 
 - [frozen_string_literal pragma](https://bugs.ruby-lang.org/issues/8976)
 - [`<<~` heredocs](https://bugs.ruby-lang.org/issues/9098)
 - [`&.` operator](https://bugs.ruby-lang.org/issues/11537)
 
-2016-12-25 - Ruby 2.4.0
+**2016-12-25 - Ruby 2.4.0**
 
 - [Top level return](https://bugs.ruby-lang.org/issues/4840)
 - [Refinements in `Symbol#to_proc`](https://bugs.ruby-lang.org/issues/9451)
 - [Multiple assignment in a conditional](https://bugs.ruby-lang.org/issues/10617)
 
-2017-12-25 - Ruby 2.5.0
+**2017-12-25 - Ruby 2.5.0**
 
 - [`rescue` and `ensure` at the block level](https://bugs.ruby-lang.org/issues/12906)
 - [Refinements in string interpolations](https://bugs.ruby-lang.org/issues/13812)
 
-2018-12-25 - Ruby 2.6.0
+**2018-12-25 - Ruby 2.6.0**
 
 - [Flip-flop (deprecated)](https://bugs.ruby-lang.org/issues/5400)
 - [Endless range](https://bugs.ruby-lang.org/issues/12912)
@@ -136,7 +136,7 @@ this further extended the assignment operators with `||` and `&&` support
 - [RubyVM::AbstractSyntaxTree](https://github.com/ruby/ruby/commit/0f3dcbdf38db6c7fb04ca0833bb1f9af2c3e7ca4)
 - [Escape keywords from class/module scope removed](https://bugs.ruby-lang.org/issues/6354)
 
-2019-12-25 - Ruby 2.7.0
+**2019-12-25 - Ruby 2.7.0**
 
 - [Flip-flop (undeprecated)](https://bugs.ruby-lang.org/issues/5400)
 - [Method reference operator (added)](https://bugs.ruby-lang.org/issues/13581)
@@ -149,7 +149,7 @@ this further extended the assignment operators with `||` and `&&` support
 - [Argument forwarding](https://bugs.ruby-lang.org/issues/16253)
 - [Method reference operator (removed)](https://bugs.ruby-lang.org/issues/16275)
 
-2020-12-25 - Ruby 3.0.0
+**2020-12-25 - Ruby 3.0.0**
 
 - [Keyword arguments (non-hash-based)](https://bugs.ruby-lang.org/issues/14183)
 - [Single-line methods](https://bugs.ruby-lang.org/issues/16746)
@@ -159,41 +159,50 @@ this further extended the assignment operators with `||` and `&&` support
 
 ### Projects
 
-2001-01-10 - [Robert Feldt releases v0.0.1 of Ruth](https://sourceforge.net/projects/rubyvm/files/ruth/)
+**2001-01-10 - [Robert Feldt releases v0.0.1 of Ruth](https://sourceforge.net/projects/rubyvm/files/ruth/)**
+
 - Extends Ruby 1.6 internals to support inspecting Ruby ASTs
 
-2001-10-20 - [Minero Aoki releases v0.0.1 of ripper](https://i.loveruby.net/archive/ripper/)
+**2001-10-20 - [Minero Aoki releases v0.0.1 of ripper](https://i.loveruby.net/archive/ripper/)**
 
-2002-10-09 - [Mathieu Bouchard releases v0.7.0 of MetaRuby](http://artengine.ca/matju/MetaRuby/)
+**2002-10-09 - [Mathieu Bouchard releases v0.7.0 of MetaRuby](http://artengine.ca/matju/MetaRuby/)**
+
 - Includes `RubySchema.rb`, a schema for validating Ruby ASTs
 
-2003-01-14 - [Yuya Kato releases v0.0.1 of bruby](http://bruby.osdn.jp/)
+**2003-01-14 - [Yuya Kato releases v0.0.1 of bruby](http://bruby.osdn.jp/)**
+
 - Extends Ruby 1.6 internals to support dumping and loading a Ruby AST to a binary format
 
-2004-11-10 - [Ryan Davis releases v1.0.0 of ParseTree](https://github.com/seattlerb/parsetree)
+**2004-11-10 - [Ryan Davis releases v1.0.0 of ParseTree](https://github.com/seattlerb/parsetree)**
+
 - Extends Ruby 1.8 internals to support returning an AST by converting to Ruby objects
 
-2006-06-05 - [Dominik Bathon releases v0.1.0 of RubyNode](https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/)
+**2006-06-05 - [Dominik Bathon releases v0.1.0 of RubyNode](https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/)**
+
 - Extends Ruby 1.8 internals to support returning an AST by wrapping the NODE struct
 
-2007-11-14 - [Ryan Davis releases v1.0.0 of ruby_parser](https://github.com/seattlerb/ruby_parser)
+**2007-11-14 - [Ryan Davis releases v1.0.0 of ruby_parser](https://github.com/seattlerb/ruby_parser)**
+
 - Uses a `racc`-based compiler to generate s-expressions
 
-2009-07-25 - [Paul Brannan releases v0.5.0 of nodewrap](http://rubystuff.org/nodewrap/)
+**2009-07-25 - [Paul Brannan releases v0.5.0 of nodewrap](http://rubystuff.org/nodewrap/)**
+
 - Allows dumping/loading the Ruby nodes and instruction sequences to a binary format
 
-2010-08-27 - [Michael Edgar releases v0.0.1 of laser](https://github.com/michaeledgar/laser)
+**2010-08-27 - [Michael Edgar releases v0.0.1 of laser](https://github.com/michaeledgar/laser)**
+
 - Originally parsed regular expressions then `Ripper` to parse Ruby
 - Features a type system, semantic analysis, documentation generation, and a plugin system
 
-2013-04-15 - [Peter Zotov releases v0.9.0 of parser](https://github.com/whitequark/parser)
+**2013-04-15 - [Peter Zotov releases v0.9.0 of parser](https://github.com/whitequark/parser)**
+
 - Derives a new parser from `parse.y` in Ruby and a lexer test suite from `ruby_parser`
 
 ## Standards
 
-2011-03-22 - JIS X 3017
+**2011-03-22 - JIS X 3017**
 
-2012-04-15 - ISO/IEC 30170:2012
+**2012-04-15 - ISO/IEC 30170:2012**
 
 ## Parsers
 

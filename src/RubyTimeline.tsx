@@ -364,6 +364,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2><a href="https://sourceforge.net/projects/rubyvm/files/ruth/">Robert Feldt releases v0.0.1 of Ruth</a> <small>2001-01-10</small></h2>
+          
           <ul>
             <li>Extends Ruby 1.6 internals to support inspecting Ruby ASTs</li>
           </ul>
@@ -387,6 +388,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2><a href="http://artengine.ca/matju/MetaRuby/">Mathieu Bouchard releases v0.7.0 of MetaRuby</a> <small>2002-10-09</small></h2>
+          
           <ul>
             <li>Includes <code>RubySchema.rb</code>, a schema for validating Ruby ASTs</li>
           </ul>
@@ -400,6 +402,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2><a href="http://bruby.osdn.jp/">Yuya Kato releases v0.0.1 of bruby</a> <small>2003-01-14</small></h2>
+          
           <ul>
             <li>Extends Ruby 1.6 internals to support dumping and loading a Ruby AST to a binary format</li>
           </ul>
@@ -413,6 +416,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2><a href="https://github.com/seattlerb/parsetree">Ryan Davis releases v1.0.0 of ParseTree</a> <small>2004-11-10</small></h2>
+          
           <ul>
             <li>Extends Ruby 1.8 internals to support returning an AST by converting to Ruby objects</li>
           </ul>
@@ -426,6 +430,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2><a href="https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/">Dominik Bathon releases v0.1.0 of RubyNode</a> <small>2006-06-05</small></h2>
+          
           <ul>
             <li>Extends Ruby 1.8 internals to support returning an AST by wrapping the NODE struct</li>
           </ul>
@@ -439,6 +444,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2><a href="https://github.com/seattlerb/ruby_parser">Ryan Davis releases v1.0.0 of ruby_parser</a> <small>2007-11-14</small></h2>
+          
           <ul>
             <li>Uses a <code>racc</code>-based compiler to generate s-expressions</li>
           </ul>
@@ -452,6 +458,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2><a href="http://rubystuff.org/nodewrap/">Paul Brannan releases v0.5.0 of nodewrap</a> <small>2009-07-25</small></h2>
+          
           <ul>
             <li>Allows dumping/loading the Ruby nodes and instruction sequences to a binary format</li>
           </ul>
@@ -465,6 +472,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2><a href="https://github.com/michaeledgar/laser">Michael Edgar releases v0.0.1 of laser</a> <small>2010-08-27</small></h2>
+          
           <ul>
             <li>Originally parsed regular expressions then <code>Ripper</code> to parse Ruby</li>
             <li>Features a type system, semantic analysis, documentation generation, and a plugin system</li>
@@ -479,6 +487,7 @@ const RubyTimeline: React.FC = () => (
       <TimelineTooltip>
         <RubyTooltip>
           <h2><a href="https://github.com/whitequark/parser">Peter Zotov releases v0.9.0 of parser</a> <small>2013-04-15</small></h2>
+          
           <ul>
             <li>Derives a new parser from <code>parse.y</code> in Ruby and a lexer test suite from <code>ruby_parser</code></li>
           </ul>

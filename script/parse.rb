@@ -13,7 +13,7 @@ File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
   parsing = false if line.start_with?("## Parsers")
   next if !parsing || line.start_with?("#")
 
-  if line =~ /^(\d{4})-(\d{2})-(\d{2}) - (.+)$/
+  if line =~ /^\*\*(\d{4})-(\d{2})-(\d{2}) - (.+)\*\*$/
     if entry
       body =
         if entry[:body].strip.empty?
