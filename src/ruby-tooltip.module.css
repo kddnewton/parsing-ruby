@@ -5,7 +5,7 @@
   background-color: var(--secondary-color);
   color: white;
   max-height: 30em;
-  margin: 0em auto;
+  margin: 0em auto 2em;
   position: relative;
   width: 50%;
 }
