@@ -160,87 +160,87 @@ Future??
 
 ## Parsers
 
-[Cardinal](https://github.com/parrot/cardinal) - an implementation on the Parrot VM
-[IronRuby](http://www.wilcob.com/Wilco/IronRuby/microsoft_ironruby.aspx) - an implementation on the .NET framework
-[jruby](https://github.com/jruby/jruby) - an implementation on the JVM
-[MacRuby](http://macruby.org/) - an implementation for objective-c
-[melbourne](https://github.com/carlosbrando/melbourne) - Rubinius's parser as a gem
-[mruby](https://github.com/mruby/mruby) - an embeddable implementation
-[rdoc](https://github.com/ruby/rdoc) - documentation generator
-[RIL](http://www.cs.umd.edu/projects/PL/druby/papers/druby-dls09.pdf) - an intermediate language
-[rubinius](https://github.com/rubinius/rubinius) - an implementation in Ruby
-[saikuro](https://metricfu.github.io/Saikuro) - cyclomatic complexity linter
-[sorbet](https://sorbet.org/) - type system
-[sydparse](https://rubygems.org/gems/sydparse) - a reentrant Ruby parser
-[topaz](https://github.com/topazproject/topaz) - an implementation for RPython
-[tree-sitter-ruby](https://github.com/tree-sitter/tree-sitter-ruby) - a parser aimed at editors
-[TruffleRuby](https://github.com/oracle/truffleruby) - an implementation on the GraalVM
-[typedruby](https://github.com/typedruby/typedruby) - type system
+- [Cardinal](https://github.com/parrot/cardinal) - an implementation on the Parrot VM
+- [IronRuby](http://www.wilcob.com/Wilco/IronRuby/microsoft_ironruby.aspx) - an implementation on the .NET framework
+- [jruby](https://github.com/jruby/jruby) - an implementation on the JVM
+- [MacRuby](http://macruby.org/) - an implementation for objective-c
+- [melbourne](https://github.com/carlosbrando/melbourne) - Rubinius's parser as a gem
+- [mruby](https://github.com/mruby/mruby) - an embeddable implementation
+- [rdoc](https://github.com/ruby/rdoc) - documentation generator
+- [RIL](http://www.cs.umd.edu/projects/PL/druby/papers/druby-dls09.pdf) - an intermediate language
+- [rubinius](https://github.com/rubinius/rubinius) - an implementation in Ruby
+- [saikuro](https://metricfu.github.io/Saikuro) - cyclomatic complexity linter
+- [sorbet](https://sorbet.org/) - type system
+- [sydparse](https://rubygems.org/gems/sydparse) - a reentrant Ruby parser
+- [topaz](https://github.com/topazproject/topaz) - an implementation for RPython
+- [tree-sitter-ruby](https://github.com/tree-sitter/tree-sitter-ruby) - a parser aimed at editors
+- [TruffleRuby](https://github.com/oracle/truffleruby) - an implementation on the GraalVM
+- [typedruby](https://github.com/typedruby/typedruby) - type system
 
 ## Projects using existing parsers
 
 ### parser
 
-[covered](https://github.com/ioquatix/covered) - code coverage reporter
-[deep-cover](https://github.com/deep-cover/deep-cover) - code coverage reporter
-[erb-lint](https://github.com/Shopify/erb-lint) - ERB file linter
-[fast](https://github.com/jonatas/fast) - AST editor
-[opal](https://github.com/opal/opal) - Ruby to JavaScript transpiler
-[packwerk](https://github.com/Shopify/packwerk) - encapsulation analyzer
-[querly](https://github.com/soutaro/querly) - method call finder
-[rdl](https://github.com/tupl-tufts/rdl) - type checker
-[reek](https://github.com/troessner/reek) - code smell analyzer
-[rubocop](https://github.com/rubocop/rubocop) - linter
-[rubrowser](https://github.com/emad-elsaid/rubrowser) - module relationship grapher
-[ruby-lint](https://github.com/YorickPeterse/ruby-lint) - linter
-[ruby-next](https://github.com/ruby-next/ruby-next) - transpiler and polyfill
-[ruby_detective](https://github.com/victor-am/ruby_detective) - module relationship grapher
-[rubycritic](https://github.com/whitesmith/rubycritic) - code quality reporter
-[seeing_is_believing](https://github.com/JoshCheek/seeing_is_believing) - editor intermediate value display
-[standard](https://github.com/testdouble/standard) - a rubocop wrapper with fewer options
-[steep](https://github.com/soutaro/steep) - static type checker
-[unparser](https://github.com/mbj/unparser) - code generation from the parser AST
-[vernacular](https://github.com/kddnewton/vernacular) - source code manipulation
-[yoda](https://github.com/tomoasleep/yoda) - static analyzer and language server
+- [covered](https://github.com/ioquatix/covered) - code coverage reporter
+- [deep-cover](https://github.com/deep-cover/deep-cover) - code coverage reporter
+- [erb-lint](https://github.com/Shopify/erb-lint) - ERB file linter
+- [fast](https://github.com/jonatas/fast) - AST editor
+- [opal](https://github.com/opal/opal) - Ruby to JavaScript transpiler
+- [packwerk](https://github.com/Shopify/packwerk) - encapsulation analyzer
+- [querly](https://github.com/soutaro/querly) - method call finder
+- [rdl](https://github.com/tupl-tufts/rdl) - type checker
+- [reek](https://github.com/troessner/reek) - code smell analyzer
+- [rubocop](https://github.com/rubocop/rubocop) - linter
+- [rubrowser](https://github.com/emad-elsaid/rubrowser) - module relationship grapher
+- [ruby-lint](https://github.com/YorickPeterse/ruby-lint) - linter
+- [ruby-next](https://github.com/ruby-next/ruby-next) - transpiler and polyfill
+- [ruby_detective](https://github.com/victor-am/ruby_detective) - module relationship grapher
+- [rubycritic](https://github.com/whitesmith/rubycritic) - code quality reporter
+- [seeing_is_believing](https://github.com/JoshCheek/seeing_is_believing) - editor intermediate value display
+- [standard](https://github.com/testdouble/standard) - a rubocop wrapper with fewer options
+- [steep](https://github.com/soutaro/steep) - static type checker
+- [unparser](https://github.com/mbj/unparser) - code generation from the parser AST
+- [vernacular](https://github.com/kddnewton/vernacular) - source code manipulation
+- [yoda](https://github.com/tomoasleep/yoda) - static analyzer and language server
 
 ### ruby_parser
 
-[dawnscanner](https://github.com/thesp0nge/dawnscanner) - security analyzer
-[debride](https://github.com/seattlerb/debride) - unused code analyzer
-[fasterer](https://github.com/DamirSvrtan/fasterer) - performance linter
-[flay](https://github.com/seattlerb/flay) - code similarity analyzer
-[flog](https://github.com/seattlerb/flog) - code understandability analyzer
-[railroader](https://github.com/david-a-wheeler/railroader) - static security analyzer
-[roodi](https://github.com/roodi/roodi) - linter
+- [dawnscanner](https://github.com/thesp0nge/dawnscanner) - security analyzer
+- [debride](https://github.com/seattlerb/debride) - unused code analyzer
+- [fasterer](https://github.com/DamirSvrtan/fasterer) - performance linter
+- [flay](https://github.com/seattlerb/flay) - code similarity analyzer
+- [flog](https://github.com/seattlerb/flog) - code understandability analyzer
+- [railroader](https://github.com/david-a-wheeler/railroader) - static security analyzer
+- [roodi](https://github.com/roodi/roodi) - linter
 
 ### ripper
 
-[cane](https://github.com/square/cane) - linter
-[language_server-ruby](https://github.com/mtsmfm/language_server-ruby) - language server
-[prettier](https://github.com/prettier/plugin-ruby) - formatter
-[rubyfmt](https://github.com/penelopezone/rubyfmt) - formatter
-[rufo](https://github.com/ruby-formatter/rufo) - formatter
-[sandi_meter](https://github.com/makaroni4/sandi_meter) - linter
-[yard](https://github.com/lsegal/yard) - documentation generator
+- [cane](https://github.com/square/cane) - linter
+- [language_server-ruby](https://github.com/mtsmfm/language_server-ruby) - language server
+- [prettier](https://github.com/prettier/plugin-ruby) - formatter
+- [rubyfmt](https://github.com/penelopezone/rubyfmt) - formatter
+- [rufo](https://github.com/ruby-formatter/rufo) - formatter
+- [sandi_meter](https://github.com/makaroni4/sandi_meter) - linter
+- [yard](https://github.com/lsegal/yard) - documentation generator
 
 ### RubyVM::AbstractSyntaxTree
 
-[solargraph](https://github.com/castwide/solargraph) - language server
+- [solargraph](https://github.com/castwide/solargraph) - language server
 
 ### tree-sitter
 
-[vscode-ruby](https://github.com/rubyide/vscode-ruby) - language server
+- [vscode-ruby](https://github.com/rubyide/vscode-ruby) - language server
 
 ### Rubinius
 
-[pelusa](https://github.com/codegram/pelusa) - linter
+- [pelusa](https://github.com/codegram/pelusa) - linter
 
 ## RIL
 
-[druby](http://www.cs.umd.edu/projects/PL/druby/) - type system
-[rtc](https://www.cs.tufts.edu/~jfoster/papers/oops13.pdf) - type system
-[rubydust](http://www.cs.umd.edu/~mwh/papers/rubydust.pdf) - type system
+- [druby](http://www.cs.umd.edu/projects/PL/druby/) - type system
+- [rtc](https://www.cs.tufts.edu/~jfoster/papers/oops13.pdf) - type system
+- [rubydust](http://www.cs.umd.edu/~mwh/papers/rubydust.pdf) - type system
 
 ## JRuby
 
-[Ecstatic](https://projekter.aau.dk/projekter/files/61071016/1181807983.pdf) - type system
+- [Ecstatic](https://projekter.aau.dk/projekter/files/61071016/1181807983.pdf) - type system
