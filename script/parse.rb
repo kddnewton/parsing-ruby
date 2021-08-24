@@ -4,7 +4,8 @@
 require "kramdown"
 
 parsing = false
-entries = []
+entries = +""
+entry = nil
 
 File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
   parsing = true if line.start_with?("### Ruby versions")
@@ -13,26 +14,40 @@ File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
 
   case line
   when /^(\d{4})-(\d{2})-(\d{2}) - (.+)$/
-    year, month, day, title = $1, $2.to_i(10), $3.to_i(10), Kramdown::Document.new($4).to_html.chomp
-    title.gsub!(/<\/?p>/, "") if title.include?("<p>")
+    if entry
+      body =
+        if entry[:body].empty?
+          ""
+        else
+          "\n#{Kramdown::Document.new(entry[:body]).to_html.chomp.split("\n").map { |line| "      #{line}" }.join("\n")}"
+        end
 
-    entries += <<~JSX.split("\n")
-      <TimelineEntry date={new Date(Date.UTC(#{year}, #{month - 1}, #{day}))}>
-        <TimelineMarker>
-          <RubyMarker />
-        </TimelineMarker>
-        <TimelineTooltip>
-          <RubyTooltip>
-            <h2>#{title} <small>#{year}-#{"%02d" % month}-#{"%02d" % day}</small></h2>
-          </RubyTooltip>
-        </TimelineTooltip>
-      </TimelineEntry>
-    JSX
-  when /^- (.+)$/
-    entries.insert(-4, "      #{Kramdown::Document.new($1).to_html.chomp}")
+      entries << <<~JSX
+        <TimelineEntry date={new Date(Date.UTC(#{entry[:year]}, #{entry[:month] - 1}, #{entry[:day]}))}>
+          <TimelineMarker>
+            <RubyMarker />
+          </TimelineMarker>
+          <TimelineTooltip>
+            <RubyTooltip>
+              <h2>#{entry[:title]} <small>#{entry[:year]}-#{"%02d" % entry[:month]}-#{"%02d" % entry[:day]}</small></h2>#{body}
+            </RubyTooltip>
+          </TimelineTooltip>
+        </TimelineEntry>
+      JSX
+    end
+
+    entry = {
+      year: $1,
+      month: $2.to_i(10),
+      day: $3.to_i(10),
+      title: Kramdown::Document.new($4).to_html.chomp.then { |title| title.include?("<p>") ? title.gsub!(/<\/?p>/, "") : title },
+      body: +""
+    }
+  when /^(- .+)$/
+    entry[:body] << "#{$1}\n"
   end
 end
 
 puts "  <Timeline startDate={new Date(Date.UTC(1993, 0, 1))} endDate={new Date(Date.UTC(2021, 11, 31))}>"
-puts entries.map { |line| "    #{line}" }
+puts entries.split("\n").map { |line| "    #{line}" }
 puts "  </Timeline>"
