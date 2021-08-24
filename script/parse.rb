@@ -8,13 +8,14 @@ entries = []
 
 File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
   parsing = true if line.start_with?("### Ruby versions")
-  parsing = false if line.start_with?("Future??")
+  parsing = false if line.start_with?("## Parsers")
 
   next if !parsing || line.empty?
 
   case line
   when /^(\d{4})-(\d{2})-(\d{2}) - (.+)$/
-    year, month, day, version = $1, $2.to_i(10), $3.to_i(10), $4
+    year, month, day, title = $1, $2.to_i(10), $3.to_i(10), Kramdown::Document.new($4).to_html.chomp
+    title.gsub!(/<\/?p>/, "") if title.include?("<p>")
 
     entries += <<~JSX.split("\n")
       <TimelineEntry date={new Date(Date.UTC(#{year}, #{month - 1}, #{day}))}>
@@ -22,7 +23,7 @@ File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
           <RubyMarker />
         </TimelineMarker>
         <TimelineTooltip>
-          <h2>#{version} <small>#{year}-#{"%02d" % month}-#{"%02d" % day}</small></h2>
+          <h2>#{title} <small>#{year}-#{"%02d" % month}-#{"%02d" % day}</small></h2>
         </TimelineTooltip>
       </TimelineEntry>
     JSX

@@ -118,7 +118,7 @@ Over time the community has developed a massive amount of projects whose goal is
 - [`in` pattern matching](https://bugs.ruby-lang.org/issues/17371)
 
 Future??
-- [Anonymous struct literal](https://bugs.ruby-lang.org/issues/16986)
+[Anonymous struct literal](https://bugs.ruby-lang.org/issues/16986)
 
 ### Projects
 

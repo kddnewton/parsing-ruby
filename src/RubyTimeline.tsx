@@ -240,6 +240,112 @@ const RubyTimeline: React.FC = () => (
         <p><a href="https://bugs.ruby-lang.org/issues/17371"><code>in</code> pattern matching</a></p>
       </TimelineTooltip>
     </TimelineEntry>
+    <TimelineEntry date={new Date(Date.UTC(2001, 0, 10))}>
+      <TimelineMarker>
+        <RubyMarker />
+      </TimelineMarker>
+      <TimelineTooltip>
+        <h2><a href="https://sourceforge.net/projects/rubyvm/files/ruth/">Robert Feldt releases v0.0.1 of Ruth</a> <small>2001-01-10</small></h2>
+        <p>Extends Ruby 1.6 internals to support inspecting Ruby ASTs</p>
+      </TimelineTooltip>
+    </TimelineEntry>
+    <TimelineEntry date={new Date(Date.UTC(2001, 9, 20))}>
+      <TimelineMarker>
+        <RubyMarker />
+      </TimelineMarker>
+      <TimelineTooltip>
+        <h2><a href="https://i.loveruby.net/archive/ripper/">Minero Aoki releases v0.0.1 of ripper</a> <small>2001-10-20</small></h2>
+      </TimelineTooltip>
+    </TimelineEntry>
+    <TimelineEntry date={new Date(Date.UTC(2002, 9, 9))}>
+      <TimelineMarker>
+        <RubyMarker />
+      </TimelineMarker>
+      <TimelineTooltip>
+        <h2><a href="http://artengine.ca/matju/MetaRuby/">Mathieu Bouchard releases v0.7.0 of MetaRuby</a> <small>2002-10-09</small></h2>
+        <p>Includes <code>RubySchema.rb</code>, a schema for validating Ruby ASTs</p>
+      </TimelineTooltip>
+    </TimelineEntry>
+    <TimelineEntry date={new Date(Date.UTC(2003, 0, 14))}>
+      <TimelineMarker>
+        <RubyMarker />
+      </TimelineMarker>
+      <TimelineTooltip>
+        <h2><a href="http://bruby.osdn.jp/">Yuya Kato releases v0.0.1 of bruby</a> <small>2003-01-14</small></h2>
+        <p>Extends Ruby 1.6 internals to support dumping and loading a Ruby AST to a binary format</p>
+      </TimelineTooltip>
+    </TimelineEntry>
+    <TimelineEntry date={new Date(Date.UTC(2004, 10, 10))}>
+      <TimelineMarker>
+        <RubyMarker />
+      </TimelineMarker>
+      <TimelineTooltip>
+        <h2><a href="https://github.com/seattlerb/parsetree">Ryan Davis releases v1.0.0 of ParseTree</a> <small>2004-11-10</small></h2>
+        <p>Extends Ruby 1.8 internals to support returning an AST by converting to Ruby objects</p>
+      </TimelineTooltip>
+    </TimelineEntry>
+    <TimelineEntry date={new Date(Date.UTC(2006, 5, 5))}>
+      <TimelineMarker>
+        <RubyMarker />
+      </TimelineMarker>
+      <TimelineTooltip>
+        <h2><a href="https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/">Dominik Bathon releases v0.1.0 of RubyNode</a> <small>2006-06-05</small></h2>
+        <p>Extends Ruby 1.8 internals to support returning an AST by wrapping the NODE struct</p>
+      </TimelineTooltip>
+    </TimelineEntry>
+    <TimelineEntry date={new Date(Date.UTC(2007, 10, 14))}>
+      <TimelineMarker>
+        <RubyMarker />
+      </TimelineMarker>
+      <TimelineTooltip>
+        <h2><a href="https://github.com/seattlerb/ruby_parser">Ryan Davis releases v1.0.0 of ruby_parser</a> <small>2007-11-14</small></h2>
+        <p>Uses a <code>racc</code>-based compiler to generate s-expressions</p>
+      </TimelineTooltip>
+    </TimelineEntry>
+    <TimelineEntry date={new Date(Date.UTC(2009, 6, 25))}>
+      <TimelineMarker>
+        <RubyMarker />
+      </TimelineMarker>
+      <TimelineTooltip>
+        <h2><a href="http://rubystuff.org/nodewrap/">Paul Brannan releases v0.5.0 of nodewrap</a> <small>2009-07-25</small></h2>
+        <p>Allows dumping/loading the Ruby nodes and instruction sequences to a binary format</p>
+      </TimelineTooltip>
+    </TimelineEntry>
+    <TimelineEntry date={new Date(Date.UTC(2010, 7, 27))}>
+      <TimelineMarker>
+        <RubyMarker />
+      </TimelineMarker>
+      <TimelineTooltip>
+        <h2><a href="https://github.com/michaeledgar/laser">Michael Edgar releases v0.0.1 of laser</a> <small>2010-08-27</small></h2>
+        <p>Originally parsed regular expressions then <code>Ripper</code> to parse Ruby</p>
+        <p>Features a type system, semantic analysis, documentation generation, and a plugin system</p>
+      </TimelineTooltip>
+    </TimelineEntry>
+    <TimelineEntry date={new Date(Date.UTC(2013, 3, 15))}>
+      <TimelineMarker>
+        <RubyMarker />
+      </TimelineMarker>
+      <TimelineTooltip>
+        <h2><a href="https://github.com/whitequark/parser">Peter Zotov releases v0.9.0 of parser</a> <small>2013-04-15</small></h2>
+        <p>Derives a new parser from <code>parse.y</code> in Ruby and a lexer test suite from <code>ruby_parser</code></p>
+      </TimelineTooltip>
+    </TimelineEntry>
+    <TimelineEntry date={new Date(Date.UTC(2011, 2, 22))}>
+      <TimelineMarker>
+        <RubyMarker />
+      </TimelineMarker>
+      <TimelineTooltip>
+        <h2>JIS X 3017 <small>2011-03-22</small></h2>
+      </TimelineTooltip>
+    </TimelineEntry>
+    <TimelineEntry date={new Date(Date.UTC(2012, 3, 15))}>
+      <TimelineMarker>
+        <RubyMarker />
+      </TimelineMarker>
+      <TimelineTooltip>
+        <h2>ISO/IEC 30170:2012 <small>2012-04-15</small></h2>
+      </TimelineTooltip>
+    </TimelineEntry>
   </Timeline>
 );
 
