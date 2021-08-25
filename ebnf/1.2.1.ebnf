@@ -1,0 +1,49 @@
+program ::= compstmt
+compstmt ::= stmts (| terms)
+stmts ::= | stmt | stmts terms stmt | error stmt
+stmt ::= (tIDENTIFIER | tCONSTANT | tFID | method_call | command_call) ('do' opt_iter_var compstmt 'end') | 'alias' fname fname | 'alias' tGVAR tGVAR | 'alias' tGVAR tBACK_REF | 'undef' undef_list | stmt 'if' expr | stmt 'unless' expr | stmt 'while' expr | stmt 'until' expr | 'BEGIN' '{' compstmt '}' | 'END' '{' compstmt '}' | expr
+expr ::= mlhs '=' (args | args ',' tSTAR arg | tSTAR arg) | 'return' call_args | 'yield' call_args | command_call | expr 'and' expr | expr 'or' expr | 'not' expr | '!' command_call | arg
+command_call ::= operation call_args | primary '.' operation call_args | primary '::' operation call_args | 'super' call_args
+mlhs ::= mlhs_basic | tLPAREN mlhs_entry ')'
+mlhs_entry ::= mlhs_basic | tLPAREN mlhs_entry ')'
+mlhs_basic ::= mlhs_head | mlhs_head tSTAR lhs | mlhs_head mlhs_tail | mlhs_head mlhs_tail ',' tSTAR lhs | tSTAR lhs
+mlhs_item ::= lhs | tLPAREN mlhs_entry ')'
+mlhs_head ::= mlhs_item ','
+mlhs_tail ::= mlhs_item | mlhs_tail ',' mlhs_item
+lhs ::= variable | primary '[' opt_call_args ']' | primary '.' tIDENTIFIER | backref
+fname ::= tIDENTIFIER | tCONSTANT | tFID | ('..' | '|' | '^' | '&' | '<=>' | '==' | '===' | '=~' | '>' | '>=' | '<' | '<=' | '<<' | '>>' | '+' | '-' | '*' | tSTAR | '/' | '%' | '**' | '~' | '+@' | '-@' | '[]' | '[]=' | '`') | ('__LINE__' | '__FILE__' | 'BEGIN' | 'END' | 'alias' | 'and' | 'begin' | 'break' | 'case' | 'class' | 'def' | 'defined?' | 'do' | 'else' | 'elsif' | 'end' | 'ensure' | 'false' | 'for' | 'if' | 'in' | 'module' | 'next' | 'nil' | 'not' | 'or' | 'redo' | 'rescue' | 'retry' | 'return' | 'self' | 'super' | 'then' | 'true' | 'undef' | 'unless' | 'until' | 'when' | 'while' | 'yield')
+undef_list ::= fname | undef_list ',' fname
+arg ::= variable '=' arg | primary '[' opt_call_args ']' '=' arg | primary '.' tIDENTIFIER '=' arg | primary '.' tCONSTANT '=' arg | backref '=' arg | variable tOP_ASGN arg | primary '[' opt_call_args ']' tOP_ASGN arg | primary '.' tIDENTIFIER tOP_ASGN arg | primary '.' tCONSTANT tOP_ASGN arg | backref tOP_ASGN arg | arg '..' arg | arg tDOT3 arg | arg '+' arg | arg '-' arg | arg '*' arg | arg '/' arg | arg '%' arg | arg '**' arg | '+@' arg | '-@' arg | arg '|' arg | arg '^' arg | arg '&' arg | arg '<=>' arg | arg '>' arg | arg '>=' arg | arg '<' arg | arg '<=' arg | arg '==' arg | arg '===' arg | arg '!=' arg | arg '=~' arg | arg '!~' arg | '!' arg | '~' arg | arg '<<' arg | arg '>>' arg | arg tANDOP arg | arg tOROP arg | 'defined?' opt_nl arg | arg '?' arg ':' arg | primary
+opt_call_args ::= | call_args opt_nl
+call_args ::= command_call | args opt_block_arg | args ',' tSTAR arg opt_block_arg | assocs opt_block_arg | assocs ',' tSTAR arg opt_block_arg | args ',' assocs opt_block_arg | args ',' assocs ',' tSTAR arg opt_block_arg | tSTAR arg opt_block_arg | block_arg
+block_arg ::= tAMPER arg
+opt_block_arg ::= ',' block_arg |
+args ::= arg | args ',' arg
+primary ::= ((tINTEGER | tFLOAT) | tSYMBEG (fname | tIVAR | tGVAR) | tREGEXP) | primary '::' tCONSTANT | '::' tCONSTANT | tSTRING | tDSTRING | tXSTRING | tDXSTRING | tDREGEXP | variable | backref | primary '[' opt_call_args ']' | tLBRACK (| args trailer) ']' | tLBRACE (| assocs trailer | args trailer) '}' | 'return' '(' call_args ')' | 'return' '(' ')' | 'return' | 'yield' '(' call_args ')' | 'yield' '(' ')' | 'yield' | 'defined?' opt_nl '(' expr ')' | tFID | operation iter_block | method_call | method_call iter_block | 'if' expr then compstmt if_tail 'end' | 'unless' expr then compstmt opt_else 'end' | 'while' expr do compstmt 'end' | 'until' expr do compstmt 'end' | 'case' compstmt case_body 'end' | 'for' iter_var 'in' expr do compstmt 'end' | 'begin' compstmt rescue ensure 'end' | tLPAREN compstmt ')' | 'class' tCONSTANT (term | '<' expr term | error term) compstmt 'end' | 'class' '<<' expr term compstmt 'end' | 'module' tCONSTANT compstmt 'end' | 'def' fname f_arglist compstmt 'end' | 'def' (variable | tLPAREN expr opt_nl ')') '.' fname f_arglist compstmt 'end' | 'break' | 'next' | 'redo' | 'retry'
+then ::= term | 'then' | term 'then'
+do ::= term | 'do' | term 'do'
+if_tail ::= opt_else | 'elsif' expr then compstmt if_tail
+opt_else ::= | 'else' compstmt
+iter_var ::= lhs | mlhs
+opt_iter_var ::= | '|' '|' | tOROP | '|' iter_var '|'
+iter_block ::= '{' opt_iter_var compstmt '}'
+method_call ::= operation '(' opt_call_args ')' | primary '.' operation '(' opt_call_args ')' | primary '.' operation | primary '::' operation '(' opt_call_args ')' | 'super' '(' opt_call_args ')' | 'super'
+case_body ::= 'when' args then compstmt (opt_else | case_body)
+rescue ::= 'rescue' (args |) do compstmt rescue |
+ensure ::= | 'ensure' compstmt
+variable ::= tIDENTIFIER | tIVAR | tGVAR | tCONSTANT | 'nil' | 'self' | 'true' | 'false' | '__FILE__' | '__LINE__'
+backref ::= tNTH_REF | tBACK_REF
+f_arglist ::= '(' f_args opt_nl ')' | f_args term
+f_args ::= f_arg ',' f_optarg ',' f_rest_arg opt_f_block_arg | f_arg ',' f_optarg opt_f_block_arg | f_arg ',' f_rest_arg opt_f_block_arg | f_arg opt_f_block_arg | f_optarg ',' f_rest_arg opt_f_block_arg | f_optarg opt_f_block_arg | f_rest_arg opt_f_block_arg | f_block_arg |
+f_arg ::= tIDENTIFIER | f_arg ',' tIDENTIFIER
+f_opt ::= tIDENTIFIER '=' arg
+f_optarg ::= f_opt | f_optarg ',' f_opt
+f_rest_arg ::= tSTAR tIDENTIFIER
+f_block_arg ::= tAMPER tIDENTIFIER
+opt_f_block_arg ::= ',' f_block_arg |
+assocs ::= assoc | assocs ',' assoc
+assoc ::= arg tASSOC arg
+operation ::= tIDENTIFIER | tCONSTANT | tFID
+opt_nl ::= | '\n'
+trailer ::= | '\n' | ','
+term ::= ';' | '\n'

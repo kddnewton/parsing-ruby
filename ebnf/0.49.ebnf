@@ -1,0 +1,29 @@
+program ::= compexpr
+compexpr ::= exprs opt_term
+exprs ::= | expr | exprs term expr | exprs error expr
+expr ::= 'class' IDENTIFIER (| ':' IDENTIFIER) compexpr 'end' end_mark | 'module' IDENTIFIER compexpr 'end' end_mark | 'def' fname f_arglist compexpr 'end' end_mark | 'def' 'func' fname f_arglist compexpr 'end' end_mark | 'def' (variable | '(' compexpr ')') '.' fname f_arglist compexpr 'end' end_mark | 'undef' fname | 'def' fname fname | 'include' inc_list | (mlhs_head | mlhs_head mlhs_tail) '=' args | expr2
+mlhs_head ::= variable comma | primary '[' args ']' comma | primary '.' IDENTIFIER comma
+mlhs_tail ::= lhs | mlhs_tail comma lhs
+lhs ::= variable | primary '[' args ']' | primary '.' IDENTIFIER
+inc_list ::= IDENTIFIER | inc_list comma IDENTIFIER | error | inc_list comma error
+fname ::= fname'__END__' | IVAR
+op ::= '::' | '..' | '|' | '^' | '&' | '<=>' | '==' | '!=' | '=~' | '!~' | '>' | '>=' | '<' | '<=' | '<<' | '>>' | '+' | '-' | '*' | '/' | '%' | '**' | '!' | '~' | '!' '@' | '~' '@' | '-' '@' | '+' '@' | '[' ']' | '[' ']' '='
+f_arglist ::= '(' (| f_arg | f_arg comma rest_arg | rest_arg | f_arg error | error) ')' | term
+f_arg ::= IDENTIFIER | f_arg comma IDENTIFIER
+rest_arg ::= '*' IDENTIFIER
+expr2 ::= 'if' expr2 then compexpr if_tail 'end' end_mark | 'unless' expr2 then compexpr opt_else 'end' end_mark | 'case' expr2 opt_term cases 'end' end_mark | 'while' expr2 term compexpr 'end' end_mark | 'until' expr2 term compexpr 'end' end_mark | 'for' lhs 'in' expr2 term compexpr 'end' end_mark | 'do' expr2 (term | opt_term 'using' lhs term) compexpr 'end' end_mark | 'protect' compexpr resque ensure 'end' end_mark | 'redo' | 'break' | 'continue' | 'retry' | 'return' expr2 | 'return' | variable '=' expr2 | primary '[' args ']' '=' expr2 | primary '.' IDENTIFIER '=' expr2 | variable SELF_ASGN expr2 | primary '[' args ']' SELF_ASGN expr2 | primary '.' IDENTIFIER SELF_ASGN expr2 | 'yield' expr2 | expr2 '..' expr2 | expr2 DOT3 expr2 | expr2 '+' expr2 | expr2 '-' expr2 | expr2 '*' expr2 | expr2 '/' expr2 | expr2 '%' expr2 | expr2 '**' expr2 | '+' expr2 | '-' expr2 | expr2 '|' expr2 | expr2 '^' expr2 | expr2 '&' expr2 | expr2 '<=>' expr2 | expr2 '>' expr2 | expr2 '>=' expr2 | expr2 '<' expr2 | expr2 '<=' expr2 | expr2 '==' expr2 | expr2 '!=' expr2 | expr2 '=~' expr2 | expr2 '!~' expr2 | '!' expr2 | '~' expr2 | expr2 '<<' expr2 | expr2 '>>' expr2 | expr2 '::' expr2 | expr2 AND expr2 | expr2 OR expr2 |primary
+then ::= term | 'then' | term 'then'
+if_tail ::= opt_else | 'elsif' expr2 then compexpr if_tail
+opt_else ::= | 'else' compexpr
+cases ::= opt_else | 'when' args term compexpr cases
+resque ::= | 'resque' compexpr
+ensure ::= | 'ensure' compexpr
+call_args ::= | args | '*' exprs | args comma '*' exprs
+args ::= expr2 | args comma expr2
+primary ::= variable | '(' compexpr ')' | STRING | primary '[' args ']' | ((INTEGER | FLOAT) | '\' (fname'__END__' | IVAR | GVAR | CONSTANT) | '/' REGEXP) | '[' (| args) ']' | '{' (| assocs) '}' | primary '.' IDENTIFIER '(' call_args ')' | primary '.' IDENTIFIER | IDENTIFIER '(' call_args ')' | IVAR '(' call_args ')' | 'super' '(' call_args ')' | 'super'
+variable ::= IDENTIFIER | IVAR | GVAR | CONSTANT | 'nil' | 'self'
+assocs ::= assoc | assocs comma assoc
+assoc ::= expr2 ASSOC expr2
+end_mark ::= 'class' | 'module' | 'def' | 'func' | 'if' | 'unless' | 'case' | 'while' | 'until' | 'for' | 'do' | 'protect' |
+opt_term ::= | term
+term ::= ';' | '\n'

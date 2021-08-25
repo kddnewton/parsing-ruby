@@ -1,0 +1,31 @@
+program ::= compexpr
+compexpr ::= exprs (| term)
+exprs ::= | expr | exprs term expr | exprs error expr
+expr ::= mlhs '=' args | assocs | 'return' args | 'fail' args | 'yield' args | IDENTIFIER call_args'__END__' | primary '.' IDENTIFIER call_args'__END__' | 'super' call_args'__END__' | 'undef' fname | 'alias' fname fname | expr IF_MOD expr | expr WHILE_MOD expr | expr 'and' expr | expr 'or' expr | arg
+mlhs ::= mlhs_head | mlhs_head '*' lhs | mlhs_head mlhs_tail | mlhs_head mlhs_tail comma '*' lhs
+mlhs_head ::= lhs comma
+mlhs_tail ::= lhs | mlhs_tail comma lhs
+lhs ::= variable | primary '[' opt_args opt_nl ']' | primary '.' IDENTIFIER
+cname ::= IDENTIFIER | CONSTANT
+fname ::= IDENTIFIER | CONSTANT | ('::' | '..' | '|' | '^' | '&' | '<=>' | '==' | '=~' | '>' | '>=' | '<' | '<=' | '<<' | '>>' | '+' | '-' | '*' | '/' | '%' | '**' | '~' | '+@' | '-@' | '[]' | '[]=')
+arg ::= variable '=' arg | primary '[' opt_args opt_nl ']' '=' arg | primary '.' IDENTIFIER '=' arg | variable OP_ASGN arg | primary '[' opt_args opt_nl ']' OP_ASGN arg | primary '.' IDENTIFIER OP_ASGN arg | arg '..' arg | arg DOT3 arg | arg '+' arg | arg '-' arg | arg '*' arg | arg '/' arg | arg '%' arg | arg '**' arg | '+@' arg | '-@' arg | arg '|' arg | arg '^' arg | arg '&' arg | arg '<=>' arg | arg '>' arg | arg '>=' arg | arg '<' arg | arg '<=' arg | arg '==' arg | arg '!=' arg | arg '=~' arg | arg '!~' arg | '!' arg | '~' arg | arg '<<' arg | arg '>>' arg | arg '::' arg | arg ANDOP arg | arg OROP arg | primary
+call_args ::= | call_args'__END__' opt_nl | '*' arg opt_nl
+opt_args ::= | args
+args ::= arg | args comma arg
+primary ::= ((INTEGER | FLOAT) | SYMBEG (fname | IVAR | GVAR) | REGEXP) | STRING | STRING2 | XSTRING | XSTRING2 | DREGEXP | variable | 'super' '(' call_args ')' | 'super' | primary '[' opt_args opt_nl ']' | LBRACK (| args trailer) ']' | LBRACE (| assocs trailer | args trailer) '}' | 'redo' | 'break' | 'continue' | 'retry' | 'return' | 'fail' '(' args ')' | 'fail' '(' ')' | 'fail' | 'yield' '(' args ')' | 'yield' '(' ')' | 'yield' | primary '{' ('|' '|' | OROP | '|' iter_var '|') compexpr '}' | IDENTIFIER '(' call_args ')' | primary '.' IDENTIFIER '(' call_args ')' | primary '.' IDENTIFIER | 'if' expr then compexpr if_tail 'end' | 'while' expr term compexpr 'end' | 'case' compexpr case_body 'end' | 'for' iter_var 'in' expr term compexpr 'end' | 'begin' compexpr resque ensure 'end' | LPAREN expr opt_nl ')' | 'class' cname (term | (':' | SYMBEG) CONSTANT) compexpr 'end' | 'module' cname compexpr 'end' | 'def' fname f_arglist compexpr 'end' | 'def' (variable | LPAREN compexpr ')') '.' fname f_arglist compexpr 'end'
+then ::= term | 'then' | term 'then'
+if_tail ::= opt_else | 'elsif' expr then compexpr if_tail
+opt_else ::= | 'else' compexpr
+iter_var ::= lhs | mlhs
+case_body ::= 'when' args then compexpr (opt_else | case_body)
+resque ::= | 'resque' compexpr
+ensure ::= | 'ensure' compexpr
+variable ::= IDENTIFIER | IVAR | GVAR | CONSTANT | NTH_REF | 'nil' | 'self'
+f_arglist ::= '(' (| f_arg | f_arg comma rest_arg | rest_arg | f_arg error | error) ')' | term
+f_arg ::= IDENTIFIER | f_arg comma IDENTIFIER
+rest_arg ::= '*' IDENTIFIER
+assocs ::= assoc | assocs comma assoc
+assoc ::= arg ASSOC arg
+opt_nl ::= | '\n'
+trailer ::= | '\n' | comma
+term ::= ';' | '\n'

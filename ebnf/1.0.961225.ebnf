@@ -1,0 +1,41 @@
+program ::= compexpr
+compexpr ::= exprs (| terms)
+exprs ::= | expr | exprs terms expr | error expr
+expr ::= mlhs '=' args | assocs | 'return' args | 'yield' args | command_call | (IDENTIFIER | CONSTANT | FID | method_call | command_call) ('do' opt_iter_var compexpr 'end') | 'alias' fname fname | expr IF_MOD expr | expr UNLESS_MOD expr | expr WHILE_MOD expr | expr UNTIL_MOD expr | expr 'and' expr | expr 'or' expr | 'not' expr | '!' command_call | arg
+command_call ::= operation call_args'__END__' | primary '.' operation call_args'__END__' | 'super' call_args'__END__' | 'undef' undef_list
+mlhs ::= mlhs_head | mlhs_head STAR lhs | mlhs_head mlhs_tail | mlhs_head mlhs_tail ',' STAR lhs | STAR lhs
+mlhs_head ::= lhs ','
+mlhs_tail ::= lhs | mlhs_tail ',' lhs
+lhs ::= variable | primary '[' opt_args opt_nl ']' | primary '.' IDENTIFIER | backref
+cname ::= IDENTIFIER | CONSTANT
+fname ::= IDENTIFIER | CONSTANT | FID | ('..' | '|' | '^' | '&' | '<=>' | '==' | '===' | '=~' | '>' | '>=' | '<' | '<=' | '<<' | '>>' | '+' | '-' | '*' | STAR | '/' | '%' | '**' | '~' | '+@' | '-@' | '[]' | '[]=' | '`')
+undef_list ::= fname | undef_list ',' fname
+arg ::= variable '=' arg | primary '[' opt_args opt_nl ']' '=' arg | primary '.' IDENTIFIER '=' arg | backref '=' arg | variable OP_ASGN arg | primary '[' opt_args opt_nl ']' OP_ASGN arg | primary '.' IDENTIFIER OP_ASGN arg | backref OP_ASGN arg | arg '..' arg | arg DOT3 arg | arg '+' arg | arg '-' arg | arg '*' arg | arg '/' arg | arg '%' arg | arg '**' arg | '+@' arg | '-@' arg | arg '|' arg | arg '^' arg | arg '&' arg | arg '<=>' arg | arg '>' arg | arg '>=' arg | arg '<' arg | arg '<=' arg | arg '==' arg | arg '===' arg | arg '!=' arg | arg '=~' arg | arg '!~' arg | '!' arg | '~' arg | arg '<<' arg | arg '>>' arg | arg ANDOP arg | arg OROP arg | 'defined?' arg | primary
+call_args ::= | call_args'__END__' opt_nl
+opt_args ::= | args
+args ::= arg | args ',' arg
+primary ::= ((INTEGER | FLOAT) | SYMBEG (fname | IVAR | GVAR) | REGEXP) | primary '::' cname | STRING | DSTRING | XSTRING | DXSTRING | DREGEXP | variable | backref | 'super' '(' call_args ')' | 'super' | primary '[' opt_args opt_nl ']' | LBRACK (| args trailer) ']' | LBRACE (| assocs trailer | args trailer) '}' | 'return' | 'yield' '(' args ')' | 'yield' '(' ')' | 'yield' | 'defined?' '(' expr ')' | FID | operation iter_block | method_call | method_call iter_block | 'if' expr then compexpr if_tail 'end' | 'unless' expr then compexpr opt_else 'end' | 'while' expr term compexpr 'end' | 'until' expr term compexpr 'end' | 'case' compexpr case_body 'end' | 'for' iter_var 'in' expr term compexpr 'end' | 'begin' compexpr rescue ensure 'end' | LPAREN compexpr ')' | 'class' cname (term | '<' expr term | error term) compexpr 'end' | 'module' cname compexpr 'end' | 'def' fname f_arglist compexpr 'end' | 'def' (variable | LPAREN expr opt_nl ')') '.' fname f_arglist compexpr 'end'
+then ::= term | 'then' | term 'then'
+if_tail ::= opt_else | 'elsif' expr then compexpr if_tail
+opt_else ::= | 'else' compexpr
+iter_var ::= lhs | mlhs
+opt_iter_var ::= | '|' '|' | OROP | '|' iter_var '|'
+iter_block ::= '{' opt_iter_var compexpr '}'
+method_call ::= operation '(' call_args ')' | primary '.' operation '(' call_args ')' | primary '.' operation | primary '::' operation '(' call_args ')'
+case_body ::= 'when' args then compexpr (opt_else | case_body)
+rescue ::= 'rescue' opt_args term compexpr rescue |
+ensure ::= | 'ensure' compexpr
+variable ::= IDENTIFIER | IVAR | GVAR | CONSTANT | 'nil' | 'self'
+backref ::= NTH_REF | BACK_REF
+f_arglist ::= '(' f_args ')' | f_args term
+f_args ::= | f_arg | f_arg ',' rest_arg | f_arg ',' f_optarg | f_arg ',' f_optarg ',' rest_arg | f_optarg | f_optarg ',' rest_arg | rest_arg
+f_arg ::= IDENTIFIER | f_arg ',' IDENTIFIER
+f_opt ::= IDENTIFIER '=' arg
+f_optarg ::= f_opt | f_optarg ',' f_opt
+rest_arg ::= STAR IDENTIFIER
+assocs ::= assoc | assocs ',' assoc
+assoc ::= arg ASSOC arg
+operation ::= IDENTIFIER | CONSTANT | FID
+opt_nl ::= | '\n'
+trailer ::= | '\n' | ','
+term ::= ';' | '\n'
