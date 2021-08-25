@@ -14,6 +14,10 @@ body {
   width: 100vw;
 }
 
-[data-react-timeline] [data-selected="true"] path:first-child {
+[data-react-timeline-line] {
+  --color: var(--secondary-color);
+}
+
+[data-react-timeline-line] [data-selected="true"] path:first-child {
   fill: var(--ternary-color);
 }

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { useId } from "@reach/auto-id";
 import { createDescendantContext, DescendantProvider, useDescendant, useDescendantsInit } from "@reach/descendants";
 
-import styles from "./timeline.module.css";
+import "./timeline.css";
 
 type State = {
   tooltipRef: React.RefObject<HTMLDivElement> | null,
@@ -92,7 +92,7 @@ export const TimelineLine: React.FC = ({ children }) => {
 
   return (
     <div
-      className={styles.line}
+      data-react-timeline-line
       role="menu"
       aria-labelledby={timelineId}
       aria-activedescendant={activeEntryIndex.toString()}
@@ -151,9 +151,9 @@ const TimelineTicks: React.FC = () => {
     <>
       {ticks.map(({ title, date, percentage }) => (
         <div
+          data-react-timeline-tick
           key={date.valueOf()}
           aria-label={title}
-          className={styles.tick}
           style={{ left: `${percentage}%` }}
         />
       ))}
