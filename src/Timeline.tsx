@@ -104,10 +104,10 @@ export const TimelineLine: React.FC = ({ children }) => {
   );
 };
 
-export const TimelineTooltip: React.FC = ({ children }) => {
+export const TimelineTooltip: React.FC = () => {
   const { tooltipRef } = useContext(TimelineStateContext);
 
-  return <div ref={tooltipRef}>{children}</div>;
+  return <div ref={tooltipRef} />;
 };
 
 function getTimelinePercentage(startDate: Date, endDate: Date, date: Date) {
