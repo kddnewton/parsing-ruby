@@ -1,0 +1,2484 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+      <meta name="generator" content="Railroad Diagram Generator 1.63" />
+      <style type="text/css">
+    ::-moz-selection
+    {
+      color: #FFFCF0;
+      background: #0F0C00;
+    }
+    ::selection
+    {
+      color: #FFFCF0;
+      background: #0F0C00;
+    }
+    .ebnf a, .grammar a
+    {
+      text-decoration: none;
+    }
+    .ebnf a:hover, .grammar a:hover
+    {
+      color: #050400;
+      text-decoration: underline;
+    }
+    .signature
+    {
+      color: #806600;
+      font-size: 11px;
+      text-align: right;
+    }
+    body
+    {
+      font: normal 12px Verdana, sans-serif;
+      color: #0F0C00;
+      background: #FFFCF0;
+    }
+    a:link, a:visited
+    {
+      color: #0F0C00;
+    }
+    a:link.signature, a:visited.signature
+    {
+      color: #806600;
+    }
+    a.button, #tabs li a
+    {
+      padding: 0.25em 0.5em;
+      border: 1px solid #806600;
+      background: #F1E8C6;
+      color: #806600;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a.button:hover, #tabs li a:hover
+    {
+      color: #050400;
+      background: #FFF6D1;
+      border-color: #050400;
+    }
+    #tabs
+    {
+      padding: 3px 10px;
+      margin-left: 0;
+      margin-top: 58px;
+      border-bottom: 1px solid #0F0C00;
+    }
+    #tabs li
+    {
+      list-style: none;
+      margin-left: 5px;
+      display: inline;
+    }
+    #tabs li a
+    {
+      border-bottom: 1px solid #0F0C00;
+    }
+    #tabs li a.active
+    {
+      color: #0F0C00;
+      background: #FFFCF0;
+      border-color: #0F0C00;
+      border-bottom: 1px solid #FFFCF0;
+      outline: none;
+    }
+    #divs div
+    {
+      display: none;
+      overflow:auto;
+    }
+    #divs div.active
+    {
+      display: block;
+    }
+    #text
+    {
+      border-color: #806600;
+      background: #FFFEFA;
+      color: #050400;
+    }
+    .small
+    {
+      vertical-align: top;
+      text-align: right;
+      font-size: 9px;
+      font-weight: normal;
+      line-height: 120%;
+    }
+    td.small
+    {
+      padding-top: 0px;
+    }
+    .hidden
+    {
+      visibility: hidden;
+    }
+    td:hover .hidden
+    {
+      visibility: visible;
+    }
+    div.download
+    {
+      display: none;
+      background: #FFFCF0;
+      position: absolute;
+      right: 34px;
+      top: 94px;
+      padding: 10px;
+      border: 1px dotted #0F0C00;
+    }
+    #divs div.ebnf, .ebnf code
+    {
+      display: block;
+      padding: 10px;
+      background: #FFF6D1;
+      width: 2000px;
+    }
+    #divs div.grammar
+    {
+      display: block;
+      padding-left: 16px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      background: #FFF6D1;
+    }
+    pre
+    {
+      margin: 0px;
+    }
+    .ebnf div
+    {
+      padding-left: 13ch;
+      text-indent: -13ch;
+    }
+    .ebnf code, .grammar code, textarea, pre
+    {
+      font:12px SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+    }
+    tr.option-line td:first-child
+    {
+      text-align: right
+    }
+    tr.option-text td
+    {
+      padding-bottom: 10px
+    }
+    table.palette
+    {
+      border-top: 1px solid #050400;
+      border-right: 1px solid #050400;
+      margin-bottom: 4px
+    }
+    td.palette
+    {
+      border-bottom: 1px solid #050400;
+      border-left: 1px solid #050400;
+    }
+    a.palette
+    {
+      padding: 2px 3px 2px 10px;
+      text-decoration: none;
+    }
+    .palette
+    {
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -o-user-select: none;
+      -ms-user-select: none;
+    }
+  </style><svg xmlns="http://www.w3.org/2000/svg">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs></svg></head>
+   <body>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="program">program:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="141" height="37">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#compexpr" xlink:title="compexpr">
+            <rect x="31" y="3" width="82" height="32"/>
+            <rect x="29" y="1" width="82" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="39" y="21">compexpr</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m0 0 h10 m82 0 h10 m3 0 h-3"/>
+         <polygon points="131 17 139 13 139 21"/>
+         <polygon points="131 17 123 13 123 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#program" title="program">program</a>  ::= <a href="#compexpr" title="compexpr">compexpr</a></div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">no references</p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="compexpr">compexpr:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="223" height="69">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#exprs" xlink:title="exprs">
+            <rect x="31" y="3" width="54" height="32"/>
+            <rect x="29" y="1" width="54" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="39" y="21">exprs</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#term" xlink:title="term">
+            <rect x="125" y="35" width="50" height="32"/>
+            <rect x="123" y="33" width="50" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="133" y="53">term</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m0 0 h10 m54 0 h10 m20 0 h10 m0 0 h60 m-90 0 h20 m70 0 h20 m-110 0 q10 0 10 10 m90 0 q0 -10 10 -10 m-100 10 v12 m90 0 v-12 m-90 12 q0 10 10 10 m70 0 q10 0 10 -10 m-80 10 h10 m50 0 h10 m23 -32 h-3"/>
+         <polygon points="213 17 221 13 221 21"/>
+         <polygon points="213 17 205 13 205 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#compexpr" title="compexpr">compexpr</a> ::= <a href="#exprs" title="exprs">exprs</a> <a href="#term" title="term">term</a>?</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#ensure" title="ensure">ensure</a></li>
+            <li><a href="#opt_else" title="opt_else">opt_else</a></li>
+            <li><a href="#primary" title="primary">primary</a></li>
+            <li><a href="#program" title="program">program</a></li>
+            <li><a href="#rescue" title="rescue">rescue</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="exprs">exprs:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="405" height="113">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 33 1 29 1 37"/>
+         <polygon points="17 33 9 29 9 37"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expr" xlink:title="expr">
+            <rect x="51" y="51" width="48" height="32"/>
+            <rect x="49" y="49" width="48" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="69">expr</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#term" xlink:title="term">
+            <rect x="199" y="19" width="50" height="32"/>
+            <rect x="197" y="17" width="50" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="207" y="37">term</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#error" xlink:title="error">
+            <rect x="199" y="63" width="50" height="32"/>
+            <rect x="197" y="61" width="50" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="207" y="81">error</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expr" xlink:title="expr">
+            <rect x="289" y="19" width="48" height="32"/>
+            <rect x="287" y="17" width="48" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="297" y="37">expr</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 33 h2 m20 0 h10 m0 0 h58 m-88 0 h20 m68 0 h20 m-108 0 q10 0 10 10 m88 0 q0 -10 10 -10 m-98 10 v12 m88 0 v-12 m-88 12 q0 10 10 10 m68 0 q10 0 10 -10 m-78 10 h10 m48 0 h10 m80 -32 h10 m50 0 h10 m-90 0 h20 m70 0 h20 m-110 0 q10 0 10 10 m90 0 q0 -10 10 -10 m-100 10 v24 m90 0 v-24 m-90 24 q0 10 10 10 m70 0 q10 0 10 -10 m-80 10 h10 m50 0 h10 m20 -44 h10 m48 0 h10 m-198 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m178 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-178 0 h10 m0 0 h168 m-218 32 h20 m218 0 h20 m-258 0 q10 0 10 10 m238 0 q0 -10 10 -10 m-248 10 v58 m238 0 v-58 m-238 58 q0 10 10 10 m218 0 q10 0 10 -10 m-228 10 h10 m0 0 h208 m23 -78 h-3"/>
+         <polygon points="395 33 403 29 403 37"/>
+         <polygon points="395 33 387 29 387 37"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#exprs" title="exprs">exprs</a>    ::= <a href="#expr" title="expr">expr</a>? ( ( <a href="#term" title="term">term</a> | <a href="#error" title="error">error</a> ) <a href="#expr" title="expr">expr</a> )*</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#compexpr" title="compexpr">compexpr</a></li>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="expr">expr:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="591" height="761">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mlhs" xlink:title="mlhs">
+            <rect x="71" y="3" width="50" height="32"/>
+            <rect x="69" y="1" width="50" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="79" y="21">mlhs</text></a><rect x="141" y="3" width="30" height="32" rx="10"/>
+         <rect x="139" y="1" width="30" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="149" y="21">=</text>
+         <rect x="71" y="47" width="62" height="32" rx="10"/>
+         <rect x="69" y="45" width="62" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="79" y="65">return</text>
+         <rect x="71" y="91" width="40" height="32" rx="10"/>
+         <rect x="69" y="89" width="40" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="79" y="109">fail</text>
+         <rect x="71" y="135" width="52" height="32" rx="10"/>
+         <rect x="69" y="133" width="52" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="79" y="153">yield</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#args" xlink:title="args">
+            <rect x="211" y="3" width="48" height="32"/>
+            <rect x="209" y="1" width="48" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="219" y="21">args</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#assocs" xlink:title="assocs">
+            <rect x="51" y="179" width="62" height="32"/>
+            <rect x="49" y="177" width="62" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="197">assocs</text></a><rect x="71" y="255" width="78" height="32" rx="10"/>
+         <rect x="69" y="253" width="78" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="79" y="273">defined?</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arg" xlink:title="arg">
+            <rect x="189" y="223" width="40" height="32"/>
+            <rect x="187" y="221" width="40" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="197" y="241">arg</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#primary" xlink:title="primary">
+            <rect x="91" y="331" width="68" height="32"/>
+            <rect x="89" y="329" width="68" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="99" y="349">primary</text></a><rect x="179" y="331" width="24" height="32" rx="10"/>
+         <rect x="177" y="329" width="24" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="187" y="349">.</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#operation" xlink:title="operation">
+            <rect x="243" y="299" width="80" height="32"/>
+            <rect x="241" y="297" width="80" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="251" y="317">operation</text></a><rect x="71" y="375" width="58" height="32" rx="10"/>
+         <rect x="69" y="373" width="58" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="79" y="393">super</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#call_args" xlink:title="call_args">
+            <rect x="363" y="299" width="76" height="32"/>
+            <rect x="361" y="297" width="76" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="371" y="317">call_args</text></a><rect x="459" y="299" width="84" height="32" rx="10"/>
+         <rect x="457" y="297" width="84" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="467" y="317">__END__</text>
+         <rect x="71" y="441" width="58" height="32" rx="10"/>
+         <rect x="69" y="439" width="58" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="79" y="459">undef</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#fname" xlink:title="fname">
+            <rect x="189" y="441" width="60" height="32"/>
+            <rect x="187" y="439" width="60" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="197" y="459">fname</text></a><rect x="269" y="441" width="24" height="32" rx="10"/>
+         <rect x="267" y="439" width="24" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="277" y="459">,</text>
+         <rect x="71" y="507" width="50" height="32" rx="10"/>
+         <rect x="69" y="505" width="50" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="79" y="525">alias</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#fname" xlink:title="fname">
+            <rect x="141" y="507" width="60" height="32"/>
+            <rect x="139" y="505" width="60" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="149" y="525">fname</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#fname" xlink:title="fname">
+            <rect x="373" y="441" width="60" height="32"/>
+            <rect x="371" y="439" width="60" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="381" y="459">fname</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expr" xlink:title="expr">
+            <rect x="71" y="551" width="48" height="32"/>
+            <rect x="69" y="549" width="48" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="79" y="569">expr</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#IF_MOD" xlink:title="IF_MOD">
+            <rect x="159" y="551" width="68" height="32"/>
+            <rect x="157" y="549" width="68" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="167" y="569">IF_MOD</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#WHILE_MOD" xlink:title="WHILE_MOD">
+            <rect x="159" y="595" width="98" height="32"/>
+            <rect x="157" y="593" width="98" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="167" y="613">WHILE_MOD</text></a><rect x="159" y="639" width="44" height="32" rx="10"/>
+         <rect x="157" y="637" width="44" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="167" y="657">and</text>
+         <rect x="159" y="683" width="34" height="32" rx="10"/>
+         <rect x="157" y="681" width="34" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="167" y="701">or</text>
+         <rect x="71" y="727" width="42" height="32" rx="10"/>
+         <rect x="69" y="725" width="42" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="79" y="745">not</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expr" xlink:title="expr">
+            <rect x="317" y="551" width="48" height="32"/>
+            <rect x="315" y="549" width="48" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="325" y="569">expr</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m40 0 h10 m50 0 h10 m0 0 h10 m30 0 h10 m-140 0 h20 m120 0 h20 m-160 0 q10 0 10 10 m140 0 q0 -10 10 -10 m-150 10 v24 m140 0 v-24 m-140 24 q0 10 10 10 m120 0 q10 0 10 -10 m-130 10 h10 m62 0 h10 m0 0 h38 m-130 -10 v20 m140 0 v-20 m-140 20 v24 m140 0 v-24 m-140 24 q0 10 10 10 m120 0 q10 0 10 -10 m-130 10 h10 m40 0 h10 m0 0 h60 m-130 -10 v20 m140 0 v-20 m-140 20 v24 m140 0 v-24 m-140 24 q0 10 10 10 m120 0 q10 0 10 -10 m-130 10 h10 m52 0 h10 m0 0 h48 m20 -132 h10 m48 0 h10 m0 0 h284 m-532 0 h20 m512 0 h20 m-552 0 q10 0 10 10 m532 0 q0 -10 10 -10 m-542 10 v156 m532 0 v-156 m-532 156 q0 10 10 10 m512 0 q10 0 10 -10 m-522 10 h10 m62 0 h10 m0 0 h430 m-522 -10 v20 m532 0 v-20 m-532 20 v24 m532 0 v-24 m-532 24 q0 10 10 10 m512 0 q10 0 10 -10 m-502 10 h10 m0 0 h88 m-118 0 h20 m98 0 h20 m-138 0 q10 0 10 10 m118 0 q0 -10 10 -10 m-128 10 v12 m118 0 v-12 m-118 12 q0 10 10 10 m98 0 q10 0 10 -10 m-108 10 h10 m78 0 h10 m20 -32 h10 m40 0 h10 m0 0 h314 m-522 -10 v20 m532 0 v-20 m-532 20 v56 m532 0 v-56 m-532 56 q0 10 10 10 m512 0 q10 0 10 -10 m-482 10 h10 m0 0 h122 m-152 0 h20 m132 0 h20 m-172 0 q10 0 10 10 m152 0 q0 -10 10 -10 m-162 10 v12 m152 0 v-12 m-152 12 q0 10 10 10 m132 0 q10 0 10 -10 m-142 10 h10 m68 0 h10 m0 0 h10 m24 0 h10 m20 -32 h10 m80 0 h10 m-292 0 h20 m272 0 h20 m-312 0 q10 0 10 10 m292 0 q0 -10 10 -10 m-302 10 v56 m292 0 v-56 m-292 56 q0 10 10 10 m272 0 q10 0 10 -10 m-282 10 h10 m58 0 h10 m0 0 h194 m20 -76 h10 m76 0 h10 m0 0 h10 m84 0 h10 m-522 -10 v20 m532 0 v-20 m-532 20 v122 m532 0 v-122 m-532 122 q0 10 10 10 m512 0 q10 0 10 -10 m-502 10 h10 m58 0 h10 m40 0 h10 m60 0 h10 m0 0 h10 m24 0 h10 m-144 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m124 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-124 0 h10 m0 0 h114 m-164 32 h20 m164 0 h20 m-204 0 q10 0 10 10 m184 0 q0 -10 10 -10 m-194 10 v14 m184 0 v-14 m-184 14 q0 10 10 10 m164 0 q10 0 10 -10 m-174 10 h10 m0 0 h154 m-282 -34 h20 m282 0 h20 m-322 0 q10 0 10 10 m302 0 q0 -10 10 -10 m-312 10 v46 m302 0 v-46 m-302 46 q0 10 10 10 m282 0 q10 0 10 -10 m-292 10 h10 m50 0 h10 m0 0 h10 m60 0 h10 m0 0 h132 m20 -66 h10 m60 0 h10 m0 0 h110 m-522 -10 v20 m532 0 v-20 m-532 20 v90 m532 0 v-90 m-532 90 q0 10 10 10 m512 0 q10 0 10 -10 m-502 10 h10 m48 0 h10 m20 0 h10 m68 0 h10 m0 0 h30 m-138 0 h20 m118 0 h20 m-158 0 q10 0 10 10 m138 0 q0 -10 10 -10 m-148 10 v24 m138 0 v-24 m-138 24 q0 10 10 10 m118 0 q10 0 10 -10 m-128 10 h10 m98 0 h10 m-128 -10 v20 m138 0 v-20 m-138 20 v24 m138 0 v-24 m-138 24 q0 10 10 10 m118 0 q10 0 10 -10 m-128 10 h10 m44 0 h10 m0 0 h54 m-128 -10 v20 m138 0 v-20 m-138 20 v24 m138 0 v-24 m-138 24 q0 10 10 10 m118 0 q10 0 10 -10 m-128 10 h10 m34 0 h10 m0 0 h64 m-226 -132 h20 m226 0 h20 m-266 0 q10 0 10 10 m246 0 q0 -10 10 -10 m-256 10 v156 m246 0 v-156 m-246 156 q0 10 10 10 m226 0 q10 0 10 -10 m-236 10 h10 m42 0 h10 m0 0 h164 m20 -176 h10 m48 0 h10 m0 0 h178 m23 -548 h-3"/>
+         <polygon points="581 17 589 13 589 21"/>
+         <polygon points="581 17 573 13 573 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#expr" title="expr">expr</a>     ::= ( <a href="#mlhs" title="mlhs">mlhs</a> '=' | 'return' | 'fail' | 'yield' ) <a href="#args" title="args">args</a></div>
+               <div>           | <a href="#assocs" title="assocs">assocs</a></div>
+               <div>           | 'defined?'? <a href="#arg" title="arg">arg</a></div>
+               <div>           | ( ( <a href="#primary" title="primary">primary</a> '.' )? <a href="#operation" title="operation">operation</a> | 'super' ) <a href="#call_args" title="call_args">call_args</a> '__END__'</div>
+               <div>           | ( 'undef' ( <a href="#fname" title="fname">fname</a> ',' )* | 'alias' <a href="#fname" title="fname">fname</a> ) <a href="#fname" title="fname">fname</a></div>
+               <div>           | ( <a href="#expr" title="expr">expr</a> ( <a href="#IF_MOD" title="IF_MOD">IF_MOD</a> | <a href="#WHILE_MOD" title="WHILE_MOD">WHILE_MOD</a> | 'and' | 'or' ) | 'not' ) <a href="#expr" title="expr">expr</a></div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#expr" title="expr">expr</a></li>
+            <li><a href="#exprs" title="exprs">exprs</a></li>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="mlhs">mlhs:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="763" height="151">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mlhs_head" xlink:title="mlhs_head">
+            <rect x="31" y="3" width="90" height="32"/>
+            <rect x="29" y="1" width="90" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="39" y="21">mlhs_head</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STAR" xlink:title="STAR">
+            <rect x="181" y="3" width="52" height="32"/>
+            <rect x="179" y="1" width="52" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="189" y="21">STAR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lhs" xlink:title="lhs">
+            <rect x="221" y="69" width="38" height="32"/>
+            <rect x="219" y="67" width="38" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="229" y="87">lhs</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comma" xlink:title="comma">
+            <rect x="279" y="69" width="64" height="32"/>
+            <rect x="277" y="67" width="64" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="287" y="87">comma</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lhs" xlink:title="lhs">
+            <rect x="423" y="101" width="38" height="32"/>
+            <rect x="421" y="99" width="38" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="431" y="119">lhs</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comma" xlink:title="comma">
+            <rect x="481" y="101" width="64" height="32"/>
+            <rect x="479" y="99" width="64" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="489" y="119">comma</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STAR" xlink:title="STAR">
+            <rect x="565" y="101" width="52" height="32"/>
+            <rect x="563" y="99" width="52" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="573" y="119">STAR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lhs" xlink:title="lhs">
+            <rect x="677" y="3" width="38" height="32"/>
+            <rect x="675" y="1" width="38" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="685" y="21">lhs</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m0 0 h10 m90 0 h10 m40 0 h10 m52 0 h10 m0 0 h404 m-496 0 h20 m476 0 h20 m-516 0 q10 0 10 10 m496 0 q0 -10 10 -10 m-506 10 v46 m496 0 v-46 m-496 46 q0 10 10 10 m476 0 q10 0 10 -10 m-446 10 h10 m38 0 h10 m0 0 h10 m64 0 h10 m-162 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m142 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-142 0 h10 m0 0 h132 m-182 32 h20 m182 0 h20 m-222 0 q10 0 10 10 m202 0 q0 -10 10 -10 m-212 10 v14 m202 0 v-14 m-202 14 q0 10 10 10 m182 0 q10 0 10 -10 m-192 10 h10 m0 0 h172 m40 -34 h10 m0 0 h204 m-234 0 h20 m214 0 h20 m-254 0 q10 0 10 10 m234 0 q0 -10 10 -10 m-244 10 v12 m234 0 v-12 m-234 12 q0 10 10 10 m214 0 q10 0 10 -10 m-224 10 h10 m38 0 h10 m0 0 h10 m64 0 h10 m0 0 h10 m52 0 h10 m40 -98 h10 m38 0 h10 m-594 0 h20 m574 0 h20 m-614 0 q10 0 10 10 m594 0 q0 -10 10 -10 m-604 10 v112 m594 0 v-112 m-594 112 q0 10 10 10 m574 0 q10 0 10 -10 m-584 10 h10 m0 0 h564 m23 -132 h-3"/>
+         <polygon points="753 17 761 13 761 21"/>
+         <polygon points="753 17 745 13 745 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#mlhs" title="mlhs">mlhs</a>     ::= <a href="#mlhs_head" title="mlhs_head">mlhs_head</a> ( ( <a href="#STAR" title="STAR">STAR</a> | ( <a href="#lhs" title="lhs">lhs</a> <a href="#comma" title="comma">comma</a> )* ( <a href="#lhs" title="lhs">lhs</a> <a href="#comma" title="comma">comma</a> <a href="#STAR" title="STAR">STAR</a> )? ) <a href="#lhs" title="lhs">lhs</a> )?</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#expr" title="expr">expr</a></li>
+            <li><a href="#iter_var" title="iter_var">iter_var</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="mlhs_head">mlhs_head:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="181" height="37">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lhs" xlink:title="lhs">
+            <rect x="31" y="3" width="38" height="32"/>
+            <rect x="29" y="1" width="38" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="39" y="21">lhs</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comma" xlink:title="comma">
+            <rect x="89" y="3" width="64" height="32"/>
+            <rect x="87" y="1" width="64" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="97" y="21">comma</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m0 0 h10 m38 0 h10 m0 0 h10 m64 0 h10 m3 0 h-3"/>
+         <polygon points="171 17 179 13 179 21"/>
+         <polygon points="171 17 163 13 163 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#mlhs_head" title="mlhs_head">mlhs_head</a></div>
+               <div>         ::= <a href="#lhs" title="lhs">lhs</a> <a href="#comma" title="comma">comma</a></div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#mlhs" title="mlhs">mlhs</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="lhs">lhs:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="475" height="169">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#variable" xlink:title="variable">
+            <rect x="51" y="3" width="70" height="32"/>
+            <rect x="49" y="1" width="70" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="21">variable</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#primary" xlink:title="primary">
+            <rect x="51" y="47" width="68" height="32"/>
+            <rect x="49" y="45" width="68" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="65">primary</text></a><rect x="159" y="47" width="26" height="32" rx="10"/>
+         <rect x="157" y="45" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="167" y="65">[</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#opt_args" xlink:title="opt_args">
+            <rect x="205" y="47" width="76" height="32"/>
+            <rect x="203" y="45" width="76" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="213" y="65">opt_args</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#opt_nl" xlink:title="opt_nl">
+            <rect x="301" y="47" width="60" height="32"/>
+            <rect x="299" y="45" width="60" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="309" y="65">opt_nl</text></a><rect x="381" y="47" width="26" height="32" rx="10"/>
+         <rect x="379" y="45" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="389" y="65">]</text>
+         <rect x="159" y="91" width="24" height="32" rx="10"/>
+         <rect x="157" y="89" width="24" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="167" y="109">.</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#IDENTIFIER" xlink:title="IDENTIFIER">
+            <rect x="203" y="91" width="92" height="32"/>
+            <rect x="201" y="89" width="92" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="211" y="109">IDENTIFIER</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#backref" xlink:title="backref">
+            <rect x="51" y="135" width="66" height="32"/>
+            <rect x="49" y="133" width="66" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="153">backref</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m20 0 h10 m70 0 h10 m0 0 h306 m-416 0 h20 m396 0 h20 m-436 0 q10 0 10 10 m416 0 q0 -10 10 -10 m-426 10 v24 m416 0 v-24 m-416 24 q0 10 10 10 m396 0 q10 0 10 -10 m-406 10 h10 m68 0 h10 m20 0 h10 m26 0 h10 m0 0 h10 m76 0 h10 m0 0 h10 m60 0 h10 m0 0 h10 m26 0 h10 m-288 0 h20 m268 0 h20 m-308 0 q10 0 10 10 m288 0 q0 -10 10 -10 m-298 10 v24 m288 0 v-24 m-288 24 q0 10 10 10 m268 0 q10 0 10 -10 m-278 10 h10 m24 0 h10 m0 0 h10 m92 0 h10 m0 0 h112 m-386 -54 v20 m416 0 v-20 m-416 20 v68 m416 0 v-68 m-416 68 q0 10 10 10 m396 0 q10 0 10 -10 m-406 10 h10 m66 0 h10 m0 0 h310 m23 -132 h-3"/>
+         <polygon points="465 17 473 13 473 21"/>
+         <polygon points="465 17 457 13 457 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#lhs" title="lhs">lhs</a>      ::= <a href="#variable" title="variable">variable</a></div>
+               <div>           | <a href="#primary" title="primary">primary</a> ( '[' <a href="#opt_args" title="opt_args">opt_args</a> <a href="#opt_nl" title="opt_nl">opt_nl</a> ']' | '.' <a href="#IDENTIFIER" title="IDENTIFIER">IDENTIFIER</a> )</div>
+               <div>           | <a href="#backref" title="backref">backref</a></div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#iter_var" title="iter_var">iter_var</a></li>
+            <li><a href="#mlhs" title="mlhs">mlhs</a></li>
+            <li><a href="#mlhs_head" title="mlhs_head">mlhs_head</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="cname">cname:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="191" height="81">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#IDENTIFIER" xlink:title="IDENTIFIER">
+            <rect x="51" y="3" width="92" height="32"/>
+            <rect x="49" y="1" width="92" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="21">IDENTIFIER</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#CONSTANT" xlink:title="CONSTANT">
+            <rect x="51" y="47" width="86" height="32"/>
+            <rect x="49" y="45" width="86" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="65">CONSTANT</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m20 0 h10 m92 0 h10 m-132 0 h20 m112 0 h20 m-152 0 q10 0 10 10 m132 0 q0 -10 10 -10 m-142 10 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m86 0 h10 m0 0 h6 m23 -44 h-3"/>
+         <polygon points="181 17 189 13 189 21"/>
+         <polygon points="181 17 173 13 173 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#cname" title="cname">cname</a>    ::= <a href="#IDENTIFIER" title="IDENTIFIER">IDENTIFIER</a></div>
+               <div>           | <a href="#CONSTANT" title="CONSTANT">CONSTANT</a></div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#arg" title="arg">arg</a></li>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="fname">fname:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="191" height="1225">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#IDENTIFIER" xlink:title="IDENTIFIER">
+            <rect x="51" y="3" width="92" height="32"/>
+            <rect x="49" y="1" width="92" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="21">IDENTIFIER</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#FID" xlink:title="FID">
+            <rect x="51" y="47" width="40" height="32"/>
+            <rect x="49" y="45" width="40" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="65">FID</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#CONSTANT" xlink:title="CONSTANT">
+            <rect x="51" y="91" width="86" height="32"/>
+            <rect x="49" y="89" width="86" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="109">CONSTANT</text></a><rect x="51" y="135" width="28" height="32" rx="10"/>
+         <rect x="49" y="133" width="28" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="153">..</text>
+         <rect x="51" y="179" width="26" height="32" rx="10"/>
+         <rect x="49" y="177" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="197">|</text>
+         <rect x="51" y="223" width="30" height="32" rx="10"/>
+         <rect x="49" y="221" width="30" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="241">^</text>
+         <rect x="51" y="267" width="30" height="32" rx="10"/>
+         <rect x="49" y="265" width="30" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="285">&amp;</text>
+         <rect x="51" y="311" width="50" height="32" rx="10"/>
+         <rect x="49" y="309" width="50" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="329">&lt;=&gt;</text>
+         <rect x="51" y="355" width="40" height="32" rx="10"/>
+         <rect x="49" y="353" width="40" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="373">==</text>
+         <rect x="51" y="399" width="40" height="32" rx="10"/>
+         <rect x="49" y="397" width="40" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="417">=~</text>
+         <rect x="51" y="443" width="30" height="32" rx="10"/>
+         <rect x="49" y="441" width="30" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="461">&gt;</text>
+         <rect x="51" y="487" width="40" height="32" rx="10"/>
+         <rect x="49" y="485" width="40" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="505">&gt;=</text>
+         <rect x="51" y="531" width="30" height="32" rx="10"/>
+         <rect x="49" y="529" width="30" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="549">&lt;</text>
+         <rect x="51" y="575" width="40" height="32" rx="10"/>
+         <rect x="49" y="573" width="40" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="593">&lt;=</text>
+         <rect x="51" y="619" width="40" height="32" rx="10"/>
+         <rect x="49" y="617" width="40" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="637">&lt;&lt;</text>
+         <rect x="51" y="663" width="40" height="32" rx="10"/>
+         <rect x="49" y="661" width="40" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="681">&gt;&gt;</text>
+         <rect x="51" y="707" width="30" height="32" rx="10"/>
+         <rect x="49" y="705" width="30" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="725">+</text>
+         <rect x="51" y="751" width="26" height="32" rx="10"/>
+         <rect x="49" y="749" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="769">-</text>
+         <rect x="51" y="795" width="28" height="32" rx="10"/>
+         <rect x="49" y="793" width="28" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="813">*</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STAR" xlink:title="STAR">
+            <rect x="51" y="839" width="52" height="32"/>
+            <rect x="49" y="837" width="52" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="857">STAR</text></a><rect x="51" y="883" width="28" height="32" rx="10"/>
+         <rect x="49" y="881" width="28" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="901">/</text>
+         <rect x="51" y="927" width="34" height="32" rx="10"/>
+         <rect x="49" y="925" width="34" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="945">%</text>
+         <rect x="51" y="971" width="38" height="32" rx="10"/>
+         <rect x="49" y="969" width="38" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="989">**</text>
+         <rect x="51" y="1015" width="30" height="32" rx="10"/>
+         <rect x="49" y="1013" width="30" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="1033">~</text>
+         <rect x="51" y="1059" width="42" height="32" rx="10"/>
+         <rect x="49" y="1057" width="42" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="1077">+@</text>
+         <rect x="51" y="1103" width="38" height="32" rx="10"/>
+         <rect x="49" y="1101" width="38" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="1121">-@</text>
+         <rect x="51" y="1147" width="32" height="32" rx="10"/>
+         <rect x="49" y="1145" width="32" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="1165">[]</text>
+         <rect x="51" y="1191" width="42" height="32" rx="10"/>
+         <rect x="49" y="1189" width="42" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="1209">[]=</text>
+         <path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m20 0 h10 m92 0 h10 m-132 0 h20 m112 0 h20 m-152 0 q10 0 10 10 m132 0 q0 -10 10 -10 m-142 10 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m40 0 h10 m0 0 h52 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m86 0 h10 m0 0 h6 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m28 0 h10 m0 0 h64 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m26 0 h10 m0 0 h66 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m30 0 h10 m0 0 h62 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m30 0 h10 m0 0 h62 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m50 0 h10 m0 0 h42 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m40 0 h10 m0 0 h52 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m40 0 h10 m0 0 h52 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m30 0 h10 m0 0 h62 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m40 0 h10 m0 0 h52 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m30 0 h10 m0 0 h62 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m40 0 h10 m0 0 h52 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m40 0 h10 m0 0 h52 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m40 0 h10 m0 0 h52 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m30 0 h10 m0 0 h62 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m26 0 h10 m0 0 h66 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m28 0 h10 m0 0 h64 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m52 0 h10 m0 0 h40 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m28 0 h10 m0 0 h64 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m34 0 h10 m0 0 h58 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m38 0 h10 m0 0 h54 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m30 0 h10 m0 0 h62 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m42 0 h10 m0 0 h50 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m38 0 h10 m0 0 h54 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m32 0 h10 m0 0 h60 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m42 0 h10 m0 0 h50 m23 -1188 h-3"/>
+         <polygon points="181 17 189 13 189 21"/>
+         <polygon points="181 17 173 13 173 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#fname" title="fname">fname</a>    ::= <a href="#IDENTIFIER" title="IDENTIFIER">IDENTIFIER</a></div>
+               <div>           | <a href="#FID" title="FID">FID</a></div>
+               <div>           | <a href="#CONSTANT" title="CONSTANT">CONSTANT</a></div>
+               <div>           | '..'</div>
+               <div>           | '|'</div>
+               <div>           | '^'</div>
+               <div>           | '&amp;'</div>
+               <div>           | '&lt;=&gt;'</div>
+               <div>           | '=='</div>
+               <div>           | '=~'</div>
+               <div>           | '&gt;'</div>
+               <div>           | '&gt;='</div>
+               <div>           | '&lt;'</div>
+               <div>           | '&lt;='</div>
+               <div>           | '&lt;&lt;'</div>
+               <div>           | '&gt;&gt;'</div>
+               <div>           | '+'</div>
+               <div>           | '-'</div>
+               <div>           | '*'</div>
+               <div>           | <a href="#STAR" title="STAR">STAR</a></div>
+               <div>           | '/'</div>
+               <div>           | '%'</div>
+               <div>           | '**'</div>
+               <div>           | '~'</div>
+               <div>           | '+@'</div>
+               <div>           | '-@'</div>
+               <div>           | '[]'</div>
+               <div>           | '[]='</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#expr" title="expr">expr</a></li>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="arg">arg:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="715" height="1477">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#variable" xlink:title="variable">
+            <rect x="91" y="3" width="70" height="32"/>
+            <rect x="89" y="1" width="70" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="99" y="21">variable</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#backref" xlink:title="backref">
+            <rect x="91" y="47" width="66" height="32"/>
+            <rect x="89" y="45" width="66" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="99" y="65">backref</text></a><rect x="221" y="3" width="30" height="32" rx="10"/>
+         <rect x="219" y="1" width="30" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="229" y="21">=</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#OP_ASGN" xlink:title="OP_ASGN">
+            <rect x="221" y="47" width="80" height="32"/>
+            <rect x="219" y="45" width="80" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="229" y="65">OP_ASGN</text></a><rect x="71" y="91" width="42" height="32" rx="10"/>
+         <rect x="69" y="89" width="42" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="79" y="109">+@</text>
+         <rect x="71" y="135" width="38" height="32" rx="10"/>
+         <rect x="69" y="133" width="38" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="79" y="153">-@</text>
+         <rect x="71" y="179" width="24" height="32" rx="10"/>
+         <rect x="69" y="177" width="24" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="79" y="197">!</text>
+         <rect x="71" y="223" width="30" height="32" rx="10"/>
+         <rect x="69" y="221" width="30" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="79" y="241">~</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arg" xlink:title="arg">
+            <rect x="361" y="3" width="40" height="32"/>
+            <rect x="359" y="1" width="40" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="369" y="21">arg</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#primary" xlink:title="primary">
+            <rect x="51" y="267" width="68" height="32"/>
+            <rect x="49" y="265" width="68" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="285">primary</text></a><rect x="179" y="299" width="26" height="32" rx="10"/>
+         <rect x="177" y="297" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="187" y="317">[</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#opt_args" xlink:title="opt_args">
+            <rect x="225" y="299" width="76" height="32"/>
+            <rect x="223" y="297" width="76" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="233" y="317">opt_args</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#opt_nl" xlink:title="opt_nl">
+            <rect x="321" y="299" width="60" height="32"/>
+            <rect x="319" y="297" width="60" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="329" y="317">opt_nl</text></a><rect x="401" y="299" width="26" height="32" rx="10"/>
+         <rect x="399" y="297" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="409" y="317">]</text>
+         <rect x="179" y="343" width="24" height="32" rx="10"/>
+         <rect x="177" y="341" width="24" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="187" y="361">.</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#IDENTIFIER" xlink:title="IDENTIFIER">
+            <rect x="223" y="343" width="92" height="32"/>
+            <rect x="221" y="341" width="92" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="231" y="361">IDENTIFIER</text></a><rect x="487" y="299" width="30" height="32" rx="10"/>
+         <rect x="485" y="297" width="30" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="495" y="317">=</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#OP_ASGN" xlink:title="OP_ASGN">
+            <rect x="487" y="343" width="80" height="32"/>
+            <rect x="485" y="341" width="80" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="495" y="361">OP_ASGN</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arg" xlink:title="arg">
+            <rect x="607" y="299" width="40" height="32"/>
+            <rect x="605" y="297" width="40" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="615" y="317">arg</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arg" xlink:title="arg">
+            <rect x="51" y="387" width="40" height="32"/>
+            <rect x="49" y="385" width="40" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="405">arg</text></a><rect x="151" y="387" width="28" height="32" rx="10"/>
+         <rect x="149" y="385" width="28" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="405">..</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#DOT3" xlink:title="DOT3">
+            <rect x="151" y="431" width="54" height="32"/>
+            <rect x="149" y="429" width="54" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="159" y="449">DOT3</text></a><rect x="151" y="475" width="30" height="32" rx="10"/>
+         <rect x="149" y="473" width="30" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="493">+</text>
+         <rect x="151" y="519" width="26" height="32" rx="10"/>
+         <rect x="149" y="517" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="537">-</text>
+         <rect x="151" y="563" width="28" height="32" rx="10"/>
+         <rect x="149" y="561" width="28" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="581">*</text>
+         <rect x="151" y="607" width="28" height="32" rx="10"/>
+         <rect x="149" y="605" width="28" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="625">/</text>
+         <rect x="151" y="651" width="34" height="32" rx="10"/>
+         <rect x="149" y="649" width="34" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="669">%</text>
+         <rect x="151" y="695" width="38" height="32" rx="10"/>
+         <rect x="149" y="693" width="38" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="713">**</text>
+         <rect x="151" y="739" width="26" height="32" rx="10"/>
+         <rect x="149" y="737" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="757">|</text>
+         <rect x="151" y="783" width="30" height="32" rx="10"/>
+         <rect x="149" y="781" width="30" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="801">^</text>
+         <rect x="151" y="827" width="30" height="32" rx="10"/>
+         <rect x="149" y="825" width="30" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="845">&amp;</text>
+         <rect x="151" y="871" width="50" height="32" rx="10"/>
+         <rect x="149" y="869" width="50" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="889">&lt;=&gt;</text>
+         <rect x="151" y="915" width="30" height="32" rx="10"/>
+         <rect x="149" y="913" width="30" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="933">&gt;</text>
+         <rect x="151" y="959" width="40" height="32" rx="10"/>
+         <rect x="149" y="957" width="40" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="977">&gt;=</text>
+         <rect x="151" y="1003" width="30" height="32" rx="10"/>
+         <rect x="149" y="1001" width="30" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="1021">&lt;</text>
+         <rect x="151" y="1047" width="40" height="32" rx="10"/>
+         <rect x="149" y="1045" width="40" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="1065">&lt;=</text>
+         <rect x="151" y="1091" width="40" height="32" rx="10"/>
+         <rect x="149" y="1089" width="40" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="1109">==</text>
+         <rect x="151" y="1135" width="34" height="32" rx="10"/>
+         <rect x="149" y="1133" width="34" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="1153">!=</text>
+         <rect x="151" y="1179" width="40" height="32" rx="10"/>
+         <rect x="149" y="1177" width="40" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="1197">=~</text>
+         <rect x="151" y="1223" width="34" height="32" rx="10"/>
+         <rect x="149" y="1221" width="34" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="1241">!~</text>
+         <rect x="151" y="1267" width="40" height="32" rx="10"/>
+         <rect x="149" y="1265" width="40" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="1285">&lt;&lt;</text>
+         <rect x="151" y="1311" width="40" height="32" rx="10"/>
+         <rect x="149" y="1309" width="40" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="159" y="1329">&gt;&gt;</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ANDOP" xlink:title="ANDOP">
+            <rect x="151" y="1355" width="64" height="32"/>
+            <rect x="149" y="1353" width="64" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="159" y="1373">ANDOP</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#OROP" xlink:title="OROP">
+            <rect x="151" y="1399" width="54" height="32"/>
+            <rect x="149" y="1397" width="54" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="159" y="1417">OROP</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arg" xlink:title="arg">
+            <rect x="255" y="387" width="40" height="32"/>
+            <rect x="253" y="385" width="40" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="263" y="405">arg</text></a><rect x="131" y="1443" width="30" height="32" rx="10"/>
+         <rect x="129" y="1441" width="30" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="139" y="1461">::</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cname" xlink:title="cname">
+            <rect x="181" y="1443" width="62" height="32"/>
+            <rect x="179" y="1441" width="62" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="189" y="1461">cname</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m60 0 h10 m70 0 h10 m-110 0 h20 m90 0 h20 m-130 0 q10 0 10 10 m110 0 q0 -10 10 -10 m-120 10 v24 m110 0 v-24 m-110 24 q0 10 10 10 m90 0 q10 0 10 -10 m-100 10 h10 m66 0 h10 m0 0 h4 m40 -44 h10 m30 0 h10 m0 0 h50 m-120 0 h20 m100 0 h20 m-140 0 q10 0 10 10 m120 0 q0 -10 10 -10 m-130 10 v24 m120 0 v-24 m-120 24 q0 10 10 10 m100 0 q10 0 10 -10 m-110 10 h10 m80 0 h10 m-270 -44 h20 m270 0 h20 m-310 0 q10 0 10 10 m290 0 q0 -10 10 -10 m-300 10 v68 m290 0 v-68 m-290 68 q0 10 10 10 m270 0 q10 0 10 -10 m-280 10 h10 m42 0 h10 m0 0 h208 m-280 -10 v20 m290 0 v-20 m-290 20 v24 m290 0 v-24 m-290 24 q0 10 10 10 m270 0 q10 0 10 -10 m-280 10 h10 m38 0 h10 m0 0 h212 m-280 -10 v20 m290 0 v-20 m-290 20 v24 m290 0 v-24 m-290 24 q0 10 10 10 m270 0 q10 0 10 -10 m-280 10 h10 m24 0 h10 m0 0 h226 m-280 -10 v20 m290 0 v-20 m-290 20 v24 m290 0 v-24 m-290 24 q0 10 10 10 m270 0 q10 0 10 -10 m-280 10 h10 m30 0 h10 m0 0 h220 m20 -220 h10 m40 0 h10 m0 0 h266 m-656 0 h20 m636 0 h20 m-676 0 q10 0 10 10 m656 0 q0 -10 10 -10 m-666 10 v244 m656 0 v-244 m-656 244 q0 10 10 10 m636 0 q10 0 10 -10 m-646 10 h10 m68 0 h10 m20 0 h10 m0 0 h498 m-528 0 h20 m508 0 h20 m-548 0 q10 0 10 10 m528 0 q0 -10 10 -10 m-538 10 v12 m528 0 v-12 m-528 12 q0 10 10 10 m508 0 q10 0 10 -10 m-498 10 h10 m26 0 h10 m0 0 h10 m76 0 h10 m0 0 h10 m60 0 h10 m0 0 h10 m26 0 h10 m-288 0 h20 m268 0 h20 m-308 0 q10 0 10 10 m288 0 q0 -10 10 -10 m-298 10 v24 m288 0 v-24 m-288 24 q0 10 10 10 m268 0 q10 0 10 -10 m-278 10 h10 m24 0 h10 m0 0 h10 m92 0 h10 m0 0 h112 m40 -44 h10 m30 0 h10 m0 0 h50 m-120 0 h20 m100 0 h20 m-140 0 q10 0 10 10 m120 0 q0 -10 10 -10 m-130 10 v24 m120 0 v-24 m-120 24 q0 10 10 10 m100 0 q10 0 10 -10 m-110 10 h10 m80 0 h10 m20 -44 h10 m40 0 h10 m-626 -42 v20 m656 0 v-20 m-656 20 v100 m656 0 v-100 m-656 100 q0 10 10 10 m636 0 q10 0 10 -10 m-646 10 h10 m40 0 h10 m40 0 h10 m28 0 h10 m0 0 h36 m-104 0 h20 m84 0 h20 m-124 0 q10 0 10 10 m104 0 q0 -10 10 -10 m-114 10 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m54 0 h10 m0 0 h10 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m30 0 h10 m0 0 h34 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m26 0 h10 m0 0 h38 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m28 0 h10 m0 0 h36 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m28 0 h10 m0 0 h36 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m34 0 h10 m0 0 h30 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m38 0 h10 m0 0 h26 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m26 0 h10 m0 0 h38 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m30 0 h10 m0 0 h34 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m30 0 h10 m0 0 h34 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m50 0 h10 m0 0 h14 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m30 0 h10 m0 0 h34 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m40 0 h10 m0 0 h24 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m30 0 h10 m0 0 h34 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m40 0 h10 m0 0 h24 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m40 0 h10 m0 0 h24 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m34 0 h10 m0 0 h30 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m40 0 h10 m0 0 h24 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m34 0 h10 m0 0 h30 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m40 0 h10 m0 0 h24 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m40 0 h10 m0 0 h24 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m64 0 h10 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m54 0 h10 m0 0 h10 m20 -1012 h10 m40 0 h10 m-204 0 h20 m184 0 h20 m-224 0 q10 0 10 10 m204 0 q0 -10 10 -10 m-214 10 v1036 m204 0 v-1036 m-204 1036 q0 10 10 10 m184 0 q10 0 10 -10 m-194 10 h10 m30 0 h10 m0 0 h10 m62 0 h10 m0 0 h52 m20 -1056 h352 m23 -384 h-3"/>
+         <polygon points="705 17 713 13 713 21"/>
+         <polygon points="705 17 697 13 697 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#arg" title="arg">arg</a>      ::= ( ( <a href="#variable" title="variable">variable</a> | <a href="#backref" title="backref">backref</a> ) ( '=' | <a href="#OP_ASGN" title="OP_ASGN">OP_ASGN</a> ) | '+@' | '-@' | '!' | '~' ) <a href="#arg" title="arg">arg</a></div>
+               <div>           | <a href="#primary" title="primary">primary</a> ( ( '[' <a href="#opt_args" title="opt_args">opt_args</a> <a href="#opt_nl" title="opt_nl">opt_nl</a> ']' | '.' <a href="#IDENTIFIER" title="IDENTIFIER">IDENTIFIER</a> ) ( '=' | <a href="#OP_ASGN" title="OP_ASGN">OP_ASGN</a> ) <a href="#arg" title="arg">arg</a> )?</div>
+               <div>           | <a href="#arg" title="arg">arg</a> ( ( '..' | <a href="#DOT3" title="DOT3">DOT3</a> | '+' | '-' | '*' | '/' | '%' | '**' | '|' | '^' | '&amp;' | '&lt;=&gt;' | '&gt;' | '&gt;=' | '&lt;'
+                  | '&lt;=' | '==' | '!=' | '=~' | '!~' | '&lt;&lt;' | '&gt;&gt;' | <a href="#ANDOP" title="ANDOP">ANDOP</a> | <a href="#OROP" title="OROP">OROP</a> ) <a href="#arg" title="arg">arg</a> | '::' <a href="#cname" title="cname">cname</a> )</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#arg" title="arg">arg</a></li>
+            <li><a href="#args" title="args">args</a></li>
+            <li><a href="#assoc" title="assoc">assoc</a></li>
+            <li><a href="#expr" title="expr">expr</a></li>
+            <li><a href="#f_opt" title="f_opt">f_opt</a></li>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="call_args">call_args:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="303" height="69">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 33 1 29 1 37"/>
+         <polygon points="17 33 9 29 9 37"/>
+         <rect x="71" y="19" width="84" height="32" rx="10"/>
+         <rect x="69" y="17" width="84" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="79" y="37">__END__</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#opt_nl" xlink:title="opt_nl">
+            <rect x="175" y="19" width="60" height="32"/>
+            <rect x="173" y="17" width="60" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="183" y="37">opt_nl</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 33 h2 m40 0 h10 m84 0 h10 m0 0 h10 m60 0 h10 m-204 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m184 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-184 0 h10 m0 0 h174 m-224 32 h20 m224 0 h20 m-264 0 q10 0 10 10 m244 0 q0 -10 10 -10 m-254 10 v14 m244 0 v-14 m-244 14 q0 10 10 10 m224 0 q10 0 10 -10 m-234 10 h10 m0 0 h214 m23 -34 h-3"/>
+         <polygon points="293 33 301 29 301 37"/>
+         <polygon points="293 33 285 29 285 37"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#call_args" title="call_args">call_args</a></div>
+               <div>         ::= ( '__END__' <a href="#opt_nl" title="opt_nl">opt_nl</a> )*</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#expr" title="expr">expr</a></li>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="opt_args">opt_args:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="147" height="57">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 5 1 1 1 9"/>
+         <polygon points="17 5 9 1 9 9"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#args" xlink:title="args">
+            <rect x="51" y="23" width="48" height="32"/>
+            <rect x="49" y="21" width="48" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="41">args</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 5 h2 m20 0 h10 m0 0 h58 m-88 0 h20 m68 0 h20 m-108 0 q10 0 10 10 m88 0 q0 -10 10 -10 m-98 10 v12 m88 0 v-12 m-88 12 q0 10 10 10 m68 0 q10 0 10 -10 m-78 10 h10 m48 0 h10 m23 -32 h-3"/>
+         <polygon points="137 5 145 1 145 9"/>
+         <polygon points="137 5 129 1 129 9"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#opt_args" title="opt_args">opt_args</a> ::= <a href="#args" title="args">args</a>?</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#arg" title="arg">arg</a></li>
+            <li><a href="#lhs" title="lhs">lhs</a></li>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="args">args:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="163" height="81">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 61 1 57 1 65"/>
+         <polygon points="17 61 9 57 9 65"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arg" xlink:title="arg">
+            <rect x="51" y="47" width="40" height="32"/>
+            <rect x="49" y="45" width="40" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="65">arg</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comma" xlink:title="comma">
+            <rect x="51" y="3" width="64" height="32"/>
+            <rect x="49" y="1" width="64" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="21">comma</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 61 h2 m20 0 h10 m40 0 h10 m0 0 h24 m-104 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -24 q0 -10 10 -10 m84 44 l20 0 m-20 0 q10 0 10 -10 l0 -24 q0 -10 -10 -10 m-84 0 h10 m64 0 h10 m23 44 h-3"/>
+         <polygon points="153 61 161 57 161 65"/>
+         <polygon points="153 61 145 57 145 65"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#args" title="args">args</a>     ::= <a href="#arg" title="arg">arg</a> ( <a href="#comma" title="comma">comma</a> <a href="#arg" title="arg">arg</a> )*</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#expr" title="expr">expr</a></li>
+            <li><a href="#opt_args" title="opt_args">opt_args</a></li>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="primary">primary:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="1545" height="1927">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 33 1 29 1 37"/>
+         <polygon points="17 33 9 29 9 37"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#INTEGER" xlink:title="INTEGER">
+            <rect x="51" y="19" width="74" height="32"/>
+            <rect x="49" y="17" width="74" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="37">INTEGER</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#FLOAT" xlink:title="FLOAT">
+            <rect x="51" y="63" width="58" height="32"/>
+            <rect x="49" y="61" width="58" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="81">FLOAT</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#SYMBEG" xlink:title="SYMBEG">
+            <rect x="51" y="107" width="70" height="32"/>
+            <rect x="49" y="105" width="70" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="125">SYMBEG</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#fname" xlink:title="fname">
+            <rect x="161" y="107" width="60" height="32"/>
+            <rect x="159" y="105" width="60" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="169" y="125">fname</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#IVAR" xlink:title="IVAR">
+            <rect x="161" y="151" width="50" height="32"/>
+            <rect x="159" y="149" width="50" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="169" y="169">IVAR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#GVAR" xlink:title="GVAR">
+            <rect x="161" y="195" width="54" height="32"/>
+            <rect x="159" y="193" width="54" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="169" y="213">GVAR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#REGEXP" xlink:title="REGEXP">
+            <rect x="51" y="239" width="70" height="32"/>
+            <rect x="49" y="237" width="70" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="257">REGEXP</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
+            <rect x="51" y="283" width="66" height="32"/>
+            <rect x="49" y="281" width="66" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="301">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING2" xlink:title="STRING2">
+            <rect x="51" y="327" width="74" height="32"/>
+            <rect x="49" y="325" width="74" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="345">STRING2</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#XSTRING" xlink:title="XSTRING">
+            <rect x="51" y="371" width="74" height="32"/>
+            <rect x="49" y="369" width="74" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="389">XSTRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#XSTRING2" xlink:title="XSTRING2">
+            <rect x="51" y="415" width="82" height="32"/>
+            <rect x="49" y="413" width="82" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="433">XSTRING2</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#DREGEXP" xlink:title="DREGEXP">
+            <rect x="51" y="459" width="78" height="32"/>
+            <rect x="49" y="457" width="78" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="477">DREGEXP</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#variable" xlink:title="variable">
+            <rect x="51" y="503" width="70" height="32"/>
+            <rect x="49" y="501" width="70" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="521">variable</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#backref" xlink:title="backref">
+            <rect x="51" y="547" width="66" height="32"/>
+            <rect x="49" y="545" width="66" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="565">backref</text></a><rect x="51" y="591" width="58" height="32" rx="10"/>
+         <rect x="49" y="589" width="58" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="609">super</text>
+         <rect x="149" y="623" width="26" height="32" rx="10"/>
+         <rect x="147" y="621" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="157" y="641">(</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#call_args" xlink:title="call_args">
+            <rect x="195" y="623" width="76" height="32"/>
+            <rect x="193" y="621" width="76" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="203" y="641">call_args</text></a><rect x="291" y="623" width="26" height="32" rx="10"/>
+         <rect x="289" y="621" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="299" y="641">)</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#LBRACK" xlink:title="LBRACK">
+            <rect x="51" y="667" width="68" height="32"/>
+            <rect x="49" y="665" width="68" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="685">LBRACK</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#args" xlink:title="args">
+            <rect x="159" y="699" width="48" height="32"/>
+            <rect x="157" y="697" width="48" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="167" y="717">args</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#trailer" xlink:title="trailer">
+            <rect x="227" y="699" width="58" height="32"/>
+            <rect x="225" y="697" width="58" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="235" y="717">trailer</text></a><rect x="325" y="667" width="26" height="32" rx="10"/>
+         <rect x="323" y="665" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="333" y="685">]</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#LBRACE" xlink:title="LBRACE">
+            <rect x="51" y="743" width="68" height="32"/>
+            <rect x="49" y="741" width="68" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="761">LBRACE</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#assocs" xlink:title="assocs">
+            <rect x="179" y="775" width="62" height="32"/>
+            <rect x="177" y="773" width="62" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="187" y="793">assocs</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#args" xlink:title="args">
+            <rect x="179" y="819" width="48" height="32"/>
+            <rect x="177" y="817" width="48" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="187" y="837">args</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#trailer" xlink:title="trailer">
+            <rect x="281" y="775" width="58" height="32"/>
+            <rect x="279" y="773" width="58" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="289" y="793">trailer</text></a><rect x="379" y="743" width="28" height="32" rx="10"/>
+         <rect x="377" y="741" width="28" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="387" y="761">}</text>
+         <rect x="51" y="863" width="50" height="32" rx="10"/>
+         <rect x="49" y="861" width="50" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="881">redo</text>
+         <rect x="51" y="907" width="58" height="32" rx="10"/>
+         <rect x="49" y="905" width="58" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="925">break</text>
+         <rect x="51" y="951" width="78" height="32" rx="10"/>
+         <rect x="49" y="949" width="78" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="969">continue</text>
+         <rect x="51" y="995" width="52" height="32" rx="10"/>
+         <rect x="49" y="993" width="52" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="1013">retry</text>
+         <rect x="51" y="1039" width="62" height="32" rx="10"/>
+         <rect x="49" y="1037" width="62" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="1057">return</text>
+         <rect x="71" y="1083" width="40" height="32" rx="10"/>
+         <rect x="69" y="1081" width="40" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="79" y="1101">fail</text>
+         <rect x="71" y="1127" width="52" height="32" rx="10"/>
+         <rect x="69" y="1125" width="52" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="79" y="1145">yield</text>
+         <rect x="183" y="1115" width="26" height="32" rx="10"/>
+         <rect x="181" y="1113" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="191" y="1133">(</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#args" xlink:title="args">
+            <rect x="249" y="1147" width="48" height="32"/>
+            <rect x="247" y="1145" width="48" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="257" y="1165">args</text></a><rect x="337" y="1115" width="26" height="32" rx="10"/>
+         <rect x="335" y="1113" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="345" y="1133">)</text>
+         <rect x="71" y="1191" width="78" height="32" rx="10"/>
+         <rect x="69" y="1189" width="78" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="79" y="1209">defined?</text>
+         <rect x="169" y="1191" width="26" height="32" rx="10"/>
+         <rect x="167" y="1189" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="177" y="1209">(</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arg" xlink:title="arg">
+            <rect x="215" y="1191" width="40" height="32"/>
+            <rect x="213" y="1189" width="40" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="223" y="1209">arg</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#operation" xlink:title="operation">
+            <rect x="71" y="1235" width="80" height="32"/>
+            <rect x="69" y="1233" width="80" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="79" y="1253">operation</text></a><rect x="171" y="1235" width="26" height="32" rx="10"/>
+         <rect x="169" y="1233" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="179" y="1253">(</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#call_args" xlink:title="call_args">
+            <rect x="217" y="1235" width="76" height="32"/>
+            <rect x="215" y="1233" width="76" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="225" y="1253">call_args</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#LPAREN" xlink:title="LPAREN">
+            <rect x="71" y="1279" width="68" height="32"/>
+            <rect x="69" y="1277" width="68" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="79" y="1297">LPAREN</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#exprs" xlink:title="exprs">
+            <rect x="159" y="1279" width="54" height="32"/>
+            <rect x="157" y="1277" width="54" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="167" y="1297">exprs</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#opt_nl" xlink:title="opt_nl">
+            <rect x="233" y="1279" width="60" height="32"/>
+            <rect x="231" y="1277" width="60" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="241" y="1297">opt_nl</text></a><rect x="333" y="1191" width="26" height="32" rx="10"/>
+         <rect x="331" y="1189" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="341" y="1209">)</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#FID" xlink:title="FID">
+            <rect x="51" y="1323" width="40" height="32"/>
+            <rect x="49" y="1321" width="40" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="1341">FID</text></a><rect x="91" y="1411" width="28" height="32" rx="10"/>
+         <rect x="89" y="1409" width="28" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="99" y="1429">if</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expr" xlink:title="expr">
+            <rect x="159" y="1411" width="48" height="32"/>
+            <rect x="157" y="1409" width="48" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="167" y="1429">expr</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#then" xlink:title="then">
+            <rect x="227" y="1411" width="48" height="32"/>
+            <rect x="225" y="1409" width="48" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="235" y="1429">then</text></a><rect x="159" y="1367" width="48" height="32" rx="10"/>
+         <rect x="157" y="1365" width="48" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="167" y="1385">elsif</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#compexpr" xlink:title="compexpr">
+            <rect x="227" y="1367" width="82" height="32"/>
+            <rect x="225" y="1365" width="82" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="235" y="1385">compexpr</text></a><rect x="91" y="1477" width="50" height="32" rx="10"/>
+         <rect x="89" y="1475" width="50" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="99" y="1495">case</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#compexpr" xlink:title="compexpr">
+            <rect x="181" y="1477" width="82" height="32"/>
+            <rect x="179" y="1475" width="82" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="189" y="1495">compexpr</text></a><rect x="283" y="1477" width="56" height="32" rx="10"/>
+         <rect x="281" y="1475" width="56" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="291" y="1495">when</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#args" xlink:title="args">
+            <rect x="359" y="1477" width="48" height="32"/>
+            <rect x="357" y="1475" width="48" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="367" y="1495">args</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#then" xlink:title="then">
+            <rect x="427" y="1477" width="48" height="32"/>
+            <rect x="425" y="1475" width="48" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="435" y="1495">then</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#compexpr" xlink:title="compexpr">
+            <rect x="535" y="1411" width="82" height="32"/>
+            <rect x="533" y="1409" width="82" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="543" y="1429">compexpr</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#opt_else" xlink:title="opt_else">
+            <rect x="637" y="1411" width="74" height="32"/>
+            <rect x="635" y="1409" width="74" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="645" y="1429">opt_else</text></a><rect x="131" y="1521" width="56" height="32" rx="10"/>
+         <rect x="129" y="1519" width="56" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="139" y="1539">while</text>
+         <rect x="131" y="1565" width="38" height="32" rx="10"/>
+         <rect x="129" y="1563" width="38" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="139" y="1583">for</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#iter_var" xlink:title="iter_var">
+            <rect x="189" y="1565" width="70" height="32"/>
+            <rect x="187" y="1563" width="70" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="197" y="1583">iter_var</text></a><rect x="279" y="1565" width="32" height="32" rx="10"/>
+         <rect x="277" y="1563" width="32" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="287" y="1583">in</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expr" xlink:title="expr">
+            <rect x="351" y="1521" width="48" height="32"/>
+            <rect x="349" y="1519" width="48" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="359" y="1539">expr</text></a><rect x="111" y="1609" width="52" height="32" rx="10"/>
+         <rect x="109" y="1607" width="52" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="119" y="1627">class</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cname" xlink:title="cname">
+            <rect x="183" y="1609" width="62" height="32"/>
+            <rect x="181" y="1607" width="62" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="191" y="1627">cname</text></a><rect x="305" y="1641" width="24" height="32" rx="10"/>
+         <rect x="303" y="1639" width="24" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="313" y="1659">:</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#SYMBEG" xlink:title="SYMBEG">
+            <rect x="305" y="1685" width="70" height="32"/>
+            <rect x="303" y="1683" width="70" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="313" y="1703">SYMBEG</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expr" xlink:title="expr">
+            <rect x="415" y="1641" width="48" height="32"/>
+            <rect x="413" y="1639" width="48" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="423" y="1659">expr</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#term" xlink:title="term">
+            <rect x="523" y="1521" width="50" height="32"/>
+            <rect x="521" y="1519" width="50" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="531" y="1539">term</text></a><rect x="91" y="1729" width="70" height="32" rx="10"/>
+         <rect x="89" y="1727" width="70" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="99" y="1747">module</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cname" xlink:title="cname">
+            <rect x="181" y="1729" width="62" height="32"/>
+            <rect x="179" y="1727" width="62" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="189" y="1747">cname</text></a><rect x="91" y="1773" width="42" height="32" rx="10"/>
+         <rect x="89" y="1771" width="42" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="99" y="1791">def</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#variable" xlink:title="variable">
+            <rect x="193" y="1805" width="70" height="32"/>
+            <rect x="191" y="1803" width="70" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="201" y="1823">variable</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#LPAREN" xlink:title="LPAREN">
+            <rect x="193" y="1849" width="68" height="32"/>
+            <rect x="191" y="1847" width="68" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="201" y="1867">LPAREN</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expr" xlink:title="expr">
+            <rect x="281" y="1849" width="48" height="32"/>
+            <rect x="279" y="1847" width="48" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="289" y="1867">expr</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#opt_nl" xlink:title="opt_nl">
+            <rect x="349" y="1849" width="60" height="32"/>
+            <rect x="347" y="1847" width="60" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="357" y="1867">opt_nl</text></a><rect x="429" y="1849" width="26" height="32" rx="10"/>
+         <rect x="427" y="1847" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="437" y="1867">)</text>
+         <rect x="495" y="1805" width="24" height="32" rx="10"/>
+         <rect x="493" y="1803" width="24" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="503" y="1823">.</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#fname" xlink:title="fname">
+            <rect x="559" y="1773" width="60" height="32"/>
+            <rect x="557" y="1771" width="60" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="567" y="1791">fname</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#f_arglist" xlink:title="f_arglist">
+            <rect x="639" y="1773" width="72" height="32"/>
+            <rect x="637" y="1771" width="72" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="647" y="1791">f_arglist</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#compexpr" xlink:title="compexpr">
+            <rect x="751" y="1521" width="82" height="32"/>
+            <rect x="749" y="1519" width="82" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="759" y="1539">compexpr</text></a><rect x="71" y="1893" width="56" height="32" rx="10"/>
+         <rect x="69" y="1891" width="56" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="79" y="1911">begin</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#compexpr" xlink:title="compexpr">
+            <rect x="147" y="1893" width="82" height="32"/>
+            <rect x="145" y="1891" width="82" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="155" y="1911">compexpr</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#rescue" xlink:title="rescue">
+            <rect x="249" y="1893" width="62" height="32"/>
+            <rect x="247" y="1891" width="62" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="257" y="1911">rescue</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ensure" xlink:title="ensure">
+            <rect x="331" y="1893" width="64" height="32"/>
+            <rect x="329" y="1891" width="64" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="339" y="1911">ensure</text></a><rect x="873" y="1411" width="44" height="32" rx="10"/>
+         <rect x="871" y="1409" width="44" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="881" y="1429">end</text>
+         <rect x="1017" y="19" width="26" height="32" rx="10"/>
+         <rect x="1015" y="17" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="1025" y="37">[</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#opt_args" xlink:title="opt_args">
+            <rect x="1063" y="19" width="76" height="32"/>
+            <rect x="1061" y="17" width="76" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="1071" y="37">opt_args</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#opt_nl" xlink:title="opt_nl">
+            <rect x="1159" y="19" width="60" height="32"/>
+            <rect x="1157" y="17" width="60" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="1167" y="37">opt_nl</text></a><rect x="1239" y="19" width="26" height="32" rx="10"/>
+         <rect x="1237" y="17" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="1247" y="37">]</text>
+         <rect x="1017" y="63" width="28" height="32" rx="10"/>
+         <rect x="1015" y="61" width="28" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="1025" y="81">{</text>
+         <rect x="1085" y="95" width="26" height="32" rx="10"/>
+         <rect x="1083" y="93" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="1093" y="113">|</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#iter_var" xlink:title="iter_var">
+            <rect x="1151" y="127" width="70" height="32"/>
+            <rect x="1149" y="125" width="70" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="1159" y="145">iter_var</text></a><rect x="1261" y="95" width="26" height="32" rx="10"/>
+         <rect x="1259" y="93" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="1269" y="113">|</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#OROP" xlink:title="OROP">
+            <rect x="1085" y="171" width="54" height="32"/>
+            <rect x="1083" y="169" width="54" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="1093" y="189">OROP</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#compexpr" xlink:title="compexpr">
+            <rect x="1327" y="63" width="82" height="32"/>
+            <rect x="1325" y="61" width="82" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="1335" y="81">compexpr</text></a><rect x="1429" y="63" width="28" height="32" rx="10"/>
+         <rect x="1427" y="61" width="28" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="1437" y="81">}</text>
+         <rect x="1017" y="215" width="24" height="32" rx="10"/>
+         <rect x="1015" y="213" width="24" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="1025" y="233">.</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#operation" xlink:title="operation">
+            <rect x="1061" y="215" width="80" height="32"/>
+            <rect x="1059" y="213" width="80" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="1069" y="233">operation</text></a><rect x="1181" y="247" width="26" height="32" rx="10"/>
+         <rect x="1179" y="245" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="1189" y="265">(</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#call_args" xlink:title="call_args">
+            <rect x="1227" y="247" width="76" height="32"/>
+            <rect x="1225" y="245" width="76" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="1235" y="265">call_args</text></a><rect x="1323" y="247" width="26" height="32" rx="10"/>
+         <rect x="1321" y="245" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="1331" y="265">)</text>
+         <path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 33 h2 m20 0 h10 m74 0 h10 m0 0 h792 m-906 0 h20 m886 0 h20 m-926 0 q10 0 10 10 m906 0 q0 -10 10 -10 m-916 10 v24 m906 0 v-24 m-906 24 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m58 0 h10 m0 0 h808 m-896 -10 v20 m906 0 v-20 m-906 20 v24 m906 0 v-24 m-906 24 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m70 0 h10 m20 0 h10 m60 0 h10 m-100 0 h20 m80 0 h20 m-120 0 q10 0 10 10 m100 0 q0 -10 10 -10 m-110 10 v24 m100 0 v-24 m-100 24 q0 10 10 10 m80 0 q10 0 10 -10 m-90 10 h10 m50 0 h10 m0 0 h10 m-90 -10 v20 m100 0 v-20 m-100 20 v24 m100 0 v-24 m-100 24 q0 10 10 10 m80 0 q10 0 10 -10 m-90 10 h10 m54 0 h10 m0 0 h6 m20 -88 h676 m-896 -10 v20 m906 0 v-20 m-906 20 v112 m906 0 v-112 m-906 112 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m70 0 h10 m0 0 h796 m-896 -10 v20 m906 0 v-20 m-906 20 v24 m906 0 v-24 m-906 24 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m66 0 h10 m0 0 h800 m-896 -10 v20 m906 0 v-20 m-906 20 v24 m906 0 v-24 m-906 24 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m74 0 h10 m0 0 h792 m-896 -10 v20 m906 0 v-20 m-906 20 v24 m906 0 v-24 m-906 24 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m74 0 h10 m0 0 h792 m-896 -10 v20 m906 0 v-20 m-906 20 v24 m906 0 v-24 m-906 24 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m82 0 h10 m0 0 h784 m-896 -10 v20 m906 0 v-20 m-906 20 v24 m906 0 v-24 m-906 24 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m78 0 h10 m0 0 h788 m-896 -10 v20 m906 0 v-20 m-906 20 v24 m906 0 v-24 m-906 24 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m70 0 h10 m0 0 h796 m-896 -10 v20 m906 0 v-20 m-906 20 v24 m906 0 v-24 m-906 24 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m66 0 h10 m0 0 h800 m-896 -10 v20 m906 0 v-20 m-906 20 v24 m906 0 v-24 m-906 24 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m58 0 h10 m20 0 h10 m0 0 h178 m-208 0 h20 m188 0 h20 m-228 0 q10 0 10 10 m208 0 q0 -10 10 -10 m-218 10 v12 m208 0 v-12 m-208 12 q0 10 10 10 m188 0 q10 0 10 -10 m-198 10 h10 m26 0 h10 m0 0 h10 m76 0 h10 m0 0 h10 m26 0 h10 m20 -32 h580 m-896 -10 v20 m906 0 v-20 m-906 20 v56 m906 0 v-56 m-906 56 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m68 0 h10 m20 0 h10 m0 0 h136 m-166 0 h20 m146 0 h20 m-186 0 q10 0 10 10 m166 0 q0 -10 10 -10 m-176 10 v12 m166 0 v-12 m-166 12 q0 10 10 10 m146 0 q10 0 10 -10 m-156 10 h10 m48 0 h10 m0 0 h10 m58 0 h10 m20 -32 h10 m26 0 h10 m0 0 h566 m-896 -10 v20 m906 0 v-20 m-906 20 v56 m906 0 v-56 m-906 56 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m68 0 h10 m20 0 h10 m0 0 h190 m-220 0 h20 m200 0 h20 m-240 0 q10 0 10 10 m220 0 q0 -10 10 -10 m-230 10 v12 m220 0 v-12 m-220 12 q0 10 10 10 m200 0 q10 0 10 -10 m-190 10 h10 m62 0 h10 m-102 0 h20 m82 0 h20 m-122 0 q10 0 10 10 m102 0 q0 -10 10 -10 m-112 10 v24 m102 0 v-24 m-102 24 q0 10 10 10 m82 0 q10 0 10 -10 m-92 10 h10 m48 0 h10 m0 0 h14 m20 -44 h10 m58 0 h10 m20 -32 h10 m28 0 h10 m0 0 h510 m-896 -10 v20 m906 0 v-20 m-906 20 v100 m906 0 v-100 m-906 100 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m50 0 h10 m0 0 h816 m-896 -10 v20 m906 0 v-20 m-906 20 v24 m906 0 v-24 m-906 24 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m58 0 h10 m0 0 h808 m-896 -10 v20 m906 0 v-20 m-906 20 v24 m906 0 v-24 m-906 24 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m78 0 h10 m0 0 h788 m-896 -10 v20 m906 0 v-20 m-906 20 v24 m906 0 v-24 m-906 24 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m52 0 h10 m0 0 h814 m-896 -10 v20 m906 0 v-20 m-906 20 v24 m906 0 v-24 m-906 24 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m62 0 h10 m0 0 h804 m-896 -10 v20 m906 0 v-20 m-906 20 v24 m906 0 v-24 m-906 24 q0 10 10 10 m886 0 q10 0 10 -10 m-876 10 h10 m40 0 h10 m0 0 h12 m-92 0 h20 m72 0 h20 m-112 0 q10 0 10 10 m92 0 q0 -10 10 -10 m-102 10 v24 m92 0 v-24 m-92 24 q0 10 10 10 m72 0 q10 0 10 -10 m-82 10 h10 m52 0 h10 m40 -44 h10 m0 0 h190 m-220 0 h20 m200 0 h20 m-240 0 q10 0 10 10 m220 0 q0 -10 10 -10 m-230 10 v12 m220 0 v-12 m-220 12 q0 10 10 10 m200 0 q10 0 10 -10 m-210 10 h10 m26 0 h10 m20 0 h10 m0 0 h58 m-88 0 h20 m68 0 h20 m-108 0 q10 0 10 10 m88 0 q0 -10 10 -10 m-98 10 v12 m88 0 v-12 m-88 12 q0 10 10 10 m68 0 q10 0 10 -10 m-78 10 h10 m48 0 h10 m20 -32 h10 m26 0 h10 m20 -32 h534 m-896 -10 v20 m906 0 v-20 m-906 20 v88 m906 0 v-88 m-906 88 q0 10 10 10 m886 0 q10 0 10 -10 m-876 10 h10 m78 0 h10 m0 0 h10 m26 0 h10 m0 0 h10 m40 0 h10 m0 0 h38 m-262 0 h20 m242 0 h20 m-282 0 q10 0 10 10 m262 0 q0 -10 10 -10 m-272 10 v24 m262 0 v-24 m-262 24 q0 10 10 10 m242 0 q10 0 10 -10 m-252 10 h10 m80 0 h10 m0 0 h10 m26 0 h10 m0 0 h10 m76 0 h10 m-252 -10 v20 m262 0 v-20 m-262 20 v24 m262 0 v-24 m-262 24 q0 10 10 10 m242 0 q10 0 10 -10 m-252 10 h10 m68 0 h10 m0 0 h10 m54 0 h10 m0 0 h10 m60 0 h10 m20 -88 h10 m26 0 h10 m0 0 h558 m-896 -10 v20 m906 0 v-20 m-906 20 v112 m906 0 v-112 m-906 112 q0 10 10 10 m886 0 q10 0 10 -10 m-896 10 h10 m40 0 h10 m0 0 h826 m-896 -10 v20 m906 0 v-20 m-906 20 v68 m906 0 v-68 m-906 68 q0 10 10 10 m886 0 q10 0 10 -10 m-856 10 h10 m28 0 h10 m20 0 h10 m48 0 h10 m0 0 h10 m48 0 h10 m0 0 h34 m-190 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -24 q0 -10 10 -10 m170 44 l20 0 m-20 0 q10 0 10 -10 l0 -24 q0 -10 -10 -10 m-170 0 h10 m48 0 h10 m0 0 h10 m82 0 h10 m20 44 h166 m-444 0 h20 m424 0 h20 m-464 0 q10 0 10 10 m444 0 q0 -10 10 -10 m-454 10 v46 m444 0 v-46 m-444 46 q0 10 10 10 m424 0 q10 0 10 -10 m-434 10 h10 m50 0 h10 m20 0 h10 m82 0 h10 m0 0 h10 m56 0 h10 m0 0 h10 m48 0 h10 m0 0 h10 m48 0 h10 m-334 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m314 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-314 0 h10 m0 0 h304 m40 -34 h10 m82 0 h10 m0 0 h10 m74 0 h10 m0 0 h122 m-802 0 h20 m782 0 h20 m-822 0 q10 0 10 10 m802 0 q0 -10 10 -10 m-812 10 v90 m802 0 v-90 m-802 90 q0 10 10 10 m782 0 q10 0 10 -10 m-732 10 h10 m56 0 h10 m0 0 h124 m-220 0 h20 m200 0 h20 m-240 0 q10 0 10 10 m220 0 q0 -10 10 -10 m-230 10 v24 m220 0 v-24 m-220 24 q0 10 10 10 m200 0 q10 0 10 -10 m-210 10 h10 m38 0 h10 m0 0 h10 m70 0 h10 m0 0 h10 m32 0 h10 m20 -44 h10 m48 0 h10 m0 0 h84 m-412 0 h20 m392 0 h20 m-432 0 q10 0 10 10 m412 0 q0 -10 10 -10 m-422 10 v68 m412 0 v-68 m-412 68 q0 10 10 10 m392 0 q10 0 10 -10 m-402 10 h10 m52 0 h10 m0 0 h10 m62 0 h10 m20 0 h10 m0 0 h188 m-218 0 h20 m198 0 h20 m-238 0 q10 0 10 10 m218 0 q0 -10 10 -10 m-228 10 v12 m218 0 v-12 m-218 12 q0 10 10 10 m198 0 q10 0 10 -10 m-188 10 h10 m24 0 h10 m0 0 h46 m-110 0 h20 m90 0 h20 m-130 0 q10 0 10 10 m110 0 q0 -10 10 -10 m-120 10 v24 m110 0 v-24 m-110 24 q0 10 10 10 m90 0 q10 0 10 -10 m-100 10 h10 m70 0 h10 m20 -44 h10 m48 0 h10 m40 -120 h10 m50 0 h10 m0 0 h138 m-660 0 h20 m640 0 h20 m-680 0 q10 0 10 10 m660 0 q0 -10 10 -10 m-670 10 v188 m660 0 v-188 m-660 188 q0 10 10 10 m640 0 q10 0 10 -10 m-650 10 h10 m70 0 h10 m0 0 h10 m62 0 h10 m0 0 h468 m-650 -10 v20 m660 0 v-20 m-660 20 v24 m660 0 v-24 m-660 24 q0 10 10 10 m640 0 q10 0 10 -10 m-650 10 h10 m42 0 h10 m20 0 h10 m0 0 h356 m-386 0 h20 m366 0 h20 m-406 0 q10 0 10 10 m386 0 q0 -10 10 -10 m-396 10 v12 m386 0 v-12 m-386 12 q0 10 10 10 m366 0 q10 0 10 -10 m-356 10 h10 m70 0 h10 m0 0 h192 m-302 0 h20 m282 0 h20 m-322 0 q10 0 10 10 m302 0 q0 -10 10 -10 m-312 10 v24 m302 0 v-24 m-302 24 q0 10 10 10 m282 0 q10 0 10 -10 m-292 10 h10 m68 0 h10 m0 0 h10 m48 0 h10 m0 0 h10 m60 0 h10 m0 0 h10 m26 0 h10 m20 -44 h10 m24 0 h10 m20 -32 h10 m60 0 h10 m0 0 h10 m72 0 h10 m20 -252 h10 m82 0 h10 m-792 -10 v20 m802 0 v-20 m-802 20 v352 m802 0 v-352 m-802 352 q0 10 10 10 m782 0 q10 0 10 -10 m-792 10 h10 m56 0 h10 m0 0 h10 m82 0 h10 m0 0 h10 m62 0 h10 m0 0 h10 m64 0 h10 m0 0 h438 m20 -482 h10 m44 0 h10 m80 -1392 h10 m26 0 h10 m0 0 h10 m76 0 h10 m0 0 h10 m60 0 h10 m0 0 h10 m26 0 h10 m0 0 h192 m-480 0 h20 m460 0 h20 m-500 0 q10 0 10 10 m480 0 q0 -10 10 -10 m-490 10 v24 m480 0 v-24 m-480 24 q0 10 10 10 m460 0 q10 0 10 -10 m-470 10 h10 m28 0 h10 m20 0 h10 m0 0 h212 m-242 0 h20 m222 0 h20 m-262 0 q10 0 10 10 m242 0 q0 -10 10 -10 m-252 10 v12 m242 0 v-12 m-242 12 q0 10 10 10 m222 0 q10 0 10 -10 m-232 10 h10 m26 0 h10 m20 0 h10 m0 0 h80 m-110 0 h20 m90 0 h20 m-130 0 q10 0 10 10 m110 0 q0 -10 10 -10 m-120 10 v12 m110 0 v-12 m-110 12 q0 10 10 10 m90 0 q10 0 10 -10 m-100 10 h10 m70 0 h10 m20 -32 h10 m26 0 h10 m-232 -10 v20 m242 0 v-20 m-242 20 v56 m242 0 v-56 m-242 56 q0 10 10 10 m222 0 q10 0 10 -10 m-232 10 h10 m54 0 h10 m0 0 h148 m20 -108 h10 m82 0 h10 m0 0 h10 m28 0 h10 m-470 -10 v20 m480 0 v-20 m-480 20 v132 m480 0 v-132 m-480 132 q0 10 10 10 m460 0 q10 0 10 -10 m-470 10 h10 m24 0 h10 m0 0 h10 m80 0 h10 m20 0 h10 m0 0 h178 m-208 0 h20 m188 0 h20 m-228 0 q10 0 10 10 m208 0 q0 -10 10 -10 m-218 10 v12 m208 0 v-12 m-208 12 q0 10 10 10 m188 0 q10 0 10 -10 m-198 10 h10 m26 0 h10 m0 0 h10 m76 0 h10 m0 0 h10 m26 0 h10 m20 -32 h88 m-500 -196 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m500 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-500 0 h10 m0 0 h490 m-540 32 h20 m540 0 h20 m-580 0 q10 0 10 10 m560 0 q0 -10 10 -10 m-570 10 v242 m560 0 v-242 m-560 242 q0 10 10 10 m540 0 q10 0 10 -10 m-550 10 h10 m0 0 h530 m23 -262 h-3"/>
+         <polygon points="1535 33 1543 29 1543 37"/>
+         <polygon points="1535 33 1527 29 1527 37"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#primary" title="primary">primary</a>  ::= ( <a href="#INTEGER" title="INTEGER">INTEGER</a> | <a href="#FLOAT" title="FLOAT">FLOAT</a> | <a href="#SYMBEG" title="SYMBEG">SYMBEG</a> ( <a href="#fname" title="fname">fname</a> | <a href="#IVAR" title="IVAR">IVAR</a> | <a href="#GVAR" title="GVAR">GVAR</a> ) | <a href="#REGEXP" title="REGEXP">REGEXP</a> | <a href="#STRING" title="STRING">STRING</a> | <a href="#STRING2" title="STRING2">STRING2</a> | <a href="#XSTRING" title="XSTRING">XSTRING</a> | <a href="#XSTRING2" title="XSTRING2">XSTRING2</a> | <a href="#DREGEXP" title="DREGEXP">DREGEXP</a> | <a href="#variable" title="variable">variable</a> | <a href="#backref" title="backref">backref</a> | 'super' ( '(' <a href="#call_args" title="call_args">call_args</a> ')' )? | <a href="#LBRACK" title="LBRACK">LBRACK</a> ( <a href="#args" title="args">args</a> <a href="#trailer" title="trailer">trailer</a> )? ']' | <a href="#LBRACE" title="LBRACE">LBRACE</a> ( ( <a href="#assocs" title="assocs">assocs</a> | <a href="#args" title="args">args</a> ) <a href="#trailer" title="trailer">trailer</a> )? '}' | 'redo' | 'break' | 'continue' | 'retry' | 'return' | ( 'fail' | 'yield'
+                  ) ( '(' <a href="#args" title="args">args</a>? ')' )? | ( 'defined?' '(' <a href="#arg" title="arg">arg</a> | <a href="#operation" title="operation">operation</a> '(' <a href="#call_args" title="call_args">call_args</a> | <a href="#LPAREN" title="LPAREN">LPAREN</a> <a href="#exprs" title="exprs">exprs</a> <a href="#opt_nl" title="opt_nl">opt_nl</a> ) ')' | <a href="#FID" title="FID">FID</a> | ( ( 'if' <a href="#expr" title="expr">expr</a> <a href="#then" title="then">then</a> ( <a href="#compexpr" title="compexpr">compexpr</a> 'elsif' <a href="#expr" title="expr">expr</a> <a href="#then" title="then">then</a> )* | 'case' ( <a href="#compexpr" title="compexpr">compexpr</a> 'when' <a href="#args" title="args">args</a> <a href="#then" title="then">then</a> )+ ) <a href="#compexpr" title="compexpr">compexpr</a> <a href="#opt_else" title="opt_else">opt_else</a> | ( ( ( 'while' | 'for' <a href="#iter_var" title="iter_var">iter_var</a> 'in' ) <a href="#expr" title="expr">expr</a> | 'class' <a href="#cname" title="cname">cname</a> ( ( ':' | <a href="#SYMBEG" title="SYMBEG">SYMBEG</a> ) <a href="#expr" title="expr">expr</a> )? ) <a href="#term" title="term">term</a> | 'module' <a href="#cname" title="cname">cname</a> | 'def' ( ( <a href="#variable" title="variable">variable</a> | <a href="#LPAREN" title="LPAREN">LPAREN</a> <a href="#expr" title="expr">expr</a> <a href="#opt_nl" title="opt_nl">opt_nl</a> ')' ) '.' )? <a href="#fname" title="fname">fname</a> <a href="#f_arglist" title="f_arglist">f_arglist</a> ) <a href="#compexpr" title="compexpr">compexpr</a> | 'begin' <a href="#compexpr" title="compexpr">compexpr</a> <a href="#rescue" title="rescue">rescue</a> <a href="#ensure" title="ensure">ensure</a> ) 'end' ) ( '[' <a href="#opt_args" title="opt_args">opt_args</a> <a href="#opt_nl" title="opt_nl">opt_nl</a> ']' | '{' ( '|' <a href="#iter_var" title="iter_var">iter_var</a>? '|' | <a href="#OROP" title="OROP">OROP</a> )? <a href="#compexpr" title="compexpr">compexpr</a> '}' | '.' <a href="#operation" title="operation">operation</a> ( '(' <a href="#call_args" title="call_args">call_args</a> ')' )? )*</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#arg" title="arg">arg</a></li>
+            <li><a href="#expr" title="expr">expr</a></li>
+            <li><a href="#lhs" title="lhs">lhs</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="then">then:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="259" height="113">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#term" xlink:title="term">
+            <rect x="51" y="3" width="50" height="32"/>
+            <rect x="49" y="1" width="50" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="21">term</text></a><rect x="141" y="35" width="50" height="32" rx="10"/>
+         <rect x="139" y="33" width="50" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="149" y="53">then</text>
+         <rect x="51" y="79" width="50" height="32" rx="10"/>
+         <rect x="49" y="77" width="50" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="97">then</text>
+         <path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m20 0 h10 m50 0 h10 m20 0 h10 m0 0 h60 m-90 0 h20 m70 0 h20 m-110 0 q10 0 10 10 m90 0 q0 -10 10 -10 m-100 10 v12 m90 0 v-12 m-90 12 q0 10 10 10 m70 0 q10 0 10 -10 m-80 10 h10 m50 0 h10 m-180 -32 h20 m180 0 h20 m-220 0 q10 0 10 10 m200 0 q0 -10 10 -10 m-210 10 v56 m200 0 v-56 m-200 56 q0 10 10 10 m180 0 q10 0 10 -10 m-190 10 h10 m50 0 h10 m0 0 h110 m23 -76 h-3"/>
+         <polygon points="249 17 257 13 257 21"/>
+         <polygon points="249 17 241 13 241 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#then" title="then">then</a>     ::= <a href="#term" title="term">term</a> 'then'?</div>
+               <div>           | 'then'</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="opt_else">opt_else:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="247" height="57">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 5 1 1 1 9"/>
+         <polygon points="17 5 9 1 9 9"/>
+         <rect x="51" y="23" width="46" height="32" rx="10"/>
+         <rect x="49" y="21" width="46" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="41">else</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#compexpr" xlink:title="compexpr">
+            <rect x="117" y="23" width="82" height="32"/>
+            <rect x="115" y="21" width="82" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="125" y="41">compexpr</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 5 h2 m20 0 h10 m0 0 h158 m-188 0 h20 m168 0 h20 m-208 0 q10 0 10 10 m188 0 q0 -10 10 -10 m-198 10 v12 m188 0 v-12 m-188 12 q0 10 10 10 m168 0 q10 0 10 -10 m-178 10 h10 m46 0 h10 m0 0 h10 m82 0 h10 m23 -32 h-3"/>
+         <polygon points="237 5 245 1 245 9"/>
+         <polygon points="237 5 229 1 229 9"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#opt_else" title="opt_else">opt_else</a> ::= ( 'else' <a href="#compexpr" title="compexpr">compexpr</a> )?</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="iter_var">iter_var:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="149" height="81">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lhs" xlink:title="lhs">
+            <rect x="51" y="3" width="38" height="32"/>
+            <rect x="49" y="1" width="38" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="21">lhs</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mlhs" xlink:title="mlhs">
+            <rect x="51" y="47" width="50" height="32"/>
+            <rect x="49" y="45" width="50" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="65">mlhs</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m20 0 h10 m38 0 h10 m0 0 h12 m-90 0 h20 m70 0 h20 m-110 0 q10 0 10 10 m90 0 q0 -10 10 -10 m-100 10 v24 m90 0 v-24 m-90 24 q0 10 10 10 m70 0 q10 0 10 -10 m-80 10 h10 m50 0 h10 m23 -44 h-3"/>
+         <polygon points="139 17 147 13 147 21"/>
+         <polygon points="139 17 131 13 131 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#iter_var" title="iter_var">iter_var</a> ::= <a href="#lhs" title="lhs">lhs</a></div>
+               <div>           | <a href="#mlhs" title="mlhs">mlhs</a></div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="rescue">rescue:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="265" height="57">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 5 1 1 1 9"/>
+         <polygon points="17 5 9 1 9 9"/>
+         <rect x="51" y="23" width="64" height="32" rx="10"/>
+         <rect x="49" y="21" width="64" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="41">rescue</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#compexpr" xlink:title="compexpr">
+            <rect x="135" y="23" width="82" height="32"/>
+            <rect x="133" y="21" width="82" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="143" y="41">compexpr</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 5 h2 m20 0 h10 m0 0 h176 m-206 0 h20 m186 0 h20 m-226 0 q10 0 10 10 m206 0 q0 -10 10 -10 m-216 10 v12 m206 0 v-12 m-206 12 q0 10 10 10 m186 0 q10 0 10 -10 m-196 10 h10 m64 0 h10 m0 0 h10 m82 0 h10 m23 -32 h-3"/>
+         <polygon points="255 5 263 1 263 9"/>
+         <polygon points="255 5 247 1 247 9"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#rescue" title="rescue">rescue</a>   ::= ( 'rescue' <a href="#compexpr" title="compexpr">compexpr</a> )?</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="ensure">ensure:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="267" height="57">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 5 1 1 1 9"/>
+         <polygon points="17 5 9 1 9 9"/>
+         <rect x="51" y="23" width="66" height="32" rx="10"/>
+         <rect x="49" y="21" width="66" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="41">ensure</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#compexpr" xlink:title="compexpr">
+            <rect x="137" y="23" width="82" height="32"/>
+            <rect x="135" y="21" width="82" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="145" y="41">compexpr</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 5 h2 m20 0 h10 m0 0 h178 m-208 0 h20 m188 0 h20 m-228 0 q10 0 10 10 m208 0 q0 -10 10 -10 m-218 10 v12 m208 0 v-12 m-208 12 q0 10 10 10 m188 0 q10 0 10 -10 m-198 10 h10 m66 0 h10 m0 0 h10 m82 0 h10 m23 -32 h-3"/>
+         <polygon points="257 5 265 1 265 9"/>
+         <polygon points="257 5 249 1 249 9"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#ensure" title="ensure">ensure</a>   ::= ( 'ensure' <a href="#compexpr" title="compexpr">compexpr</a> )?</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="variable">variable:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="191" height="257">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#IDENTIFIER" xlink:title="IDENTIFIER">
+            <rect x="51" y="3" width="92" height="32"/>
+            <rect x="49" y="1" width="92" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="21">IDENTIFIER</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#IVAR" xlink:title="IVAR">
+            <rect x="51" y="47" width="50" height="32"/>
+            <rect x="49" y="45" width="50" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="65">IVAR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#GVAR" xlink:title="GVAR">
+            <rect x="51" y="91" width="54" height="32"/>
+            <rect x="49" y="89" width="54" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="109">GVAR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#CONSTANT" xlink:title="CONSTANT">
+            <rect x="51" y="135" width="86" height="32"/>
+            <rect x="49" y="133" width="86" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="153">CONSTANT</text></a><rect x="51" y="179" width="36" height="32" rx="10"/>
+         <rect x="49" y="177" width="36" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="197">nil</text>
+         <rect x="51" y="223" width="44" height="32" rx="10"/>
+         <rect x="49" y="221" width="44" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="241">self</text>
+         <path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m20 0 h10 m92 0 h10 m-132 0 h20 m112 0 h20 m-152 0 q10 0 10 10 m132 0 q0 -10 10 -10 m-142 10 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m50 0 h10 m0 0 h42 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m54 0 h10 m0 0 h38 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m86 0 h10 m0 0 h6 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m36 0 h10 m0 0 h56 m-122 -10 v20 m132 0 v-20 m-132 20 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m44 0 h10 m0 0 h48 m23 -220 h-3"/>
+         <polygon points="181 17 189 13 189 21"/>
+         <polygon points="181 17 173 13 173 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#variable" title="variable">variable</a> ::= <a href="#IDENTIFIER" title="IDENTIFIER">IDENTIFIER</a></div>
+               <div>           | <a href="#IVAR" title="IVAR">IVAR</a></div>
+               <div>           | <a href="#GVAR" title="GVAR">GVAR</a></div>
+               <div>           | <a href="#CONSTANT" title="CONSTANT">CONSTANT</a></div>
+               <div>           | 'nil'</div>
+               <div>           | 'self'</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#arg" title="arg">arg</a></li>
+            <li><a href="#lhs" title="lhs">lhs</a></li>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="backref">backref:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="183" height="81">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#NTH_REF" xlink:title="NTH_REF">
+            <rect x="51" y="3" width="76" height="32"/>
+            <rect x="49" y="1" width="76" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="21">NTH_REF</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#BACK_REF" xlink:title="BACK_REF">
+            <rect x="51" y="47" width="84" height="32"/>
+            <rect x="49" y="45" width="84" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="65">BACK_REF</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m20 0 h10 m76 0 h10 m0 0 h8 m-124 0 h20 m104 0 h20 m-144 0 q10 0 10 10 m124 0 q0 -10 10 -10 m-134 10 v24 m124 0 v-24 m-124 24 q0 10 10 10 m104 0 q10 0 10 -10 m-114 10 h10 m84 0 h10 m23 -44 h-3"/>
+         <polygon points="173 17 181 13 181 21"/>
+         <polygon points="173 17 165 13 165 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#backref" title="backref">backref</a>  ::= <a href="#NTH_REF" title="NTH_REF">NTH_REF</a></div>
+               <div>           | <a href="#BACK_REF" title="BACK_REF">BACK_REF</a></div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#arg" title="arg">arg</a></li>
+            <li><a href="#lhs" title="lhs">lhs</a></li>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="f_arglist">f_arglist:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="251" height="81">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/>
+         <rect x="51" y="3" width="26" height="32" rx="10"/>
+         <rect x="49" y="1" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="21">(</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#f_args" xlink:title="f_args">
+            <rect x="97" y="3" width="60" height="32"/>
+            <rect x="95" y="1" width="60" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="105" y="21">f_args</text></a><rect x="177" y="3" width="26" height="32" rx="10"/>
+         <rect x="175" y="1" width="26" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="185" y="21">)</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#f_args" xlink:title="f_args">
+            <rect x="51" y="47" width="60" height="32"/>
+            <rect x="49" y="45" width="60" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="65">f_args</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#term" xlink:title="term">
+            <rect x="131" y="47" width="50" height="32"/>
+            <rect x="129" y="45" width="50" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="139" y="65">term</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m20 0 h10 m26 0 h10 m0 0 h10 m60 0 h10 m0 0 h10 m26 0 h10 m-192 0 h20 m172 0 h20 m-212 0 q10 0 10 10 m192 0 q0 -10 10 -10 m-202 10 v24 m192 0 v-24 m-192 24 q0 10 10 10 m172 0 q10 0 10 -10 m-182 10 h10 m60 0 h10 m0 0 h10 m50 0 h10 m0 0 h22 m23 -44 h-3"/>
+         <polygon points="241 17 249 13 249 21"/>
+         <polygon points="241 17 233 13 233 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#f_arglist" title="f_arglist">f_arglist</a></div>
+               <div>         ::= '(' <a href="#f_args" title="f_args">f_args</a> ')'</div>
+               <div>           | <a href="#f_args" title="f_args">f_args</a> <a href="#term" title="term">term</a></div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="f_args">f_args:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="707" height="369">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 61 1 57 1 65"/>
+         <polygon points="17 61 9 57 9 65"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#IDENTIFIER" xlink:title="IDENTIFIER">
+            <rect x="71" y="47" width="92" height="32"/>
+            <rect x="69" y="45" width="92" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="79" y="65">IDENTIFIER</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comma" xlink:title="comma">
+            <rect x="71" y="3" width="64" height="32"/>
+            <rect x="69" y="1" width="64" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="79" y="21">comma</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comma" xlink:title="comma">
+            <rect x="223" y="79" width="64" height="32"/>
+            <rect x="221" y="77" width="64" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="231" y="97">comma</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#rest_arg" xlink:title="rest_arg">
+            <rect x="327" y="79" width="74" height="32"/>
+            <rect x="325" y="77" width="74" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="335" y="97">rest_arg</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#f_optarg" xlink:title="f_optarg">
+            <rect x="327" y="123" width="74" height="32"/>
+            <rect x="325" y="121" width="74" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="335" y="141">f_optarg</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comma" xlink:title="comma">
+            <rect x="441" y="155" width="64" height="32"/>
+            <rect x="439" y="153" width="64" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="449" y="173">comma</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#rest_arg" xlink:title="rest_arg">
+            <rect x="525" y="155" width="74" height="32"/>
+            <rect x="523" y="153" width="74" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="533" y="173">rest_arg</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#f_optarg" xlink:title="f_optarg">
+            <rect x="51" y="199" width="74" height="32"/>
+            <rect x="49" y="197" width="74" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="217">f_optarg</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comma" xlink:title="comma">
+            <rect x="165" y="231" width="64" height="32"/>
+            <rect x="163" y="229" width="64" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="173" y="249">comma</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#rest_arg" xlink:title="rest_arg">
+            <rect x="249" y="231" width="74" height="32"/>
+            <rect x="247" y="229" width="74" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="257" y="249">rest_arg</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#rest_arg" xlink:title="rest_arg">
+            <rect x="51" y="275" width="74" height="32"/>
+            <rect x="49" y="273" width="74" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="293">rest_arg</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#error" xlink:title="error">
+            <rect x="51" y="319" width="50" height="32"/>
+            <rect x="49" y="317" width="50" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="337">error</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 61 h2 m40 0 h10 m92 0 h10 m-132 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -24 q0 -10 10 -10 m112 44 l20 0 m-20 0 q10 0 10 -10 l0 -24 q0 -10 -10 -10 m-112 0 h10 m64 0 h10 m0 0 h28 m40 44 h10 m0 0 h426 m-456 0 h20 m436 0 h20 m-476 0 q10 0 10 10 m456 0 q0 -10 10 -10 m-466 10 v12 m456 0 v-12 m-456 12 q0 10 10 10 m436 0 q10 0 10 -10 m-446 10 h10 m64 0 h10 m20 0 h10 m74 0 h10 m0 0 h218 m-332 0 h20 m312 0 h20 m-352 0 q10 0 10 10 m332 0 q0 -10 10 -10 m-342 10 v24 m332 0 v-24 m-332 24 q0 10 10 10 m312 0 q10 0 10 -10 m-322 10 h10 m74 0 h10 m20 0 h10 m0 0 h168 m-198 0 h20 m178 0 h20 m-218 0 q10 0 10 10 m198 0 q0 -10 10 -10 m-208 10 v12 m198 0 v-12 m-198 12 q0 10 10 10 m178 0 q10 0 10 -10 m-188 10 h10 m64 0 h10 m0 0 h10 m74 0 h10 m-588 -108 h20 m628 0 h20 m-668 0 q10 0 10 10 m648 0 q0 -10 10 -10 m-658 10 v132 m648 0 v-132 m-648 132 q0 10 10 10 m628 0 q10 0 10 -10 m-638 10 h10 m74 0 h10 m20 0 h10 m0 0 h168 m-198 0 h20 m178 0 h20 m-218 0 q10 0 10 10 m198 0 q0 -10 10 -10 m-208 10 v12 m198 0 v-12 m-198 12 q0 10 10 10 m178 0 q10 0 10 -10 m-188 10 h10 m64 0 h10 m0 0 h10 m74 0 h10 m20 -32 h316 m-638 -10 v20 m648 0 v-20 m-648 20 v56 m648 0 v-56 m-648 56 q0 10 10 10 m628 0 q10 0 10 -10 m-638 10 h10 m74 0 h10 m0 0 h534 m-638 -10 v20 m648 0 v-20 m-648 20 v24 m648 0 v-24 m-648 24 q0 10 10 10 m628 0 q10 0 10 -10 m-638 10 h10 m50 0 h10 m0 0 h558 m-638 -10 v20 m648 0 v-20 m-648 20 v14 m648 0 v-14 m-648 14 q0 10 10 10 m628 0 q10 0 10 -10 m-638 10 h10 m0 0 h618 m23 -306 h-3"/>
+         <polygon points="697 61 705 57 705 65"/>
+         <polygon points="697 61 689 57 689 65"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#f_args" title="f_args">f_args</a>   ::= ( <a href="#IDENTIFIER" title="IDENTIFIER">IDENTIFIER</a> ( <a href="#comma" title="comma">comma</a> <a href="#IDENTIFIER" title="IDENTIFIER">IDENTIFIER</a> )* ( <a href="#comma" title="comma">comma</a> ( <a href="#rest_arg" title="rest_arg">rest_arg</a> | <a href="#f_optarg" title="f_optarg">f_optarg</a> ( <a href="#comma" title="comma">comma</a> <a href="#rest_arg" title="rest_arg">rest_arg</a> )? ) )? | <a href="#f_optarg" title="f_optarg">f_optarg</a> ( <a href="#comma" title="comma">comma</a> <a href="#rest_arg" title="rest_arg">rest_arg</a> )? | <a href="#rest_arg" title="rest_arg">rest_arg</a> | <a href="#error" title="error">error</a> )?</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#f_arglist" title="f_arglist">f_arglist</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="f_opt">f_opt:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="261" height="37">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#IDENTIFIER" xlink:title="IDENTIFIER">
+            <rect x="31" y="3" width="92" height="32"/>
+            <rect x="29" y="1" width="92" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="39" y="21">IDENTIFIER</text></a><rect x="143" y="3" width="30" height="32" rx="10"/>
+         <rect x="141" y="1" width="30" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="151" y="21">=</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arg" xlink:title="arg">
+            <rect x="193" y="3" width="40" height="32"/>
+            <rect x="191" y="1" width="40" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="201" y="21">arg</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m0 0 h10 m92 0 h10 m0 0 h10 m30 0 h10 m0 0 h10 m40 0 h10 m3 0 h-3"/>
+         <polygon points="251 17 259 13 259 21"/>
+         <polygon points="251 17 243 13 243 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#f_opt" title="f_opt">f_opt</a>    ::= <a href="#IDENTIFIER" title="IDENTIFIER">IDENTIFIER</a> '=' <a href="#arg" title="arg">arg</a></div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#f_optarg" title="f_optarg">f_optarg</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="f_optarg">f_optarg:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="163" height="81">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 61 1 57 1 65"/>
+         <polygon points="17 61 9 57 9 65"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#f_opt" xlink:title="f_opt">
+            <rect x="51" y="47" width="52" height="32"/>
+            <rect x="49" y="45" width="52" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="65">f_opt</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comma" xlink:title="comma">
+            <rect x="51" y="3" width="64" height="32"/>
+            <rect x="49" y="1" width="64" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="21">comma</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 61 h2 m20 0 h10 m52 0 h10 m0 0 h12 m-104 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -24 q0 -10 10 -10 m84 44 l20 0 m-20 0 q10 0 10 -10 l0 -24 q0 -10 -10 -10 m-84 0 h10 m64 0 h10 m23 44 h-3"/>
+         <polygon points="153 61 161 57 161 65"/>
+         <polygon points="153 61 145 57 145 65"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#f_optarg" title="f_optarg">f_optarg</a> ::= <a href="#f_opt" title="f_opt">f_opt</a> ( <a href="#comma" title="comma">comma</a> <a href="#f_opt" title="f_opt">f_opt</a> )*</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#f_args" title="f_args">f_args</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="rest_arg">rest_arg:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="223" height="37">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STAR" xlink:title="STAR">
+            <rect x="31" y="3" width="52" height="32"/>
+            <rect x="29" y="1" width="52" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="39" y="21">STAR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#IDENTIFIER" xlink:title="IDENTIFIER">
+            <rect x="103" y="3" width="92" height="32"/>
+            <rect x="101" y="1" width="92" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="111" y="21">IDENTIFIER</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m0 0 h10 m52 0 h10 m0 0 h10 m92 0 h10 m3 0 h-3"/>
+         <polygon points="213 17 221 13 221 21"/>
+         <polygon points="213 17 205 13 205 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#rest_arg" title="rest_arg">rest_arg</a> ::= <a href="#STAR" title="STAR">STAR</a> <a href="#IDENTIFIER" title="IDENTIFIER">IDENTIFIER</a></div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#f_args" title="f_args">f_args</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="assocs">assocs:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="163" height="81">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 61 1 57 1 65"/>
+         <polygon points="17 61 9 57 9 65"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#assoc" xlink:title="assoc">
+            <rect x="51" y="47" width="56" height="32"/>
+            <rect x="49" y="45" width="56" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="65">assoc</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comma" xlink:title="comma">
+            <rect x="51" y="3" width="64" height="32"/>
+            <rect x="49" y="1" width="64" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="21">comma</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 61 h2 m20 0 h10 m56 0 h10 m0 0 h8 m-104 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -24 q0 -10 10 -10 m84 44 l20 0 m-20 0 q10 0 10 -10 l0 -24 q0 -10 -10 -10 m-84 0 h10 m64 0 h10 m23 44 h-3"/>
+         <polygon points="153 61 161 57 161 65"/>
+         <polygon points="153 61 145 57 145 65"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#assocs" title="assocs">assocs</a>   ::= <a href="#assoc" title="assoc">assoc</a> ( <a href="#comma" title="comma">comma</a> <a href="#assoc" title="assoc">assoc</a> )*</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#expr" title="expr">expr</a></li>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="assoc">assoc:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="241" height="37">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arg" xlink:title="arg">
+            <rect x="31" y="3" width="40" height="32"/>
+            <rect x="29" y="1" width="40" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="39" y="21">arg</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ASSOC" xlink:title="ASSOC">
+            <rect x="91" y="3" width="62" height="32"/>
+            <rect x="89" y="1" width="62" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="99" y="21">ASSOC</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arg" xlink:title="arg">
+            <rect x="173" y="3" width="40" height="32"/>
+            <rect x="171" y="1" width="40" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="181" y="21">arg</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m0 0 h10 m40 0 h10 m0 0 h10 m62 0 h10 m0 0 h10 m40 0 h10 m3 0 h-3"/>
+         <polygon points="231 17 239 13 239 21"/>
+         <polygon points="231 17 223 13 223 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#assoc" title="assoc">assoc</a>    ::= <a href="#arg" title="arg">arg</a> <a href="#ASSOC" title="ASSOC">ASSOC</a> <a href="#arg" title="arg">arg</a></div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#assocs" title="assocs">assocs</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="operation">operation:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="191" height="81">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#IDENTIFIER" xlink:title="IDENTIFIER">
+            <rect x="51" y="3" width="92" height="32"/>
+            <rect x="49" y="1" width="92" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="21">IDENTIFIER</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#FID" xlink:title="FID">
+            <rect x="51" y="47" width="40" height="32"/>
+            <rect x="49" y="45" width="40" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="65">FID</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m20 0 h10 m92 0 h10 m-132 0 h20 m112 0 h20 m-152 0 q10 0 10 10 m132 0 q0 -10 10 -10 m-142 10 v24 m132 0 v-24 m-132 24 q0 10 10 10 m112 0 q10 0 10 -10 m-122 10 h10 m40 0 h10 m0 0 h52 m23 -44 h-3"/>
+         <polygon points="181 17 189 13 189 21"/>
+         <polygon points="181 17 173 13 173 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#operation" title="operation">operation</a></div>
+               <div>         ::= <a href="#IDENTIFIER" title="IDENTIFIER">IDENTIFIER</a></div>
+               <div>           | <a href="#FID" title="FID">FID</a></div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#expr" title="expr">expr</a></li>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="opt_nl">opt_nl:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="135" height="57">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 5 1 1 1 9"/>
+         <polygon points="17 5 9 1 9 9"/>
+         <rect x="51" y="23" width="36" height="32" rx="10"/>
+         <rect x="49" y="21" width="36" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="41">\n</text>
+         <path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 5 h2 m20 0 h10 m0 0 h46 m-76 0 h20 m56 0 h20 m-96 0 q10 0 10 10 m76 0 q0 -10 10 -10 m-86 10 v12 m76 0 v-12 m-76 12 q0 10 10 10 m56 0 q10 0 10 -10 m-66 10 h10 m36 0 h10 m23 -32 h-3"/>
+         <polygon points="125 5 133 1 133 9"/>
+         <polygon points="125 5 117 1 117 9"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#opt_nl" title="opt_nl">opt_nl</a>   ::= '\n'?</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#arg" title="arg">arg</a></li>
+            <li><a href="#call_args" title="call_args">call_args</a></li>
+            <li><a href="#lhs" title="lhs">lhs</a></li>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="trailer">trailer:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="163" height="101">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 5 1 1 1 9"/>
+         <polygon points="17 5 9 1 9 9"/>
+         <rect x="51" y="23" width="36" height="32" rx="10"/>
+         <rect x="49" y="21" width="36" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="41">\n</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comma" xlink:title="comma">
+            <rect x="51" y="67" width="64" height="32"/>
+            <rect x="49" y="65" width="64" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="59" y="85">comma</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 5 h2 m20 0 h10 m0 0 h74 m-104 0 h20 m84 0 h20 m-124 0 q10 0 10 10 m104 0 q0 -10 10 -10 m-114 10 v12 m104 0 v-12 m-104 12 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m36 0 h10 m0 0 h28 m-94 -10 v20 m104 0 v-20 m-104 20 v24 m104 0 v-24 m-104 24 q0 10 10 10 m84 0 q10 0 10 -10 m-94 10 h10 m64 0 h10 m23 -76 h-3"/>
+         <polygon points="153 5 161 1 161 9"/>
+         <polygon points="153 5 145 1 145 9"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#trailer" title="trailer">trailer</a>  ::= ( '\n' | <a href="#comma" title="comma">comma</a> )?</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#primary" title="primary">primary</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="term">term:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="135" height="81">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/>
+         <rect x="51" y="3" width="24" height="32" rx="10"/>
+         <rect x="49" y="1" width="24" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="21">;</text>
+         <rect x="51" y="47" width="36" height="32" rx="10"/>
+         <rect x="49" y="45" width="36" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="59" y="65">\n</text>
+         <path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m20 0 h10 m24 0 h10 m0 0 h12 m-76 0 h20 m56 0 h20 m-96 0 q10 0 10 10 m76 0 q0 -10 10 -10 m-86 10 v24 m76 0 v-24 m-76 24 q0 10 10 10 m56 0 q10 0 10 -10 m-66 10 h10 m36 0 h10 m23 -44 h-3"/>
+         <polygon points="125 17 133 13 133 21"/>
+         <polygon points="125 17 117 13 117 21"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#term" title="term">term</a>     ::= ';'</div>
+               <div>           | '\n'</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <ul>
+            <li><a href="#compexpr" title="compexpr">compexpr</a></li>
+            <li><a href="#exprs" title="exprs">exprs</a></li>
+            <li><a href="#f_arglist" title="f_arglist">f_arglist</a></li>
+            <li><a href="#primary" title="primary">primary</a></li>
+            <li><a href="#then" title="then">then</a></li>
+         </ul>
+      </p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><hr xmlns:xhtml="http://www.w3.org/1999/xhtml" />
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <table border="0" class="signature">
+            <tr>
+               <td style="width: 100%"> </td>
+               <td valign="top">
+                  <nobr class="signature">... generated by <a name="Railroad-Diagram-Generator" class="signature" title="https://bottlecaps.de/rr/ui" href="https://bottlecaps.de/rr/ui" target="_blank">RR - Railroad Diagram Generator</a></nobr>
+               </td>
+               <td><a name="Railroad-Diagram-Generator" title="https://bottlecaps.de/rr/ui" href="https://bottlecaps.de/rr/ui" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+                        <g transform="scale(0.178)">
+                           <circle cx="45" cy="45" r="45" style="stroke:none; fill:#FFCC00"/>
+                           <circle cx="45" cy="45" r="42" style="stroke:#332900; stroke-width:2px; fill:#FFCC00"/>
+                           <line x1="15" y1="15" x2="75" y2="75" stroke="#332900" style="stroke-width:9px;"/>
+                           <line x1="15" y1="75" x2="75" y2="15" stroke="#332900" style="stroke-width:9px;"/>
+                           <text x="7" y="54" style="font-size:26px; font-family:Arial, Sans-serif; font-weight:bold; fill: #332900">R</text>
+                           <text x="64" y="54" style="font-size:26px; font-family:Arial, Sans-serif; font-weight:bold; fill: #332900">R</text>
+                        </g></svg></a></td>
+            </tr>
+         </table>
+      </p>
+   </body>
+</html>

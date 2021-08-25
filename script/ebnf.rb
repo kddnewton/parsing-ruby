@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 tokens = {}
 ids = File.file?("defs/id.def") ? eval(File.read("defs/id.def"), binding) : {}
 source = File.read("parse.y")

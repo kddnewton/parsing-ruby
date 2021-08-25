@@ -16,13 +16,22 @@ This is the earliest [changelog entry](https://cache.ruby-lang.org/pub/ruby/1.0/
 
 The changelog here is still entirely Yukihiro Matsumoto. It's been a year since the last entry on this timeline and a ton has changed. Th choice of including `0.76` is somewhat arbitrary here. It's just that [https://cache.ruby-lang.org](https://cache.ruby-lang.org) happens to have a tar file containing that particular release.
 
+- [EBNF](docs/ebnf/0.76.txt)
+- [Diagram](docs/diagrams/0.76.xhtml)
+
 **1995-12-21 - Ruby 0.95**
 
 This is also somewhat arbitrary, but the cache has an entry for it so I'm including it here. Technically the last pre-1.0 release was `0.99.4-961224`. Between this release and `1.0-961225`, it's mostly cleanup and preparation. At this point there are some other contributors, including Jun Kuroda and Hirofumi Watanabe.
 
+- [EBNF](docs/ebnf/0.95.txt)
+- [Diagram](docs/diagrams/0.95.xhtml)
+
 **1996-12-25 - Ruby 1.0-961225**
 
 This is the first public `1.0` release.
+
+- [EBNF](docs/ebnf/1.0.961225.txt)
+- [Diagram](docs/diagrams/1.0.961225.xhtml)
 
 **1998-12-24 - Ruby 1.3.0**
 
@@ -58,24 +67,48 @@ this further extended the assignment operators with `||` and `&&` support
 
 **1999-08-13 - Ruby 1.4.0**
 
-- Binary number literals
-- Anonymous `*` in method definitions
-- Nested string interpolation
-- Multibyte character identifiers
+This is another stable release that follows a little less than a year after `1.2.0`.
+
+- [EBNF](docs/ebnf/1.4.0.txt)
+- [Diagram](docs/diagrams/1.4.0.xhtml)
+
+Not a huge amount changes with regard to syntax between the two versions, though there are lots of changes elsewhere in the codebase. The changes that were included were:
+
+- *binary number literals*  
+you can now write number literals with the `0b` prefix
+- *anonymous `*` in method definitions*  
+you now don't need to put an explicit name on splat arguments in method definitions
+- *nested string interpolation*  
+you used to not be able to do string interpolation within string interplation, but that was fixed here
+- *multibyte character identifiers*  
+there are now explicit multibyte character identifiers - this is more work toward supporting different encodings, but we won't truly get there until `1.9`
 
 **2000-09-19 - Ruby 1.6.0**
 
-- `rescue` modifier
+A little over a year has passed since `1.4.0`, which means it's time for another stable release.
+
+- [EBNF](docs/ebnf/1.6.0.txt)
+- [Diagram](docs/diagrams/1.6.0.xhtml)
+
+Only one thing really changed with the syntax between the two versions, which is that `rescue` can now be used in the modifier form like the conditionals and loops.
 
 **2003-08-04 - Ruby 1.8.0**
 
-- `%W` word lists with interpolation
-- Dynamic symbols
-- `break` and `next` take values
-- Nested class definition
-- Nested constant assignment
+A lot happens between `1.6` and `1.8`. 
+
+- [EBNF](docs/ebnf/1.8.0.txt)
+- [Diagram](docs/diagrams/1.8.0.xhtml)
+
+- *`%W` word lists with interpolation*
+- *dynamic symbols*
+- *`break` and `next` take values*
+- *nested class definition*
+- *nested constant assignment*
 
 **2007-12-25 - Ruby 1.9.0**
+
+- [EBNF](docs/ebnf/1.9.0.txt)
+- [Diagram](docs/diagrams/1.9.0.xhtml)
 
 - `YARV`
 - Block local variables
@@ -85,16 +118,25 @@ this further extended the assignment operators with `||` and `&&` support
 
 **2009-01-30 - Ruby 1.9.1**
 
-- Encoding pragma
+- [EBNF](docs/ebnf/1.9.1.txt)
+- [Diagram](docs/diagrams/1.9.1.xhtml)
+
+- *encoding pragma*
 - `.()` sugar for `.call`
-- Post arguments
-- Block in block arguments
+- *post arguments*
+- *block in block arguments*
 
 **2011-10-31 - Ruby 1.9.3**
 
-- Trailing commas
+- [EBNF](docs/ebnf/1.9.3.txt)
+- [Diagram](docs/diagrams/1.9.3.xhtml)
+
+- *trailing commas*
 
 **2013-02-24 - Ruby 2.0.0**
+
+- [EBNF](docs/ebnf/2.0.0.txt)
+- [Diagram](docs/diagrams/2.0.0.xhtml)
 
 - [`Module#prepend`](https://bugs.ruby-lang.org/issues/1102)
 - [Refinements](https://bugs.ruby-lang.org/issues/4085)
@@ -103,15 +145,25 @@ this further extended the assignment operators with `||` and `&&` support
 
 **2013-12-25 - Ruby 2.1.0**
 
+- [EBNF](docs/ebnf/2.1.0.txt)
+- [Diagram](docs/diagrams/2.1.0.xhtml)
+
+
 - [Required keyword arguments](https://bugs.ruby-lang.org/issues/7701)
 - [Rational and complex literals](https://bugs.ruby-lang.org/issues/8430)
 - [Frozen string literal suffix](https://bugs.ruby-lang.org/issues/8579)
 
 **2014-12-25 - Ruby 2.2.0**
 
+- [EBNF](docs/ebnf/2.2.0.txt)
+- [Diagram](docs/diagrams/2.2.0.xhtml)
+
 - [Dynamic symbol hash keys](https://bugs.ruby-lang.org/issues/4276)
 
 **2015-12-25 - Ruby 2.3.0**
+
+- [EBNF](docs/ebnf/2.3.0.txt)
+- [Diagram](docs/diagrams/2.3.0.xhtml)
 
 - [frozen_string_literal pragma](https://bugs.ruby-lang.org/issues/8976)
 - [`<<~` heredocs](https://bugs.ruby-lang.org/issues/9098)
@@ -119,16 +171,25 @@ this further extended the assignment operators with `||` and `&&` support
 
 **2016-12-25 - Ruby 2.4.0**
 
+- [EBNF](docs/ebnf/2.4.0.txt)
+- [Diagram](docs/diagrams/2.4.0.xhtml)
+
 - [Top level return](https://bugs.ruby-lang.org/issues/4840)
 - [Refinements in `Symbol#to_proc`](https://bugs.ruby-lang.org/issues/9451)
 - [Multiple assignment in a conditional](https://bugs.ruby-lang.org/issues/10617)
 
 **2017-12-25 - Ruby 2.5.0**
 
+- [EBNF](docs/ebnf/2.5.0.txt)
+- [Diagram](docs/diagrams/2.5.0.xhtml)
+
 - [`rescue` and `ensure` at the block level](https://bugs.ruby-lang.org/issues/12906)
 - [Refinements in string interpolations](https://bugs.ruby-lang.org/issues/13812)
 
 **2018-12-25 - Ruby 2.6.0**
+
+- [EBNF](docs/ebnf/2.6.0.txt)
+- [Diagram](docs/diagrams/2.6.0.xhtml)
 
 - [Flip-flop (deprecated)](https://bugs.ruby-lang.org/issues/5400)
 - [Endless range](https://bugs.ruby-lang.org/issues/12912)
@@ -137,6 +198,9 @@ this further extended the assignment operators with `||` and `&&` support
 - [Escape keywords from class/module scope removed](https://bugs.ruby-lang.org/issues/6354)
 
 **2019-12-25 - Ruby 2.7.0**
+
+- [EBNF](docs/ebnf/2.7.0.txt)
+- [Diagram](docs/diagrams/2.7.0.xhtml)
 
 - [Flip-flop (undeprecated)](https://bugs.ruby-lang.org/issues/5400)
 - [Method reference operator (added)](https://bugs.ruby-lang.org/issues/13581)
@@ -150,6 +214,9 @@ this further extended the assignment operators with `||` and `&&` support
 - [Method reference operator (removed)](https://bugs.ruby-lang.org/issues/16275)
 
 **2020-12-25 - Ruby 3.0.0**
+
+- [EBNF](docs/ebnf/3.0.0.txt)
+- [Diagram](docs/diagrams/3.0.0.xhtml)
 
 - [Keyword arguments (non-hash-based)](https://bugs.ruby-lang.org/issues/14183)
 - [Single-line methods](https://bugs.ruby-lang.org/issues/16746)

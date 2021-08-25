@@ -33,6 +33,7 @@ File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
       body: +""
     }
   elsif entry
+    line.gsub!("(docs/", "(")
     entry[:body] << "#{line}\n"
   end
 end

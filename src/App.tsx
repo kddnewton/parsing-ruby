@@ -29,6 +29,11 @@ const App = () => (
             <h2>Ruby 0.76 <small>1995-05-19</small></h2>
             
             <p>The changelog here is still entirely Yukihiro Matsumoto. It’s been a year since the last entry on this timeline and a ton has changed. Th choice of including <code>0.76</code> is somewhat arbitrary here. It’s just that <a href="https://cache.ruby-lang.org">https://cache.ruby-lang.org</a> happens to have a tar file containing that particular release.</p>
+            
+            <ul>
+              <li><a href="ebnf/0.76.txt">EBNF</a></li>
+              <li><a href="diagrams/0.76.xhtml">Diagram</a></li>
+            </ul>
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(1995, 11, 21))}>
@@ -37,6 +42,11 @@ const App = () => (
             <h2>Ruby 0.95 <small>1995-12-21</small></h2>
             
             <p>This is also somewhat arbitrary, but the cache has an entry for it so I’m including it here. Technically the last pre-1.0 release was <code>0.99.4-961224</code>. Between this release and <code>1.0-961225</code>, it’s mostly cleanup and preparation. At this point there are some other contributors, including Jun Kuroda and Hirofumi Watanabe.</p>
+            
+            <ul>
+              <li><a href="ebnf/0.95.txt">EBNF</a></li>
+              <li><a href="diagrams/0.95.xhtml">Diagram</a></li>
+            </ul>
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(1996, 11, 25))}>
@@ -45,6 +55,11 @@ const App = () => (
             <h2>Ruby 1.0-961225 <small>1996-12-25</small></h2>
             
             <p>This is the first public <code>1.0</code> release.</p>
+            
+            <ul>
+              <li><a href="ebnf/1.0.961225.txt">EBNF</a></li>
+              <li><a href="diagrams/1.0.961225.xhtml">Diagram</a></li>
+            </ul>
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(1998, 11, 24))}>
@@ -96,11 +111,24 @@ const App = () => (
           <TimelineEntryTooltip>
             <h2>Ruby 1.4.0 <small>1999-08-13</small></h2>
             
+            <p>This is another stable release that follows a little less than a year after <code>1.2.0</code>.</p>
+            
             <ul>
-              <li>Binary number literals</li>
-              <li>Anonymous <code>*</code> in method definitions</li>
-              <li>Nested string interpolation</li>
-              <li>Multibyte character identifiers</li>
+              <li><a href="ebnf/1.4.0.txt">EBNF</a></li>
+              <li><a href="diagrams/1.4.0.xhtml">Diagram</a></li>
+            </ul>
+            
+            <p>Not a huge amount changes with regard to syntax between the two versions, though there are lots of changes elsewhere in the codebase. The changes that were included were:</p>
+            
+            <ul>
+              <li><em>binary number literals</em><br />
+            you can now write number literals with the <code>0b</code> prefix</li>
+              <li><em>anonymous <code>*</code> in method definitions</em><br />
+            you now don’t need to put an explicit name on splat arguments in method definitions</li>
+              <li><em>nested string interpolation</em><br />
+            you used to not be able to do string interpolation within string interplation, but that was fixed here</li>
+              <li><em>multibyte character identifiers</em><br />
+            there are now explicit multibyte character identifiers - this is more work toward supporting different encodings, but we won’t truly get there until <code>1.9</code></li>
             </ul>
           </TimelineEntryTooltip>
         </TimelineEntry>
@@ -109,9 +137,14 @@ const App = () => (
           <TimelineEntryTooltip>
             <h2>Ruby 1.6.0 <small>2000-09-19</small></h2>
             
+            <p>A little over a year has passed since <code>1.4.0</code>, which means it’s time for another stable release.</p>
+            
             <ul>
-              <li><code>rescue</code> modifier</li>
+              <li><a href="ebnf/1.6.0.txt">EBNF</a></li>
+              <li><a href="diagrams/1.6.0.xhtml">Diagram</a></li>
             </ul>
+            
+            <p>Only one thing really changed with the syntax between the two versions, which is that <code>rescue</code> can now be used in the modifier form like the conditionals and loops.</p>
           </TimelineEntryTooltip>
         </TimelineEntry>
         <TimelineEntry date={new Date(Date.UTC(2001, 0, 10))}>
@@ -155,12 +188,18 @@ const App = () => (
           <TimelineEntryTooltip>
             <h2>Ruby 1.8.0 <small>2003-08-04</small></h2>
             
+            <p>A lot happens between <code>1.6</code> and <code>1.8</code>.</p>
+            
             <ul>
-              <li><code>%W</code> word lists with interpolation</li>
-              <li>Dynamic symbols</li>
-              <li><code>break</code> and <code>next</code> take values</li>
-              <li>Nested class definition</li>
-              <li>Nested constant assignment</li>
+              <li><a href="ebnf/1.8.0.txt">EBNF</a></li>
+              <li>
+                <p><a href="diagrams/1.8.0.xhtml">Diagram</a></p>
+              </li>
+              <li><em><code>%W</code> word lists with interpolation</em></li>
+              <li><em>dynamic symbols</em></li>
+              <li><em><code>break</code> and <code>next</code> take values</em></li>
+              <li><em>nested class definition</em></li>
+              <li><em>nested constant assignment</em></li>
             </ul>
           </TimelineEntryTooltip>
         </TimelineEntry>
@@ -200,6 +239,10 @@ const App = () => (
             <h2>Ruby 1.9.0 <small>2007-12-25</small></h2>
             
             <ul>
+              <li><a href="ebnf/1.9.0.txt">EBNF</a></li>
+              <li>
+                <p><a href="diagrams/1.9.0.xhtml">Diagram</a></p>
+              </li>
               <li><code>YARV</code></li>
               <li>Block local variables</li>
               <li>Lambda literals</li>
@@ -214,10 +257,14 @@ const App = () => (
             <h2>Ruby 1.9.1 <small>2009-01-30</small></h2>
             
             <ul>
-              <li>Encoding pragma</li>
+              <li><a href="ebnf/1.9.1.txt">EBNF</a></li>
+              <li>
+                <p><a href="diagrams/1.9.1.xhtml">Diagram</a></p>
+              </li>
+              <li><em>encoding pragma</em></li>
               <li><code>.()</code> sugar for <code>.call</code></li>
-              <li>Post arguments</li>
-              <li>Block in block arguments</li>
+              <li><em>post arguments</em></li>
+              <li><em>block in block arguments</em></li>
             </ul>
           </TimelineEntryTooltip>
         </TimelineEntry>
@@ -254,7 +301,11 @@ const App = () => (
             <h2>Ruby 1.9.3 <small>2011-10-31</small></h2>
             
             <ul>
-              <li>Trailing commas</li>
+              <li><a href="ebnf/1.9.3.txt">EBNF</a></li>
+              <li>
+                <p><a href="diagrams/1.9.3.xhtml">Diagram</a></p>
+              </li>
+              <li><em>trailing commas</em></li>
             </ul>
           </TimelineEntryTooltip>
         </TimelineEntry>
@@ -264,6 +315,10 @@ const App = () => (
             <h2>Ruby 2.0.0 <small>2013-02-24</small></h2>
             
             <ul>
+              <li><a href="ebnf/2.0.0.txt">EBNF</a></li>
+              <li>
+                <p><a href="diagrams/2.0.0.xhtml">Diagram</a></p>
+              </li>
               <li><a href="https://bugs.ruby-lang.org/issues/1102"><code>Module#prepend</code></a></li>
               <li><a href="https://bugs.ruby-lang.org/issues/4085">Refinements</a></li>
               <li><a href="https://bugs.ruby-lang.org/issues/4985"><code>%i</code> symbol lists</a></li>
@@ -287,6 +342,10 @@ const App = () => (
             <h2>Ruby 2.1.0 <small>2013-12-25</small></h2>
             
             <ul>
+              <li><a href="ebnf/2.1.0.txt">EBNF</a></li>
+              <li>
+                <p><a href="diagrams/2.1.0.xhtml">Diagram</a></p>
+              </li>
               <li><a href="https://bugs.ruby-lang.org/issues/7701">Required keyword arguments</a></li>
               <li><a href="https://bugs.ruby-lang.org/issues/8430">Rational and complex literals</a></li>
               <li><a href="https://bugs.ruby-lang.org/issues/8579">Frozen string literal suffix</a></li>
@@ -299,6 +358,10 @@ const App = () => (
             <h2>Ruby 2.2.0 <small>2014-12-25</small></h2>
             
             <ul>
+              <li><a href="ebnf/2.2.0.txt">EBNF</a></li>
+              <li>
+                <p><a href="diagrams/2.2.0.xhtml">Diagram</a></p>
+              </li>
               <li><a href="https://bugs.ruby-lang.org/issues/4276">Dynamic symbol hash keys</a></li>
             </ul>
           </TimelineEntryTooltip>
@@ -309,6 +372,10 @@ const App = () => (
             <h2>Ruby 2.3.0 <small>2015-12-25</small></h2>
             
             <ul>
+              <li><a href="ebnf/2.3.0.txt">EBNF</a></li>
+              <li>
+                <p><a href="diagrams/2.3.0.xhtml">Diagram</a></p>
+              </li>
               <li><a href="https://bugs.ruby-lang.org/issues/8976">frozen_string_literal pragma</a></li>
               <li><a href="https://bugs.ruby-lang.org/issues/9098"><code>&lt;&lt;~</code> heredocs</a></li>
               <li><a href="https://bugs.ruby-lang.org/issues/11537"><code>&amp;.</code> operator</a></li>
@@ -321,6 +388,10 @@ const App = () => (
             <h2>Ruby 2.4.0 <small>2016-12-25</small></h2>
             
             <ul>
+              <li><a href="ebnf/2.4.0.txt">EBNF</a></li>
+              <li>
+                <p><a href="diagrams/2.4.0.xhtml">Diagram</a></p>
+              </li>
               <li><a href="https://bugs.ruby-lang.org/issues/4840">Top level return</a></li>
               <li><a href="https://bugs.ruby-lang.org/issues/9451">Refinements in <code>Symbol#to_proc</code></a></li>
               <li><a href="https://bugs.ruby-lang.org/issues/10617">Multiple assignment in a conditional</a></li>
@@ -333,6 +404,10 @@ const App = () => (
             <h2>Ruby 2.5.0 <small>2017-12-25</small></h2>
             
             <ul>
+              <li><a href="ebnf/2.5.0.txt">EBNF</a></li>
+              <li>
+                <p><a href="diagrams/2.5.0.xhtml">Diagram</a></p>
+              </li>
               <li><a href="https://bugs.ruby-lang.org/issues/12906"><code>rescue</code> and <code>ensure</code> at the block level</a></li>
               <li><a href="https://bugs.ruby-lang.org/issues/13812">Refinements in string interpolations</a></li>
             </ul>
@@ -344,6 +419,10 @@ const App = () => (
             <h2>Ruby 2.6.0 <small>2018-12-25</small></h2>
             
             <ul>
+              <li><a href="ebnf/2.6.0.txt">EBNF</a></li>
+              <li>
+                <p><a href="diagrams/2.6.0.xhtml">Diagram</a></p>
+              </li>
               <li><a href="https://bugs.ruby-lang.org/issues/5400">Flip-flop (deprecated)</a></li>
               <li><a href="https://bugs.ruby-lang.org/issues/12912">Endless range</a></li>
               <li><a href="https://bugs.ruby-lang.org/issues/13770">Non-ASCII constant names</a></li>
@@ -358,6 +437,10 @@ const App = () => (
             <h2>Ruby 2.7.0 <small>2019-12-25</small></h2>
             
             <ul>
+              <li><a href="ebnf/2.7.0.txt">EBNF</a></li>
+              <li>
+                <p><a href="diagrams/2.7.0.xhtml">Diagram</a></p>
+              </li>
               <li><a href="https://bugs.ruby-lang.org/issues/5400">Flip-flop (undeprecated)</a></li>
               <li><a href="https://bugs.ruby-lang.org/issues/13581">Method reference operator (added)</a></li>
               <li><a href="https://bugs.ruby-lang.org/issues/14183">Keyword arguments (warning about hash-based)</a></li>
@@ -377,6 +460,10 @@ const App = () => (
             <h2>Ruby 3.0.0 <small>2020-12-25</small></h2>
             
             <ul>
+              <li><a href="ebnf/3.0.0.txt">EBNF</a></li>
+              <li>
+                <p><a href="diagrams/3.0.0.xhtml">Diagram</a></p>
+              </li>
               <li><a href="https://bugs.ruby-lang.org/issues/14183">Keyword arguments (non-hash-based)</a></li>
               <li><a href="https://bugs.ruby-lang.org/issues/16746">Single-line methods</a></li>
               <li><a href="https://bugs.ruby-lang.org/issues/16828">Find pattern matching</a></li>
