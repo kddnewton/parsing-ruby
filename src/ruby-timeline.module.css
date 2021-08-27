@@ -17,7 +17,7 @@
   line-height: 1.4;
   margin: 0em auto 2em;
   position: relative;
-  width: 50%;
+  width: 60%;
 }
 
 @media screen and (max-width: 1200px) {
@@ -92,6 +92,10 @@
 
 .tooltip h2 small {
   float: right;
+}
+
+.tooltip h4 {
+  border-bottom: solid 1px currentColor;
 }
 
 .tooltip a {

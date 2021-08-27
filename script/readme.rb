@@ -8,28 +8,38 @@ parsing = false
 entries = []
 entry = nil
 
-File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
-  parsing = true if line.start_with?("### Ruby versions")
-  parsing = false if line.start_with?("## Parsers")
-  next if !parsing || line.start_with?("#")
-
-  if line =~ /^\*\*(\d{4})-(\d{2})-(\d{2}) - (.+)\*\*$/
-    if entry
-      entry[:body] =
-        if entry[:body].strip.empty?
-          ""
-        else
-          "\n#{Kramdown::Document.new(entry[:body]).to_html.chomp.split("\n").map { |line| "    #{line}" }.join("\n")}"
-        end
-
-      entries << entry
+push_entry = -> (entry) {
+  entry[:body] =
+    if entry[:body].strip.empty?
+      ""
+    else
+      html = Kramdown::Document.new(entry[:body].gsub(/<!--- .+? --->\n/, "")).to_html
+      html.gsub!("`", "\\\\`")
+      html.gsub!("<pre><code>", "<pre><code>{`")
+      html.gsub!("</code></pre>", "`}</code></pre>")
+      "\n#{html.chomp}"
     end
 
+  entries << entry
+}
+
+File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
+  parsing = true if line.start_with?("## Ruby versions")
+
+  if line.start_with?("## Parsers")
+    push_entry.call(entry)
+    break
+  end
+
+  next if !parsing || line.start_with?("## ")
+
+  if match = line.match(/^### (\d{4})-(\d{2})-(\d{2}) - (.+)$/)
+    push_entry.call(entry) if entry
     entry = {
-      year: $1,
-      month: $2.to_i(10),
-      day: $3.to_i(10),
-      title: Kramdown::Document.new($4).to_html.chomp.then { |title| title.include?("<p>") ? title.gsub!(/<\/?p>/, "") : title },
+      year: match[1],
+      month: match[2].to_i(10),
+      day: match[3].to_i(10),
+      title: Kramdown::Document.new(match[4]).to_html.chomp.then { |title| title.include?("<p>") ? title.gsub!(/<\/?p>/, "") : title },
       body: +""
     }
   elsif entry
@@ -73,7 +83,7 @@ const App = () => (
           <TimelineTooltip />
         </RubyTooltip>
         <TimelineLine>
-<%= entries.join.split("\n").map { |line| "        #{line}" }.join("\n") %>
+<%= entries.join %>
         </TimelineLine>
       </RubyTimeline>
     </Timeline>

@@ -1,39 +1,227 @@
 # Parsing Ruby
 
-This project is an attempt to distill the history of efforts relating to parsing the Ruby programming language over time. That includes various implementations of Ruby (`MRI`, `YARV`, `Rubinius`, `JRuby`, `TruffleRuby`, etc.), gems that parse Ruby (`parser`, `ruby_parser`, `ripper`, etc.), as well as other projects that parse Ruby source for various reasons (`sorbet`, `tree-sitter`, `druby`, etc.).
+This project is an attempt to distill the history of efforts relating to parsing the Ruby programming language. That includes various implementations of Ruby (`MRI`, `YARV`, `Rubinius`, `JRuby`, `TruffleRuby`, etc.), gems that parse Ruby (`parser`, `ruby_parser`, `ripper`, etc.), as well as other projects that parse Ruby source for various reasons (`sorbet`, `tree-sitter`, `RIL`, etc.).
 
-Over time the community has developed a massive amount of projects whose goal is to understand Ruby source at a deeper level. This has resulted in myriad approaches to parsing, with various tradeoffs. They have all had to evolve with the language as new features have been proposed, created, and merged. Below is a timeline of this archaeological dig through history of parsing Ruby.
+Over time the community has developed a massive amount of projects whose goal is to understand Ruby source at a deeper level. This has resulted in myriad approaches to parsing, with various tradeoffs. They have all had to evolve with the language as new features have been proposed, created, and merged. Below is a timeline of this archaeological dig through the history of parsing Ruby.
 
-## Timeline
+## Ruby versions
 
-### Ruby versions
-
-**1994-01-07 - Ruby 0.06**
+### 1994-01-07 - Ruby 0.06
 
 This is the earliest [changelog entry](https://cache.ruby-lang.org/pub/ruby/1.0/ChangeLog-pre-alpha) that I could find that had an explicit version on it. At this point Ruby was still a very early idea and the syntax was changing rapidly.
 
-**1995-05-19 - Ruby 0.76**
+#### ChangeLog
 
-The changelog here is still entirely Yukihiro Matsumoto. It's been a year since the last entry on this timeline and a ton has changed. Th choice of including `0.76` is somewhat arbitrary here. It's just that [https://cache.ruby-lang.org](https://cache.ruby-lang.org) happens to have a tar file containing that particular release.
+Fri Jan  7 15:23:20 1994  Yukihiro Matsumoto  (matz at nws119)
+
+	* baseline - version 0.06.
+
+### 1995-05-19 - Ruby 0.76
+
+The changelog here is still entirely Yukihiro Matsumoto. It's been a year since the last entry on this timeline and a ton has changed. The choice of including `0.76` is somewhat arbitrary here. It's just that [https://cache.ruby-lang.org](https://cache.ruby-lang.org) happens to have a tar file containing that particular release.
+
+There are some interesting things happening that are mentioned in the changelog below. `include` used to be a keyword, but there are a couple of keywords that at the moment are going through "methodization" which extracts them from the grammar and moves them into standard-library space. We can see here as well that hashes used to be called `Dict`. This was the version that included syntax for hash literals and array literals (array literals used to be initialized with braces, but that change here).
+
+The ToDo file used to live in the root of the repository in these older versions. It's an interesting artifact, as it offers a window into Matz' thinking at the time. We can see in this version and many future versions he mentions heredocs (which do eventually get added before `1.0`) as well as a byte code interpreter (what would eventually become `YARV`).
+
+#### Grammar
 
 - [EBNF](docs/ebnf/0.76.txt)
 - [Diagram](docs/diagrams/0.76.xhtml)
 
-**1995-12-21 - Ruby 0.95**
+#### ChangeLog
+
+Wed Apr 26 09:50:56 1995  Yukihiro Matsumoto  (matz@ix-02)
+
+	* parse.y: イテレータブロックの変数宣言を`|'で括るようにした．これ
+	  でイテレータ変数がない時は宣言そのものを省略できる．文法の変更は
+	  久しぶりだ．
+<!--- block arguments within pipes --->
+
+Mon Mar  6 19:34:32 1995  Yukihiro Matsumoto  (matz@ix-02)
+
+	* eval.c(inlcude): メソッド化．動的にモジュールをインクルードでき
+	  るように．さらに任意のオブジェクトにもモジュールをインクルードで
+	  きるメソッド `extend'も用意した．
+<!--- include/extend modules dynamically --->
+
+	* parse.y: 文法からincludeを削除．メソッド化．
+<!--- remove include from the grammar --->
+
+Tue Feb 28 15:35:10 1995  Yukihiro Matsumoto  (matz@ix-02)
+
+	* parse.y: 配列，連想配列の最後に`,'をおけるように．
+<!--- trailing commas in arrays and hashes --->
+
+Fri Oct 14 13:22:18 1994  Yukihiro Matsumoto  (matz@ix-02)
+
+	* version 0.52 released: ……なんてこったい.
+<!--- what a mess --->
+
+Thu Jul 14 11:18:07 1994  Yukihiro Matsumoto  (matz@ix-02)
+
+	* parse.y: Dictを生成する構文を追加. こちらを{..}にした.
+<!--- syntax for hash literals --->
+
+	* parse.y: 配列を生成する構文を[..]に変更した. 過去のRubyスクリプ
+	  トとの互換性が保てないが, Dictを生成する構文を導入するに当たり,
+	  perl5に合わせて(意識して), 変更する時期は今しかないと考えた. 
+	  *BACKWARD INCOMPATIBILITY*
+<!--- syntax for array literals --->
+
+#### ToDo
+
+* format機能
+* here document
+* re-write regex code for speed
+* byte code interpretor
+
+### 1995-12-21 - Ruby 0.95
 
 This is also somewhat arbitrary, but the cache has an entry for it so I'm including it here. Technically the last pre-1.0 release was `0.99.4-961224`. Between this release and `1.0-961225`, it's mostly cleanup and preparation. At this point there are some other contributors, including Jun Kuroda and Hirofumi Watanabe.
+
+The changelog mentions some interesting syntax changes, including changing the `defined` keyword to include a `?` since this release now supports `?` and `!` at the end of method names. There's also an amusing anecdote about how the `rescue` keyword used to be misspelled but that this release fixed the typo. Also included are the `not` operator, dynamic superclasses, and optional parentheses on method definition arguments, to just name a few.
+
+At this point in the ToDo file we get the addition of an item that says `hand written parser (recursive descent)`. While this one didn't end up being executed at any point (Ruby has stuck with the Bison parser generator the entire way through to today) it's a very interesting thought even with today's codebase.
+
+#### Grammar
 
 - [EBNF](docs/ebnf/0.95.txt)
 - [Diagram](docs/diagrams/0.95.xhtml)
 
-**1996-12-25 - Ruby 1.0-961225**
+#### ChangeLog
 
-This is the first public `1.0` release.
+Thu Nov  9 23:26:01 1995  Yukihiro Matsumoto  <matz@caelum.co.jp>
+
+	* parse.y (f_arglist): メソッド定義の引数を括弧で括らなくても良い
+	  ようにした．
+<!--- method definition arguments optional parentheses --->
+
+Wed Nov  8 00:17:51 1995  Yukihiro Matsumoto  <matz@caelum.co.jp>
+
+	* parse.y: class文のsuperclass部を定数から式に拡張した．
+<!--- superclass can be an expression instead of a constant --->
+
+Fri Sep  8 14:18:51 1995  Yukihiro Matsumoto  <matz@caelum.co.jp>
+
+	* ruby.texi: `!', `?'に対応してアップデート．
+<!--- updated for ! and ? --->
+
+	* parse.y: defined -> defined?
+
+	* parse.y (yylex): 変数名の後ろに`?'も許す．述語メソッドの後ろに
+	  `?'を追加する．
+<!--- allow ? after a variable name --->
+
+Thu Sep  7 20:01:33 1995  Yukihiro Matsumoto  <matz@caelum.co.jp>
+
+	* parse.y: 変数名の後ろに`!'を許す．
+<!--- allow ! after a variable name --->
+
+Mon Aug  7 12:47:41 1995  Yukihiro Matsumoto  <matz@caelum.co.jp>
+
+	* parse.y: resque -> rescue．恥ずかしいがtypoを残しておくわけには
+	  いかないよなあ．なんで今まで気がつかなかったのか…．
+<!--- rename resque to rescue --->
+
+Wed Jun  7 11:58:12 1995  Yukihiro Matsumoto  <matz@ix-02>
+
+	* parse.y: not演算子の追加．優先順位の低い`!'演算子．
+<!--- not operator --->
+
+#### ToDo
+
+* Hand written parser(recursive decent)
+* format機能
+* here document
+* re-write regex code for speed
+* byte code interpretor
+
+### 1996-12-25 - Ruby 1.0.961225
+
+This is the first public `1.0` release, released on Christmas of 1996. A couple of things change here since our last entry, most of which include changes that take it from looking like C++ to looking more like the Ruby we know today. For example, the operator that indicates a superclass in a class declaration changes from `:` to `<`. Also, the `continue` keyword gets renamed to `next`. `rescue` also gets a boost in utility, as it can now capture the exception as a variable and can rescue multiple exceptions at once. There's also a very short-lived triple-quoted string that exists for about 2 weeks in the codebase before Matz removed it.
+
+The todo file contains some interesting entries at this point. Beyond the `format` function that has been on the list for a while, the regex item now gains the "and copyright" suffix. There's also an entry for access control/packages. This is stil being discussed today, and various efforts have been made to accomplish this in Ruby-space outside of the runtime like [packwerk](https://github.com/Shopify/packwerk).
+
+#### Grammar
 
 - [EBNF](docs/ebnf/1.0.961225.txt)
 - [Diagram](docs/diagrams/1.0.961225.xhtml)
 
-**1998-12-24 - Ruby 1.3.0**
+#### ChangeLog
+
+Thu Dec 12 00:41:17 1996  Yukihiro Matsumoto  <matz@caelum.co.jp>
+
+	* parse.y (parse_string): """..."""はやはり無くすことにした
+
+Thu Nov 28 00:59:54 1996  Yukihiro Matsumoto  <matz@caelum.co.jp>
+
+	* version 0.99.3-961128
+
+	* parse.y (parse_string): 3-quote styleの文字列(例:"""abc"d"e""")
+
+Thu Aug 29 10:49:40 1996  Yukihiro Matsumoto  <matz@caelum.co.jp>
+
+	* parse.y (expr): イテレータの新形式に「method do .. end」形式を採
+	  用した．もちろん昔の形式も有効．
+<!--- iterator format to do...end --->
+
+Tue Aug 20 13:37:16 1996  Yukihiro Matsumoto  <matz@caelum.co.jp>
+
+	* parse.y (primary): rescueの構文を変更(同定引数の追加，複数rescue)
+<!--- rescue gets identification argument, multiple rescue --->
+
+Thu Jul 25 12:15:04 1996  Yukihiro Matsumoto  <matz@caelum.co.jp>
+
+	* parse.y: break/next/redo/retryのメソッド化．
+<!--- break/next/redo/retry methodization --->
+
+	* parse.y (primary): unless/untilの復活
+<!--- bringing back unless/until --->
+
+Wed May 22 19:48:42 1996  Yukihiro Matsumoto  <matz@caelum.co.jp>
+
+	* parse.y (superclass): スーパークラスの指定子を`:'から`<'に変更．
+<!--- superclass from : to < --->
+
+Wed Mar 27 10:02:44 1996  Yukihiro Matsumoto  <matz@caelum.co.jp>
+
+	* parse.y: 予約語の変更 continue -> next
+
+#### ToDo
+
+* パッケージまたは大域変数のアクセス制御
+* format機能
+* re-write regex code for speed and copyright
+
+### 1997-12-25 - Ruby 1.0.971225
+
+Following in what would eventually become quite a transition, Matz released a new version of Ruby on Christmas 1997. It's still `1.0` (this is not yet following semantic versioning) but the suffix has been updated to include the date.
+
+There are a couple of interesting syntactical additions to the language during this time. Regular expressions get a couple of special flags that indicate the character encoding. Perhaps this is one of the best advantages of having this language be created outside of an English-speaking country: encoding was always at the forefront. While we wouldn't get great encoding support until `1.9`, even having the option at this point is a win.
+
+#### ChangeLog
+
+Mon Apr  7 11:36:16 1997  Yukihiro Matsumoto  <matz@caelum.co.jp>
+
+	* parse.y (primary): syntax to access singleton class.
+
+Thu Apr  3 02:12:31 1997  Yukihiro Matsumoto  <matz@caelum.co.jp>
+
+	* parse.y (parse_regx): new option //[nes] to specify character
+	  code for regexp literals.  Last specified code option is valid.
+
+Tue Mar 25 14:08:43 1997  Yukihiro Matsumoto  <matz@caelum.co.jp>
+
+	* parse.y (expr): alias $var1 $var2 makes alias of the global
+	  variable. 
+
+Fri Mar 14 14:36:28 1997  Yukihiro Matsumoto  <matz@caelum.co.jp>
+
+	* parse.y (yylex): enables negative hex/octal numbers and `_' in
+	  non-decimal numbers.
+
+### 1998-12-24 - Ruby 1.3.0
 
 This is considered a "development" release, and is meant to be used as a branch for the core developers and not used in production. It is released one day before the "stable" `1.2.0` version. It includes a couple of syntactic additions that are then used for development over the course of the next year before they are included in the `1.4.0` stable version. They are:
 
@@ -44,9 +232,46 @@ heredocs already existed, but you always had to put the ending at the beginning 
 - *`::` method calls*  
 effectively an alias for the `.` operator, there was a convention for a while to call class-level methods with `::`
 
-**1998-12-25 - Ruby 1.2.0**
+Also interesting to note in this version are 2 new entries in the todo file. The first is "named" arguments (what would eventually become keyword arguments). Though the syntax isn't what ended up landing `:=` versus just `:`, it's still interesting to see the entry all of the way back here.
 
-This is a "stable" release, and is meant for production. It's the first stable release since `1.0` was released exactly 2 years prior. A lot of new syntax was introduced in those two years, many of which form the foundation of the kind of Ruby that was see today. This includes:
+Worth noting is the `objectify interpreters` entry. While I can't speak to what this would actually look like, what it _could_ be in reference to would be an object that could be accessed from Ruby-space that would accept an AST as an argument and be able to execute the code on demand. Extending this idea to include a reentrant parser, and Matz is effectively referring to the Rubinius project which would be started a little less than a decade later.
+
+#### ChangeLog
+
+Thu Dec 24 00:17:00 1998  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (primary): enable expr::identifier as method
+	  invocation.
+
+Mon Dec  7 22:08:22 1998  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (primary): allows `def obj::foo; .. end'.
+
+Sat Dec  5 23:27:23 1998  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (here_document): indentable here-doc delimiter by
+	  `<<-'.  Proposed by Clemens <c.hintze@gmx.net>.  Thanks.
+
+Mon Nov 16 23:26:29 1998  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (primary): exec else clause if no exception raised.
+
+Wed Oct 14 00:18:33 1998  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (when_args): `when a, *b' style new syntax for array
+	  expansion in `case'.
+
+#### ToDo
+
+* package or access control for global variables
+* named arguments like foo(nation:="german").
+* multiple return values, yield values.  maybe imcompatible
+* objectify interpreters
+* syntax tree -> bytecode ???
+
+### 1998-12-25 - Ruby 1.2.0
+
+This is a "stable" release, and is meant for production. It's the first stable release since `1.0` was released exactly 2 years prior. A lot of new syntax was introduced in those two years, many of which form the foundation of the kind of Ruby that was see today. Here are a couple of the standout entries:
 
 - *heredocs*  
 easily one of the most difficult-to-parse syntax constructs gets introduced
@@ -65,14 +290,89 @@ arguments that were themselves blocks would now resolve
 - *`||=` and `&&=` operators*  
 this further extended the assignment operators with `||` and `&&` support
 
-**1999-08-13 - Ruby 1.4.0**
+You can see in the changelog that `__END__` is no longer a keyword with this release. Over time a lot of the keywords that we have today have flipped back and forth between being methods and being keywords, including `next` and `break` (for example).
 
-This is another stable release that follows a little less than a year after `1.2.0`.
+#### Grammar
 
-- [EBNF](docs/ebnf/1.4.0.txt)
-- [Diagram](docs/diagrams/1.4.0.xhtml)
+- [EBNF](docs/ebnf/1.2.1.txt)
+- [Diagram](docs/diagrams/1.2.1.xhtml)
 
-Not a huge amount changes with regard to syntax between the two versions, though there are lots of changes elsewhere in the codebase. The changes that were included were:
+#### ChangeLog
+
+Wed Jun 24 02:18:57 1998  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (mlhs): `((a,b)),c = [[1,2]],3' assigns a=1,b=2,c=3.
+
+Tue Jun 23 11:46:16 1998  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (yylex): `&&=' and `||=' added.
+
+Fri Jun 19 14:34:49 1998  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (mlhs): nested multiple assignment.
+
+Wed Apr 15 01:22:56 1998  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (yylex): allow nested parenthesises.
+
+Wed Mar  4 01:39:52 1998  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (block_arg): new syntax - block argument in the
+	  calling arglist.
+
+Thu Feb 26 17:22:13 1998  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (fname): convert reswords into symbols.
+
+	* parse.y (reswords): reserved words are now embedded in the
+ 	  syntax (sigh).
+
+	* parse.y: now reserved words can be method names safely.
+
+Fri Feb 20 10:17:51 1998  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* version 1.1b8 released.
+
+	* parse.y (stmt): if/unless modifiers returns nil, if condition is 
+	  not established.
+
+Tue Feb 17 00:04:32 1998  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (yylex): new form `::Const' to see toplevel constants.
+
+Tue Jan 20 15:19:59 1998  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (terms): quoted word list by %w(a b c).
+
+Fri Dec 12 00:50:25 1997  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (expr): BEGIN/END built in the syntax.
+
+Thu Oct  9 11:17:50 1997  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (nextc): script parsing will be terminated by __END__ at
+ 	  beginning of line.
+
+	* eval.c (compile_error): `__END__' is no longer a keyword.
+
+Tue Sep 30 10:27:39 1997  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y: new keywords `true' and `false' added.
+
+Wed Aug 27 11:32:42 1997  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* version 1.1 alpha3 released.
+
+	* parse.y (here_document): finally here document available now.
+
+#### ToDo
+
+* package or access control for global variables
+* format
+
+### 1999-08-13 - Ruby 1.4.0
+
+This is another stable release that follows a little less than a year after `1.2.0`. Not a huge amount changes with regard to syntax between the two versions, though there are lots of changes elsewhere in the codebase. The changes that were included were:
 
 - *binary number literals*  
 you can now write number literals with the `0b` prefix
@@ -83,21 +383,70 @@ you used to not be able to do string interpolation within string interplation, b
 - *multibyte character identifiers*  
 there are now explicit multibyte character identifiers - this is more work toward supporting different encodings, but we won't truly get there until `1.9`
 
-**2000-09-19 - Ruby 1.6.0**
+The todo file got a lot longer in this version. Below is just a snippet that relates to parsing, but in reality there were multiple sections added. You can see entries that we already had like the packaging system, named arguments, and objectify interpreters. There are also some new entries like `class variable` (what ended up becoming `@@variable`), `method to retrieve argument information` (this could be referring to method calls, but I think it's referring to method parameters on the declaration, which would eventually become `Method#parameters`), and `compile time string concatenation` (which we eventually get where `"foo" "bar"` becomes `"foobar"`).
 
-A little over a year has passed since `1.4.0`, which means it's time for another stable release.
+#### Grammar
+
+- [EBNF](docs/ebnf/1.4.0.txt)
+- [Diagram](docs/diagrams/1.4.0.xhtml)
+
+#### ChangeLog
+
+Thu Jun 24 19:11:29 1999  Yoshida Masato  <yoshidam@yoshidam.net>
+
+	* parse.y (yylex): support multi-byte char identifiers.
+
+Wed Jun 23 15:10:11 1999  Inaba Hiroto  <inaba@sdd.tokyo-sc.toshiba.co.jp>
+
+	* parse.y (parse_regx): nested braces within #{} available.
+
+Wed May 19 12:27:07 1999  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (f_rest_arg): allow just * for rest arg.
+
+	* parse.y (mlhs_basic): allow * without formal argument.
+
+Fri Feb  5 22:11:08 1999  EGUCHI Osamu  <eguchi@shizuokanet.ne.jp>
+
+	* parse.y (yylex): binary literal support, like 0b01001.
+
+	* parse.y (yylex): octal numbers can contain `_'s.
+
+	* parse.y (yylex): now need at least one digit after prefix such
+	  as 0x, or 0b.
+
+	* bignum.c (rb_str2inum): recognize binary numbers like 0b0101.
+
+#### ToDo
+
+* compile time string concatenation, "hello" "world" => "helloworld"
+* ../... outside condition invokes operator method too.
+* %w(a\ b\ c abc) => ["a b c", "abc"]
+* package or access control for global variables
+* class variable (prefix?)
+* named arguments like foo(nation:="german") or foo(nation: "german").
+* method to retrieve argument information (need new C API)
+* multiple return values, yield values.  maybe incompatible ???
+* cascading method invocation ???
+* def Class#method .. end ??
+* class Foo::Bar<Baz .. end, module Boo::Bar .. end
+* def Foo::Bar::baz() .. end ??
+* objectify interpreters
+* syntax tree -> bytecode ???
+* format like perl's
+
+### 2000-09-19 - Ruby 1.6.0
+
+A little over a year has passed since `1.4.0`, which means it's time for another stable release. Only one thing really changed with the syntax between the two versions, which is that `rescue` can now be used in the modifier form like the conditionals and loops.
+
+#### Grammar
 
 - [EBNF](docs/ebnf/1.6.0.txt)
 - [Diagram](docs/diagrams/1.6.0.xhtml)
 
-Only one thing really changed with the syntax between the two versions, which is that `rescue` can now be used in the modifier form like the conditionals and loops.
-
-**2003-08-04 - Ruby 1.8.0**
+### 2003-08-04 - Ruby 1.8.0
 
 A lot happens between `1.6` and `1.8`. 
-
-- [EBNF](docs/ebnf/1.8.0.txt)
-- [Diagram](docs/diagrams/1.8.0.xhtml)
 
 - *`%W` word lists with interpolation*
 - *dynamic symbols*
@@ -105,10 +454,12 @@ A lot happens between `1.6` and `1.8`.
 - *nested class definition*
 - *nested constant assignment*
 
-**2007-12-25 - Ruby 1.9.0**
+#### Grammar
 
-- [EBNF](docs/ebnf/1.9.0.txt)
-- [Diagram](docs/diagrams/1.9.0.xhtml)
+- [EBNF](docs/ebnf/1.8.0.txt)
+- [Diagram](docs/diagrams/1.8.0.xhtml)
+
+### 2007-12-25 - Ruby 1.9.0
 
 - `YARV`
 - Block local variables
@@ -116,80 +467,97 @@ A lot happens between `1.6` and `1.8`.
 - Symbol hash keys
 - [`ripper` merged](https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?view=revision&revision=6891)
 
-**2009-01-30 - Ruby 1.9.1**
+#### Grammar
 
-- [EBNF](docs/ebnf/1.9.1.txt)
-- [Diagram](docs/diagrams/1.9.1.xhtml)
+- [EBNF](docs/ebnf/1.9.0.txt)
+- [Diagram](docs/diagrams/1.9.0.xhtml)
+
+### 2009-01-30 - Ruby 1.9.1
 
 - *encoding pragma*
 - `.()` sugar for `.call`
 - *post arguments*
 - *block in block arguments*
 
-**2011-10-31 - Ruby 1.9.3**
+#### Grammar
+
+- [EBNF](docs/ebnf/1.9.1.txt)
+- [Diagram](docs/diagrams/1.9.1.xhtml)
+
+### 2011-10-31 - Ruby 1.9.3
+
+- *trailing commas*
+
+#### Grammar
 
 - [EBNF](docs/ebnf/1.9.3.txt)
 - [Diagram](docs/diagrams/1.9.3.xhtml)
 
-- *trailing commas*
-
-**2013-02-24 - Ruby 2.0.0**
-
-- [EBNF](docs/ebnf/2.0.0.txt)
-- [Diagram](docs/diagrams/2.0.0.xhtml)
+### 2013-02-24 - Ruby 2.0.0
 
 - [`Module#prepend`](https://bugs.ruby-lang.org/issues/1102)
 - [Refinements](https://bugs.ruby-lang.org/issues/4085)
 - [`%i` symbol lists](https://bugs.ruby-lang.org/issues/4985)
 - [Keyword arguments](https://bugs.ruby-lang.org/issues/5474)
 
-**2013-12-25 - Ruby 2.1.0**
+#### Grammar
 
-- [EBNF](docs/ebnf/2.1.0.txt)
-- [Diagram](docs/diagrams/2.1.0.xhtml)
+- [EBNF](docs/ebnf/2.0.0.txt)
+- [Diagram](docs/diagrams/2.0.0.xhtml)
 
+### 2013-12-25 - Ruby 2.1.0
 
 - [Required keyword arguments](https://bugs.ruby-lang.org/issues/7701)
 - [Rational and complex literals](https://bugs.ruby-lang.org/issues/8430)
 - [Frozen string literal suffix](https://bugs.ruby-lang.org/issues/8579)
 
-**2014-12-25 - Ruby 2.2.0**
+#### Grammar
+
+- [EBNF](docs/ebnf/2.1.0.txt)
+- [Diagram](docs/diagrams/2.1.0.xhtml)
+
+### 2014-12-25 - Ruby 2.2.0
+
+- [Dynamic symbol hash keys](https://bugs.ruby-lang.org/issues/4276)
+
+#### Grammar
 
 - [EBNF](docs/ebnf/2.2.0.txt)
 - [Diagram](docs/diagrams/2.2.0.xhtml)
 
-- [Dynamic symbol hash keys](https://bugs.ruby-lang.org/issues/4276)
-
-**2015-12-25 - Ruby 2.3.0**
-
-- [EBNF](docs/ebnf/2.3.0.txt)
-- [Diagram](docs/diagrams/2.3.0.xhtml)
+### 2015-12-25 - Ruby 2.3.0
 
 - [frozen_string_literal pragma](https://bugs.ruby-lang.org/issues/8976)
 - [`<<~` heredocs](https://bugs.ruby-lang.org/issues/9098)
 - [`&.` operator](https://bugs.ruby-lang.org/issues/11537)
 
-**2016-12-25 - Ruby 2.4.0**
+#### Grammar
 
-- [EBNF](docs/ebnf/2.4.0.txt)
-- [Diagram](docs/diagrams/2.4.0.xhtml)
+- [EBNF](docs/ebnf/2.3.0.txt)
+- [Diagram](docs/diagrams/2.3.0.xhtml)
+
+### 2016-12-25 - Ruby 2.4.0
 
 - [Top level return](https://bugs.ruby-lang.org/issues/4840)
 - [Refinements in `Symbol#to_proc`](https://bugs.ruby-lang.org/issues/9451)
 - [Multiple assignment in a conditional](https://bugs.ruby-lang.org/issues/10617)
 
-**2017-12-25 - Ruby 2.5.0**
+#### Grammar
 
-- [EBNF](docs/ebnf/2.5.0.txt)
-- [Diagram](docs/diagrams/2.5.0.xhtml)
+- [EBNF](docs/ebnf/2.4.0.txt)
+- [Diagram](docs/diagrams/2.4.0.xhtml)
+
+### 2017-12-25 - Ruby 2.5.0
 
 - [`rescue` and `ensure` at the block level](https://bugs.ruby-lang.org/issues/12906)
 - [Refinements in string interpolations](https://bugs.ruby-lang.org/issues/13812)
 
-**2018-12-25 - Ruby 2.6.0**
+#### Grammar
 
-- [EBNF](docs/ebnf/2.6.0.txt)
-- [Diagram](docs/diagrams/2.6.0.xhtml)
+- [EBNF](docs/ebnf/2.5.0.txt)
+- [Diagram](docs/diagrams/2.5.0.xhtml)
+
+### 2018-12-25 - Ruby 2.6.0
 
 - [Flip-flop (deprecated)](https://bugs.ruby-lang.org/issues/5400)
 - [Endless range](https://bugs.ruby-lang.org/issues/12912)
@@ -197,10 +565,12 @@ A lot happens between `1.6` and `1.8`.
 - [RubyVM::AbstractSyntaxTree](https://github.com/ruby/ruby/commit/0f3dcbdf38db6c7fb04ca0833bb1f9af2c3e7ca4)
 - [Escape keywords from class/module scope removed](https://bugs.ruby-lang.org/issues/6354)
 
-**2019-12-25 - Ruby 2.7.0**
+#### Grammar
 
-- [EBNF](docs/ebnf/2.7.0.txt)
-- [Diagram](docs/diagrams/2.7.0.xhtml)
+- [EBNF](docs/ebnf/2.6.0.txt)
+- [Diagram](docs/diagrams/2.6.0.xhtml)
+
+### 2019-12-25 - Ruby 2.7.0
 
 - [Flip-flop (undeprecated)](https://bugs.ruby-lang.org/issues/5400)
 - [Method reference operator (added)](https://bugs.ruby-lang.org/issues/13581)
@@ -213,10 +583,12 @@ A lot happens between `1.6` and `1.8`.
 - [Argument forwarding](https://bugs.ruby-lang.org/issues/16253)
 - [Method reference operator (removed)](https://bugs.ruby-lang.org/issues/16275)
 
-**2020-12-25 - Ruby 3.0.0**
+#### Grammar
 
-- [EBNF](docs/ebnf/3.0.0.txt)
-- [Diagram](docs/diagrams/3.0.0.xhtml)
+- [EBNF](docs/ebnf/2.7.0.txt)
+- [Diagram](docs/diagrams/2.7.0.xhtml)
+
+### 2020-12-25 - Ruby 3.0.0
 
 - [Keyword arguments (non-hash-based)](https://bugs.ruby-lang.org/issues/14183)
 - [Single-line methods](https://bugs.ruby-lang.org/issues/16746)
@@ -224,52 +596,57 @@ A lot happens between `1.6` and `1.8`.
 - [shareable_constant_value pragma](https://bugs.ruby-lang.org/issues/17273)
 - [`in` pattern matching](https://bugs.ruby-lang.org/issues/17371)
 
-### Projects
+#### Grammar
 
-**2001-01-10 - [Robert Feldt releases v0.0.1 of Ruth](https://sourceforge.net/projects/rubyvm/files/ruth/)**
+- [EBNF](docs/ebnf/3.0.0.txt)
+- [Diagram](docs/diagrams/3.0.0.xhtml)
+
+## Projects
+
+### 2001-01-10 - [Robert Feldt releases v0.0.1 of Ruth](https://sourceforge.net/projects/rubyvm/files/ruth/)
 
 - Extends Ruby 1.6 internals to support inspecting Ruby ASTs
 
-**2001-10-20 - [Minero Aoki releases v0.0.1 of ripper](https://i.loveruby.net/archive/ripper/)**
+### 2001-10-20 - [Minero Aoki releases v0.0.1 of ripper](https://i.loveruby.net/archive/ripper/)
 
-**2002-10-09 - [Mathieu Bouchard releases v0.7.0 of MetaRuby](http://artengine.ca/matju/MetaRuby/)**
+### 2002-10-09 - [Mathieu Bouchard releases v0.7.0 of MetaRuby](http://artengine.ca/matju/MetaRuby/)
 
 - Includes `RubySchema.rb`, a schema for validating Ruby ASTs
 
-**2003-01-14 - [Yuya Kato releases v0.0.1 of bruby](http://bruby.osdn.jp/)**
+### 2003-01-14 - [Yuya Kato releases v0.0.1 of bruby](http://bruby.osdn.jp/)
 
 - Extends Ruby 1.6 internals to support dumping and loading a Ruby AST to a binary format
 
-**2004-11-10 - [Ryan Davis releases v1.0.0 of ParseTree](https://github.com/seattlerb/parsetree)**
+### 2004-11-10 - [Ryan Davis releases v1.0.0 of ParseTree](https://github.com/seattlerb/parsetree)
 
 - Extends Ruby 1.8 internals to support returning an AST by converting to Ruby objects
 
-**2006-06-05 - [Dominik Bathon releases v0.1.0 of RubyNode](https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/)**
+### 2006-06-05 - [Dominik Bathon releases v0.1.0 of RubyNode](https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/)
 
 - Extends Ruby 1.8 internals to support returning an AST by wrapping the NODE struct
 
-**2007-11-14 - [Ryan Davis releases v1.0.0 of ruby_parser](https://github.com/seattlerb/ruby_parser)**
+### 2007-11-14 - [Ryan Davis releases v1.0.0 of ruby_parser](https://github.com/seattlerb/ruby_parser)
 
 - Uses a `racc`-based compiler to generate s-expressions
 
-**2009-07-25 - [Paul Brannan releases v0.5.0 of nodewrap](http://rubystuff.org/nodewrap/)**
+### 2009-07-25 - [Paul Brannan releases v0.5.0 of nodewrap](http://rubystuff.org/nodewrap/)
 
 - Allows dumping/loading the Ruby nodes and instruction sequences to a binary format
 
-**2010-08-27 - [Michael Edgar releases v0.0.1 of laser](https://github.com/michaeledgar/laser)**
+### 2010-08-27 - [Michael Edgar releases v0.0.1 of laser](https://github.com/michaeledgar/laser)
 
 - Originally parsed regular expressions then `Ripper` to parse Ruby
 - Features a type system, semantic analysis, documentation generation, and a plugin system
 
-**2013-04-15 - [Peter Zotov releases v0.9.0 of parser](https://github.com/whitequark/parser)**
+### 2013-04-15 - [Peter Zotov releases v0.9.0 of parser](https://github.com/whitequark/parser)
 
 - Derives a new parser from `parse.y` in Ruby and a lexer test suite from `ruby_parser`
 
 ## Standards
 
-**2011-03-22 - JIS X 3017**
+### 2011-03-22 - JIS X 3017
 
-**2012-04-15 - ISO/IEC 30170:2012**
+### 2012-04-15 - ISO/IEC 30170:2012
 
 ## Parsers
 
@@ -292,7 +669,7 @@ A lot happens between `1.6` and `1.8`.
 
 ## Projects using existing parsers
 
-### parser
+## parser
 
 - [covered](https://github.com/ioquatix/covered) - code coverage reporter
 - [deep-cover](https://github.com/deep-cover/deep-cover) - code coverage reporter
@@ -316,7 +693,7 @@ A lot happens between `1.6` and `1.8`.
 - [vernacular](https://github.com/kddnewton/vernacular) - source code manipulation
 - [yoda](https://github.com/tomoasleep/yoda) - static analyzer and language server
 
-### ruby_parser
+## ruby_parser
 
 - [dawnscanner](https://github.com/thesp0nge/dawnscanner) - security analyzer
 - [debride](https://github.com/seattlerb/debride) - unused code analyzer
@@ -326,7 +703,7 @@ A lot happens between `1.6` and `1.8`.
 - [railroader](https://github.com/david-a-wheeler/railroader) - static security analyzer
 - [roodi](https://github.com/roodi/roodi) - linter
 
-### ripper
+## ripper
 
 - [cane](https://github.com/square/cane) - linter
 - [language_server-ruby](https://github.com/mtsmfm/language_server-ruby) - language server
@@ -336,25 +713,25 @@ A lot happens between `1.6` and `1.8`.
 - [sandi_meter](https://github.com/makaroni4/sandi_meter) - linter
 - [yard](https://github.com/lsegal/yard) - documentation generator
 
-### RubyVM::AbstractSyntaxTree
+## RubyVM::AbstractSyntaxTree
 
 - [solargraph](https://github.com/castwide/solargraph) - language server
 
-### tree-sitter
+## tree-sitter
 
 - [vscode-ruby](https://github.com/rubyide/vscode-ruby) - language server
 
-### Rubinius
+## Rubinius
 
 - [pelusa](https://github.com/codegram/pelusa) - linter
 
-### RIL
+## RIL
 
 - [druby](http://www.cs.umd.edu/projects/PL/druby/) - type system
 - [rtc](https://www.cs.tufts.edu/~jfoster/papers/oops13.pdf) - type system
 - [rubydust](http://www.cs.umd.edu/~mwh/papers/rubydust.pdf) - type system
 
-### JRuby
+## JRuby
 
 - [Ecstatic](https://projekter.aau.dk/projekter/files/61071016/1181807983.pdf) - type system
 

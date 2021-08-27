@@ -21,7 +21,7 @@ const Ruby: React.FC = () => (
 );
 
 const Title: React.FC = () => (
-  <h1 className={styles.title}>The History of Parsing Ruby</h1>
+  <h1 className={styles.title}>Parsing Ruby</h1>
 );
 
 const Header: React.FC = () => (
