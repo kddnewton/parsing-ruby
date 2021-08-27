@@ -44,6 +44,47 @@ const TimelineEntriesContext = createDescendantContext("TimelineEntriesContext")
 const TimelineStateContext = React.createContext<State>(initialState);
 const TimelineDispatchContext = React.createContext<Dispatch<Action>>(() => {});
 
+function useTimelineKeyboardControls(dispatch: Dispatch<Action>, length: number) {
+  useEffect((): (() => void) => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      switch (event.key) {
+        case "ArrowLeft":
+          dispatch({ type: "left", length });
+          break;
+        case "ArrowRight":
+          dispatch({ type: "right", length });
+          break;
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [dispatch, length]);
+}
+
+function useTimelineTouchControls(dispatch: Dispatch<Action>, length: number) {
+  useEffect((): (() => void) => {
+    let touchStartX: number;
+
+    const onTouchStart = (event: TouchEvent) => {
+      touchStartX = event.changedTouches[0].screenX;
+    };
+
+    const onTouchEnd = (event: TouchEvent) => {
+      const { screenX } = event.changedTouches[0];
+      dispatch({ type: touchStartX < screenX ? "left" : "right", length });
+    };
+
+    document.addEventListener("touchstart", onTouchStart);
+    document.addEventListener("touchend", onTouchEnd);
+
+    return () => {
+      document.removeEventListener("touchstart", onTouchStart);
+      document.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [dispatch, length]);
+}
+
 export const Timeline: React.FC<{ id?: string, startDate?: Date, endDate?: Date }> = ({
   children,
   id,
@@ -60,21 +101,8 @@ export const Timeline: React.FC<{ id?: string, startDate?: Date, endDate?: Date 
     endDate
   });
 
-  useEffect((): (() => void) => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      switch (event.key) {
-        case "ArrowLeft":
-          dispatch({ type: "left", length: entries.length });
-          break;
-        case "ArrowRight":
-          dispatch({ type: "right", length: entries.length });
-          break;
-      }
-    };
-
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [entries.length, dispatch]);
+  useTimelineKeyboardControls(dispatch, entries.length);
+  useTimelineTouchControls(dispatch, entries.length);
 
   return (
     <DescendantProvider context={TimelineEntriesContext} items={entries} set={setEntries}>
