@@ -79,7 +79,7 @@ const App = () => (
 
 <p>Thu Jul 14 11:18:07 1994  Yukihiro Matsumoto  (matz@ix-02)</p>
 
-<pre><code>{`* parse.y: Dictを生成する構文を追加. こちらを{..}にした.
+<pre><code>{`* parse.y: Dictを生成する構文を追加. こちらを&#123;..&#125;にした.
 
 * parse.y: 配列を生成する構文を[..]に変更した. 過去のRubyスクリプ
   トとの互換性が保てないが, Dictを生成する構文を導入するに当たり,
@@ -494,7 +494,7 @@ there are now explicit multibyte character identifiers - this is more work towar
 
 <p>Wed Jun 23 15:10:11 1999  Inaba Hiroto  <a href="mailto:inaba@sdd.tokyo-sc.toshiba.co.jp">inaba@sdd.tokyo-sc.toshiba.co.jp</a></p>
 
-<pre><code>{`* parse.y (parse_regx): nested braces within #{} available.
+<pre><code>{`* parse.y (parse_regx): nested braces within #&#123;&#125; available.
 `}</code></pre>
 
 <p>Wed May 19 12:27:07 1999  Yukihiro Matsumoto  <a href="mailto:matz@netlab.co.jp">matz@netlab.co.jp</a></p>
@@ -543,7 +543,13 @@ there are now explicit multibyte character identifiers - this is more work towar
   <TimelineEntryTooltip>
     <h2>Ruby 1.6.0 <small>2000-09-19</small></h2>
 
-<p>A little over a year has passed since <code>1.4.0</code>, which means it’s time for another stable release. Only one thing really changed with the syntax between the two versions, which is that <code>rescue</code> can now be used in the modifier form like the conditionals and loops.</p>
+<p>A little over a year has passed since <code>1.4.0</code>, which means it’s time for another stable release. Only one big thing really changed with the syntax between the two versions, which is that <code>rescue</code> can now be used in the modifier form like the conditionals and loops. We also get compile-time string concatenation (something that was listed in the todo from the previous version).</p>
+
+<p>Interestingly there are a couple of references to the flip-flop operator in the todo file. This has got to be one of the most controversial Ruby features. Later in <code>2.6</code> it will be deprecated, and then un-deprecated in <code>2.7</code>. Either way it’s definitely one of the more interesting syntactical constructs.</p>
+
+<p>Also for the first time, the idea of <code>rescue</code> having a special <code>!!</code> operator is mentioned. This lives on in the todo file for quite a while. I’m not aware of if it was ever seriously considered.</p>
+
+<p>There’s also a mention of <code>0</code> being evaluated as falsy. Fortunately this one did not make it in, as that would have somewhat drastically changed the semantics of Ruby as we know it.</p>
 
 <h4 id="grammar">Grammar</h4>
 
@@ -552,15 +558,110 @@ there are now explicit multibyte character identifiers - this is more work towar
   <li><a href="diagrams/1.6.0.xhtml">Diagram</a></li>
 </ul>
 
+<h4 id="changelog">ChangeLog</h4>
+
+<p>Mon Sep 11 14:24:47 2000  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
+
+<pre><code>{`* parse.y (command_call): kYIELD moved to this rule to allow
+  'a = yield b'. (ruby-bugs-ja:#PR15) 
+`}</code></pre>
+
+<p>Fri Sep  1 10:36:29 2000  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
+
+<pre><code>{`* parse.y (aref_args,opt_call_args): add block_call to allow a
+  method without parentheses and with block as a last argument.
+`}</code></pre>
+
+<p>Tue Jul 11 16:54:17 2000  Yukihiro Matsumoto  <a href="mailto:matz@netlab.co.jp">matz@netlab.co.jp</a></p>
+
+<pre><code>{`* parse.y (yylex): \`@&lt;digit&gt;' is no longer a valid instance
+  variable name.
+`}</code></pre>
+
+<p>Sat May  6 23:35:47 2000  Yukihiro Matsumoto  <a href="mailto:matz@netlab.co.jp">matz@netlab.co.jp</a></p>
+
+<pre><code>{`* parse.y (lhs): should allow \`obj.Attr = 5' type expression.
+`}</code></pre>
+
+<p>Mon Jan 24 02:56:44 2000  Yukihiro Matsumoto  <a href="mailto:matz@netlab.co.jp">matz@netlab.co.jp</a></p>
+
+<pre><code>{`* parse.y (yylex): -2.abs should be \`(-2).abs' to accomplish the
+  principle of less surprise.  \`+2' too.
+`}</code></pre>
+
+<p>Mon Nov  8 14:28:18 1999  Yukihiro Matsumoto  <a href="mailto:matz@netlab.co.jp">matz@netlab.co.jp</a></p>
+
+<pre><code>{`* parse.y (stmt): rescue modifier added to the syntax.
+`}</code></pre>
+
+<p>Thu Oct 14 02:00:10 1999  Yukihiro Matsumoto  <a href="mailto:matz@netlab.co.jp">matz@netlab.co.jp</a></p>
+
+<pre><code>{`* parse.y (string): compile time string concatenation.
+`}</code></pre>
+
+<h4 id="todo">ToDo</h4>
+
+<ul>
+  <li>def foo; .. rescue .. end</li>
+  <li>rescue modifier; a rescue b =&gt; begin a rescue; b end</li>
+  <li>%w(a\ b\ c abc) =&gt; [“a b c”, “abc”]</li>
+  <li>class variable (prefix @@)</li>
+  <li>rescue RuntimeError =&gt; err</li>
+  <li>operator !! for rescue. ???</li>
+  <li>objectify characters</li>
+  <li>../… outside condition invokes operator method too.</li>
+  <li>… inside condition turns off just before right condition.???</li>
+  <li>package or access control for global variables??</li>
+  <li>named arguments like foo(nation:=”german”) or foo(nation: “german”).</li>
+  <li>multiple return values, yield values.  maybe incompatible ???</li>
+  <li>cascading method invocation ???</li>
+  <li>def Class#method .. end ??</li>
+  <li>class Foo::Bar&lt;Baz .. end, module Boo::Bar .. end</li>
+  <li>def Foo::Bar::baz() .. end ??</li>
+  <li>Fixnum 0 as false ????</li>
+  <li>non confusing in-block local variable (is it possible?)
+    <ul>
+      <li>remove scope by block</li>
+      <li>variables appears within block may have independent values.</li>
+    </ul>
+  </li>
+  <li>alias $defout $&gt;</li>
+  <li>objectify interpreters ???</li>
+  <li>syntax tree -&gt; bytecode ???</li>
+</ul>
+
+  </TimelineEntryTooltip>
+</TimelineEntry>
+<TimelineEntry date={new Date(Date.UTC(2000, 9, 1))}>
+  <RubyMarker />
+  <TimelineEntryTooltip>
+    <h2>nodeDump 0.1.0 <small>2000-10-01</small></h2>
+
+<p>Following the release of Ruby <code>1.6</code>, Dave Thomas created the <a href="http://web.archive.org/web/20010302133702/http://www.pragmaticprogrammer.com:80/ruby/downloads/nodeDump.html">nodeDump</a> project. It walked the AST that Ruby generated after parsing and dumped out human-readable documentation about what Ruby would be evaluating. This ended up inspiring a bunch of other projects, and to my knowledge is the first real attempt at accessing and manipulating the AST outside of the core Ruby developers.</p>
+
+<p>When this is released there is also mention of the <code>ii</code> project by Guy Decoux, but for whatever reason that appears to be lost to internet history (it was hosted on an ftp server that is no longer live).</p>
+
+<p>This project and the many others that it inspired live on until <code>1.9</code> when CRuby switched over to the <code>YARV</code> bytecode interpreter. Because a lot of internals had to change to support that switch, most of the projects from around this time no longer functioned on the newer Ruby versions.</p>
+
+<h4 id="links">Links</h4>
+
+<ul>
+  <li><a href="projects/nodeDump/README.txt">README</a></li>
+</ul>
+
   </TimelineEntryTooltip>
 </TimelineEntry>
 <TimelineEntry date={new Date(Date.UTC(2001, 0, 10))}>
   <RubyMarker />
   <TimelineEntryTooltip>
-    <h2><a href="https://sourceforge.net/projects/rubyvm/files/ruth/">Robert Feldt releases v0.0.1 of Ruth</a> <small>2001-01-10</small></h2>
+    <h2>ruth 0.0.1 <small>2001-01-10</small></h2>
+
+<p>A little while after <code>nodeDump</code> is released, Robert Feldt creates <a href="https://sourceforge.net/projects/rubyvm/files/ruth/">ruth</a> (short for Ruby under the hood). It is effectively a generalized form of the <code>nodeDump</code> utility, and provides two Ruby-space methods, <code>Ruby::Interpreter.parse</code> and <code>Ruby::Interpreter.method_body</code>. These return something that is akin to s-expressions that can then be manipulated. As with <code>nodeDump</code>, it’s a C extension that parses <code>node.h</code> to generate all of the necessary metadata.</p>
+
+<h4 id="links">Links</h4>
 
 <ul>
-  <li>Extends Ruby 1.6 internals to support inspecting Ruby ASTs</li>
+  <li><a href="projects/ruth/readme.txt">readme</a></li>
 </ul>
 
   </TimelineEntryTooltip>
@@ -568,27 +669,29 @@ there are now explicit multibyte character identifiers - this is more work towar
 <TimelineEntry date={new Date(Date.UTC(2001, 9, 20))}>
   <RubyMarker />
   <TimelineEntryTooltip>
-    <h2><a href="https://i.loveruby.net/archive/ripper/">Minero Aoki releases v0.0.1 of ripper</a> <small>2001-10-20</small></h2>
+    <h2>ripper 0.0.1 <small>2001-10-20</small></h2>
+
+<p>Following on the heels of the release of Ruby <code>1.7</code>, Minero Aoki releases <a href="https://i.loveruby.net/archive/ripper/">ripper</a>, an event-driver Ruby parser. This is, to date, the most complete alternative Ruby parser, and boasts the ability to provide an entire AST or just a small subset. It functions by taking the <code>parse.y</code> from Ruby and modifying the actions. (This is the approach that almost every alternative implementation to CRuby ends up taking, as it’s extremely difficult to replicate the exact parsing behavior without a copy of the grammar file.)</p>
+
+<p>Ripper is one of the few projects of this era to survive the <code>1.8</code> to <code>1.9</code> migration, likely because Aoki was a core contributor and made sure it additionally worked on the <code>YARV</code> branch. Eventually this project would become the way that many other projects retreived AST information, though it was always marked as “experimental”. Even today the README for ripper says <code>Ripper is still early-alpha version.</code>.</p>
+
+<h4 id="links">Links</h4>
+
+<ul>
+  <li><a href="projects/ripper/readme.txt">readme</a></li>
+  <li><a href="projects/ripper/sample/comment.rb.txt">sample/comment.rb</a></li>
+</ul>
+
   </TimelineEntryTooltip>
 </TimelineEntry>
 <TimelineEntry date={new Date(Date.UTC(2002, 9, 9))}>
   <RubyMarker />
   <TimelineEntryTooltip>
-    <h2><a href="http://artengine.ca/matju/MetaRuby/">Mathieu Bouchard releases v0.7.0 of MetaRuby</a> <small>2002-10-09</small></h2>
+    <h2>MetaRuby 0.7.0 <small>2002-10-09</small></h2>
 
 <ul>
+  <li>Mathieu Bouchard http://artengine.ca/matju/MetaRuby/</li>
   <li>Includes <code>RubySchema.rb</code>, a schema for validating Ruby ASTs</li>
-</ul>
-
-  </TimelineEntryTooltip>
-</TimelineEntry>
-<TimelineEntry date={new Date(Date.UTC(2003, 0, 14))}>
-  <RubyMarker />
-  <TimelineEntryTooltip>
-    <h2><a href="http://bruby.osdn.jp/">Yuya Kato releases v0.0.1 of bruby</a> <small>2003-01-14</small></h2>
-
-<ul>
-  <li>Extends Ruby 1.6 internals to support dumping and loading a Ruby AST to a binary format</li>
 </ul>
 
   </TimelineEntryTooltip>
@@ -598,15 +701,26 @@ there are now explicit multibyte character identifiers - this is more work towar
   <TimelineEntryTooltip>
     <h2>Ruby 1.8.0 <small>2003-08-04</small></h2>
 
-<p>A lot happens between <code>1.6</code> and <code>1.8</code>.</p>
+<p>A lot happens between <code>1.6</code> and <code>1.8</code>. It’s been 3 years since the <code>1.6</code> release, and Ruby has started to pick up in popularity. The popular “pickaxe” book <code>Programming Ruby</code> (Andy Hunt, Chad Fowler, and Dave Thomas) was released in 2001, which helped spread Ruby even further outside of Japan. Later that year in October, the first international Ruby conference was held in Tampa, Florida. From there, Ruby Central was founded by Chad Fowler and David Black. All of this momentum helped push a lot of companies to start to try out Ruby for the first time, including 37Signals.</p>
+
+<p>Syntactically, there are a couple of notable changes, including:</p>
 
 <ul>
-  <li><em><code>%W</code> word lists with interpolation</em></li>
-  <li><em>dynamic symbols</em></li>
-  <li><em><code>break</code> and <code>next</code> take values</em></li>
-  <li><em>nested class definition</em></li>
-  <li><em>nested constant assignment</em></li>
+  <li><em><code>%W</code> word lists with interpolation</em><br />
+much like <code>%q</code> and <code>%Q</code>, <code>%W</code> is created as the word-list version that supports interpolation</li>
+  <li><em>dynamic symbols</em><br />
+symbols can now be created with interpolation</li>
+  <li><em><code>break</code> and <code>next</code> take values</em><br />
+this becomes useful for methods like <code>detect</code>/<code>find</code> to controls the output of the overall loop</li>
+  <li><em>nested constant assignment</em><br />
+you can now assign the constants multiple levels deep using the <code>::</code> operator</li>
 </ul>
+
+<p><code>%w</code> also gains the ability to escape spaces within the bounds, which was previously on the todo list. <code>rescue</code> can additionally be added to class and module bodies, where previously it was only on method definitions.</p>
+
+<p>The todo list includes a couple of interesting new additions. There’s mention of in-block local variables and the scoping they acquire. This would be addressed in <code>1.9</code>. There’s also mention of attempting to discourage folks from calling methods without parentheses. To my knowledge no linter currently exists for Ruby, but this would probably be the first rule if one did.</p>
+
+<p>Finally, there’s the first explicit mention in the todo file of a parser API. Other tools have already started to crop up outside of core Ruby (like <code>ripper</code>) that give direct access to the <code>NODE</code> syntax tree structs, and with the increase in popularity the demand for these kinds of tools has only grown. This is the last minor version that did not ship with a first-class parser API, as <code>ripper</code> would be merged in <code>1.9</code>.</p>
 
 <h4 id="grammar">Grammar</h4>
 
@@ -615,14 +729,139 @@ there are now explicit multibyte character identifiers - this is more work towar
   <li><a href="diagrams/1.8.0.xhtml">Diagram</a></li>
 </ul>
 
+<h4 id="changelog">ChangeLog</h4>
+
+<p>Thu Feb 20 10:11:30 2003  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
+
+<pre><code>{`* parse.y (clhs): allow "Foo::Bar = x".
+`}</code></pre>
+
+<p>Wed Feb  5 17:11:02 2003  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
+
+<pre><code>{`* parse.y (yylex): no .&lt;digit&gt; float literal anymore.
+`}</code></pre>
+
+<p>Mon Nov  4 16:49:14 2002  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
+
+<pre><code>{`* parse.y (primary): allow 'when'-less case statement; persuaded
+  by Sean Chittenden.
+`}</code></pre>
+
+<p>Fri Oct 18 23:11:21 2002  Nobuyoshi Nakada  <a href="mailto:nobu.nokada@softhome.net">nobu.nokada@softhome.net</a></p>
+
+<pre><code>{`* parse.y (value_expr0): allow return/break/next/redo/retry in rhs
+  of logical operator.  [ruby-dev:18534]
+`}</code></pre>
+
+<p>Fri Oct 11 15:58:06 2002  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
+
+<pre><code>{`* parse.y (arg): rescue modifier is now an operator with
+  precedence right below assignments. i.e. "a = b rescue c" now
+  parsed as "a = (b rescue c)", not as "(a = b) rescue c". [new]
+  [experimental]
+`}</code></pre>
+
+<p>Fri Jul 19 10:52:32 2002  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
+
+<pre><code>{`* parse.y (yylex): new decimal notation '0d4567'.
+`}</code></pre>
+
+<p>Sat Jun 15 22:56:37 2002  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
+
+<pre><code>{`* parse.y (yylex): obsolete '?&lt;whitespace&gt;'; use '?\\s', '?\\n',
+  etc, instead.
+`}</code></pre>
+
+<p>Tue May 28 14:07:00 2002  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
+
+<pre><code>{`* parse.y (arg): no more ugly hack for "**", so that "-2**2" to be
+  parsed as "(-2)**2", whereas "- 2**2" or "-(2)**2" to be parsed
+  as "-(2**2)".
+
+* parse.y (yylex): '-2' to be literal fixnum. [new]
+`}</code></pre>
+
+<p>Tue Mar 26 01:56:33 2002  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
+
+<pre><code>{`* parse.y (primary): while/until statement modifiers to "begin"
+  statement now work as "do .. while" even when begin statement
+  has "rescue" or "ensure" [new].
+
+* parse.y (bodystmt): rescue/ensure is allowed at every bodies,
+  i.e. method bodies, begin bodies, class bodies[new], and module
+  bodies[new].
+`}</code></pre>
+
+<p>Wed Aug 29 02:18:53 2001  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
+
+<pre><code>{`* parse.y (yylex): ternary ? can be followed by newline.
+`}</code></pre>
+
+<p>Tue May 22 02:37:45 2001  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
+
+<pre><code>{`* parse.y (expr): "break" and "next" to take optional expression,
+  which is used as a value for termination. [new, experimental]
+`}</code></pre>
+
+<p>Tue Mar  6 10:50:29 2001  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
+
+<pre><code>{`* parse.y (primary): rescue and ensure clauses should be allowed
+  to appear in singleton method body.
+`}</code></pre>
+
+<p>Wed Feb  7 16:05:22 2001  Nobuyoshi Nakada  <a href="mailto:nobu.nakada@nifty.ne.jp">nobu.nakada@nifty.ne.jp</a></p>
+
+<pre><code>{`* parse.y (parse_quotedwords): %w should allow parenthesis escape.
+`}</code></pre>
+
+<p>Sat Dec  2 22:32:43 2000  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
+
+<pre><code>{`* parse.y (stmt): multiple right hand side for single assignment
+  (e.g. a = 1,2) is allowed.
+`}</code></pre>
+
+<h4 id="todo">ToDo</h4>
+
+<ul>
+  <li>class Foo::Bar&lt;Baz .. end, module Boo::Bar .. end</li>
+  <li>operator !! for rescue. ???</li>
+  <li>objectify characters</li>
+  <li>../… outside condition invokes operator method too.</li>
+  <li>… inside condition turns off just before right condition.???</li>
+  <li>package or access control for global variables??</li>
+  <li>named arguments like foo(nation:=”german”) or foo(nation: “german”).</li>
+  <li>method to retrieve argument information (needs new C API)</li>
+  <li>multiple return values, yield values.  maybe incompatible ???</li>
+  <li>cascading method invocation ???</li>
+  <li>def Class#method .. end ??</li>
+  <li>def Foo::Bar::baz() .. end ??</li>
+  <li>Fixnum 0 as false ????</li>
+  <li>non confusing in-block local variable (is it possible?)
+    <ul>
+      <li>remove scope by block</li>
+      <li>variables appears within block may have independent values.</li>
+    </ul>
+  </li>
+  <li>method combination, e.g. before, after, around, etc.</li>
+  <li>“in” modifier, to annotate, or to encourage assertion.</li>
+  <li>private instance variable (as in Python?) @_foo in class Foo =&gt; @_Foo_foo</li>
+  <li>warn/error “bare word” method, like “foo”,  you should type “foo()”</li>
+  <li>:symbol =&gt; value hash in the form of &#123;symbol: value, …&#125; ??</li>
+  <li>objectify interpreters ???</li>
+  <li>syntax tree -&gt; bytecode ???</li>
+  <li>Parser API</li>
+  <li>trap every method invocation, which can be enabled by e.g. trap_call :method.</li>
+</ul>
+
   </TimelineEntryTooltip>
 </TimelineEntry>
 <TimelineEntry date={new Date(Date.UTC(2004, 10, 10))}>
   <RubyMarker />
   <TimelineEntryTooltip>
-    <h2><a href="https://github.com/seattlerb/parsetree">Ryan Davis releases v1.0.0 of ParseTree</a> <small>2004-11-10</small></h2>
+    <h2>ParseTree 1.0.0 <small>2004-11-10</small></h2>
 
 <ul>
+  <li>Ryan Davis https://github.com/seattlerb/parsetree</li>
   <li>Extends Ruby 1.8 internals to support returning an AST by converting to Ruby objects</li>
 </ul>
 
@@ -631,9 +870,10 @@ there are now explicit multibyte character identifiers - this is more work towar
 <TimelineEntry date={new Date(Date.UTC(2006, 5, 5))}>
   <RubyMarker />
   <TimelineEntryTooltip>
-    <h2><a href="https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/">Dominik Bathon releases v0.1.0 of RubyNode</a> <small>2006-06-05</small></h2>
+    <h2>RubyNode 0.1.0 <small>2006-06-05</small></h2>
 
 <ul>
+  <li>Dominik Bathon https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/</li>
   <li>Extends Ruby 1.8 internals to support returning an AST by wrapping the NODE struct</li>
 </ul>
 
@@ -642,9 +882,10 @@ there are now explicit multibyte character identifiers - this is more work towar
 <TimelineEntry date={new Date(Date.UTC(2007, 10, 14))}>
   <RubyMarker />
   <TimelineEntryTooltip>
-    <h2><a href="https://github.com/seattlerb/ruby_parser">Ryan Davis releases v1.0.0 of ruby_parser</a> <small>2007-11-14</small></h2>
+    <h2>ruby_parser 1.0.0 <small>2007-11-14</small></h2>
 
 <ul>
+  <li>Ryan Davis https://github.com/seattlerb/ruby_parser</li>
   <li>Uses a <code>racc</code>-based compiler to generate s-expressions</li>
 </ul>
 
@@ -657,9 +898,9 @@ there are now explicit multibyte character identifiers - this is more work towar
 
 <ul>
   <li><code>YARV</code></li>
-  <li>Block local variables</li>
-  <li>Lambda literals</li>
-  <li>Symbol hash keys</li>
+  <li>block local variables</li>
+  <li>lambda literals</li>
+  <li>symbol hash keys</li>
   <li><a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?view=revision&amp;revision=6891"><code>ripper</code> merged</a></li>
 </ul>
 
@@ -696,9 +937,10 @@ there are now explicit multibyte character identifiers - this is more work towar
 <TimelineEntry date={new Date(Date.UTC(2009, 6, 25))}>
   <RubyMarker />
   <TimelineEntryTooltip>
-    <h2><a href="http://rubystuff.org/nodewrap/">Paul Brannan releases v0.5.0 of nodewrap</a> <small>2009-07-25</small></h2>
+    <h2>nodewrap 0.5.0 <small>2009-07-25</small></h2>
 
 <ul>
+  <li>Paul Brannan http://rubystuff.org/nodewrap/</li>
   <li>Allows dumping/loading the Ruby nodes and instruction sequences to a binary format</li>
 </ul>
 
@@ -707,9 +949,10 @@ there are now explicit multibyte character identifiers - this is more work towar
 <TimelineEntry date={new Date(Date.UTC(2010, 7, 27))}>
   <RubyMarker />
   <TimelineEntryTooltip>
-    <h2><a href="https://github.com/michaeledgar/laser">Michael Edgar releases v0.0.1 of laser</a> <small>2010-08-27</small></h2>
+    <h2>laser 0.0.1 <small>2010-08-27</small></h2>
 
 <ul>
+  <li>Michael Edgar https://github.com/michaeledgar/laser</li>
   <li>Originally parsed regular expressions then <code>Ripper</code> to parse Ruby</li>
   <li>Features a type system, semantic analysis, documentation generation, and a plugin system</li>
 </ul>
@@ -770,9 +1013,10 @@ there are now explicit multibyte character identifiers - this is more work towar
 <TimelineEntry date={new Date(Date.UTC(2013, 3, 15))}>
   <RubyMarker />
   <TimelineEntryTooltip>
-    <h2><a href="https://github.com/whitequark/parser">Peter Zotov releases v0.9.0 of parser</a> <small>2013-04-15</small></h2>
+    <h2>parser 0.9.0 <small>2013-04-15</small></h2>
 
 <ul>
+  <li>Peter Zotov https://github.com/whitequark/parser</li>
   <li>Derives a new parser from <code>parse.y</code> in Ruby and a lexer test suite from <code>ruby_parser</code></li>
 </ul>
 

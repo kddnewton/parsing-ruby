@@ -14,9 +14,17 @@ push_entry = -> (entry) {
       ""
     else
       html = Kramdown::Document.new(entry[:body].gsub(/<!--- .+? --->\n/, "")).to_html
+
+      html.gsub!("{", "&#123;")
+      html.gsub!("}", "&#125;")
+
+      html.gsub!("\\s", "\\\\\\s")
+      html.gsub!("\\n", "\\\\\\n")
+
       html.gsub!("`", "\\\\`")
       html.gsub!("<pre><code>", "<pre><code>{`")
       html.gsub!("</code></pre>", "`}</code></pre>")
+
       "\n#{html.chomp}"
     end
 
@@ -39,7 +47,7 @@ File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
       year: match[1],
       month: match[2].to_i(10),
       day: match[3].to_i(10),
-      title: Kramdown::Document.new(match[4]).to_html.chomp.then { |title| title.include?("<p>") ? title.gsub!(/<\/?p>/, "") : title },
+      title: match[4],
       body: +""
     }
   elsif entry

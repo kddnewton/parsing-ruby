@@ -1,0 +1,28 @@
+#
+# count how many "if" stmts are used in script
+# (does not include if modifier)
+#
+
+require './ripper'
+
+class R < Ripper
+  def initialize
+    @i = 0
+  end
+
+  def print_result
+    puts @i
+  end
+
+  def method_missing( mid, *args )
+    args[0]
+  end
+
+  def on__if( cond, ontrue, onfalse )
+    @i += 1
+  end
+end
+
+r = R.new
+r.parse ARGF.read
+r.print_result

@@ -437,34 +437,216 @@ Fri Feb  5 22:11:08 1999  EGUCHI Osamu  <eguchi@shizuokanet.ne.jp>
 
 ### 2000-09-19 - Ruby 1.6.0
 
-A little over a year has passed since `1.4.0`, which means it's time for another stable release. Only one thing really changed with the syntax between the two versions, which is that `rescue` can now be used in the modifier form like the conditionals and loops.
+A little over a year has passed since `1.4.0`, which means it's time for another stable release. Only one big thing really changed with the syntax between the two versions, which is that `rescue` can now be used in the modifier form like the conditionals and loops. We also get compile-time string concatenation (something that was listed in the todo from the previous version).
+
+Interestingly there are a couple of references to the flip-flop operator in the todo file. This has got to be one of the most controversial Ruby features. Later in `2.6` it will be deprecated, and then un-deprecated in `2.7`. Either way it's definitely one of the more interesting syntactical constructs.
+
+Also for the first time, the idea of `rescue` having a special `!!` operator is mentioned. This lives on in the todo file for quite a while. I'm not aware of if it was ever seriously considered.
+
+There's also a mention of `0` being evaluated as falsy. Fortunately this one did not make it in, as that would have somewhat drastically changed the semantics of Ruby as we know it.
 
 #### Grammar
 
 - [EBNF](docs/ebnf/1.6.0.txt)
 - [Diagram](docs/diagrams/1.6.0.xhtml)
 
+#### ChangeLog
+
+Mon Sep 11 14:24:47 2000  Yukihiro Matsumoto  <matz@ruby-lang.org>
+
+	* parse.y (command_call): kYIELD moved to this rule to allow
+	  'a = yield b'. (ruby-bugs-ja:#PR15) 
+
+Fri Sep  1 10:36:29 2000  Yukihiro Matsumoto  <matz@ruby-lang.org>
+
+	* parse.y (aref_args,opt_call_args): add block_call to allow a
+	  method without parentheses and with block as a last argument.
+
+Tue Jul 11 16:54:17 2000  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (yylex): `@<digit>' is no longer a valid instance
+	  variable name.
+
+Sat May  6 23:35:47 2000  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (lhs): should allow `obj.Attr = 5' type expression.
+
+Mon Jan 24 02:56:44 2000  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (yylex): -2.abs should be `(-2).abs' to accomplish the
+	  principle of less surprise.  `+2' too.
+
+Mon Nov  8 14:28:18 1999  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (stmt): rescue modifier added to the syntax.
+
+Thu Oct 14 02:00:10 1999  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (string): compile time string concatenation.
+
+#### ToDo
+
+- def foo; .. rescue .. end
+- rescue modifier; a rescue b => begin a rescue; b end
+- %w(a\ b\ c abc) => ["a b c", "abc"]
+- class variable (prefix @@)
+- rescue RuntimeError => err
+* operator !! for rescue. ???
+* objectify characters
+* ../... outside condition invokes operator method too.
+* ... inside condition turns off just before right condition.???
+* package or access control for global variables??
+* named arguments like foo(nation:="german") or foo(nation: "german").
+* multiple return values, yield values.  maybe incompatible ???
+* cascading method invocation ???
+* def Class#method .. end ??
+* class Foo::Bar<Baz .. end, module Boo::Bar .. end
+* def Foo::Bar::baz() .. end ??
+* Fixnum 0 as false ????
+* non confusing in-block local variable (is it possible?)
+  + remove scope by block
+  + variables appears within block may have independent values.
+- alias $defout $>
+* objectify interpreters ???
+* syntax tree -> bytecode ???
+
 ### 2003-08-04 - Ruby 1.8.0
 
-A lot happens between `1.6` and `1.8`. 
+A lot happens between `1.6` and `1.8`. It's been 3 years since the `1.6` release, and Ruby has started to pick up in popularity. The popular "pickaxe" book `Programming Ruby` (Andy Hunt, Chad Fowler, and Dave Thomas) was released in 2001, which helped spread Ruby even further outside of Japan. Later that year in October, the first international Ruby conference was held in Tampa, Florida. From there, Ruby Central was founded by Chad Fowler and David Black. All of this momentum helped push a lot of companies to start to try out Ruby for the first time, including 37Signals.
 
-- *`%W` word lists with interpolation*
-- *dynamic symbols*
-- *`break` and `next` take values*
-- *nested class definition*
-- *nested constant assignment*
+Syntactically, there are a couple of notable changes, including:
+
+- *`%W` word lists with interpolation*  
+much like `%q` and `%Q`, `%W` is created as the word-list version that supports interpolation
+- *dynamic symbols*  
+symbols can now be created with interpolation
+- *`break` and `next` take values*  
+this becomes useful for methods like `detect`/`find` to controls the output of the overall loop
+- *nested constant assignment*  
+you can now assign the constants multiple levels deep using the `::` operator
+
+`%w` also gains the ability to escape spaces within the bounds, which was previously on the todo list. `rescue` can additionally be added to class and module bodies, where previously it was only on method definitions.
+
+The todo list includes a couple of interesting new additions. There's mention of in-block local variables and the scoping they acquire. This would be addressed in `1.9`. There's also mention of attempting to discourage folks from calling methods without parentheses. To my knowledge no linter currently exists for Ruby, but this would probably be the first rule if one did.
+
+Finally, there's the first explicit mention in the todo file of a parser API. Other tools have already started to crop up outside of core Ruby (like `ripper`) that give direct access to the `NODE` syntax tree structs, and with the increase in popularity the demand for these kinds of tools has only grown. This is the last minor version that did not ship with a first-class parser API, as `ripper` would be merged in `1.9`.
 
 #### Grammar
 
 - [EBNF](docs/ebnf/1.8.0.txt)
 - [Diagram](docs/diagrams/1.8.0.xhtml)
 
+#### ChangeLog
+
+Thu Feb 20 10:11:30 2003  Yukihiro Matsumoto  <matz@ruby-lang.org>
+
+	* parse.y (clhs): allow "Foo::Bar = x".
+
+Wed Feb  5 17:11:02 2003  Yukihiro Matsumoto  <matz@ruby-lang.org>
+
+	* parse.y (yylex): no .<digit> float literal anymore.
+
+Mon Nov  4 16:49:14 2002  Yukihiro Matsumoto  <matz@ruby-lang.org>
+
+	* parse.y (primary): allow 'when'-less case statement; persuaded
+	  by Sean Chittenden.
+
+Fri Oct 18 23:11:21 2002  Nobuyoshi Nakada  <nobu.nokada@softhome.net>
+
+	* parse.y (value_expr0): allow return/break/next/redo/retry in rhs
+	  of logical operator.  [ruby-dev:18534]
+
+Fri Oct 11 15:58:06 2002  Yukihiro Matsumoto  <matz@ruby-lang.org>
+
+	* parse.y (arg): rescue modifier is now an operator with
+	  precedence right below assignments. i.e. "a = b rescue c" now
+	  parsed as "a = (b rescue c)", not as "(a = b) rescue c". [new]
+	  [experimental]
+
+Fri Jul 19 10:52:32 2002  Yukihiro Matsumoto  <matz@ruby-lang.org>
+
+	* parse.y (yylex): new decimal notation '0d4567'.
+
+Sat Jun 15 22:56:37 2002  Yukihiro Matsumoto  <matz@ruby-lang.org>
+
+	* parse.y (yylex): obsolete '?<whitespace>'; use '?\s', '?\n',
+	  etc, instead.
+
+Tue May 28 14:07:00 2002  Yukihiro Matsumoto  <matz@ruby-lang.org>
+
+	* parse.y (arg): no more ugly hack for "**", so that "-2**2" to be
+	  parsed as "(-2)**2", whereas "- 2**2" or "-(2)**2" to be parsed
+	  as "-(2**2)".
+
+	* parse.y (yylex): '-2' to be literal fixnum. [new]
+
+Tue Mar 26 01:56:33 2002  Yukihiro Matsumoto  <matz@ruby-lang.org>
+
+	* parse.y (primary): while/until statement modifiers to "begin"
+	  statement now work as "do .. while" even when begin statement
+	  has "rescue" or "ensure" [new].
+
+	* parse.y (bodystmt): rescue/ensure is allowed at every bodies,
+	  i.e. method bodies, begin bodies, class bodies[new], and module
+	  bodies[new].
+
+Wed Aug 29 02:18:53 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
+
+	* parse.y (yylex): ternary ? can be followed by newline.
+
+Tue May 22 02:37:45 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
+
+	* parse.y (expr): "break" and "next" to take optional expression,
+	  which is used as a value for termination. [new, experimental]
+
+Tue Mar  6 10:50:29 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
+
+	* parse.y (primary): rescue and ensure clauses should be allowed
+	  to appear in singleton method body.
+
+Wed Feb  7 16:05:22 2001  Nobuyoshi Nakada  <nobu.nakada@nifty.ne.jp>
+
+	* parse.y (parse_quotedwords): %w should allow parenthesis escape.
+
+Sat Dec  2 22:32:43 2000  Yukihiro Matsumoto  <matz@ruby-lang.org>
+
+	* parse.y (stmt): multiple right hand side for single assignment
+	  (e.g. a = 1,2) is allowed.
+
+#### ToDo
+
+- class Foo::Bar<Baz .. end, module Boo::Bar .. end
+* operator !! for rescue. ???
+* objectify characters
+* ../... outside condition invokes operator method too.
+* ... inside condition turns off just before right condition.???
+* package or access control for global variables??
+* named arguments like foo(nation:="german") or foo(nation: "german").
+* method to retrieve argument information (needs new C API)
+* multiple return values, yield values.  maybe incompatible ???
+* cascading method invocation ???
+* def Class#method .. end ??
+* def Foo::Bar::baz() .. end ??
+* Fixnum 0 as false ????
+* non confusing in-block local variable (is it possible?)
+  + remove scope by block
+  + variables appears within block may have independent values.
+* method combination, e.g. before, after, around, etc.
+* "in" modifier, to annotate, or to encourage assertion.
+* private instance variable (as in Python?) @_foo in class Foo => @_Foo_foo
+* warn/error "bare word" method, like "foo",  you should type "foo()"
+* :symbol => value hash in the form of {symbol: value, ...} ??
+* objectify interpreters ???
+* syntax tree -> bytecode ???
+* Parser API
+* trap every method invocation, which can be enabled by e.g. trap_call :method.
+
 ### 2007-12-25 - Ruby 1.9.0
 
 - `YARV`
-- Block local variables
-- Lambda literals
-- Symbol hash keys
+- block local variables
+- lambda literals
+- symbol hash keys
 - [`ripper` merged](https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?view=revision&revision=6891)
 
 #### Grammar
@@ -603,43 +785,71 @@ A lot happens between `1.6` and `1.8`.
 
 ## Projects
 
-### 2001-01-10 - [Robert Feldt releases v0.0.1 of Ruth](https://sourceforge.net/projects/rubyvm/files/ruth/)
+### 2000-10-01 - nodeDump 0.1.0
 
-- Extends Ruby 1.6 internals to support inspecting Ruby ASTs
+Following the release of Ruby `1.6`, Dave Thomas created the [nodeDump](http://web.archive.org/web/20010302133702/http://www.pragmaticprogrammer.com:80/ruby/downloads/nodeDump.html) project. It walked the AST that Ruby generated after parsing and dumped out human-readable documentation about what Ruby would be evaluating. This ended up inspiring a bunch of other projects, and to my knowledge is the first real attempt at accessing and manipulating the AST outside of the core Ruby developers.
 
-### 2001-10-20 - [Minero Aoki releases v0.0.1 of ripper](https://i.loveruby.net/archive/ripper/)
+When this is released there is also mention of the `ii` project by Guy Decoux, but for whatever reason that appears to be lost to internet history (it was hosted on an ftp server that is no longer live).
 
-### 2002-10-09 - [Mathieu Bouchard releases v0.7.0 of MetaRuby](http://artengine.ca/matju/MetaRuby/)
+This project and the many others that it inspired live on until `1.9` when CRuby switched over to the `YARV` bytecode interpreter. Because a lot of internals had to change to support that switch, most of the projects from around this time no longer functioned on the newer Ruby versions.
 
+#### Links
+
+- [README](docs/projects/nodeDump/README.txt)
+
+### 2001-01-10 - ruth 0.0.1
+
+A little while after `nodeDump` is released, Robert Feldt creates [ruth](https://sourceforge.net/projects/rubyvm/files/ruth/) (short for Ruby under the hood). It is effectively a generalized form of the `nodeDump` utility, and provides two Ruby-space methods, `Ruby::Interpreter.parse` and `Ruby::Interpreter.method_body`. These return something that is akin to s-expressions that can then be manipulated. As with `nodeDump`, it's a C extension that parses `node.h` to generate all of the necessary metadata.
+
+#### Links
+
+- [readme](docs/projects/ruth/readme.txt)
+
+### 2001-10-20 - ripper 0.0.1
+
+Following on the heels of the release of Ruby `1.7`, Minero Aoki releases [ripper](https://i.loveruby.net/archive/ripper/), an event-driver Ruby parser. This is, to date, the most complete alternative Ruby parser, and boasts the ability to provide an entire AST or just a small subset. It functions by taking the `parse.y` from Ruby and modifying the actions. (This is the approach that almost every alternative implementation to CRuby ends up taking, as it's extremely difficult to replicate the exact parsing behavior without a copy of the grammar file.)
+
+Ripper is one of the few projects of this era to survive the `1.8` to `1.9` migration, likely because Aoki was a core contributor and made sure it additionally worked on the `YARV` branch. Eventually this project would become the way that many other projects retreived AST information, though it was always marked as "experimental". Even today the README for ripper says `Ripper is still early-alpha version.`.
+
+#### Links
+
+- [readme](docs/projects/ripper/readme.txt)
+- [sample/comment.rb](docs/projects/ripper/sample/comment.rb.txt)
+
+### 2002-10-09 - MetaRuby 0.7.0
+
+- Mathieu Bouchard http://artengine.ca/matju/MetaRuby/
 - Includes `RubySchema.rb`, a schema for validating Ruby ASTs
 
-### 2003-01-14 - [Yuya Kato releases v0.0.1 of bruby](http://bruby.osdn.jp/)
+### 2004-11-10 - ParseTree 1.0.0
 
-- Extends Ruby 1.6 internals to support dumping and loading a Ruby AST to a binary format
-
-### 2004-11-10 - [Ryan Davis releases v1.0.0 of ParseTree](https://github.com/seattlerb/parsetree)
-
+- Ryan Davis https://github.com/seattlerb/parsetree
 - Extends Ruby 1.8 internals to support returning an AST by converting to Ruby objects
 
-### 2006-06-05 - [Dominik Bathon releases v0.1.0 of RubyNode](https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/)
+### 2006-06-05 - RubyNode 0.1.0
 
+- Dominik Bathon https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/
 - Extends Ruby 1.8 internals to support returning an AST by wrapping the NODE struct
 
-### 2007-11-14 - [Ryan Davis releases v1.0.0 of ruby_parser](https://github.com/seattlerb/ruby_parser)
+### 2007-11-14 - ruby_parser 1.0.0
 
+- Ryan Davis https://github.com/seattlerb/ruby_parser
 - Uses a `racc`-based compiler to generate s-expressions
 
-### 2009-07-25 - [Paul Brannan releases v0.5.0 of nodewrap](http://rubystuff.org/nodewrap/)
+### 2009-07-25 - nodewrap 0.5.0
 
+- Paul Brannan http://rubystuff.org/nodewrap/
 - Allows dumping/loading the Ruby nodes and instruction sequences to a binary format
 
-### 2010-08-27 - [Michael Edgar releases v0.0.1 of laser](https://github.com/michaeledgar/laser)
+### 2010-08-27 - laser 0.0.1
 
+- Michael Edgar https://github.com/michaeledgar/laser
 - Originally parsed regular expressions then `Ripper` to parse Ruby
 - Features a type system, semantic analysis, documentation generation, and a plugin system
 
-### 2013-04-15 - [Peter Zotov releases v0.9.0 of parser](https://github.com/whitequark/parser)
+### 2013-04-15 - parser 0.9.0
 
+- Peter Zotov https://github.com/whitequark/parser
 - Derives a new parser from `parse.y` in Ruby and a lexer test suite from `ruby_parser`
 
 ## Standards
