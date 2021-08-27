@@ -1,7 +1,7 @@
 import React, { Dispatch, Reducer, useCallback, useContext, useMemo, useState, useReducer, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useId } from "@reach/auto-id";
-import { createDescendantContext, DescendantProvider, useDescendant, useDescendantsInit } from "@reach/descendants";
+import { createDescendantContext, Descendant, DescendantProvider, useDescendant, useDescendantsInit } from "@reach/descendants";
 
 import "./timeline.css";
 
@@ -41,6 +41,8 @@ const reducer: Reducer<State, Action> = (state, action) => {
 };
 
 const TimelineEntriesContext = createDescendantContext("TimelineEntriesContext");
+type TimelineEntriesEntry = Descendant & { date?: Date };
+
 const TimelineStateContext = React.createContext<State>(initialState);
 const TimelineDispatchContext = React.createContext<Dispatch<Action>>(() => {});
 
@@ -85,6 +87,28 @@ function useTimelineTouchControls(dispatch: Dispatch<Action>, length: number) {
   }, [dispatch, length]);
 }
 
+function serializeDate(date: Date) {
+  return `${date.getUTCFullYear()}-${date.getUTCMonth()+1}-${date.getUTCDate()}`;
+}
+
+function useActiveEntryHashHistory(dispatch: Dispatch<Action>, activeEntryIndex: number, entries: TimelineEntriesEntry[]) {
+  const previousActiveEntry = useRef(activeEntryIndex);
+
+  useEffect((): void => {
+    if (previousActiveEntry.current !== activeEntryIndex) {
+      const entry = entries[activeEntryIndex];
+      location.hash = entry?.date ? `#${serializeDate(entry.date)}` : "#";
+    } else if (location.hash !== "#") {
+      const serialized = location.hash.slice(1);
+      const index = entries.findIndex((entry) => entry.date && serializeDate(entry.date) === serialized);
+
+      if (index !== -1) {
+        dispatch({ type: "select", index });
+      }
+    }
+  }, [dispatch, activeEntryIndex, entries, previousActiveEntry])
+}
+
 export const Timeline: React.FC<{ id?: string, startDate?: Date, endDate?: Date }> = ({
   children,
   id,
@@ -92,7 +116,7 @@ export const Timeline: React.FC<{ id?: string, startDate?: Date, endDate?: Date 
   endDate = initialState.endDate
 }) => {
   const tooltipRef = useRef(null);
-  const [entries, setEntries] = useDescendantsInit();
+  const [entries, setEntries] = useDescendantsInit<TimelineEntriesEntry>();
   const [state, dispatch] = useReducer<Reducer<State, Action>>(reducer, {
     ...initialState,
     tooltipRef,
@@ -103,6 +127,7 @@ export const Timeline: React.FC<{ id?: string, startDate?: Date, endDate?: Date 
 
   useTimelineKeyboardControls(dispatch, entries.length);
   useTimelineTouchControls(dispatch, entries.length);
+  useActiveEntryHashHistory(dispatch, state.activeEntryIndex, entries);
 
   return (
     <DescendantProvider context={TimelineEntriesContext} items={entries} set={setEntries}>
