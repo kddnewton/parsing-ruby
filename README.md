@@ -435,13 +435,58 @@ Fri Feb  5 22:11:08 1999  EGUCHI Osamu  <eguchi@shizuokanet.ne.jp>
 * syntax tree -> bytecode ???
 * format like perl's
 
+### 1999-12-07 - Ruby 1.5.0
+
+Quickly following the release of `1.4.2` is the release of `1.5.0`. Not a ton of time has passed so there aren't too many syntactical changes to mention. A couple of quick highlights though include `rescue` getting the additional modifier syntax like the conditionals and loops. We also get compile-time string concatenation (something that was listed in the todo from the previous version).
+
+For the first time, the idea of `rescue` having a special `!!` operator is mentioned. This lives on in the todo file for quite a while. I'm not aware of if it was ever seriously considered.
+
+#### Grammar
+
+- [EBNF](docs/ebnf/1.5.0.txt)
+- [Diagram](docs/diagrams/1.5.0.xhtml)
+
+#### ChangeLog
+
+Mon Nov  8 14:28:18 1999  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (stmt): rescue modifier added to the syntax.
+
+Thu Oct 14 02:00:10 1999  Yukihiro Matsumoto  <matz@netlab.co.jp>
+
+	* parse.y (string): compile time string concatenation.
+
+#### ToDo
+
+- def foo; .. rescue .. end
+- compile time string concatenation, "hello" "world" => "helloworld"
+- assignable constant, which now should be called shared variable.
+- class variable (prefix?) -- done by shared variable
+- rescue modifier; a rescue b => begin a rescue; b end
+* operator !! for  rescue.
+* objectify symbols
+* objectify characters
+* ../... outside condition invokes operator method too.
+* ... inside condition turns off just before right condition.???
+* %w(a\ b\ c abc) => ["a b c", "abc"]
+* package or access control for global variables??
+* named arguments like foo(nation:="german") or foo(nation: "german").
+* method to retrieve argument information (need new C API)
+* multiple return values, yield values.  maybe incompatible ???
+* cascading method invocation ???
+* def Class#method .. end ??
+* class Foo::Bar<Baz .. end, module Boo::Bar .. end
+* def Foo::Bar::baz() .. end ??
+- RUBYOPT environment variable
+- alias $defout $>
+* objectify interpreters
+* syntax tree -> bytecode ???
+
 ### 2000-09-19 - Ruby 1.6.0
 
-A little over a year has passed since `1.4.0`, which means it's time for another stable release. Only one big thing really changed with the syntax between the two versions, which is that `rescue` can now be used in the modifier form like the conditionals and loops. We also get compile-time string concatenation (something that was listed in the todo from the previous version).
+A little over a year has passed since `1.4.0`, which means it's time for another stable release. Only one big thing really changed with the syntax between the two versions, which is that `rescue` can now be used in the modifier form like the conditionals and loops. 
 
 Interestingly there are a couple of references to the flip-flop operator in the todo file. This has got to be one of the most controversial Ruby features. Later in `2.6` it will be deprecated, and then un-deprecated in `2.7`. Either way it's definitely one of the more interesting syntactical constructs.
-
-Also for the first time, the idea of `rescue` having a special `!!` operator is mentioned. This lives on in the todo file for quite a while. I'm not aware of if it was ever seriously considered.
 
 There's also a mention of `0` being evaluated as falsy. Fortunately this one did not make it in, as that would have somewhat drastically changed the semantics of Ruby as we know it.
 
@@ -475,14 +520,6 @@ Mon Jan 24 02:56:44 2000  Yukihiro Matsumoto  <matz@netlab.co.jp>
 
 	* parse.y (yylex): -2.abs should be `(-2).abs' to accomplish the
 	  principle of less surprise.  `+2' too.
-
-Mon Nov  8 14:28:18 1999  Yukihiro Matsumoto  <matz@netlab.co.jp>
-
-	* parse.y (stmt): rescue modifier added to the syntax.
-
-Thu Oct 14 02:00:10 1999  Yukihiro Matsumoto  <matz@netlab.co.jp>
-
-	* parse.y (string): compile time string concatenation.
 
 #### ToDo
 

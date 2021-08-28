@@ -1,0 +1,57 @@
+program ::= compstmt
+compstmt ::= stmts (| terms)
+stmts ::= none | stmt | stmts terms stmt | error stmt
+stmt ::= block_call | 'alias' fitem fitem | 'alias' tGVAR tGVAR | 'alias' tGVAR tBACK_REF | 'undef' undef_list | stmt 'if' expr | stmt 'unless' expr | stmt 'while' expr | stmt 'until' expr | stmt 'rescue' expr | 'BEGIN' '{' compstmt '}' | 'END' '{' compstmt '}' | lhs '=' (block_call | command_call) | expr
+expr ::= mlhs '=' (args | args ',' tSTAR arg | tSTAR arg) | 'return' call_args | 'yield' call_args | command_call | expr 'and' expr | expr 'or' expr | 'not' expr | '!' command_call | arg
+command_call ::= operation call_args | primary '.' operation2 call_args | primary '::' operation2 call_args | 'super' call_args
+mlhs ::= mlhs_basic | tLPAREN mlhs_entry ')'
+mlhs_entry ::= mlhs_basic | tLPAREN mlhs_entry ')'
+mlhs_basic ::= mlhs_head | mlhs_head tSTAR lhs | mlhs_head tSTAR | mlhs_head mlhs_tail | mlhs_head mlhs_tail ',' tSTAR lhs | mlhs_head mlhs_tail ',' tSTAR | tSTAR mlhs_node | tSTAR
+mlhs_item ::= mlhs_node | tLPAREN mlhs_entry ')'
+mlhs_head ::= mlhs_item ','
+mlhs_tail ::= mlhs_item | mlhs_tail ',' mlhs_item
+mlhs_node ::= variable | primary '[' opt_call_args ']' | primary '.' tIDENTIFIER | backref
+lhs ::= variable | primary '[' opt_call_args ']' | primary '.' tIDENTIFIER | backref
+fname ::= tIDENTIFIER | tCONSTANT | tFID | op | ('__LINE__' | '__FILE__' | 'BEGIN' | 'END' | 'alias' | 'and' | 'begin' | 'break' | 'case' | 'class' | 'def' | 'defined?' | 'do' | 'else' | 'elsif' | 'end' | 'ensure' | 'false' | 'for' | 'if' | 'in' | 'module' | 'next' | 'nil' | 'not' | 'or' | 'redo' | 'rescue' | 'retry' | 'return' | 'self' | 'super' | 'then' | 'true' | 'undef' | 'unless' | 'until' | 'when' | 'while' | 'yield')
+fitem ::= fname | symbol
+undef_list ::= fitem | undef_list ',' fitem
+op ::= '..' | '|' | '^' | '&' | '<=>' | '==' | '===' | '=~' | '>' | '>=' | '<' | '<=' | '<<' | '>>' | '+' | '-' | '*' | tSTAR | '/' | '%' | '**' | '~' | '+@' | '-@' | '[]' | '[]=' | '`'
+arg ::= lhs '=' arg | variable tOP_ASGN arg | primary '[' opt_call_args ']' tOP_ASGN arg | primary '.' tIDENTIFIER tOP_ASGN arg | primary '.' tCONSTANT tOP_ASGN arg | backref tOP_ASGN arg | arg '..' arg | arg '...' arg | arg '+' arg | arg '-' arg | arg '*' arg | arg '/' arg | arg '%' arg | arg '**' arg | '+@' arg | '-@' arg | arg '|' arg | arg '^' arg | arg '&' arg | arg '<=>' arg | arg '>' arg | arg '>=' arg | arg '<' arg | arg '<=' arg | arg '==' arg | arg '===' arg | arg '!=' arg | arg '=~' arg | arg '!~' arg | '!' arg | '~' arg | arg '<<' arg | arg '>>' arg | arg tANDOP arg | arg tOROP arg | 'defined?' opt_nl arg | arg '?' arg ':' arg | primary
+opt_call_args ::= none | call_args opt_nl
+call_args ::= command_call | args ',' | args opt_block_arg | args ',' tSTAR arg opt_block_arg | assocs ',' | assocs opt_block_arg | assocs ',' tSTAR arg opt_block_arg | args ',' assocs opt_block_arg | args ',' assocs ',' | args ',' assocs ',' tSTAR arg opt_block_arg | tSTAR arg opt_block_arg | block_arg
+block_arg ::= tAMPER arg
+opt_block_arg ::= ',' block_arg | none
+args ::= arg | args ',' arg
+primary ::= ((tINTEGER | tFLOAT) | symbol | tREGEXP) | primary '::' tCONSTANT | '::' tCONSTANT | string | tXSTRING | tDXSTRING | tDREGEXP | variable | backref | primary '[' opt_call_args ']' | tLBRACK (none | args trailer) ']' | tLBRACE (none | assocs trailer | args trailer) '}' | 'return' '(' call_args ')' | 'return' '(' ')' | 'return' | 'yield' '(' call_args ')' | 'yield' '(' ')' | 'yield' | 'defined?' opt_nl '(' expr ')' | tFID | operation brace_block | method_call | method_call brace_block | 'if' expr then compstmt if_tail 'end' | 'unless' expr then compstmt opt_else 'end' | 'while' expr do compstmt 'end' | 'until' expr do compstmt 'end' | 'case' compstmt case_body 'end' | 'for' block_var 'in' expr do compstmt 'end' | 'begin' compstmt rescue opt_else ensure 'end' | tLPAREN compstmt ')' | 'class' tCONSTANT (term | '<' expr term | error term) compstmt 'end' | 'class' '<<' expr term compstmt 'end' | 'module' tCONSTANT compstmt 'end' | 'def' fname f_arglist compstmt rescue opt_else ensure 'end' | 'def' (variable | '(' expr opt_nl ')') ('.' | '::') fname f_arglist compstmt 'end' | 'break' | 'next' | 'redo' | 'retry'
+then ::= term | 'then' | term 'then'
+do ::= term | 'do'
+if_tail ::= opt_else | 'elsif' expr then compstmt if_tail
+opt_else ::= none | 'else' compstmt
+block_var ::= lhs | mlhs
+opt_block_var ::= none | '|' '|' | tOROP | '|' block_var '|'
+brace_block ::= '{' opt_block_var compstmt '}' | kDO2 opt_block_var compstmt 'end'
+block_call ::= (tIDENTIFIER | tCONSTANT | tFID | method_call | command_call) ('do' opt_block_var compstmt 'end')
+method_call ::= operation '(' opt_call_args ')' | primary '.' operation2 '(' opt_call_args ')' | primary '.' operation2 | primary '::' operation2 '(' opt_call_args ')' | primary '::' (tIDENTIFIER | tFID | op) | 'super' '(' opt_call_args ')' | 'super'
+case_body ::= 'when' (args | args ',' tSTAR arg | tSTAR arg) then compstmt (opt_else | case_body)
+rescue ::= 'rescue' (args | none) do compstmt rescue | none
+ensure ::= none | 'ensure' compstmt
+string ::= tSTRING | tDSTRING | string tSTRING | string tDSTRING
+symbol ::= tSYMBEG (fname | tIVAR | tGVAR)
+variable ::= tIDENTIFIER | tIVAR | tGVAR | tCONSTANT | 'nil' | 'self' | 'true' | 'false' | '__FILE__' | '__LINE__'
+backref ::= tNTH_REF | tBACK_REF
+f_arglist ::= '(' f_args opt_nl ')' | f_args term
+f_args ::= f_arg ',' f_optarg ',' f_rest_arg opt_f_block_arg | f_arg ',' f_optarg opt_f_block_arg | f_arg ',' f_rest_arg opt_f_block_arg | f_arg opt_f_block_arg | f_optarg ',' f_rest_arg opt_f_block_arg | f_optarg opt_f_block_arg | f_rest_arg opt_f_block_arg | f_block_arg |
+f_arg ::= tIDENTIFIER | f_arg ',' tIDENTIFIER
+f_opt ::= tIDENTIFIER '=' arg
+f_optarg ::= f_opt | f_optarg ',' f_opt
+f_rest_arg ::= tSTAR tIDENTIFIER | tSTAR
+f_block_arg ::= tAMPER tIDENTIFIER
+opt_f_block_arg ::= ',' f_block_arg | none
+assocs ::= assoc | assocs ',' assoc
+assoc ::= arg tASSOC arg
+operation ::= tIDENTIFIER | tCONSTANT | tFID
+operation2 ::= tIDENTIFIER | tCONSTANT | tFID | op
+opt_nl ::= | '\n'
+trailer ::= | '\n' | ','
+term ::= ';' | '\n'
+terms ::= term | terms ';'
