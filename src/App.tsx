@@ -538,16 +538,72 @@ there are now explicit multibyte character identifiers - this is more work towar
 
   </TimelineEntryTooltip>
 </TimelineEntry>
+<TimelineEntry date={new Date(Date.UTC(1999, 11, 7))}>
+  <RubyMarker />
+  <TimelineEntryTooltip>
+    <h2>Ruby 1.5.0 <small>1999-12-07</small></h2>
+
+<p>Quickly following the release of <code>1.4.2</code> is the release of <code>1.5.0</code>. Not a ton of time has passed so there aren’t too many syntactical changes to mention. A couple of quick highlights though include <code>rescue</code> getting the additional modifier syntax like the conditionals and loops. We also get compile-time string concatenation (something that was listed in the todo from the previous version).</p>
+
+<p>For the first time, the idea of <code>rescue</code> having a special <code>!!</code> operator is mentioned. This lives on in the todo file for quite a while. I’m not aware of if it was ever seriously considered.</p>
+
+<h4 id="grammar">Grammar</h4>
+
+<ul>
+  <li><a href="ebnf/1.5.0.txt">EBNF</a></li>
+  <li><a href="diagrams/1.5.0.xhtml">Diagram</a></li>
+</ul>
+
+<h4 id="changelog">ChangeLog</h4>
+
+<p>Mon Nov  8 14:28:18 1999  Yukihiro Matsumoto  <a href="mailto:matz@netlab.co.jp">matz@netlab.co.jp</a></p>
+
+<pre><code>{`* parse.y (stmt): rescue modifier added to the syntax.
+`}</code></pre>
+
+<p>Thu Oct 14 02:00:10 1999  Yukihiro Matsumoto  <a href="mailto:matz@netlab.co.jp">matz@netlab.co.jp</a></p>
+
+<pre><code>{`* parse.y (string): compile time string concatenation.
+`}</code></pre>
+
+<h4 id="todo">ToDo</h4>
+
+<ul>
+  <li>def foo; .. rescue .. end</li>
+  <li>compile time string concatenation, “hello” “world” =&gt; “helloworld”</li>
+  <li>assignable constant, which now should be called shared variable.</li>
+  <li>class variable (prefix?) – done by shared variable</li>
+  <li>rescue modifier; a rescue b =&gt; begin a rescue; b end</li>
+  <li>operator !! for  rescue.</li>
+  <li>objectify symbols</li>
+  <li>objectify characters</li>
+  <li>../… outside condition invokes operator method too.</li>
+  <li>… inside condition turns off just before right condition.???</li>
+  <li>%w(a\ b\ c abc) =&gt; [“a b c”, “abc”]</li>
+  <li>package or access control for global variables??</li>
+  <li>named arguments like foo(nation:=”german”) or foo(nation: “german”).</li>
+  <li>method to retrieve argument information (need new C API)</li>
+  <li>multiple return values, yield values.  maybe incompatible ???</li>
+  <li>cascading method invocation ???</li>
+  <li>def Class#method .. end ??</li>
+  <li>class Foo::Bar&lt;Baz .. end, module Boo::Bar .. end</li>
+  <li>def Foo::Bar::baz() .. end ??</li>
+  <li>RUBYOPT environment variable</li>
+  <li>alias $defout $&gt;</li>
+  <li>objectify interpreters</li>
+  <li>syntax tree -&gt; bytecode ???</li>
+</ul>
+
+  </TimelineEntryTooltip>
+</TimelineEntry>
 <TimelineEntry date={new Date(Date.UTC(2000, 8, 19))}>
   <RubyMarker />
   <TimelineEntryTooltip>
     <h2>Ruby 1.6.0 <small>2000-09-19</small></h2>
 
-<p>A little over a year has passed since <code>1.4.0</code>, which means it’s time for another stable release. Only one big thing really changed with the syntax between the two versions, which is that <code>rescue</code> can now be used in the modifier form like the conditionals and loops. We also get compile-time string concatenation (something that was listed in the todo from the previous version).</p>
+<p>A little over a year has passed since <code>1.4.0</code>, which means it’s time for another stable release. Only one big thing really changed with the syntax between the two versions, which is that <code>rescue</code> can now be used in the modifier form like the conditionals and loops.</p>
 
 <p>Interestingly there are a couple of references to the flip-flop operator in the todo file. This has got to be one of the most controversial Ruby features. Later in <code>2.6</code> it will be deprecated, and then un-deprecated in <code>2.7</code>. Either way it’s definitely one of the more interesting syntactical constructs.</p>
-
-<p>Also for the first time, the idea of <code>rescue</code> having a special <code>!!</code> operator is mentioned. This lives on in the todo file for quite a while. I’m not aware of if it was ever seriously considered.</p>
 
 <p>There’s also a mention of <code>0</code> being evaluated as falsy. Fortunately this one did not make it in, as that would have somewhat drastically changed the semantics of Ruby as we know it.</p>
 
@@ -587,16 +643,6 @@ there are now explicit multibyte character identifiers - this is more work towar
 
 <pre><code>{`* parse.y (yylex): -2.abs should be \`(-2).abs' to accomplish the
   principle of less surprise.  \`+2' too.
-`}</code></pre>
-
-<p>Mon Nov  8 14:28:18 1999  Yukihiro Matsumoto  <a href="mailto:matz@netlab.co.jp">matz@netlab.co.jp</a></p>
-
-<pre><code>{`* parse.y (stmt): rescue modifier added to the syntax.
-`}</code></pre>
-
-<p>Thu Oct 14 02:00:10 1999  Yukihiro Matsumoto  <a href="mailto:matz@netlab.co.jp">matz@netlab.co.jp</a></p>
-
-<pre><code>{`* parse.y (string): compile time string concatenation.
 `}</code></pre>
 
 <h4 id="todo">ToDo</h4>
@@ -666,6 +712,83 @@ there are now explicit multibyte character identifiers - this is more work towar
 
   </TimelineEntryTooltip>
 </TimelineEntry>
+<TimelineEntry date={new Date(Date.UTC(2001, 5, 1))}>
+  <RubyMarker />
+  <TimelineEntryTooltip>
+    <h2>Ruby 1.7.1 <small>2001-06-01</small></h2>
+
+<p>About a year has passed since <code>1.6</code> was released, and Ruby is starting to pick up a little steam. It’s also starting to look more and more like the Ruby that folks use today. You probably won’t see any <code>1.7</code> code the wild any more, but it’s possible you might get a glimse of <code>1.8</code>. Syntactically, a couple of things have been merged:</p>
+
+<p>The <code>break</code> and <code>next</code> keywords now accept values. This becomes useful for methods like <code>detect</code>/<code>find</code> to controls the output of the overall loop. <code>%w</code> also gains the ability to escape spaces within the bounds, which was previously on the todo list. Finally, <code>rescue</code> can be added to singleton method bodies.</p>
+
+<h4 id="grammar">Grammar</h4>
+
+<ul>
+  <li><a href="ebnf/1.7.1.txt">EBNF</a></li>
+  <li><a href="diagrams/1.7.1.xhtml">Diagram</a></li>
+</ul>
+
+<h4 id="changelog">ChangeLog</h4>
+
+<p>Tue May 22 02:37:45 2001  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
+
+<pre><code>{`* parse.y (expr): "break" and "next" to take optional expression,
+  which is used as a value for termination. [new, experimental]
+`}</code></pre>
+
+<p>Tue Mar  6 10:50:29 2001  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
+
+<pre><code>{`* parse.y (primary): rescue and ensure clauses should be allowed
+  to appear in singleton method body.
+`}</code></pre>
+
+<p>Wed Feb  7 16:05:22 2001  Nobuyoshi Nakada  <a href="mailto:nobu.nakada@nifty.ne.jp">nobu.nakada@nifty.ne.jp</a></p>
+
+<pre><code>{`* parse.y (parse_quotedwords): %w should allow parenthesis escape.
+`}</code></pre>
+
+<p>Sat Dec  2 22:32:43 2000  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
+
+<pre><code>{`* parse.y (stmt): multiple right hand side for single assignment
+  (e.g. a = 1,2) is allowed.
+`}</code></pre>
+
+<h4 id="todo">ToDo</h4>
+
+<ul>
+  <li>operator !! for rescue. ???</li>
+  <li>objectify characters</li>
+  <li>../… outside condition invokes operator method too.</li>
+  <li>… inside condition turns off just before right condition.???</li>
+  <li>package or access control for global variables??</li>
+  <li>named arguments like foo(nation:=”german”) or foo(nation: “german”).</li>
+  <li>method to retrieve argument information (needs new C API)</li>
+  <li>multiple return values, yield values.  maybe incompatible ???</li>
+  <li>cascading method invocation ???</li>
+  <li>def Class#method .. end ??</li>
+  <li>class Foo::Bar&lt;Baz .. end, module Boo::Bar .. end</li>
+  <li>def Foo::Bar::baz() .. end ??</li>
+  <li>I18N (or M17N) script/string/regexp</li>
+  <li>Fixnum 0 as false ????</li>
+  <li>discourage use of symbol variables (e.g. $/, etc.) in manual</li>
+  <li>discourage use of Perlish features by giving warnings.</li>
+  <li>non confusing in-block local variable (is it possible?)
+    <ul>
+      <li>remove scope by block</li>
+      <li>variables appears within block may have independent values.</li>
+    </ul>
+  </li>
+  <li>decide whether begin with rescue or ensure make do..while loop.</li>
+  <li>a +1 to be a+1, not a(+1).</li>
+  <li>raise exception by \`\` error</li>
+  <li>jar like combined library package.</li>
+  <li>objectify interpreters ???</li>
+  <li>syntax tree -&gt; bytecode ???</li>
+  <li>Built-in Interactive Ruby.</li>
+</ul>
+
+  </TimelineEntryTooltip>
+</TimelineEntry>
 <TimelineEntry date={new Date(Date.UTC(2001, 9, 20))}>
   <RubyMarker />
   <TimelineEntryTooltip>
@@ -701,7 +824,7 @@ there are now explicit multibyte character identifiers - this is more work towar
   <TimelineEntryTooltip>
     <h2>Ruby 1.8.0 <small>2003-08-04</small></h2>
 
-<p>A lot happens between <code>1.6</code> and <code>1.8</code>. It’s been 3 years since the <code>1.6</code> release, and Ruby has started to pick up in popularity. The popular “pickaxe” book <code>Programming Ruby</code> (Andy Hunt, Chad Fowler, and Dave Thomas) was released in 2001, which helped spread Ruby even further outside of Japan. Later that year in October, the first international Ruby conference was held in Tampa, Florida. From there, Ruby Central was founded by Chad Fowler and David Black. All of this momentum helped push a lot of companies to start to try out Ruby for the first time, including 37Signals.</p>
+<p>A lot happens between <code>1.7</code> and <code>1.8</code>. It’s been 2 years since the <code>1.7</code> release, and Ruby has started to pick up in popularity. The popular “pickaxe” book <code>Programming Ruby</code> (Andy Hunt, Chad Fowler, and Dave Thomas) was released in 2001, which helped spread Ruby even further outside of Japan. Later that year in October, the first international Ruby conference was held in Tampa, Florida. From there, Ruby Central was founded by Chad Fowler and David Black. All of this momentum helped push a lot of companies to start to try out Ruby for the first time, including 37Signals.</p>
 
 <p>Syntactically, there are a couple of notable changes, including:</p>
 
@@ -795,29 +918,6 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
 <p>Wed Aug 29 02:18:53 2001  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
 
 <pre><code>{`* parse.y (yylex): ternary ? can be followed by newline.
-`}</code></pre>
-
-<p>Tue May 22 02:37:45 2001  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
-
-<pre><code>{`* parse.y (expr): "break" and "next" to take optional expression,
-  which is used as a value for termination. [new, experimental]
-`}</code></pre>
-
-<p>Tue Mar  6 10:50:29 2001  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
-
-<pre><code>{`* parse.y (primary): rescue and ensure clauses should be allowed
-  to appear in singleton method body.
-`}</code></pre>
-
-<p>Wed Feb  7 16:05:22 2001  Nobuyoshi Nakada  <a href="mailto:nobu.nakada@nifty.ne.jp">nobu.nakada@nifty.ne.jp</a></p>
-
-<pre><code>{`* parse.y (parse_quotedwords): %w should allow parenthesis escape.
-`}</code></pre>
-
-<p>Sat Dec  2 22:32:43 2000  Yukihiro Matsumoto  <a href="mailto:matz@ruby-lang.org">matz@ruby-lang.org</a></p>
-
-<pre><code>{`* parse.y (stmt): multiple right hand side for single assignment
-  (e.g. a = 1,2) is allowed.
 `}</code></pre>
 
 <h4 id="todo">ToDo</h4>
