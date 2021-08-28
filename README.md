@@ -547,9 +547,70 @@ Mon Jan 24 02:56:44 2000  Yukihiro Matsumoto  <matz@netlab.co.jp>
 * objectify interpreters ???
 * syntax tree -> bytecode ???
 
+### 2001-06-01 - Ruby 1.7.1
+
+About a year has passed since `1.6` was released, and Ruby is starting to pick up a little steam. It's also starting to look more and more like the Ruby that folks use today. You probably won't see any `1.7` code the wild any more, but it's possible you might get a glimse of `1.8`. Syntactically, a couple of things have been merged:
+
+The `break` and `next` keywords now accept values. This becomes useful for methods like `detect`/`find` to controls the output of the overall loop. `%w` also gains the ability to escape spaces within the bounds, which was previously on the todo list. Finally, `rescue` can be added to singleton method bodies.
+
+#### Grammar
+
+- [EBNF](docs/ebnf/1.7.1.txt)
+- [Diagram](docs/diagrams/1.7.1.xhtml)
+
+#### ChangeLog
+
+Tue May 22 02:37:45 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
+
+	* parse.y (expr): "break" and "next" to take optional expression,
+	  which is used as a value for termination. [new, experimental]
+
+Tue Mar  6 10:50:29 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
+
+	* parse.y (primary): rescue and ensure clauses should be allowed
+	  to appear in singleton method body.
+
+Wed Feb  7 16:05:22 2001  Nobuyoshi Nakada  <nobu.nakada@nifty.ne.jp>
+
+	* parse.y (parse_quotedwords): %w should allow parenthesis escape.
+
+Sat Dec  2 22:32:43 2000  Yukihiro Matsumoto  <matz@ruby-lang.org>
+
+	* parse.y (stmt): multiple right hand side for single assignment
+	  (e.g. a = 1,2) is allowed.
+
+#### ToDo
+
+* operator !! for rescue. ???
+* objectify characters
+* ../... outside condition invokes operator method too.
+* ... inside condition turns off just before right condition.???
+* package or access control for global variables??
+* named arguments like foo(nation:="german") or foo(nation: "german").
+* method to retrieve argument information (needs new C API)
+* multiple return values, yield values.  maybe incompatible ???
+* cascading method invocation ???
+* def Class#method .. end ??
+* class Foo::Bar<Baz .. end, module Boo::Bar .. end
+* def Foo::Bar::baz() .. end ??
+* I18N (or M17N) script/string/regexp
+* Fixnum 0 as false ????
+* discourage use of symbol variables (e.g. $/, etc.) in manual
+* discourage use of Perlish features by giving warnings.
+* non confusing in-block local variable (is it possible?)
+  + remove scope by block
+  + variables appears within block may have independent values.
+* decide whether begin with rescue or ensure make do..while loop.
+* a +1 to be a+1, not a(+1).
+* raise exception by `` error
+* jar like combined library package.
+* objectify interpreters ???
+* syntax tree -> bytecode ???
+* Built-in Interactive Ruby.
+
 ### 2003-08-04 - Ruby 1.8.0
 
-A lot happens between `1.6` and `1.8`. It's been 3 years since the `1.6` release, and Ruby has started to pick up in popularity. The popular "pickaxe" book `Programming Ruby` (Andy Hunt, Chad Fowler, and Dave Thomas) was released in 2001, which helped spread Ruby even further outside of Japan. Later that year in October, the first international Ruby conference was held in Tampa, Florida. From there, Ruby Central was founded by Chad Fowler and David Black. All of this momentum helped push a lot of companies to start to try out Ruby for the first time, including 37Signals.
+A lot happens between `1.7` and `1.8`. It's been 2 years since the `1.7` release, and Ruby has started to pick up in popularity. The popular "pickaxe" book `Programming Ruby` (Andy Hunt, Chad Fowler, and Dave Thomas) was released in 2001, which helped spread Ruby even further outside of Japan. Later that year in October, the first international Ruby conference was held in Tampa, Florida. From there, Ruby Central was founded by Chad Fowler and David Black. All of this momentum helped push a lot of companies to start to try out Ruby for the first time, including 37Signals.
 
 Syntactically, there are a couple of notable changes, including:
 
@@ -630,25 +691,6 @@ Tue Mar 26 01:56:33 2002  Yukihiro Matsumoto  <matz@ruby-lang.org>
 Wed Aug 29 02:18:53 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
 
 	* parse.y (yylex): ternary ? can be followed by newline.
-
-Tue May 22 02:37:45 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
-
-	* parse.y (expr): "break" and "next" to take optional expression,
-	  which is used as a value for termination. [new, experimental]
-
-Tue Mar  6 10:50:29 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
-
-	* parse.y (primary): rescue and ensure clauses should be allowed
-	  to appear in singleton method body.
-
-Wed Feb  7 16:05:22 2001  Nobuyoshi Nakada  <nobu.nakada@nifty.ne.jp>
-
-	* parse.y (parse_quotedwords): %w should allow parenthesis escape.
-
-Sat Dec  2 22:32:43 2000  Yukihiro Matsumoto  <matz@ruby-lang.org>
-
-	* parse.y (stmt): multiple right hand side for single assignment
-	  (e.g. a = 1,2) is allowed.
 
 #### ToDo
 
