@@ -980,9 +980,12 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <TimelineEntryTooltip>
     <h2>RubyNode 0.1.0 <small>2006-06-05</small></h2>
 
+<p>Still in the Ruby <code>1.8</code> to <code>1.9</code> timeline, Dominik Bathon released <a href="https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/">RubyNode</a>. It was similar in spirit to <code>ParseTree</code>, except that it returns hashes of options on arrays and generally sticks a little closer to the internal node structure.</p>
+
+<h4 id="links">Links</h4>
+
 <ul>
-  <li>Dominik Bathon https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/</li>
-  <li>Extends Ruby 1.8 internals to support returning an AST by wrapping the NODE struct</li>
+  <li><a href="projects/rubynode/README.txt">README.txt</a></li>
 </ul>
 
   </TimelineEntryTooltip>

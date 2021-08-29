@@ -915,8 +915,11 @@ A little over a year after the release of `1.8`, Ryan Davis released [ParseTree]
 
 ### 2006-06-05 - RubyNode 0.1.0
 
-- Dominik Bathon https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/
-- Extends Ruby 1.8 internals to support returning an AST by wrapping the NODE struct
+Still in the Ruby `1.8` to `1.9` timeline, Dominik Bathon released [RubyNode](https://web.archive.org/web/20060630155424/http://rubynode.rubyforge.org/). It was similar in spirit to `ParseTree`, except that it returns hashes of options on arrays and generally sticks a little closer to the internal node structure.
+
+#### Links
+
+- [README.txt](docs/projects/rubynode/README.txt)
 
 ### 2007-11-14 - ruby_parser 1.0.0
 
