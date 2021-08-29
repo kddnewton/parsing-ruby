@@ -798,6 +798,20 @@ there are now explicit multibyte character identifiers - this is more work towar
 
 <p>Ripper is one of the few projects of this era to survive the <code>1.8</code> to <code>1.9</code> migration, likely because Aoki was a core contributor and made sure it additionally worked on the <code>YARV</code> branch. Eventually this project would become the way that many other projects retreived AST information, though it was always marked as “experimental”. Even today the README for ripper says <code>Ripper is still early-alpha version.</code>.</p>
 
+<h4 id="projects">Projects</h4>
+
+<p>Even though ripper has always been marked as <code>"experimental"</code>, a number of projects rely on it for accessing the parse tree. They’ve mostly been using it since it got merged into trunk with <code>1.9</code>. Those projects include:</p>
+
+<ul>
+  <li><a href="https://github.com/square/cane">cane</a> - a linter</li>
+  <li><a href="https://github.com/mtsmfm/language_server-ruby">language_server-ruby</a> - a language server</li>
+  <li><a href="https://github.com/prettier/plugin-ruby">prettier</a> - a formatter</li>
+  <li><a href="https://github.com/penelopezone/rubyfmt">rubyfmt</a> - a formatter</li>
+  <li><a href="https://github.com/ruby-formatter/rufo">rufo</a> - a formatter</li>
+  <li><a href="https://github.com/makaroni4/sandi_meter">sandi_meter</a> - a linter</li>
+  <li><a href="https://github.com/lsegal/yard">yard</a> - a documentation generator</li>
+</ul>
+
 <h4 id="links">Links</h4>
 
 <ul>
@@ -995,9 +1009,24 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <TimelineEntryTooltip>
     <h2>ruby_parser 1.0.0 <small>2007-11-14</small></h2>
 
+<p>Just before <code>1.9</code> was released, Ryan Davis created a spiritual sequel to <code>ParseTree</code> that would function running with the <code>1.9</code> branch. He took the <code>parse.y</code> file from core Ruby and rewrote the actions to be pure Ruby before piping it through <code>racc</code>. This was a similar idea to <code>ripper</code>, except that it was in Ruby instead of C.</p>
+
+<h4 id="links">Links</h4>
+
+<p><a href="projects/ruby_parser/lib/ruby_parser.y.txt">lib/ruby_parser.y</a></p>
+
+<h4 id="projects">Projects</h4>
+
+<p>A number of projects use <code>ruby_parser</code> as a way of accessing the syntax tree. Most of these were similarly created by Ryan Davis, but some others exist as well. Those include:</p>
+
 <ul>
-  <li>Ryan Davis https://github.com/seattlerb/ruby_parser</li>
-  <li>Uses a <code>racc</code>-based compiler to generate s-expressions</li>
+  <li><a href="https://github.com/thesp0nge/dawnscanner">dawnscanner</a> - a security analyzer</li>
+  <li><a href="https://github.com/seattlerb/debride">debride</a> - an unused code analyzer</li>
+  <li><a href="https://github.com/DamirSvrtan/fasterer">fasterer</a> - a performance linter</li>
+  <li><a href="https://github.com/seattlerb/flay">flay</a> - a code similarity analyzer</li>
+  <li><a href="https://github.com/seattlerb/flog">flog</a> - a code understandability analyzer</li>
+  <li><a href="https://github.com/david-a-wheeler/railroader">railroader</a> - a static security analyzer</li>
+  <li><a href="https://github.com/roodi/roodi">roodi</a> - a linter</li>
 </ul>
 
   </TimelineEntryTooltip>
@@ -1007,13 +1036,11 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <TimelineEntryTooltip>
     <h2>Ruby 1.9.0 <small>2007-12-25</small></h2>
 
-<ul>
-  <li><code>YARV</code></li>
-  <li>block local variables</li>
-  <li>lambda literals</li>
-  <li>symbol hash keys</li>
-  <li><a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?view=revision&amp;revision=6891"><code>ripper</code> merged</a></li>
-</ul>
+<p>Ruby <code>1.9.0</code> was a very large change because it integrated Koichi Sasada’s graduate thesis <a href="http://www.atdot.net/yarv/oopsla2005eabstract-rc1.pdf">YARV</a> which stands for yet another RubyVM. It switched from being a tree-walk algorithm that kept an abstract syntax tree around to manipulate to being a bytecode interpreter that kept around instruction sequences.</p>
+
+<p>In addition, while this transition was being made, <a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?view=revision&amp;revision=6891"><code>ripper</code> was merged</a> into trunk. Now instead of forking <code>parse.y</code> and maintaining its own grammar, it instead was integrated into the main Ruby <code>parse.y</code>. In introduced a special comment format that lived inside the grammar actions that functioned as an alternate action that should be taken in the case that <code>ripper</code> was being built. Mostly it “dispatched” events when those tree nodes were being reduced and then continued building the tree.</p>
+
+<p>There were a couple of additional (somewhat controversial) syntactical additions to the language with this version as well. Those include lambda literals (as in <code>-&gt; (foo) &#123; foo * 2 &#125;</code>) and symbol hash keys (as in <code>&#123; foo: "bar" &#125;</code>). To this day there are folks that will avoid both of those syntax constructs.</p>
 
 <h4 id="grammar">Grammar</h4>
 
@@ -1022,6 +1049,45 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <li><a href="diagrams/1.9.0.xhtml">Diagram</a></li>
 </ul>
 
+<h4 id="todo">ToDo</h4>
+
+<ul>
+  <li>class Foo::Bar&lt;Baz .. end, module Boo::Bar .. end</li>
+  <li>raise exception by \`\` error</li>
+  <li>clarify evaluation order of operator argument (=~, .., …)</li>
+  <li>:symbol =&gt; value hash in the form of &#123;symbol: value, …&#125; ??</li>
+  <li>operator !! for rescue. ???</li>
+  <li>objectify characters</li>
+  <li>../… outside condition invokes operator method too.</li>
+  <li>… inside condition turns off just before right condition.???</li>
+  <li>package or access control for global variables??</li>
+  <li>named arguments like foo(nation:=”german”) or foo(nation: “german”).</li>
+  <li>method to retrieve argument information (needs new C API)</li>
+  <li>multiple return values, yield values.  maybe incompatible ???</li>
+  <li>cascading method invocation ???</li>
+  <li>def Class#method .. end ??</li>
+  <li>def Foo::Bar::baz() .. end ??</li>
+  <li>discourage use of symbol variables (e.g. $/, etc.) in manual</li>
+  <li>discourage use of Perlish features by giving warnings.</li>
+  <li>decide whether begin with rescue or ensure make do..while loop.</li>
+  <li>method combination, e.g. before, after, around, etc.</li>
+  <li>.. or something like defadvice in Emacs.</li>
+  <li>property - for methods, or for objects in general.</li>
+  <li>“in” modifier, to annotate, or to encourage assertion.</li>
+  <li>selector namespace - something like generic-flet in CLOS, to help RubyBehavior</li>
+  <li>private instance variable (as in Python?) @_foo in class Foo =&gt; @_Foo_foo</li>
+  <li>warn/error “bare word” method, like “foo”,  you should type “foo()”</li>
+  <li>objectify interpreters ???</li>
+  <li>MicroRuby</li>
+  <li>Built-in Interactive Ruby.</li>
+  <li>Parser API</li>
+  <li>Ruby module – Ruby::Version, Ruby::Interpreter</li>
+</ul>
+
+<h4 id="projects">Projects</h4>
+
+<p>Although it was meant for testing, various projects have cropped up that have used <code>RubyVM::AbstractSyntaxTree</code> to access the Ruby parse tree. The biggest one worth mentioning is <a href="https://github.com/castwide/solargraph">solargraph</a>, a Ruby language server.</p>
+
   </TimelineEntryTooltip>
 </TimelineEntry>
 <TimelineEntry date={new Date(Date.UTC(2009, 0, 30))}>
@@ -1029,12 +1095,11 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <TimelineEntryTooltip>
     <h2>Ruby 1.9.1 <small>2009-01-30</small></h2>
 
-<ul>
-  <li><em>encoding pragma</em></li>
-  <li><code>.()</code> sugar for <code>.call</code></li>
-  <li><em>post arguments</em></li>
-  <li><em>block in block arguments</em></li>
-</ul>
+<p>It took a little over a year for Ruby to reach <code>1.9.1</code> from <code>1.9.0</code>. This was considered the first “stable” release of the <code>1.9</code> series, as most of the kinks with YARV had been worked out at this point.</p>
+
+<p>There was a lot of work at this time in Ruby around encoding. Before, everything was assumed to be ASCII-ish. The <code>1.9</code> series made encoding into a first class citizen, which including creating the <code>encoding</code> pragma. This ended up becoming a pattern as other pragma were intoduced later (notably <code>frozen_string_literal</code>).</p>
+
+<p>There were a couple of other interesting additions at this time as well. This includes the <code>foo.()</code> operator alias which resolves to the <code>call</code> method. Also introduced were positional arguments that followed a splat argument. Finally we also got block parameters as block variables.</p>
 
 <h4 id="grammar">Grammar</h4>
 
@@ -1045,28 +1110,12 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
 
   </TimelineEntryTooltip>
 </TimelineEntry>
-<TimelineEntry date={new Date(Date.UTC(2009, 6, 25))}>
-  <RubyMarker />
-  <TimelineEntryTooltip>
-    <h2>nodewrap 0.5.0 <small>2009-07-25</small></h2>
-
-<ul>
-  <li>Paul Brannan http://rubystuff.org/nodewrap/</li>
-  <li>Allows dumping/loading the Ruby nodes and instruction sequences to a binary format</li>
-</ul>
-
-  </TimelineEntryTooltip>
-</TimelineEntry>
 <TimelineEntry date={new Date(Date.UTC(2010, 7, 27))}>
   <RubyMarker />
   <TimelineEntryTooltip>
     <h2>laser 0.0.1 <small>2010-08-27</small></h2>
 
-<ul>
-  <li>Michael Edgar https://github.com/michaeledgar/laser</li>
-  <li>Originally parsed regular expressions then <code>Ripper</code> to parse Ruby</li>
-  <li>Features a type system, semantic analysis, documentation generation, and a plugin system</li>
-</ul>
+<p>An interesting addition to this list is an excerpt from the academic side of Ruby. In 2010 Michael Edgar publishd his undergraduate thesis called <a href="https://github.com/michaeledgar/laser">laser</a> (originally called wool, laser came from lexically- and statically-enriched Ruby). It was a linter, a type system, a documentation generation tool, and more. It featured a plugin system and performed semantic analysis. It was one of the more fully-fledged static analysis tools written for Ruby at this point. It originally parsed Ruby source using regular expressions just to check whitespace but upgraded to <code>ripper</code> eventually to do more complicated analyses.</p>
 
   </TimelineEntryTooltip>
 </TimelineEntry>
@@ -1074,6 +1123,9 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <RubyMarker />
   <TimelineEntryTooltip>
     <h2>JIS X 3017 <small>2011-03-22</small></h2>
+
+<p>Japanese Standards Association standard <a href="https://standards.globalspec.com/std/1651983/JIS%20X%203017">JIS X 3017</a>.</p>
+
   </TimelineEntryTooltip>
 </TimelineEntry>
 <TimelineEntry date={new Date(Date.UTC(2011, 9, 31))}>
@@ -1081,9 +1133,11 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <TimelineEntryTooltip>
     <h2>Ruby 1.9.3 <small>2011-10-31</small></h2>
 
-<ul>
-  <li><em>trailing commas</em></li>
-</ul>
+<p>Two full years later, and Ruby is still in the <code>1.9</code> series. The language itself has completely taken off, due in some part to the popularity of Ruby on Rails, which is now definitively in vogue. For the language itself, not a ton of syntax has changed in this time (a lot of work is being done on the standard library and the shiny new underlying bytecode interpreter). The only thing truly of note at this point is that you can now put trailing commas on method invocations.</p>
+
+<p>This version of Ruby is particularly special for a couple of reasons. The grammar for this version of Ruby ended up being included in a couple of international standards, as Ruby became officially recognized first by the Japanese Standards Association in <a href="https://standards.globalspec.com/std/1651983/JIS%20X%203017">JIS X 3017</a>, and second by the International Organization for Standardization in <a href="https://www.iso.org/obp/ui/#iso:std:iso-iec:30170:ed-1:v1:en">ISO/IEC 30170:2012</a>.</p>
+
+<p>This time period in Ruby’s history is significant in that the influx of new users and the popularity of the language had gotten the attention of some larger companies that were now interested in investing in its future. This resulted in myriad implementations of Ruby being attempted on every platform imaginable, including the Java Virtual Machine, the Parrot Virtual Machine, the Common Language Runtime, and others.</p>
 
 <h4 id="grammar">Grammar</h4>
 
@@ -1098,6 +1152,9 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <RubyMarker />
   <TimelineEntryTooltip>
     <h2>ISO/IEC 30170:2012 <small>2012-04-15</small></h2>
+
+<p>International Organization for Standardization standard <a href="https://www.iso.org/obp/ui/#iso:std:iso-iec:30170:ed-1:v1:en">ISO/IEC 30170:2012</a>.</p>
+
   </TimelineEntryTooltip>
 </TimelineEntry>
 <TimelineEntry date={new Date(Date.UTC(2013, 1, 24))}>
@@ -1105,11 +1162,17 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <TimelineEntryTooltip>
     <h2>Ruby 2.0.0 <small>2013-02-24</small></h2>
 
+<p>After another year and a half of development since <code>1.9.3</code>, <code>2.0.0</code> was released. Around this time <code>bugs.ruby-lang.org</code> was introduced as the official bug tracker and so the remaining features on this list can include links to the original discussion. These include:</p>
+
 <ul>
-  <li><a href="https://bugs.ruby-lang.org/issues/1102"><code>Module#prepend</code></a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/4085">Refinements</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/4985"><code>%i</code> symbol lists</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/5474">Keyword arguments</a></li>
+  <li><a href="https://bugs.ruby-lang.org/issues/1102"><code>Module#prepend</code></a><br />
+The ability to inject a module into the ancestor chain <em>before</em> the current class so that you could call <code>super</code> to access the original method. This drastically simplified a common construct at the time called <code>alias_method_chain</code>.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/4085">Refinements</a><br />
+Another controversial feature that created the <code>using</code> and <code>refine</code> keywords that allowed lexically-scoped monkey-patches.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/4985"><code>%i</code> symbol lists</a><br />
+A small but useful addition that expanded the <code>%w</code> pattern to <code>%i</code> to make lists of symbols.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/5474">Keyword arguments</a><br />
+Otherwise known as “named” arguments, these were arguments on method calls and definitions that had explicit names. The syntax looked/looks <em>very</em> similar to bare hashes without the braces. So much so that it ended up being implemented using a hash as the final argument to the method call, which caused a fair amount of compatibility problems. This ended up being remedied in <code>3.0</code> a full 8 years later.</li>
 </ul>
 
 <h4 id="grammar">Grammar</h4>
@@ -1126,9 +1189,41 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <TimelineEntryTooltip>
     <h2>parser 0.9.0 <small>2013-04-15</small></h2>
 
+<p>Around the <code>2.0.0</code> days, Peter Zotov created the <a href="https://github.com/whitequark/parser">parser gem</a>. In the same tradition of other implementations of Ruby, it took the <code>parse.y</code> file from Ruby (and the lexer test suite from Ryan Davis’ <code>ruby_parser</code>) and derived a new parser for creating syntax trees.</p>
+
+<h4 id="links">Links</h4>
+
 <ul>
-  <li>Peter Zotov https://github.com/whitequark/parser</li>
-  <li>Derives a new parser from <code>parse.y</code> in Ruby and a lexer test suite from <code>ruby_parser</code></li>
+  <li><a href="projects/parser/README.md.txt">README.md</a></li>
+  <li><a href="projects/parser/lib/parser/ruby20.y.txt">lib/parser/ruby20.y</a></li>
+</ul>
+
+<h4 id="projects">Projects</h4>
+
+<p>From its humble beginnings, <code>parser</code> ended up getting the attention of a lot of other developers because of its well-documented trees, easy-to-use APIs, and rewriting support. All kinds of other tools ended up being built on top of it, including:</p>
+
+<ul>
+  <li><a href="https://github.com/ioquatix/covered">covered</a> - a code coverage reporter</li>
+  <li><a href="https://github.com/deep-cover/deep-cover">deep-cover</a> - a code coverage reporter</li>
+  <li><a href="https://github.com/Shopify/erb-lint">erb-lint</a> - an ERB file linter</li>
+  <li><a href="https://github.com/jonatas/fast">fast</a> - an AST editor</li>
+  <li><a href="https://github.com/opal/opal">opal</a> - a Ruby to JavaScript transpiler</li>
+  <li><a href="https://github.com/Shopify/packwerk">packwerk</a> - an encapsulation analyzer</li>
+  <li><a href="https://github.com/soutaro/querly">querly</a> - a method call finder</li>
+  <li><a href="https://github.com/tupl-tufts/rdl">rdl</a> - a type checker</li>
+  <li><a href="https://github.com/troessner/reek">reek</a> - a code smell analyzer</li>
+  <li><a href="https://github.com/rubocop/rubocop">rubocop</a> - a linter</li>
+  <li><a href="https://github.com/emad-elsaid/rubrowser">rubrowser</a> - a module relationship grapher</li>
+  <li><a href="https://github.com/YorickPeterse/ruby-lint">ruby-lint</a> - a linter</li>
+  <li><a href="https://github.com/ruby-next/ruby-next">ruby-next</a> - a transpiler and polyfill</li>
+  <li><a href="https://github.com/victor-am/ruby_detective">ruby_detective</a> - a module relationship grapher</li>
+  <li><a href="https://github.com/whitesmith/rubycritic">rubycritic</a> - a code quality reporter</li>
+  <li><a href="https://github.com/JoshCheek/seeing_is_believing">seeing_is_believing</a> - an editor intermediate value display</li>
+  <li><a href="https://github.com/testdouble/standard">standard</a> - a rubocop wrapper with fewer options</li>
+  <li><a href="https://github.com/soutaro/steep">steep</a> - a static type checker</li>
+  <li><a href="https://github.com/mbj/unparser">unparser</a> - a code generation from the parser AST</li>
+  <li><a href="https://github.com/kddnewton/vernacular">vernacular</a> - a source code manipulation</li>
+  <li><a href="https://github.com/tomoasleep/yoda">yoda</a> - a static analyzer and language server</li>
 </ul>
 
   </TimelineEntryTooltip>
@@ -1138,10 +1233,15 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <TimelineEntryTooltip>
     <h2>Ruby 2.1.0 <small>2013-12-25</small></h2>
 
+<p>Starting with Ruby <code>2.1.0</code>, Ruby starts releasing on a very consistent schedule of every Christmas. The changes in this version include:</p>
+
 <ul>
-  <li><a href="https://bugs.ruby-lang.org/issues/7701">Required keyword arguments</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/8430">Rational and complex literals</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/8579">Frozen string literal suffix</a></li>
+  <li><a href="https://bugs.ruby-lang.org/issues/7701">Required keyword arguments</a><br />
+Previously you always had to specify a default value, but this change allowed those values to be omitted.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/8430">Rational and complex literals</a><br />
+Rational and Complex already existed as classes, but this allowed syntax like <code>1/2r</code> for creating them without explicitly referencing the class.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/8579">Frozen string literal suffix</a><br />
+This is an interesting addition that was temporarily merged and then replaced before this version was released. The proposal was to add an <code>f</code> suffix to strings to make them frozen by default without having to call a method. This is a theme that we’ll see a lot over time as folks continually propose more ways to remove string allocations. This eventually gets obviated by a proposal to <a href="https://bugs.ruby-lang.org/issues/8992">optimize .freeze</a> on strings within the compiler.</li>
 </ul>
 
 <h4 id="grammar">Grammar</h4>
@@ -1158,9 +1258,7 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <TimelineEntryTooltip>
     <h2>Ruby 2.2.0 <small>2014-12-25</small></h2>
 
-<ul>
-  <li><a href="https://bugs.ruby-lang.org/issues/4276">Dynamic symbol hash keys</a></li>
-</ul>
+<p>In Ruby <code>2.2.0</code>, the only large syntax change is that you can now use <a href="https://bugs.ruby-lang.org/issues/4276">dynamic symbol hash keys</a>. This means you can do something like <code>&#123; "foo #&#123;bar&#125;": baz &#125;</code>.</p>
 
 <h4 id="grammar">Grammar</h4>
 
@@ -1176,11 +1274,9 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <TimelineEntryTooltip>
     <h2>Ruby 2.3.0 <small>2015-12-25</small></h2>
 
-<ul>
-  <li><a href="https://bugs.ruby-lang.org/issues/8976">frozen_string_literal pragma</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/9098"><code>&lt;&lt;~</code> heredocs</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/11537"><code>&amp;.</code> operator</a></li>
-</ul>
+<p>As with <code>2.1.0</code>, there are still ongoing discussions of frozen strings, and we end up settling on the <a href="https://bugs.ruby-lang.org/issues/8976">frozen_string_literal pragma</a> (following in the tradition of the encoding pragma). This allows users to specify that all strings in the file should be frozen by default. This was considered a temporary measure to prepare for an eventual future where all strings in Ruby would be frozen by default (this was also added as a command-line switch). This was promised for Ruby 3, but didn’t end up making it in.</p>
+
+<p>In addition to the pragma, we also got <a href="https://bugs.ruby-lang.org/issues/9098"><code>&lt;&lt;~</code> heredocs</a> that stripped common leading whitespace, and the <a href="https://bugs.ruby-lang.org/issues/11537"><code>&amp;.</code> operator</a> (otherwise known as the “lonely” operator), which only called the method if the receiver was not <code>nil</code>.</p>
 
 <h4 id="grammar">Grammar</h4>
 
@@ -1196,11 +1292,9 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <TimelineEntryTooltip>
     <h2>Ruby 2.4.0 <small>2016-12-25</small></h2>
 
-<ul>
-  <li><a href="https://bugs.ruby-lang.org/issues/4840">Top level return</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/9451">Refinements in <code>Symbol#to_proc</code></a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/10617">Multiple assignment in a conditional</a></li>
-</ul>
+<p>Since its addition three years ago, refinements have not quite been adopted in many places. Nevertheless, work continues on them in this release where you can now use <a href="https://bugs.ruby-lang.org/issues/9451">refined methods with the <code>Symbol#to_proc</code></a> syntax. For example, if you were to refine <code>Integer#to_s</code>, you could now write <code>[1, 2, 3].map(&amp;:to_s)</code> and it would function as you would expect.</p>
+
+<p>In addition, we got <a href="https://bugs.ruby-lang.org/issues/4840">top-level return</a>, which was useful in scripts where you wanted to bail from the entire program if some precondition was not met (like a dependency not beig available or not being on the right platform). Finally, you could now use <a href="https://bugs.ruby-lang.org/issues/10617">multiple assignment in a conditional</a>.</p>
 
 <h4 id="grammar">Grammar</h4>
 
@@ -1216,10 +1310,7 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <TimelineEntryTooltip>
     <h2>Ruby 2.5.0 <small>2017-12-25</small></h2>
 
-<ul>
-  <li><a href="https://bugs.ruby-lang.org/issues/12906"><code>rescue</code> and <code>ensure</code> at the block level</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/13812">Refinements in string interpolations</a></li>
-</ul>
+<p>Work continues on refinements, as in this release we get <a href="https://bugs.ruby-lang.org/issues/13812">refinements in string interpolations</a>. Also released in this version were <a href="https://bugs.ruby-lang.org/issues/12906"><code>rescue</code> and <code>ensure</code> at the block level</a>, which had been referenced in the ToDo file for quite a few years at this point.</p>
 
 <h4 id="grammar">Grammar</h4>
 
@@ -1235,12 +1326,21 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <TimelineEntryTooltip>
     <h2>Ruby 2.6.0 <small>2018-12-25</small></h2>
 
+<p>Keeping with their release schedule of every Christmas, Ruby <code>2.6.0</code> was released one year to the day following <code>2.5.0</code>. One of the most interesting additions to history of parsing Ruby came in this version, which was the addition of <a href="https://github.com/ruby/ruby/commit/0f3dcbdf38db6c7fb04ca0833bb1f9af2c3e7ca4">RubyVM::AbstractSyntaxTree</a>. This addition was accidental, it was added as a means of testing another feature that was being added. Unfortunately for the maintainer, <a href="https://bugs.ruby-lang.org/issues/14844">people noticed</a>.</p>
+
+<p><code>RubyVM::AbstractSyntaxTree</code> uses the internal <code>NODE</code> structs to build out an abstract syntax tree, much like many of the projects from the <code>1.6</code> to <code>1.8</code> days. Because it’s written into core Ruby, it necessarily has access to things that other projects don’t, which makes it particular faithful to the syntax. It is both praised and criticized on release, as it means another module that other implementations have to support if it becomes the blessed path for accessing the Ruby parse tree. The discussion continues to this day.</p>
+
+<p>Other syntax additions include:</p>
+
 <ul>
-  <li><a href="https://bugs.ruby-lang.org/issues/5400">Flip-flop (deprecated)</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/12912">Endless range</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/13770">Non-ASCII constant names</a></li>
-  <li><a href="https://github.com/ruby/ruby/commit/0f3dcbdf38db6c7fb04ca0833bb1f9af2c3e7ca4">RubyVM::AbstractSyntaxTree</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/6354">Escape keywords from class/module scope removed</a></li>
+  <li><a href="https://bugs.ruby-lang.org/issues/5400">Flip-flop (deprecated)</a><br />
+At this point the <code>flip-flop</code> operator is deprecated, much to the chagrin of the commenters on the linked issue. This deprecation ends up getting reverted in Ruby <code>2.7</code>.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/12912">Endless range</a><br />
+Ranges without endings get added to the syntax, which is a nice pairing with the lazy enumerable methods that have recently been merged. This allows things like <code>(0..).lazy.map &#123; |number| number * 2 &#125;.take(10)</code>, for example, to get the first 10 even numbers.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/13770">Non-ASCII constant names</a><br />
+Constants in this version can now use non-ASCII characters in their names, which makes for all kinds of fun obfuscated code involving emojis.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/6354">Escape keywords from class/module scope removed</a><br />
+An extremely rarely (hopefully) used feature of Ruby was that you could call <code>break</code> within a class and module body. This was effectively a bug, but it’s interesting and included here because syntax is extremely rarely removed from Ruby. This is one of the few exceptions.</li>
 </ul>
 
 <h4 id="grammar">Grammar</h4>
@@ -1257,17 +1357,29 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <TimelineEntryTooltip>
     <h2>Ruby 2.7.0 <small>2019-12-25</small></h2>
 
+<p>Ruby <code>2.7.0</code> brought the biggest amount of new syntax to any version of Ruby. It boasts all kinds of interesting changes, including:</p>
+
 <ul>
-  <li><a href="https://bugs.ruby-lang.org/issues/5400">Flip-flop (undeprecated)</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/13581">Method reference operator (added)</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/14183">Keyword arguments (warning about hash-based)</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/14183">No other keywords syntax</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/14799">Beginless range</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/14912">Pattern matching</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/15723">Numbered parameters</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/15921">Rightward assignment</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/16253">Argument forwarding</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/16275">Method reference operator (removed)</a></li>
+  <li><a href="https://bugs.ruby-lang.org/issues/5400">Flip-flop (undeprecated)</a><br />
+To the cheers of fans of the flip-flop operator, the deprecation was removed.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/13581">Method reference operator (added)</a><br />
+The method reference operator <code>.:</code> was added, as a shortcut for accessing a method object like <code>foo.method(:bar)</code>.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/14183">Keyword arguments (warning about hash-based)</a><br />
+Since the addition of keyword arguments back in Ruby <code>2.0</code>, they’ve always been backed by an internal hash. That resulted in all kinds of compatibility issues between implementations of Ruby. To simplify things, in <code>3.0</code> they decided to make them “real” arguments instead of using an internal hash structure. To ease the transition, Ruby <code>2.7.0</code> detected when code would break in <code>3.0</code> and warned about that usage.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/14183">No other keywords syntax</a><br />
+To define that no other keywords would be allowed on a method call, you could now use the special <code>**nil</code> syntax.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/14799">Beginless range</a><br />
+To complement the endless ranges from the previous minor version, ranges could now omit the beginning as well.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/14912">Pattern matching</a><br />
+A massive influx of syntax comes in <code>2.7</code> with the introduction of pattern matching. It’s similar to a <code>case..when</code> statement, but instead uses <code>case..in</code> and comes with a whole host of new syntactical constructs. It merits its <a href="https://github.com/ruby/ruby/blob/master/doc/syntax/pattern_matching.rdoc">own documentation page</a> being added to trunk.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/15723">Numbered parameters</a><br />
+An interesting addition to this version is numbered parameters. Take a look at the linked issue to see all of the proposed variants. This addition takes inspiration from languages like Scala that support a default block variable.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/15921">Rightward assignment</a><br />
+Even before <code>2.7</code> lands, pattern matching gets another addition which is rightward assignment. You can now assign variables using the special <code>=&gt;</code> syntax, as in <code>foo =&gt; bar</code> which assigns to the <code>bar</code> local variable. This adds to the pattern matching because you can now pattern match in rightward assignment.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/16253">Argument forwarding</a><br />
+Because keyword arguments are changing so much, its necessary to make a blessed path for forwarding named and unnamed arguments to another method. You can now use the ellipsis operator (<code>...</code>) to send every kind of argument (positional, keyword, and block) over to another method call. This helped eliminate some of the more problematic single-splat usage that was previously being used to accomplish this.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/16275">Method reference operator (removed)</a><br />
+Unfortunately, the method reference operator that had been added earlier in the year ended up being reverted. Check the linked issue for the discussion of why.</li>
 </ul>
 
 <h4 id="grammar">Grammar</h4>
@@ -1284,12 +1396,19 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <TimelineEntryTooltip>
     <h2>Ruby 3.0.0 <small>2020-12-25</small></h2>
 
+<p>Seven years since the release of Ruby <code>2.0</code>, Ruby goes <code>3.0</code>. A lot of changes that don’t have to do with syntax are included in this release. Syntactically, there are a couple of interesting additions:</p>
+
 <ul>
-  <li><a href="https://bugs.ruby-lang.org/issues/14183">Keyword arguments (non-hash-based)</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/16746">Single-line methods</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/16828">Find pattern matching</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/17273">shareable_constant_value pragma</a></li>
-  <li><a href="https://bugs.ruby-lang.org/issues/17371"><code>in</code> pattern matching</a></li>
+  <li><a href="https://bugs.ruby-lang.org/issues/14183">Keyword arguments (non-hash-based)</a><br />
+The <code>3.x</code> version of keyword arguments (as opposed to the hash-based <code>2.x</code> version). This is the feature that Ruby <code>2.7</code> warned about constantly because folks were using the final hash argument to support keyword arguments before.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/16746">Single-line methods</a><br />
+Methods can now be written as <code>def foo = bar</code> for more concise syntax.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/16828">Find pattern matching</a><br />
+Pattern matching gets another type of pattern called the <code>"find"</code> pattern, which allows you to specify two <code>*</code> operators on each side of the value that you’re searching for.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/17273">shareable_constant_value pragma</a><br />
+To better support shared values across ractors, this pragma was added to make constant values shareable without having to freeze them. It’s a <a href="https://docs.ruby-lang.org/en/3.0.0/doc/syntax/comments_rdoc.html#label-shareable_constant_value+Directive">somewhat complicated</a> option that involves a lot of explanation in the linked doc.</li>
+  <li><a href="https://bugs.ruby-lang.org/issues/17371"><code>in</code> pattern matching</a><br />
+Pattern matching gets one more boost with the ability to use the <code>in</code> operator for a single line. This is similar to rightward assignment, but returns the value of the match.</li>
 </ul>
 
 <h4 id="grammar">Grammar</h4>

@@ -722,23 +722,61 @@ Wed Aug 29 02:18:53 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
 
 ### 2007-12-25 - Ruby 1.9.0
 
-- `YARV`
-- block local variables
-- lambda literals
-- symbol hash keys
-- [`ripper` merged](https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?view=revision&revision=6891)
+Ruby `1.9.0` was a very large change because it integrated Koichi Sasada's graduate thesis [YARV](http://www.atdot.net/yarv/oopsla2005eabstract-rc1.pdf) which stands for yet another RubyVM. It switched from being a tree-walk algorithm that kept an abstract syntax tree around to manipulate to being a bytecode interpreter that kept around instruction sequences.
+
+In addition, while this transition was being made, [`ripper` was merged](https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?view=revision&revision=6891) into trunk. Now instead of forking `parse.y` and maintaining its own grammar, it instead was integrated into the main Ruby `parse.y`. In introduced a special comment format that lived inside the grammar actions that functioned as an alternate action that should be taken in the case that `ripper` was being built. Mostly it "dispatched" events when those tree nodes were being reduced and then continued building the tree.
+
+There were a couple of additional (somewhat controversial) syntactical additions to the language with this version as well. Those include lambda literals (as in `-> (foo) { foo * 2 }`) and symbol hash keys (as in `{ foo: "bar" }`). To this day there are folks that will avoid both of those syntax constructs.
 
 #### Grammar
 
 - [EBNF](docs/ebnf/1.9.0.txt)
 - [Diagram](docs/diagrams/1.9.0.xhtml)
 
+#### ToDo
+
+- class Foo::Bar<Baz .. end, module Boo::Bar .. end
+- raise exception by `` error
+- clarify evaluation order of operator argument (=~, .., ...)
+- :symbol => value hash in the form of {symbol: value, ...} ??
+* operator !! for rescue. ???
+* objectify characters
+* ../... outside condition invokes operator method too.
+* ... inside condition turns off just before right condition.???
+* package or access control for global variables??
+* named arguments like foo(nation:="german") or foo(nation: "german").
+* method to retrieve argument information (needs new C API)
+* multiple return values, yield values.  maybe incompatible ???
+* cascading method invocation ???
+* def Class#method .. end ??
+* def Foo::Bar::baz() .. end ??
+* discourage use of symbol variables (e.g. $/, etc.) in manual
+* discourage use of Perlish features by giving warnings.
+* decide whether begin with rescue or ensure make do..while loop.
+* method combination, e.g. before, after, around, etc.
+* .. or something like defadvice in Emacs.
+* property - for methods, or for objects in general.
+* "in" modifier, to annotate, or to encourage assertion.
+* selector namespace - something like generic-flet in CLOS, to help RubyBehavior
+* private instance variable (as in Python?) @_foo in class Foo => @_Foo_foo
+* warn/error "bare word" method, like "foo",  you should type "foo()"
+* objectify interpreters ???
+* MicroRuby
+* Built-in Interactive Ruby.
+* Parser API
+* Ruby module -- Ruby::Version, Ruby::Interpreter
+
+#### Projects
+
+Although it was meant for testing, various projects have cropped up that have used `RubyVM::AbstractSyntaxTree` to access the Ruby parse tree. The biggest one worth mentioning is [solargraph](https://github.com/castwide/solargraph), a Ruby language server.
+
 ### 2009-01-30 - Ruby 1.9.1
 
-- *encoding pragma*
-- `.()` sugar for `.call`
-- *post arguments*
-- *block in block arguments*
+It took a little over a year for Ruby to reach `1.9.1` from `1.9.0`. This was considered the first "stable" release of the `1.9` series, as most of the kinks with YARV had been worked out at this point.
+
+There was a lot of work at this time in Ruby around encoding. Before, everything was assumed to be ASCII-ish. The `1.9` series made encoding into a first class citizen, which including creating the `encoding` pragma. This ended up becoming a pattern as other pragma were intoduced later (notably `frozen_string_literal`).
+
+There were a couple of other interesting additions at this time as well. This includes the `foo.()` operator alias which resolves to the `call` method. Also introduced were positional arguments that followed a splat argument. Finally we also got block parameters as block variables.
 
 #### Grammar
 
@@ -747,7 +785,11 @@ Wed Aug 29 02:18:53 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
 
 ### 2011-10-31 - Ruby 1.9.3
 
-- *trailing commas*
+Two full years later, and Ruby is still in the `1.9` series. The language itself has completely taken off, due in some part to the popularity of Ruby on Rails, which is now definitively in vogue. For the language itself, not a ton of syntax has changed in this time (a lot of work is being done on the standard library and the shiny new underlying bytecode interpreter). The only thing truly of note at this point is that you can now put trailing commas on method invocations.
+
+This version of Ruby is particularly special for a couple of reasons. The grammar for this version of Ruby ended up being included in a couple of international standards, as Ruby became officially recognized first by the Japanese Standards Association in [JIS X 3017](https://standards.globalspec.com/std/1651983/JIS%20X%203017), and second by the International Organization for Standardization in [ISO/IEC 30170:2012](https://www.iso.org/obp/ui/#iso:std:iso-iec:30170:ed-1:v1:en).
+
+This time period in Ruby's history is significant in that the influx of new users and the popularity of the language had gotten the attention of some larger companies that were now interested in investing in its future. This resulted in myriad implementations of Ruby being attempted on every platform imaginable, including the Java Virtual Machine, the Parrot Virtual Machine, the Common Language Runtime, and others.
 
 #### Grammar
 
@@ -756,10 +798,16 @@ Wed Aug 29 02:18:53 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
 
 ### 2013-02-24 - Ruby 2.0.0
 
-- [`Module#prepend`](https://bugs.ruby-lang.org/issues/1102)
-- [Refinements](https://bugs.ruby-lang.org/issues/4085)
-- [`%i` symbol lists](https://bugs.ruby-lang.org/issues/4985)
-- [Keyword arguments](https://bugs.ruby-lang.org/issues/5474)
+After another year and a half of development since `1.9.3`, `2.0.0` was released. Around this time `bugs.ruby-lang.org` was introduced as the official bug tracker and so the remaining features on this list can include links to the original discussion. These include:
+
+- [`Module#prepend`](https://bugs.ruby-lang.org/issues/1102)  
+The ability to inject a module into the ancestor chain _before_ the current class so that you could call `super` to access the original method. This drastically simplified a common construct at the time called `alias_method_chain`.
+- [Refinements](https://bugs.ruby-lang.org/issues/4085)  
+Another controversial feature that created the `using` and `refine` keywords that allowed lexically-scoped monkey-patches.
+- [`%i` symbol lists](https://bugs.ruby-lang.org/issues/4985)  
+A small but useful addition that expanded the `%w` pattern to `%i` to make lists of symbols.
+- [Keyword arguments](https://bugs.ruby-lang.org/issues/5474)  
+Otherwise known as "named" arguments, these were arguments on method calls and definitions that had explicit names. The syntax looked/looks _very_ similar to bare hashes without the braces. So much so that it ended up being implemented using a hash as the final argument to the method call, which caused a fair amount of compatibility problems. This ended up being remedied in `3.0` a full 8 years later.
 
 #### Grammar
 
@@ -768,9 +816,14 @@ Wed Aug 29 02:18:53 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
 
 ### 2013-12-25 - Ruby 2.1.0
 
-- [Required keyword arguments](https://bugs.ruby-lang.org/issues/7701)
-- [Rational and complex literals](https://bugs.ruby-lang.org/issues/8430)
-- [Frozen string literal suffix](https://bugs.ruby-lang.org/issues/8579)
+Starting with Ruby `2.1.0`, Ruby starts releasing on a very consistent schedule of every Christmas. The changes in this version include:
+
+- [Required keyword arguments](https://bugs.ruby-lang.org/issues/7701)  
+Previously you always had to specify a default value, but this change allowed those values to be omitted.
+- [Rational and complex literals](https://bugs.ruby-lang.org/issues/8430)  
+Rational and Complex already existed as classes, but this allowed syntax like `1/2r` for creating them without explicitly referencing the class.
+- [Frozen string literal suffix](https://bugs.ruby-lang.org/issues/8579)  
+This is an interesting addition that was temporarily merged and then replaced before this version was released. The proposal was to add an `f` suffix to strings to make them frozen by default without having to call a method. This is a theme that we'll see a lot over time as folks continually propose more ways to remove string allocations. This eventually gets obviated by a proposal to [optimize .freeze](https://bugs.ruby-lang.org/issues/8992) on strings within the compiler.
 
 #### Grammar
 
@@ -779,7 +832,7 @@ Wed Aug 29 02:18:53 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
 
 ### 2014-12-25 - Ruby 2.2.0
 
-- [Dynamic symbol hash keys](https://bugs.ruby-lang.org/issues/4276)
+In Ruby `2.2.0`, the only large syntax change is that you can now use [dynamic symbol hash keys](https://bugs.ruby-lang.org/issues/4276). This means you can do something like `{ "foo #{bar}": baz }`.
 
 #### Grammar
 
@@ -788,9 +841,9 @@ Wed Aug 29 02:18:53 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
 
 ### 2015-12-25 - Ruby 2.3.0
 
-- [frozen_string_literal pragma](https://bugs.ruby-lang.org/issues/8976)
-- [`<<~` heredocs](https://bugs.ruby-lang.org/issues/9098)
-- [`&.` operator](https://bugs.ruby-lang.org/issues/11537)
+As with `2.1.0`, there are still ongoing discussions of frozen strings, and we end up settling on the [frozen_string_literal pragma](https://bugs.ruby-lang.org/issues/8976) (following in the tradition of the encoding pragma). This allows users to specify that all strings in the file should be frozen by default. This was considered a temporary measure to prepare for an eventual future where all strings in Ruby would be frozen by default (this was also added as a command-line switch). This was promised for Ruby 3, but didn't end up making it in.
+
+In addition to the pragma, we also got [`<<~` heredocs](https://bugs.ruby-lang.org/issues/9098) that stripped common leading whitespace, and the [`&.` operator](https://bugs.ruby-lang.org/issues/11537) (otherwise known as the "lonely" operator), which only called the method if the receiver was not `nil`.
 
 #### Grammar
 
@@ -799,9 +852,9 @@ Wed Aug 29 02:18:53 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
 
 ### 2016-12-25 - Ruby 2.4.0
 
-- [Top level return](https://bugs.ruby-lang.org/issues/4840)
-- [Refinements in `Symbol#to_proc`](https://bugs.ruby-lang.org/issues/9451)
-- [Multiple assignment in a conditional](https://bugs.ruby-lang.org/issues/10617)
+Since its addition three years ago, refinements have not quite been adopted in many places. Nevertheless, work continues on them in this release where you can now use [refined methods with the `Symbol#to_proc`](https://bugs.ruby-lang.org/issues/9451) syntax. For example, if you were to refine `Integer#to_s`, you could now write `[1, 2, 3].map(&:to_s)` and it would function as you would expect.
+
+In addition, we got [top-level return](https://bugs.ruby-lang.org/issues/4840), which was useful in scripts where you wanted to bail from the entire program if some precondition was not met (like a dependency not beig available or not being on the right platform). Finally, you could now use [multiple assignment in a conditional](https://bugs.ruby-lang.org/issues/10617).
 
 #### Grammar
 
@@ -810,8 +863,7 @@ Wed Aug 29 02:18:53 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
 
 ### 2017-12-25 - Ruby 2.5.0
 
-- [`rescue` and `ensure` at the block level](https://bugs.ruby-lang.org/issues/12906)
-- [Refinements in string interpolations](https://bugs.ruby-lang.org/issues/13812)
+Work continues on refinements, as in this release we get [refinements in string interpolations](https://bugs.ruby-lang.org/issues/13812). Also released in this version were [`rescue` and `ensure` at the block level](https://bugs.ruby-lang.org/issues/12906), which had been referenced in the ToDo file for quite a few years at this point.
 
 #### Grammar
 
@@ -820,11 +872,20 @@ Wed Aug 29 02:18:53 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
 
 ### 2018-12-25 - Ruby 2.6.0
 
-- [Flip-flop (deprecated)](https://bugs.ruby-lang.org/issues/5400)
-- [Endless range](https://bugs.ruby-lang.org/issues/12912)
-- [Non-ASCII constant names](https://bugs.ruby-lang.org/issues/13770)
-- [RubyVM::AbstractSyntaxTree](https://github.com/ruby/ruby/commit/0f3dcbdf38db6c7fb04ca0833bb1f9af2c3e7ca4)
-- [Escape keywords from class/module scope removed](https://bugs.ruby-lang.org/issues/6354)
+Keeping with their release schedule of every Christmas, Ruby `2.6.0` was released one year to the day following `2.5.0`. One of the most interesting additions to history of parsing Ruby came in this version, which was the addition of [RubyVM::AbstractSyntaxTree](https://github.com/ruby/ruby/commit/0f3dcbdf38db6c7fb04ca0833bb1f9af2c3e7ca4). This addition was accidental, it was added as a means of testing another feature that was being added. Unfortunately for the maintainer, [people noticed](https://bugs.ruby-lang.org/issues/14844).
+
+`RubyVM::AbstractSyntaxTree` uses the internal `NODE` structs to build out an abstract syntax tree, much like many of the projects from the `1.6` to `1.8` days. Because it's written into core Ruby, it necessarily has access to things that other projects don't, which makes it particular faithful to the syntax. It is both praised and criticized on release, as it means another module that other implementations have to support if it becomes the blessed path for accessing the Ruby parse tree. The discussion continues to this day.
+
+Other syntax additions include:
+
+- [Flip-flop (deprecated)](https://bugs.ruby-lang.org/issues/5400)  
+At this point the `flip-flop` operator is deprecated, much to the chagrin of the commenters on the linked issue. This deprecation ends up getting reverted in Ruby `2.7`.
+- [Endless range](https://bugs.ruby-lang.org/issues/12912)  
+Ranges without endings get added to the syntax, which is a nice pairing with the lazy enumerable methods that have recently been merged. This allows things like `(0..).lazy.map { |number| number * 2 }.take(10)`, for example, to get the first 10 even numbers.
+- [Non-ASCII constant names](https://bugs.ruby-lang.org/issues/13770)  
+Constants in this version can now use non-ASCII characters in their names, which makes for all kinds of fun obfuscated code involving emojis.
+- [Escape keywords from class/module scope removed](https://bugs.ruby-lang.org/issues/6354)  
+An extremely rarely (hopefully) used feature of Ruby was that you could call `break` within a class and module body. This was effectively a bug, but it's interesting and included here because syntax is extremely rarely removed from Ruby. This is one of the few exceptions.
 
 #### Grammar
 
@@ -833,16 +894,28 @@ Wed Aug 29 02:18:53 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
 
 ### 2019-12-25 - Ruby 2.7.0
 
-- [Flip-flop (undeprecated)](https://bugs.ruby-lang.org/issues/5400)
-- [Method reference operator (added)](https://bugs.ruby-lang.org/issues/13581)
-- [Keyword arguments (warning about hash-based)](https://bugs.ruby-lang.org/issues/14183)
-- [No other keywords syntax](https://bugs.ruby-lang.org/issues/14183)
-- [Beginless range](https://bugs.ruby-lang.org/issues/14799)
-- [Pattern matching](https://bugs.ruby-lang.org/issues/14912)
-- [Numbered parameters](https://bugs.ruby-lang.org/issues/15723)
-- [Rightward assignment](https://bugs.ruby-lang.org/issues/15921)
-- [Argument forwarding](https://bugs.ruby-lang.org/issues/16253)
-- [Method reference operator (removed)](https://bugs.ruby-lang.org/issues/16275)
+Ruby `2.7.0` brought the biggest amount of new syntax to any version of Ruby. It boasts all kinds of interesting changes, including:
+
+- [Flip-flop (undeprecated)](https://bugs.ruby-lang.org/issues/5400)  
+To the cheers of fans of the flip-flop operator, the deprecation was removed.
+- [Method reference operator (added)](https://bugs.ruby-lang.org/issues/13581)  
+The method reference operator `.:` was added, as a shortcut for accessing a method object like `foo.method(:bar)`.
+- [Keyword arguments (warning about hash-based)](https://bugs.ruby-lang.org/issues/14183)  
+Since the addition of keyword arguments back in Ruby `2.0`, they've always been backed by an internal hash. That resulted in all kinds of compatibility issues between implementations of Ruby. To simplify things, in `3.0` they decided to make them "real" arguments instead of using an internal hash structure. To ease the transition, Ruby `2.7.0` detected when code would break in `3.0` and warned about that usage.
+- [No other keywords syntax](https://bugs.ruby-lang.org/issues/14183)  
+To define that no other keywords would be allowed on a method call, you could now use the special `**nil` syntax.
+- [Beginless range](https://bugs.ruby-lang.org/issues/14799)  
+To complement the endless ranges from the previous minor version, ranges could now omit the beginning as well.
+- [Pattern matching](https://bugs.ruby-lang.org/issues/14912)  
+A massive influx of syntax comes in `2.7` with the introduction of pattern matching. It's similar to a `case..when` statement, but instead uses `case..in` and comes with a whole host of new syntactical constructs. It merits its [own documentation page](https://github.com/ruby/ruby/blob/master/doc/syntax/pattern_matching.rdoc) being added to trunk.
+- [Numbered parameters](https://bugs.ruby-lang.org/issues/15723)  
+An interesting addition to this version is numbered parameters. Take a look at the linked issue to see all of the proposed variants. This addition takes inspiration from languages like Scala that support a default block variable.
+- [Rightward assignment](https://bugs.ruby-lang.org/issues/15921)  
+Even before `2.7` lands, pattern matching gets another addition which is rightward assignment. You can now assign variables using the special `=>` syntax, as in `foo => bar` which assigns to the `bar` local variable. This adds to the pattern matching because you can now pattern match in rightward assignment.
+- [Argument forwarding](https://bugs.ruby-lang.org/issues/16253)  
+Because keyword arguments are changing so much, its necessary to make a blessed path for forwarding named and unnamed arguments to another method. You can now use the ellipsis operator (`...`) to send every kind of argument (positional, keyword, and block) over to another method call. This helped eliminate some of the more problematic single-splat usage that was previously being used to accomplish this.
+- [Method reference operator (removed)](https://bugs.ruby-lang.org/issues/16275)  
+Unfortunately, the method reference operator that had been added earlier in the year ended up being reverted. Check the linked issue for the discussion of why.
 
 #### Grammar
 
@@ -851,11 +924,18 @@ Wed Aug 29 02:18:53 2001  Yukihiro Matsumoto  <matz@ruby-lang.org>
 
 ### 2020-12-25 - Ruby 3.0.0
 
-- [Keyword arguments (non-hash-based)](https://bugs.ruby-lang.org/issues/14183)
-- [Single-line methods](https://bugs.ruby-lang.org/issues/16746)
-- [Find pattern matching](https://bugs.ruby-lang.org/issues/16828)
-- [shareable_constant_value pragma](https://bugs.ruby-lang.org/issues/17273)
-- [`in` pattern matching](https://bugs.ruby-lang.org/issues/17371)
+Seven years since the release of Ruby `2.0`, Ruby goes `3.0`. A lot of changes that don't have to do with syntax are included in this release. Syntactically, there are a couple of interesting additions:
+
+- [Keyword arguments (non-hash-based)](https://bugs.ruby-lang.org/issues/14183)  
+The `3.x` version of keyword arguments (as opposed to the hash-based `2.x` version). This is the feature that Ruby `2.7` warned about constantly because folks were using the final hash argument to support keyword arguments before.
+- [Single-line methods](https://bugs.ruby-lang.org/issues/16746)  
+Methods can now be written as `def foo = bar` for more concise syntax.
+- [Find pattern matching](https://bugs.ruby-lang.org/issues/16828)  
+Pattern matching gets another type of pattern called the `"find"` pattern, which allows you to specify two `*` operators on each side of the value that you're searching for.
+- [shareable_constant_value pragma](https://bugs.ruby-lang.org/issues/17273)  
+To better support shared values across ractors, this pragma was added to make constant values shareable without having to freeze them. It's a [somewhat complicated](https://docs.ruby-lang.org/en/3.0.0/doc/syntax/comments_rdoc.html#label-shareable_constant_value+Directive) option that involves a lot of explanation in the linked doc.
+- [`in` pattern matching](https://bugs.ruby-lang.org/issues/17371)  
+Pattern matching gets one more boost with the ability to use the `in` operator for a single line. This is similar to rightward assignment, but returns the value of the match.
 
 #### Grammar
 
@@ -890,6 +970,18 @@ Following on the heels of the release of Ruby `1.7`, Minero Aoki releases [rippe
 
 Ripper is one of the few projects of this era to survive the `1.8` to `1.9` migration, likely because Aoki was a core contributor and made sure it additionally worked on the `YARV` branch. Eventually this project would become the way that many other projects retreived AST information, though it was always marked as "experimental". Even today the README for ripper says `Ripper is still early-alpha version.`.
 
+#### Projects
+
+Even though ripper has always been marked as `"experimental"`, a number of projects rely on it for accessing the parse tree. They've mostly been using it since it got merged into trunk with `1.9`. Those projects include:
+
+- [cane](https://github.com/square/cane) - a linter
+- [language_server-ruby](https://github.com/mtsmfm/language_server-ruby) - a language server
+- [prettier](https://github.com/prettier/plugin-ruby) - a formatter
+- [rubyfmt](https://github.com/penelopezone/rubyfmt) - a formatter
+- [rufo](https://github.com/ruby-formatter/rufo) - a formatter
+- [sandi_meter](https://github.com/makaroni4/sandi_meter) - a linter
+- [yard](https://github.com/lsegal/yard) - a documentation generator
+
 #### Links
 
 - [readme](docs/projects/ripper/readme.txt)
@@ -923,118 +1015,94 @@ Still in the Ruby `1.8` to `1.9` timeline, Dominik Bathon released [RubyNode](ht
 
 ### 2007-11-14 - ruby_parser 1.0.0
 
-- Ryan Davis https://github.com/seattlerb/ruby_parser
-- Uses a `racc`-based compiler to generate s-expressions
+Just before `1.9` was released, Ryan Davis created a spiritual sequel to `ParseTree` that would function running with the `1.9` branch. He took the `parse.y` file from core Ruby and rewrote the actions to be pure Ruby before piping it through `racc`. This was a similar idea to `ripper`, except that it was in Ruby instead of C.
 
-### 2009-07-25 - nodewrap 0.5.0
+#### Links
 
-- Paul Brannan http://rubystuff.org/nodewrap/
-- Allows dumping/loading the Ruby nodes and instruction sequences to a binary format
+[lib/ruby_parser.y](docs/projects/ruby_parser/lib/ruby_parser.y.txt)
+
+#### Projects
+
+A number of projects use `ruby_parser` as a way of accessing the syntax tree. Most of these were similarly created by Ryan Davis, but some others exist as well. Those include:
+
+- [dawnscanner](https://github.com/thesp0nge/dawnscanner) - a security analyzer
+- [debride](https://github.com/seattlerb/debride) - an unused code analyzer
+- [fasterer](https://github.com/DamirSvrtan/fasterer) - a performance linter
+- [flay](https://github.com/seattlerb/flay) - a code similarity analyzer
+- [flog](https://github.com/seattlerb/flog) - a code understandability analyzer
+- [railroader](https://github.com/david-a-wheeler/railroader) - a static security analyzer
+- [roodi](https://github.com/roodi/roodi) - a linter
 
 ### 2010-08-27 - laser 0.0.1
 
-- Michael Edgar https://github.com/michaeledgar/laser
-- Originally parsed regular expressions then `Ripper` to parse Ruby
-- Features a type system, semantic analysis, documentation generation, and a plugin system
+An interesting addition to this list is an excerpt from the academic side of Ruby. In 2010 Michael Edgar publishd his undergraduate thesis called [laser](https://github.com/michaeledgar/laser) (originally called wool, laser came from lexically- and statically-enriched Ruby). It was a linter, a type system, a documentation generation tool, and more. It featured a plugin system and performed semantic analysis. It was one of the more fully-fledged static analysis tools written for Ruby at this point. It originally parsed Ruby source using regular expressions just to check whitespace but upgraded to `ripper` eventually to do more complicated analyses.
 
 ### 2013-04-15 - parser 0.9.0
 
-- Peter Zotov https://github.com/whitequark/parser
-- Derives a new parser from `parse.y` in Ruby and a lexer test suite from `ruby_parser`
+Around the `2.0.0` days, Peter Zotov created the [parser gem](https://github.com/whitequark/parser). In the same tradition of other implementations of Ruby, it took the `parse.y` file from Ruby (and the lexer test suite from Ryan Davis' `ruby_parser`) and derived a new parser for creating syntax trees.
+
+#### Links
+
+- [README.md](docs/projects/parser/README.md.txt)
+- [lib/parser/ruby20.y](docs/projects/parser/lib/parser/ruby20.y.txt)
+
+#### Projects
+
+From its humble beginnings, `parser` ended up getting the attention of a lot of other developers because of its well-documented trees, easy-to-use APIs, and rewriting support. All kinds of other tools ended up being built on top of it, including:
+
+- [covered](https://github.com/ioquatix/covered) - a code coverage reporter
+- [deep-cover](https://github.com/deep-cover/deep-cover) - a code coverage reporter
+- [erb-lint](https://github.com/Shopify/erb-lint) - an ERB file linter
+- [fast](https://github.com/jonatas/fast) - an AST editor
+- [opal](https://github.com/opal/opal) - a Ruby to JavaScript transpiler
+- [packwerk](https://github.com/Shopify/packwerk) - an encapsulation analyzer
+- [querly](https://github.com/soutaro/querly) - a method call finder
+- [rdl](https://github.com/tupl-tufts/rdl) - a type checker
+- [reek](https://github.com/troessner/reek) - a code smell analyzer
+- [rubocop](https://github.com/rubocop/rubocop) - a linter
+- [rubrowser](https://github.com/emad-elsaid/rubrowser) - a module relationship grapher
+- [ruby-lint](https://github.com/YorickPeterse/ruby-lint) - a linter
+- [ruby-next](https://github.com/ruby-next/ruby-next) - a transpiler and polyfill
+- [ruby_detective](https://github.com/victor-am/ruby_detective) - a module relationship grapher
+- [rubycritic](https://github.com/whitesmith/rubycritic) - a code quality reporter
+- [seeing_is_believing](https://github.com/JoshCheek/seeing_is_believing) - an editor intermediate value display
+- [standard](https://github.com/testdouble/standard) - a rubocop wrapper with fewer options
+- [steep](https://github.com/soutaro/steep) - a static type checker
+- [unparser](https://github.com/mbj/unparser) - a code generation from the parser AST
+- [vernacular](https://github.com/kddnewton/vernacular) - a source code manipulation
+- [yoda](https://github.com/tomoasleep/yoda) - a static analyzer and language server
 
 ## Standards
 
 ### 2011-03-22 - JIS X 3017
 
+Japanese Standards Association standard [JIS X 3017](https://standards.globalspec.com/std/1651983/JIS%20X%203017).
+
 ### 2012-04-15 - ISO/IEC 30170:2012
+
+International Organization for Standardization standard [ISO/IEC 30170:2012](https://www.iso.org/obp/ui/#iso:std:iso-iec:30170:ed-1:v1:en).
 
 ## Parsers
 
 - [Cardinal](https://github.com/parrot/cardinal) - an implementation on the Parrot VM
 - [IronRuby](http://www.wilcob.com/Wilco/IronRuby/microsoft_ironruby.aspx) - an implementation on the .NET framework
 - [JRuby](https://github.com/jruby/jruby) - an implementation on the JVM
+	- [Ecstatic](https://projekter.aau.dk/projekter/files/61071016/1181807983.pdf) - type system
 - [MacRuby](http://macruby.org/) - an implementation for objective-c
 - [melbourne](https://github.com/carlosbrando/melbourne) - Rubinius's parser as a gem
 - [mruby](https://github.com/mruby/mruby) - an embeddable implementation
 - [rdoc](https://github.com/ruby/rdoc) - documentation generator
 - [RIL](http://www.cs.umd.edu/projects/PL/druby/papers/druby-dls09.pdf) - an intermediate language
+  - [druby](http://www.cs.umd.edu/projects/PL/druby/) - type system
+  - [rtc](https://www.cs.tufts.edu/~jfoster/papers/oops13.pdf) - type system
+  - [rubydust](http://www.cs.umd.edu/~mwh/papers/rubydust.pdf) - type system
 - [rubinius](https://github.com/rubinius/rubinius) - an implementation in Ruby
+	- [pelusa](https://github.com/codegram/pelusa) - linter
 - [saikuro](https://metricfu.github.io/Saikuro) - cyclomatic complexity linter
 - [sorbet](https://sorbet.org/) - type system
 - [sydparse](https://rubygems.org/gems/sydparse) - a reentrant Ruby parser
 - [topaz](https://github.com/topazproject/topaz) - an implementation for RPython
 - [tree-sitter-ruby](https://github.com/tree-sitter/tree-sitter-ruby) - a parser aimed at editors
+	- [vscode-ruby](https://github.com/rubyide/vscode-ruby) - language server
 - [TruffleRuby](https://github.com/oracle/truffleruby) - an implementation on the GraalVM
 - [typedruby](https://github.com/typedruby/typedruby) - type system
-
-## Projects using existing parsers
-
-## parser
-
-- [covered](https://github.com/ioquatix/covered) - code coverage reporter
-- [deep-cover](https://github.com/deep-cover/deep-cover) - code coverage reporter
-- [erb-lint](https://github.com/Shopify/erb-lint) - ERB file linter
-- [fast](https://github.com/jonatas/fast) - AST editor
-- [opal](https://github.com/opal/opal) - Ruby to JavaScript transpiler
-- [packwerk](https://github.com/Shopify/packwerk) - encapsulation analyzer
-- [querly](https://github.com/soutaro/querly) - method call finder
-- [rdl](https://github.com/tupl-tufts/rdl) - type checker
-- [reek](https://github.com/troessner/reek) - code smell analyzer
-- [rubocop](https://github.com/rubocop/rubocop) - linter
-- [rubrowser](https://github.com/emad-elsaid/rubrowser) - module relationship grapher
-- [ruby-lint](https://github.com/YorickPeterse/ruby-lint) - linter
-- [ruby-next](https://github.com/ruby-next/ruby-next) - transpiler and polyfill
-- [ruby_detective](https://github.com/victor-am/ruby_detective) - module relationship grapher
-- [rubycritic](https://github.com/whitesmith/rubycritic) - code quality reporter
-- [seeing_is_believing](https://github.com/JoshCheek/seeing_is_believing) - editor intermediate value display
-- [standard](https://github.com/testdouble/standard) - a rubocop wrapper with fewer options
-- [steep](https://github.com/soutaro/steep) - static type checker
-- [unparser](https://github.com/mbj/unparser) - code generation from the parser AST
-- [vernacular](https://github.com/kddnewton/vernacular) - source code manipulation
-- [yoda](https://github.com/tomoasleep/yoda) - static analyzer and language server
-
-## ruby_parser
-
-- [dawnscanner](https://github.com/thesp0nge/dawnscanner) - security analyzer
-- [debride](https://github.com/seattlerb/debride) - unused code analyzer
-- [fasterer](https://github.com/DamirSvrtan/fasterer) - performance linter
-- [flay](https://github.com/seattlerb/flay) - code similarity analyzer
-- [flog](https://github.com/seattlerb/flog) - code understandability analyzer
-- [railroader](https://github.com/david-a-wheeler/railroader) - static security analyzer
-- [roodi](https://github.com/roodi/roodi) - linter
-
-## ripper
-
-- [cane](https://github.com/square/cane) - linter
-- [language_server-ruby](https://github.com/mtsmfm/language_server-ruby) - language server
-- [prettier](https://github.com/prettier/plugin-ruby) - formatter
-- [rubyfmt](https://github.com/penelopezone/rubyfmt) - formatter
-- [rufo](https://github.com/ruby-formatter/rufo) - formatter
-- [sandi_meter](https://github.com/makaroni4/sandi_meter) - linter
-- [yard](https://github.com/lsegal/yard) - documentation generator
-
-## RubyVM::AbstractSyntaxTree
-
-- [solargraph](https://github.com/castwide/solargraph) - language server
-
-## tree-sitter
-
-- [vscode-ruby](https://github.com/rubyide/vscode-ruby) - language server
-
-## Rubinius
-
-- [pelusa](https://github.com/codegram/pelusa) - linter
-
-## RIL
-
-- [druby](http://www.cs.umd.edu/projects/PL/druby/) - type system
-- [rtc](https://www.cs.tufts.edu/~jfoster/papers/oops13.pdf) - type system
-- [rubydust](http://www.cs.umd.edu/~mwh/papers/rubydust.pdf) - type system
-
-## JRuby
-
-- [Ecstatic](https://projekter.aau.dk/projekter/files/61071016/1181807983.pdf) - type system
-
-## Potential future syntax
-
-- [Anonymous struct literal](https://bugs.ruby-lang.org/issues/16986)
