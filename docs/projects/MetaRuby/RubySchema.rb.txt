@@ -1,0 +1,438 @@
+=begin
+	(Meta)Ruby Schema (Abstract Syntax Tree Format)
+	Copyright 2001 by Mathieu Bouchard
+
+	$Id: RubySchema.rb,v 1.4 2001/09/18 03:02:26 matju Exp $
+
+	This library is free software; you can redistribute it and/or
+	modify it under the terms of the GNU Lesser General Public
+	License as published by the Free Software Foundation; either
+	version 2 of the License, or (at your option) any later version.
+
+	This library is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+	Lesser General Public License for more details.
+
+	You should have received a copy of the GNU Lesser General Public
+	License along with this library; if not, write to the Free Software
+	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+=end
+
+=begin
+	This is an AST format just like Ruby's internal AST.
+	The main differences is that this one is not internal,
+	it's designed for use by everybody and for any purpose,
+	especially for a Ruby parser written in Ruby.
+
+	An AST definition is similar to a grammar, except that:
+	it doesn't care about syntax differences; it does care
+	about its meaning-conveying parts, their internal
+	representations, and their naming.
+
+	TODO:
+	[ ] Correct it (remove useless, add missing, etc)
+	[ ] Find better naming
+	[ ] Merge and/or sync definitions where appropriate
+	[ ] Add all metatype defs
+	[ ] Make better categories
+	[ ] "Literal" should be reserved for things that are really Literal.
+=end
+
+require "Type"
+
+class Object
+	def method_missing(sym,*args)
+		raise NameError,
+			"undefined method `#{sym}' for #{self.inspect}"
+	end
+end
+
+module Ruby
+#----------------------------------------------------------------#
+# METATYPES
+
+# I still don't know what syntax is "right" for instantiation and
+# computation of types. Whether there should be a type suffix; whether
+# #new, #[], #of should be used, depending on the kind of metatype; etc.
+# I need a big picture of all of this.
+
+# there are many ways to take care of meta-types. I'm trying all kinds
+# of combinations of subclassing, adding superclasses to metaclass objects,
+# blah, blah. I'm trying different things here than I did in RubyX11, but
+# there is heavy similarity too.
+
+class SymbolSubset; include Type
+	def initialize(regex); @regex = regex; end
+	def ===(other); !! @regex =~ other.to_s; end
+end
+
+#----------------------------------------------------------------#
+# ANYS
+# empty modules here play the role of open-ended "Any.of" types.
+
+module Expr; end
+module Primary; end
+module Arg; end
+module Statement; end
+
+# This is the holder of a sequence of statements
+class Body < Tuple; fields_are \
+	[:body,List.of Statement] end
+
+#----------------------------------------------------------------#
+# SYMBOLS
+
+# Selectors for unary operators
+OpSel1 = ChoiceType[:+@,:-@,:~]
+
+# Selectors that are binary operators and assignment operators
+OpSel2a = ChoiceType[:+,:-,:*,:/,:%,:**,:&,:|,:^,:<<,:>>]
+
+# Selectors that are binary operators but not assignment operators
+# hack: !=, !~ are Ruby symbols, but not parsable as such.
+OpSel2na = ChoiceType[:<,:>,:<=,:>=,:==,"!=".intern,:<=>,:===,:=~,"!~".intern]
+
+OpSel2 = Any.of OpSel2a, OpSel2na
+
+OpSel3 = ChoiceType[:[],:[]=]
+
+# textonly identifiers
+Ident    = SymbolSubset.new /^[A-Za-z_]\w*$/
+
+# with optional suffix
+IdentSel = SymbolSubset.new /^[A-Za-z_]\w*[=!\?]?$/
+
+# begins with [A-Z]
+IdentConst = SymbolSubset.new /^[A-Z]\w*$/
+
+# with optional prefix
+# second level of variables: only the real ones; no pseudos.
+Var2  = SymbolSubset.new /^((\$-?.)|((|@|@@|\$)[A-Za-z_]\w*))$/
+
+FName = Any.of IdentSel, OpSel1, OpSel2, OpSel3
+
+class Const < Tuple; fields_are \
+	[:base,Any.of Primary,NilClass],
+		# nil: from ::Object
+		# other: from current constant namespace
+	[:ident,Ident] end
+
+#----------------------------------------------------------------#
+# LITERALS
+
+# literals that you do not dup.
+
+class LAtom < Tuple; fields_are \
+	[:value,Any.of Integer,Float,Symbol,Boolean,NilClass] end
+
+# literals that you dup.
+
+class LString < Tuple; fields_are \
+	[:value,String] end
+
+# literals that you have to eval.
+
+# interpolated string
+class LIString < Tuple; fields_are \
+	[:args,List.of Any.of LString,Expr] end
+
+# like Array[]
+class LArray < Tuple; fields_are \
+	[:args,List.of Expr],
+	[:rest,Expr] end
+
+# like Hash[]
+class LHash < Tuple; fields_are \
+	[:args,List.of Expr] end
+
+# like Regexp.new()
+class LRegexp < Tuple; fields_are \
+	[:pattern,Any.of LString,LIString],
+	[:flags,String] end
+
+# like Kernel.`()
+class LSystem < Tuple; fields_are \
+	[:command,Any.of LString,LIString] end
+
+# like Range.new
+class LRange < Tuple; fields_are \
+	[:left,Expr],
+	[:right,Expr],
+	[:exclusive,Boolean] end
+
+module Literal; end
+[LAtom, LString, LIString, LArray, LHash, LRegexp, LSystem, LRange].each {|x|
+	x.module_eval { include Literal }
+}
+
+#----------------------------------------------------------------#
+# MESSAGES
+
+# message expression
+#   like "a+b" or "a.+b" or "a.+(b)"
+#   or "a.foo(z,y,*x,&b)" or "a.foo(a){|x|f x}" or "foo(a)"
+# nil means omitted.
+
+# foo.bar(42,53) {|a,b| a+b } is like:
+# M[:foo,:bar,[QAtom[42],QAtom[53]],nil,Block[[:a,:b],[M[:a,:+,:b,nil,nil]]]]
+
+class Block < Tuple; end # forward-decl
+
+module Call; end
+
+class M < Tuple; include Call; fields_are \
+	[:receiver,Any.of Expr,NilClass],
+	[:selector,Any.of OpSel1,OpSel2,IdentSel],
+	[:args,List.of Expr],
+	[:rest,Any.of Expr,NilClass],
+	[:block,Any.of Block,Expr,NilClass] end
+
+class Super < Tuple; include Call; fields_are \
+	[:args,Any.of List.of(Expr), NilClass], # make it nil if "same" args
+	[:rest,Any.of Expr,NilClass],
+	[:block,Any.of Block,Expr,NilClass] end
+
+#----------------------------------------------------------------#
+# VARIABLES (also known as Left-Hand Sides)
+
+# foo[bar,baz,...], with or without "="
+class SliceVar < Tuple; fields_are \
+	[:left,Expr],
+	[:args,List.of Expr],
+	[:rest,Any.of Expr,NilClass] end
+
+# Attribute: foo.bar without parens, with or without "="
+class A < Tuple; fields_are \
+	[:receiver,Primary],
+	[:attr,Ident] end
+
+# first level of variables: all kinds of vars and pseudo-vars.
+Var = Any.of Var2, SliceVar, A
+
+class MVar < Tuple; end # fwd-decl
+
+# single or multiple variable
+SMVar = Any.of Var, MVar
+
+# multiple variable
+class MVar < Tuple; fields_are \
+	[:items,List.of SMVar],
+	[:rest,Any.of Var,NilClass] end
+
+#----------------------------------------------------------------#
+# BASE
+
+class Block < Tuple; fields_are \
+	[:argnames,MVar],
+	[:body,Body] end
+
+class MExpr < Tuple; fields_are \
+	[:args,List.of Expr],
+	[:rest,Any.of Expr,NilClass] end
+
+# simple assignment
+class Assign < Tuple; fields_are \
+	[:to,Var],
+	[:from,Expr] end
+
+# a += b
+class OpAssign < Tuple; fields_are \
+	[:to,Var],
+	[:op,OpSel2a],
+	[:from,Expr] end
+
+# a,b,c = d,e,f
+class MAssign < Tuple; fields_are \
+	[:to,MVar],
+	[:from,MExpr] end
+
+# "not", "!"
+class Not < Tuple; fields_are \
+	[:value,Expr] end
+
+class Undef < Tuple; fields_are [:names,List.of IdentSel] end
+class Alias < Tuple; fields_are [:to,IdentSel],[:from,IdentSel] end
+class BeginBlock < Tuple; fields_are [:body,Body] end
+class EndBlock   < Tuple; fields_are [:body,Body] end
+class Return < Tuple; fields_are [:mvalue,MExpr] end
+class Yield  < Tuple; fields_are [:mvalue,MExpr] end
+
+#----------------------------------------------------------------#
+# CONDITIONAL EVALUATION
+
+# simple condition
+class SCond < Tuple; fields_are \
+	[:equal_to,Boolean],
+		# true: and &&
+		# false: or ||
+	[:left,Expr],
+	[:right,Expr] end
+
+class RCond < Tuple; fields_are \
+	[:equal_to,Boolean],
+		# true:  a if b
+		# false: a unless b
+	[:then,Expr],
+	[:cond,Expr] end
+
+class CondAssign < Tuple
+fields_are \
+	[:equal_to,Boolean],
+		# true:  &&=
+		# false: ||=
+	[:to,Var],
+	[:from,Expr] end
+
+class Cond < Tuple; fields_are \
+	[:equal_to,Boolean],
+		# true:         a  ?   b   :  c
+		# true:  if     a then b else c end
+		# false: unless a then b else c end
+	[:cond,Expr],
+	[:then, Body],
+	[:else, Body] end
+
+class IfClause < Tuple; fields_are \
+	[:guard,Expr],
+	[:body,Body] end
+
+# if a0 then b0 elsif a1 then b1 ... else c end
+class LongIf < Tuple; fields_are \
+	[:clauses, List.of IfClause],
+	[:else, Body] end
+
+class When < Tuple; fields_are \
+	[:args,List.of Expr],
+	[:rest,Expr],
+	[:body,Body] end
+
+class Case < Tuple; fields_are \
+	[:expr, Expr],
+	[:clauses, List.of When],
+	[:else, Body] end
+
+# flip-flop (which looks like a LRange but directly in Cond#cond or something)
+class FlipFlop < Tuple; fields_are \
+	[:left,Expr],
+	[:right,Expr],
+	[:exclusive,Boolean] end
+
+#----------------------------------------------------------------#
+# LOOPS
+
+class For < Tuple; fields_are \
+	[:vars, SMVar],
+	[:body, Body] end
+
+class Loop < Tuple; fields_are \
+	[:equal_to,Boolean],
+		# true:  while a; b end
+		# false: until a; b end
+	[:cond,Expr],
+	[:body,Body] end
+
+class RLoop < Tuple; fields_are \
+	[:equal_to,Boolean],
+		# true:  a while b
+		# false: a until b
+	[:body,Expr],
+	[:cond,Expr] end
+
+class Break < Tuple; fields_are(); end
+class Next  < Tuple; fields_are(); end
+class Redo  < Tuple; fields_are(); end
+
+#----------------------------------------------------------------#
+# EXCEPTIONS
+
+class Rescue < Tuple; fields_are \
+	[:args,List.of Arg],
+	[:body,Body] end
+
+class Begin < Tuple; fields_are \
+	[:body,Body],
+	[:clauses,List.of Rescue],
+	[:else,Body],
+	[:ensure,Body] end
+
+class Retry < Tuple; fields_are(); end
+
+class RRescue < Tuple; fields_are \
+	[:body,Expr],
+	[:args,List.of Arg] end
+
+#----------------------------------------------------------------#
+# EXPRESSIONS (and some statements)
+
+# defined? a
+class Defined < Tuple; fields_are \
+	[:arg,Arg] end
+
+class DefArg < Tuple; fields_are \
+	[:name,Ident],
+	[:default,Any.of Expr,NilClass] end
+
+class DefArgs < Tuple; fields_are \
+	[:args,List.of DefArg],
+	[:rest,Any.of DefArg],
+	[:block,Any.of DefArg,NilClass] end
+
+class DefMethod < Tuple; fields_are \
+	[:target,Any.of Var,NilClass],
+		# Var: singleton method
+		# nil: instance method
+	[:name,FName],
+	[:args,DefArgs],
+	[:body,Body] end
+
+class DefClass < Tuple; fields_are \
+	[:name,Any.of IdentConst],
+	[:supername,IdentConst,NilClass],
+		# nil: class Foo; end
+		# other: class Foo<Bar; end
+	[:body,Body] end
+
+# module Foo; end
+class DefModule < Tuple; fields_are \
+	[:name,IdentConst],
+	[:body,Body] end
+
+# class<<foo; end
+class DefSClass < Tuple; fields_are \
+	[:expr,Expr],
+	[:body,Body] end
+
+=begin
+class CallArgs < Tuple; fields_are \
+	[:args,List.of Arg],
+	[:rest,Any.of Arg,NilClass],
+	[:block,Any.of Arg,NilClass] end
+=end
+
+#----------------------------------------------------------------#
+# ANYS (revisited)
+
+[
+	Break, Redo, Next, Retry,
+	Body, Literal, Const, SliceVar, Return, Yield, Defined, Call,
+	Cond, Loop, LongIf, Case, Begin, DefClass, DefModule, DefMethod, DefSClass
+].each {|x|
+	x.instance_eval { include Primary }}
+
+[Assign, OpAssign, LRange, Not, SCond, Defined, Primary].each {|x|
+	x.module_eval { include Arg }}
+
+[MAssign, Return, Yield, Arg].each {|x|
+	x.module_eval { include Expr }}
+
+[
+	M, Undef, Alias, RCond, RLoop,
+	BeginBlock, EndBlock, Assign, Expr
+].each {|x|
+	x.module_eval { include Statement }}
+
+#----------------------------------------------------------------#
+end # module Ruby
+
+RubySchema = Ruby

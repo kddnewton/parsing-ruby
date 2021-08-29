@@ -812,9 +812,13 @@ there are now explicit multibyte character identifiers - this is more work towar
   <TimelineEntryTooltip>
     <h2>MetaRuby 0.7.0 <small>2002-10-09</small></h2>
 
+<p><a href="http://artengine.ca/matju/MetaRuby/">MetaRuby</a> is a pretty interesting project that Mathieu Bouchard started around the Ruby 1.7 era. It was an attempt to implement a lot of the Ruby standard library in pure Ruby, predating the Rubinius project by a while. The reason I’m including it in this list is that in version <code>0.7.0</code>, MetaRuby included <code>RubySchema.rb</code>, which was a method of validating the shape of the Ruby abstract syntax tree.</p>
+
+<h4 id="links">Links</h4>
+
 <ul>
-  <li>Mathieu Bouchard http://artengine.ca/matju/MetaRuby/</li>
-  <li>Includes <code>RubySchema.rb</code>, a schema for validating Ruby ASTs</li>
+  <li><a href="projects/MetaRuby/Overview.txt">Overview</a></li>
+  <li><a href="projects/MetaRuby/RubySchema.rb.txt">RubySchema.rb</a></li>
 </ul>
 
   </TimelineEntryTooltip>
@@ -960,9 +964,13 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <TimelineEntryTooltip>
     <h2>ParseTree 1.0.0 <small>2004-11-10</small></h2>
 
+<p>A little over a year after the release of <code>1.8</code>, Ryan Davis released <a href="https://github.com/seattlerb/parsetree">ParseTree</a>. It used internals specific to <code>1.8</code> to build out s-expressions that you could programmatically access. Interestingly it was tested against all of the available gems at the time it was written with a tool called <code>gauntlet</code>.</p>
+
+<h4 id="links">Links</h4>
+
 <ul>
-  <li>Ryan Davis https://github.com/seattlerb/parsetree</li>
-  <li>Extends Ruby 1.8 internals to support returning an AST by converting to Ruby objects</li>
+  <li><a href="projects/parsetree/README.txt">README.txt</a></li>
+  <li><a href="projects/parsetree/lib/gauntlet_parsetree.rb.txt">lib/gauntlet_parsetree.rb</a></li>
 </ul>
 
   </TimelineEntryTooltip>

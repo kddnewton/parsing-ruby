@@ -1,0 +1,66 @@
+# $Id: Overview,v 1.4 2001/09/18 02:29:36 matju Exp $
+
+REQUIREMENTS
+
+	Ruby 1.6
+	Rubicon CVS (for running the tests for Hollow)
+
+PURPOSE
+
+BaseLib emulation ("Hollow"):
+
+	Separate BaseLib interface into "fundamental" (Simple) and
+	"convenience" (Hollow) parts. Implement the convenience part in
+	terms of the fundamental one, leaving the fundamental part open.
+
+	Allow by a simple mechanism to create new classes that have most
+	or all of the functionality of the equivalent builtin classes.
+
+	This can be seen as an equivalent to Perl's "tie" command. This
+	also can be used to reduce the amount of effort needed to write
+	alternate implementations of Ruby, although this has not been
+	attempted yet (and would require some modifications)
+
+	see doc/Hollow.txt
+
+Marshalling:
+
+	Allow Ruby object structures to be serialized into Ruby
+	constructor expressions and LGRAM (LISP) s-expressions. The Ruby
+	code can be deserialized using Ruby's builtin eval, and LGRAM code
+	can be parsed with lgram/Marshal.rb (LGReader)
+
+Homoiconicity:
+
+	Define classes for expressing Ruby program elements. Define a
+	schema (the set of all valid object trees) for representing Ruby
+	programs.
+
+	A Ruby parser that output RubySchema-valid structures should be
+	written (but i won't do this myself)
+
+	Apply the Hollow pattern to the RubySchema; provide a compiler
+	from the second ring to the first ring.
+
+WHAT HAS BEEN DONE
+
+There is near-complete emulation of Array, Hash, String. IO/File
+emulation is in the works. An object serializer for Ruby is
+provided. The object serializer for LGRAM is broken.
+
+AUTHORS/CREDITS
+
+Written by Mathieu Bouchard <matju@sympatico.ca>
+
+BaseLib unit-tests (Rubicon) by Dave Thomas
+
+BUG REPORTING
+
+Please report to the author any bugs you find, except those listed in "Normal
+Problems" and the Todo list (file "./TODO")
+
+NORMAL PROBLEMS (quirks of the system that cannot be fixed at all)
+
+ * HollowArray#to_ary/to_a don't return self. This is normal, but the
+   test cases I use are Array's.
+

@@ -897,13 +897,21 @@ Ripper is one of the few projects of this era to survive the `1.8` to `1.9` migr
 
 ### 2002-10-09 - MetaRuby 0.7.0
 
-- Mathieu Bouchard http://artengine.ca/matju/MetaRuby/
-- Includes `RubySchema.rb`, a schema for validating Ruby ASTs
+[MetaRuby](http://artengine.ca/matju/MetaRuby/) is a pretty interesting project that Mathieu Bouchard started around the Ruby 1.7 era. It was an attempt to implement a lot of the Ruby standard library in pure Ruby, predating the Rubinius project by a while. The reason I'm including it in this list is that in version `0.7.0`, MetaRuby included `RubySchema.rb`, which was a method of validating the shape of the Ruby abstract syntax tree.
+
+#### Links
+
+- [Overview](docs/projects/MetaRuby/Overview.txt)
+- [RubySchema.rb](docs/projects/MetaRuby/RubySchema.rb.txt)
 
 ### 2004-11-10 - ParseTree 1.0.0
 
-- Ryan Davis https://github.com/seattlerb/parsetree
-- Extends Ruby 1.8 internals to support returning an AST by converting to Ruby objects
+A little over a year after the release of `1.8`, Ryan Davis released [ParseTree](https://github.com/seattlerb/parsetree). It used internals specific to `1.8` to build out s-expressions that you could programmatically access. Interestingly it was tested against all of the available gems at the time it was written with a tool called `gauntlet`.
+
+#### Links
+
+- [README.txt](docs/projects/parsetree/README.txt)
+- [lib/gauntlet_parsetree.rb](docs/projects/parsetree/lib/gauntlet_parsetree.rb.txt)
 
 ### 2006-06-05 - RubyNode 0.1.0
 
