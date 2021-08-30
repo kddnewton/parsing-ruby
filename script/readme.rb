@@ -33,12 +33,6 @@ push_entry = -> (entry) {
 
 File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
   parsing = true if line.start_with?("## Ruby versions")
-
-  if line.start_with?("## Parsers")
-    push_entry.call(entry)
-    break
-  end
-
   next if !parsing || line.start_with?("## ")
 
   if match = line.match(/^### (\d{4})-(\d{2})-(\d{2}) - (.+)$/)
@@ -56,7 +50,9 @@ File.foreach(File.expand_path("../README.md", __dir__), chomp: true) do |line|
   end
 end
 
+push_entry.call(entry)
 entries.sort_by! { |entry| [entry[:year], entry[:month], entry[:day]] }
+
 entries.map! do |entry|
   <<~JSX
     <TimelineEntry date={new Date(Date.UTC(#{entry[:year]}, #{entry[:month] - 1}, #{entry[:day]}))}>

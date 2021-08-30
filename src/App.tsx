@@ -789,6 +789,19 @@ there are now explicit multibyte character identifiers - this is more work towar
 
   </TimelineEntryTooltip>
 </TimelineEntry>
+<TimelineEntry date={new Date(Date.UTC(2001, 8, 10))}>
+  <RubyMarker />
+  <TimelineEntryTooltip>
+    <h2>JRuby <small>2001-09-10</small></h2>
+
+<p>In 2001, Jan Arne Petersen began work on a reimplementation of Ruby for the Java Virtual Machine that was a direct port of the Ruby <code>1.6</code> code in Java called <a href="https://github.com/jruby/jruby">JRuby</a>. JRuby has undergone significant effort and change over the years. The parser itself has served as the basis for other Java projects to get their start as well, including TruffleRuby. Part of their efforts also involved reimplementing a lot of the standard library in Ruby itself, which also aided Rubinius and other projects.</p>
+
+<h4 id="projects">Projects</h4>
+
+<p>In addition to helping other projects along with their reimplementation efforts, JRuby also served as the parser basis for <a href="https://projekter.aau.dk/projekter/files/61071016/1181807983.pdf">ecstatic</a>, a type system research project.</p>
+
+  </TimelineEntryTooltip>
+</TimelineEntry>
 <TimelineEntry date={new Date(Date.UTC(2001, 9, 20))}>
   <RubyMarker />
   <TimelineEntryTooltip>
@@ -1004,6 +1017,41 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
 
   </TimelineEntryTooltip>
 </TimelineEntry>
+<TimelineEntry date={new Date(Date.UTC(2006, 6, 12))}>
+  <RubyMarker />
+  <TimelineEntryTooltip>
+    <h2>Rubinius <small>2006-07-12</small></h2>
+
+<p>Following work he had done to create a reentrant Ruby parser and a book he had read on bytecode interpreters, Evan Phoenix began working on a Ruby-in-Ruby implementation that he called <a href="https://github.com/rubinius/rubinius">Rubinius</a>. It took the <code>parse.y</code> of core Ruby and rewrote the actions to do things in the Ruby space. This actually went back and forth a bit between being implemented partly in C and partly in Ruby.</p>
+
+<h4 id="projects">Projects</h4>
+
+<ul>
+  <li><a href="https://github.com/carlosbrando/melbourne">melbourne</a> - Rubinius’s parser distributed as a gem</li>
+  <li><a href="https://github.com/codegram/pelusa">pelusa</a> - a linter that used the Rubinius infrastructure</li>
+  <li><a href="https://rubygems.org/gems/sydparse">sydparse</a> - a reentrant Ruby parser that ended up being the basis of the Rubinius project</li>
+</ul>
+
+  </TimelineEntryTooltip>
+</TimelineEntry>
+<TimelineEntry date={new Date(Date.UTC(2006, 6, 16))}>
+  <RubyMarker />
+  <TimelineEntryTooltip>
+    <h2>Cardinal <small>2006-07-16</small></h2>
+
+<p>Back in the Ruby <code>1.8</code> days, there was an interesting reimplementation of Ruby on the Parrot VM called <a href="https://github.com/parrot/cardinal">Cardinal</a>. This was one of the only attempts to reimplement Ruby that did not take the <code>parse.y</code> source and reengineer it. Instead it took the EBNF documentation from Ruby <code>1.6</code> and created its own PGE grammar.</p>
+
+  </TimelineEntryTooltip>
+</TimelineEntry>
+<TimelineEntry date={new Date(Date.UTC(2007, 3, 30))}>
+  <RubyMarker />
+  <TimelineEntryTooltip>
+    <h2>IronRuby <small>2007-04-30</small></h2>
+
+<p>Around the time that interest in Ruby implementations was starting to take off, Microsoft decided to invest in a Ruby implementation on the .NET framework called <a href="http://www.wilcob.com/Wilco/IronRuby/microsoft_ironruby.aspx">IronRuby</a>. John Lam and the DLR Design Team worked on it for 3 years to make it able to run production workloads. Unfortunately in July 2010 Microsoft stopped funding the project, and ended up publishing it in 2011.</p>
+
+  </TimelineEntryTooltip>
+</TimelineEntry>
 <TimelineEntry date={new Date(Date.UTC(2007, 10, 14))}>
   <RubyMarker />
   <TimelineEntryTooltip>
@@ -1090,6 +1138,15 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
 
   </TimelineEntryTooltip>
 </TimelineEntry>
+<TimelineEntry date={new Date(Date.UTC(2008, 2, 13))}>
+  <RubyMarker />
+  <TimelineEntryTooltip>
+    <h2>MacRuby <small>2008-03-13</small></h2>
+
+<p>In 2008, Laurent Sansonetti began work on MacRuby, a Ruby <code>1.9</code> implementation that targetted the LLVM compiler infrastructure. It supported ahead-of-time and just-in-time compilation. It similarly took the <code>parse.y</code> and massaged it a bit. Fortunately, because it was written mostly in Objective-C, it could keep most of it in place because the actions were already written in C.</p>
+
+  </TimelineEntryTooltip>
+</TimelineEntry>
 <TimelineEntry date={new Date(Date.UTC(2009, 0, 30))}>
   <RubyMarker />
   <TimelineEntryTooltip>
@@ -1106,6 +1163,25 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
 <ul>
   <li><a href="ebnf/1.9.1.txt">EBNF</a></li>
   <li><a href="diagrams/1.9.1.xhtml">Diagram</a></li>
+</ul>
+
+  </TimelineEntryTooltip>
+</TimelineEntry>
+<TimelineEntry date={new Date(Date.UTC(2009, 9, 26))}>
+  <RubyMarker />
+  <TimelineEntryTooltip>
+    <h2>Ruby Intermediate Language <small>2009-10-26</small></h2>
+
+<p>In 2009, a team of researchers at the University of Maryland, College Park put together a very interesting project meant to power a type system. It was a Ruby parser written in OCaml that standardized a lot of syntax into a small intermediate representation suitable for further analysis. The researchers (Michael Furr, Jong-hoon An, Jeffrey Foster, and Michael Hicks) presented it at the <a href="http://www.cs.umd.edu/projects/PL/druby/papers/druby-dls09.pdf">2009 ACM conference</a>.</p>
+
+<h4 id="projects">Projects</h4>
+
+<p>This project went on to be a basis of further research projects that were all type systems that took advantage of the same parser, notably:</p>
+
+<ul>
+  <li><a href="http://www.cs.umd.edu/projects/PL/druby/">druby</a></li>
+  <li><a href="https://www.cs.tufts.edu/~jfoster/papers/oops13.pdf">rtc</a></li>
+  <li><a href="http://www.cs.umd.edu/~mwh/papers/rubydust.pdf">rubydust</a></li>
 </ul>
 
   </TimelineEntryTooltip>
@@ -1145,6 +1221,15 @@ you can now assign the constants multiple levels deep using the <code>::</code> 
   <li><a href="ebnf/1.9.3.txt">EBNF</a></li>
   <li><a href="diagrams/1.9.3.xhtml">Diagram</a></li>
 </ul>
+
+  </TimelineEntryTooltip>
+</TimelineEntry>
+<TimelineEntry date={new Date(Date.UTC(2012, 3, 7))}>
+  <RubyMarker />
+  <TimelineEntryTooltip>
+    <h2>Topaz <small>2012-04-07</small></h2>
+
+<p>In early 2012, work began on <a href="https://github.com/topazproject/topaz">topaz</a>, an implementation of Ruby targeting RPython. It also took the <code>parse.y</code> file from Ruby, but this time it reimplemented it in python with the grammar rules being written as function decorators.</p>
 
   </TimelineEntryTooltip>
 </TimelineEntry>
@@ -1228,6 +1313,14 @@ Otherwise known as “named” arguments, these were arguments on method calls a
 
   </TimelineEntryTooltip>
 </TimelineEntry>
+<TimelineEntry date={new Date(Date.UTC(2013, 9, 26))}>
+  <RubyMarker />
+  <TimelineEntryTooltip>
+    <h2>TruffleRuby <small>2013-10-26</small></h2>
+
+<p>In late 2013, a research team out of Oracle Labs forked JRuby and created <a href="https://github.com/oracle/truffleruby">TruffleRuby</a>, a reimplementation of Ruby on the JVM that used the Graal dynamic compiler and the Truffle AST interpreter framework. As with JRuby, it used the same reengineered parser ported to Java.</p>
+  </TimelineEntryTooltip>
+</TimelineEntry>
 <TimelineEntry date={new Date(Date.UTC(2013, 11, 25))}>
   <RubyMarker />
   <TimelineEntryTooltip>
@@ -1302,6 +1395,26 @@ This is an interesting addition that was temporarily merged and then replaced be
   <li><a href="ebnf/2.4.0.txt">EBNF</a></li>
   <li><a href="diagrams/2.4.0.xhtml">Diagram</a></li>
 </ul>
+
+  </TimelineEntryTooltip>
+</TimelineEntry>
+<TimelineEntry date={new Date(Date.UTC(2017, 1, 2))}>
+  <RubyMarker />
+  <TimelineEntryTooltip>
+    <h2>tree-sitter 0.0.2 <small>2017-02-02</small></h2>
+
+<p>In earlier 2017, work began on <a href="https://github.com/tree-sitter/tree-sitter-ruby">tree-sitter-ruby</a>, bringing Ruby support to the tree-sitter parser generator and incremental parsing library. While not entirely complete in terms of syntax, it’s far enough along to power jump-to-definition and autocomplete tools.</p>
+
+<p>The project itself is written in JavaScript like the other tree-sitter plugins, which makes it ideal to power a language server and VSCode plugin, which is exactly what it does in <a href="https://github.com/rubyide/vscode-ruby">vscode-ruby</a>.</p>
+
+  </TimelineEntryTooltip>
+</TimelineEntry>
+<TimelineEntry date={new Date(Date.UTC(2017, 1, 26))}>
+  <RubyMarker />
+  <TimelineEntryTooltip>
+    <h2>typedruby <small>2017-02-26</small></h2>
+
+<p>Taking the grammar from Ruby 2.4 and a rewrite of the lexer from ruby_parser, <a href="https://github.com/typedruby/typedruby">typedruby</a> was created as a type system written in Rust. It gets a special notation here as it ended up being reused in other C++ projects, notably the <a href="https://sorbet.org/">sorbet</a> type system (which vendors this parser).</p>
 
   </TimelineEntryTooltip>
 </TimelineEntry>

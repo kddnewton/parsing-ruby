@@ -1033,6 +1033,18 @@ A number of projects use `ruby_parser` as a way of accessing the syntax tree. Mo
 - [railroader](https://github.com/david-a-wheeler/railroader) - a static security analyzer
 - [roodi](https://github.com/roodi/roodi) - a linter
 
+### 2009-10-26 - Ruby Intermediate Language
+
+In 2009, a team of researchers at the University of Maryland, College Park put together a very interesting project meant to power a type system. It was a Ruby parser written in OCaml that standardized a lot of syntax into a small intermediate representation suitable for further analysis. The researchers (Michael Furr, Jong-hoon An, Jeffrey Foster, and Michael Hicks) presented it at the [2009 ACM conference](http://www.cs.umd.edu/projects/PL/druby/papers/druby-dls09.pdf).
+
+#### Projects
+
+This project went on to be a basis of further research projects that were all type systems that took advantage of the same parser, notably:
+
+- [druby](http://www.cs.umd.edu/projects/PL/druby/)
+- [rtc](https://www.cs.tufts.edu/~jfoster/papers/oops13.pdf)
+- [rubydust](http://www.cs.umd.edu/~mwh/papers/rubydust.pdf)
+
 ### 2010-08-27 - laser 0.0.1
 
 An interesting addition to this list is an excerpt from the academic side of Ruby. In 2010 Michael Edgar publishd his undergraduate thesis called [laser](https://github.com/michaeledgar/laser) (originally called wool, laser came from lexically- and statically-enriched Ruby). It was a linter, a type system, a documentation generation tool, and more. It featured a plugin system and performed semantic analysis. It was one of the more fully-fledged static analysis tools written for Ruby at this point. It originally parsed Ruby source using regular expressions just to check whitespace but upgraded to `ripper` eventually to do more complicated analyses.
@@ -1072,6 +1084,16 @@ From its humble beginnings, `parser` ended up getting the attention of a lot of 
 - [vernacular](https://github.com/kddnewton/vernacular) - a source code manipulation
 - [yoda](https://github.com/tomoasleep/yoda) - a static analyzer and language server
 
+### 2017-02-02 - tree-sitter 0.0.2
+
+In earlier 2017, work began on [tree-sitter-ruby](https://github.com/tree-sitter/tree-sitter-ruby), bringing Ruby support to the tree-sitter parser generator and incremental parsing library. While not entirely complete in terms of syntax, it's far enough along to power jump-to-definition and autocomplete tools.
+
+The project itself is written in JavaScript like the other tree-sitter plugins, which makes it ideal to power a language server and VSCode plugin, which is exactly what it does in [vscode-ruby](https://github.com/rubyide/vscode-ruby).
+
+### 2017-02-26 - typedruby
+
+Taking the grammar from Ruby 2.4 and a rewrite of the lexer from ruby_parser, [typedruby](https://github.com/typedruby/typedruby) was created as a type system written in Rust. It gets a special notation here as it ended up being reused in other C++ projects, notably the [sorbet](https://sorbet.org/) type system (which vendors this parser).
+
 ## Standards
 
 ### 2011-03-22 - JIS X 3017
@@ -1082,27 +1104,42 @@ Japanese Standards Association standard [JIS X 3017](https://standards.globalspe
 
 International Organization for Standardization standard [ISO/IEC 30170:2012](https://www.iso.org/obp/ui/#iso:std:iso-iec:30170:ed-1:v1:en).
 
-## Parsers
+## Implementations
 
-- [Cardinal](https://github.com/parrot/cardinal) - an implementation on the Parrot VM
-- [IronRuby](http://www.wilcob.com/Wilco/IronRuby/microsoft_ironruby.aspx) - an implementation on the .NET framework
-- [JRuby](https://github.com/jruby/jruby) - an implementation on the JVM
-	- [Ecstatic](https://projekter.aau.dk/projekter/files/61071016/1181807983.pdf) - type system
-- [MacRuby](http://macruby.org/) - an implementation for objective-c
-- [melbourne](https://github.com/carlosbrando/melbourne) - Rubinius's parser as a gem
-- [mruby](https://github.com/mruby/mruby) - an embeddable implementation
-- [rdoc](https://github.com/ruby/rdoc) - documentation generator
-- [RIL](http://www.cs.umd.edu/projects/PL/druby/papers/druby-dls09.pdf) - an intermediate language
-  - [druby](http://www.cs.umd.edu/projects/PL/druby/) - type system
-  - [rtc](https://www.cs.tufts.edu/~jfoster/papers/oops13.pdf) - type system
-  - [rubydust](http://www.cs.umd.edu/~mwh/papers/rubydust.pdf) - type system
-- [rubinius](https://github.com/rubinius/rubinius) - an implementation in Ruby
-	- [pelusa](https://github.com/codegram/pelusa) - linter
-- [saikuro](https://metricfu.github.io/Saikuro) - cyclomatic complexity linter
-- [sorbet](https://sorbet.org/) - type system
-- [sydparse](https://rubygems.org/gems/sydparse) - a reentrant Ruby parser
-- [topaz](https://github.com/topazproject/topaz) - an implementation for RPython
-- [tree-sitter-ruby](https://github.com/tree-sitter/tree-sitter-ruby) - a parser aimed at editors
-	- [vscode-ruby](https://github.com/rubyide/vscode-ruby) - language server
-- [TruffleRuby](https://github.com/oracle/truffleruby) - an implementation on the GraalVM
-- [typedruby](https://github.com/typedruby/typedruby) - type system
+### 2001-09-10 - JRuby
+
+In 2001, Jan Arne Petersen began work on a reimplementation of Ruby for the Java Virtual Machine that was a direct port of the Ruby `1.6` code in Java called [JRuby](https://github.com/jruby/jruby). JRuby has undergone significant effort and change over the years. The parser itself has served as the basis for other Java projects to get their start as well, including TruffleRuby. Part of their efforts also involved reimplementing a lot of the standard library in Ruby itself, which also aided Rubinius and other projects.
+
+#### Projects
+
+In addition to helping other projects along with their reimplementation efforts, JRuby also served as the parser basis for [ecstatic](https://projekter.aau.dk/projekter/files/61071016/1181807983.pdf), a type system research project.
+
+### 2006-07-12 - Rubinius
+
+Following work he had done to create a reentrant Ruby parser and a book he had read on bytecode interpreters, Evan Phoenix began working on a Ruby-in-Ruby implementation that he called [Rubinius](https://github.com/rubinius/rubinius). It took the `parse.y` of core Ruby and rewrote the actions to do things in the Ruby space. This actually went back and forth a bit between being implemented partly in C and partly in Ruby.
+
+#### Projects
+
+- [melbourne](https://github.com/carlosbrando/melbourne) - Rubinius's parser distributed as a gem
+- [pelusa](https://github.com/codegram/pelusa) - a linter that used the Rubinius infrastructure
+- [sydparse](https://rubygems.org/gems/sydparse) - a reentrant Ruby parser that ended up being the basis of the Rubinius project
+
+### 2006-07-16 - Cardinal
+
+Back in the Ruby `1.8` days, there was an interesting reimplementation of Ruby on the Parrot VM called [Cardinal](https://github.com/parrot/cardinal). This was one of the only attempts to reimplement Ruby that did not take the `parse.y` source and reengineer it. Instead it took the EBNF documentation from Ruby `1.6` and created its own PGE grammar.
+
+### 2007-04-30 - IronRuby
+
+Around the time that interest in Ruby implementations was starting to take off, Microsoft decided to invest in a Ruby implementation on the .NET framework called [IronRuby](http://www.wilcob.com/Wilco/IronRuby/microsoft_ironruby.aspx). John Lam and the DLR Design Team worked on it for 3 years to make it able to run production workloads. Unfortunately in July 2010 Microsoft stopped funding the project, and ended up publishing it in 2011.
+
+### 2008-03-13 - MacRuby
+
+In 2008, Laurent Sansonetti began work on MacRuby, a Ruby `1.9` implementation that targetted the LLVM compiler infrastructure. It supported ahead-of-time and just-in-time compilation. It similarly took the `parse.y` and massaged it a bit. Fortunately, because it was written mostly in Objective-C, it could keep most of it in place because the actions were already written in C.
+
+### 2012-04-07 - Topaz
+
+In early 2012, work began on [topaz](https://github.com/topazproject/topaz), an implementation of Ruby targeting RPython. It also took the `parse.y` file from Ruby, but this time it reimplemented it in python with the grammar rules being written as function decorators.
+
+### 2013-10-26 - TruffleRuby
+
+In late 2013, a research team out of Oracle Labs forked JRuby and created [TruffleRuby](https://github.com/oracle/truffleruby), a reimplementation of Ruby on the JVM that used the Graal dynamic compiler and the Truffle AST interpreter framework. As with JRuby, it used the same reengineered parser ported to Java.
