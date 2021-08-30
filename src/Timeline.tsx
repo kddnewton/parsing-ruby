@@ -10,7 +10,8 @@ type State = {
   timelineId: string,
   activeEntryIndex: number,
   startDate: Date,
-  endDate: Date
+  endDate: Date,
+  hasReadHash: boolean
 };
 
 type Action = (
@@ -24,13 +25,14 @@ const initialState: State = {
   timelineId: "",
   activeEntryIndex: 0,
   startDate: new Date(),
-  endDate: new Date()
+  endDate: new Date(),
+  hasReadHash: false
 };
 
 const reducer: Reducer<State, Action> = (state, action) => {
   switch (action.type) {
     case "select":
-      return { ...state, activeEntryIndex: action.index };
+      return { ...state, activeEntryIndex: action.index, hasReadHash: true };
     case "left":
       return { ...state, activeEntryIndex: (state.activeEntryIndex <= 0 ? action.length : state.activeEntryIndex) - 1 };
     case "right":
@@ -91,20 +93,25 @@ function serializeDate(date: Date) {
   return `${date.getUTCFullYear()}-${date.getUTCMonth()+1}-${date.getUTCDate()}`;
 }
 
-function useActiveEntryHashHistory(dispatch: Dispatch<Action>, activeEntryIndex: number, entries: TimelineEntriesEntry[]) {
+function useActiveEntryHashHistory(dispatch: Dispatch<Action>, activeEntryIndex: number, entries: TimelineEntriesEntry[], hasReadHash: boolean) {
   const previousActiveEntry = useRef(activeEntryIndex);
 
   useEffect((): void => {
-    if (previousActiveEntry.current !== activeEntryIndex) {
-      const entry = entries[activeEntryIndex];
-      location.hash = entry?.date ? `#${serializeDate(entry.date)}` : "#";
-    } else if (location.hash !== "#") {
+    if (location.hash !== "#" && !hasReadHash) {
       const serialized = location.hash.slice(1);
       const index = entries.findIndex((entry) => entry.date && serializeDate(entry.date) === serialized);
 
       if (index !== -1) {
         dispatch({ type: "select", index });
       }
+    }
+  }, [dispatch, entries, hasReadHash])
+
+  useEffect((): void => {
+    if (previousActiveEntry.current !== activeEntryIndex) {
+      previousActiveEntry.current = activeEntryIndex;
+      const entry = entries[activeEntryIndex];
+      location.hash = entry?.date ? `#${serializeDate(entry.date)}` : "#";
     }
   }, [dispatch, activeEntryIndex, entries, previousActiveEntry])
 }
@@ -127,7 +134,7 @@ export const Timeline: React.FC<{ id?: string, startDate?: Date, endDate?: Date 
 
   useTimelineKeyboardControls(dispatch, entries.length);
   useTimelineTouchControls(dispatch, entries.length);
-  useActiveEntryHashHistory(dispatch, state.activeEntryIndex, entries);
+  useActiveEntryHashHistory(dispatch, state.activeEntryIndex, entries, state.hasReadHash);
 
   return (
     <DescendantProvider context={TimelineEntriesContext} items={entries} set={setEntries}>
