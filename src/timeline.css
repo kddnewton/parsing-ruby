@@ -1,11 +1,12 @@
 [data-react-timeline-line] {
-  background-color: var(--color, darkslategray);
+  --timeline-color: darkslategray;
+  background-color: var(--timeline-color);
   height: 2px;
   position: relative;
 }
 
 [data-react-timeline-tick] {
-  background-color: var(--color, darkslategray);
+  background-color: var(--timeline-color);
   height: 10px;
   position: absolute;
   transform: translateY(-40%);
