@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/timeline.css", "../src/styles.css"],
+  "sourcesContent": ["[data-react-timeline-line] {\n  --timeline-color: darkslategray;\n  background-color: var(--timeline-color);\n  height: 2px;\n  position: relative;\n}\n\n[data-react-timeline-tick] {\n  background-color: var(--timeline-color);\n  height: 10px;\n  position: absolute;\n  transform: translateY(-40%);\n  width: 1px;\n}\n", "body {\n  --primary-color: #9b1c16;\n  --secondary-color: darkslategray;\n  --ternary-color: #fd8781;\n\n  font-family: Verdana, sans-serif;\n  margin: 0;\n}\n\n.container {\n  display: flex;\n  flex-direction: column;\n  height: 100vh;\n  width: 100vw;\n}\n\n[data-react-timeline-line] {\n  --color: var(--secondary-color);\n}\n\n[data-react-timeline-line] [data-selected=\"true\"] path:first-child {\n  fill: var(--ternary-color);\n}\n"],
+  "mappings": "AAAA,2BACE,gCACA,uCACA,WACA,kBAGF,2BACE,uCACA,YACA,kBACA,2BACA,UCZF,KACE,yBACA,iCACA,yBAEA,+BALF,SASA,WACE,aACA,sBACA,aACA,YAGF,2BACE,gCAGF,iEACE",
+  "names": []
+}

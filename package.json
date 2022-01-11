@@ -2,9 +2,9 @@
   "name": "parsing-ruby",
   "private": true,
   "scripts": {
-    "build": "webpack --mode production --progress",
+    "build": "bin/build",
     "compile": "tsc --noEmit",
-    "serve": "webpack serve --mode development --hot"
+    "serve": "bin/serve"
   },
   "author": "Kevin Newton",
   "license": "MIT",
@@ -15,21 +15,10 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.8",
-    "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
-    "@babel/preset-react": "^7.14.5",
-    "@babel/preset-typescript": "^7.15.0",
-    "@babel/register": "^7.15.3",
-    "@types/react": "^17.0.18",
-    "@types/react-dom": "^17.0.9",
-    "babel-loader": "^8.2.2",
-    "css-loader": "^6.2.0",
-    "style-loader": "^3.2.1",
-    "ts-loader": "^9.2.5",
-    "typescript": "^4.3.5",
-    "webpack": "^5.50.0",
-    "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^3.11.2"
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "esbuild": "^0.14.11",
+    "esbuild-css-modules-plugin": "^2.0.9",
+    "typescript": "^4.5.4"
   }
 }
