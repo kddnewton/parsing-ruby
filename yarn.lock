@@ -156,10 +156,10 @@ esbuild-android-arm64@0.14.27:
   resolved "https://registry.yarnpkg.com/esbuild-android-arm64/-/esbuild-android-arm64-0.14.27.tgz#e7d6430555e8e9c505fd87266bbc709f25f1825c"
   integrity sha512-E8Ktwwa6vX8q7QeJmg8yepBYXaee50OdQS3BFtEHKrzbV45H4foMOeEE7uqdjGQZFBap5VAqo7pvjlyA92wznQ==
 
-esbuild-css-modules-plugin@^2.2.4:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/esbuild-css-modules-plugin/-/esbuild-css-modules-plugin-2.2.4.tgz#d359810bbaec3dc171facec19559a0c84c893781"
-  integrity sha512-DFmt41JpKeVhc0YEY5KQoyHqJpFkEuNpi9UhfIrfung3bD97X0dSrhTWMZIwE+tiMZf1s499jMurxHp/tmf9AA==
+esbuild-css-modules-plugin@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/esbuild-css-modules-plugin/-/esbuild-css-modules-plugin-2.2.6.tgz#2ed8549f02b0561fe2c124c722f15e5620467fb9"
+  integrity sha512-71y+4+vUnZPkVAAj/QU2d5CRzuCOj698atSogfpKUJZdpXFEX3i0zkMkwunXIfq9JWkG4PCgZNBln8ltVmlbcA==
   dependencies:
     "@parcel/css" "^1.6.0"
     fs-extra "^10.0.1"
@@ -167,6 +167,7 @@ esbuild-css-modules-plugin@^2.2.4:
     postcss "^8.4.12"
     postcss-modules "^4.3.1"
     tmp "^0.2.1"
+    uuid "^8.3.2"
 
 esbuild-darwin-64@0.14.27:
   version "0.14.27"
@@ -552,6 +553,11 @@ util-deprecate@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
+
+uuid@^8.3.2:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
+  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
 wrappy@1:
   version "1.0.2"
