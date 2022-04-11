@@ -19,13 +19,13 @@ export const RubyMarker: React.FC = () => (
   </svg>
 );
 
-export const RubyTimeline: React.FC = ({ children }) => (
+export const RubyTimeline: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <div className={styles.timeline} data-react-timeline>
     {children}
   </div>
 );
 
-export const RubyTooltip: React.FC = ({ children }) => (
+export const RubyTooltip: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <div className={styles.tooltip}>
     <div className={styles.toolbody}>
       {children}

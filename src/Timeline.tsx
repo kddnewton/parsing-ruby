@@ -116,7 +116,14 @@ function useActiveEntryHashHistory(dispatch: Dispatch<Action>, activeEntryIndex:
   }, [dispatch, activeEntryIndex, entries, previousActiveEntry])
 }
 
-export const Timeline: React.FC<{ id?: string, startDate?: Date, endDate?: Date }> = ({
+type TimelineProps = {
+  children: React.ReactNode,
+  id?: string,
+  startDate?: Date,
+  endDate?: Date
+};
+
+export const Timeline: React.FC<TimelineProps> = ({
   children,
   id,
   startDate = initialState.startDate,
@@ -147,7 +154,7 @@ export const Timeline: React.FC<{ id?: string, startDate?: Date, endDate?: Date 
   );
 };
 
-export const TimelineLine: React.FC = ({ children }) => {
+export const TimelineLine: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { timelineId, activeEntryIndex } = useContext(TimelineStateContext);
 
   return (
@@ -223,14 +230,19 @@ const TimelineTicks: React.FC = () => {
 
 const TimelineEntryContext = React.createContext<boolean>(false);
 
-export const TimelineEntry: React.FC<{ date: Date }> = ({ children, date }) => {
+type TimelineEntryProps = {
+  children: React.ReactNode,
+  date: Date
+};
+
+export const TimelineEntry: React.FC<TimelineEntryProps> = ({ children, date }) => {
   const { activeEntryIndex, startDate, endDate } = useContext(TimelineStateContext);
   const dispatch = useContext(TimelineDispatchContext);
 
-  const elementRef = useRef(null);
-  const [element, setElement] = useState(null);
+  const elementRef = useRef<HTMLDivElement | null>(null);
+  const [element, setElement] = useState<HTMLDivElement | null>(null);
 
-  const onElementSet = useCallback((value) => {
+  const onElementSet = useCallback((value: HTMLDivElement) => {
     elementRef.current = value;
     setElement(value);
   }, []);
@@ -262,7 +274,7 @@ export const TimelineEntry: React.FC<{ date: Date }> = ({ children, date }) => {
   );
 };
 
-export const TimelineEntryTooltip: React.FC = ({ children }) => {
+export const TimelineEntryTooltip: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { tooltipRef } = useContext(TimelineStateContext);
   const selected = useContext(TimelineEntryContext);
 
