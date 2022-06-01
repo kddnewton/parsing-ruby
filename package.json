@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.38",
-    "@types/react": "^18.0.9",
+    "@types/react": "^18.0.10",
     "@types/react-dom": "^18.0.5",
     "esbuild": "^0.14.42",
     "esbuild-css-modules-plugin": "^2.2.16",
