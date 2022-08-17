@@ -161,10 +161,10 @@ esbuild-android-arm64@0.14.54:
   resolved "https://registry.yarnpkg.com/esbuild-android-arm64/-/esbuild-android-arm64-0.14.54.tgz#8ce69d7caba49646e009968fe5754a21a9871771"
   integrity sha512-F9E+/QDi9sSkLaClO8SOV6etqPd+5DgJje1F9lOWoNncDdOBL2YF59IhsWATSt0TLZbYCf3pNlTHvVV5VfHdvg==
 
-esbuild-css-modules-plugin@^2.5.1:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/esbuild-css-modules-plugin/-/esbuild-css-modules-plugin-2.5.1.tgz#2b8ed3e6600a47fd1567ca0e1736c575e3064106"
-  integrity sha512-ZBE9ZR887gAbBHEiw2Ia3SRWUfT5V74lzoLcq2vBGw4BSLrDjXrDLPUaJva9Dv0BsJWjbe7U06OOEyK1jK627A==
+esbuild-css-modules-plugin@^2.5.2:
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/esbuild-css-modules-plugin/-/esbuild-css-modules-plugin-2.5.2.tgz#9de9c6fc745c535ccfe654950763f91c9687a2ff"
+  integrity sha512-y4+dUsmDdzA8LtF67Yf7iTfBKznjRwH3LBdd9nClBI9Q6H3iDx0qqaOSwA1zZIrYIWcxG0xmb/yV1b2rZO6ohQ==
   dependencies:
     "@parcel/css" "^1.12.0"
     fs-extra "^10.1.0"
