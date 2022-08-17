@@ -19,7 +19,7 @@
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "esbuild": "^0.14.54",
-    "esbuild-css-modules-plugin": "^2.5.1",
+    "esbuild-css-modules-plugin": "^2.5.2",
     "typescript": "^4.7.4"
   }
 }
