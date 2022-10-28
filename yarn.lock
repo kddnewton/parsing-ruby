@@ -105,10 +105,10 @@ esbuild-android-arm64@0.15.12:
   resolved "https://registry.yarnpkg.com/esbuild-android-arm64/-/esbuild-android-arm64-0.15.12.tgz#5ee72a6baa444bc96ffcb472a3ba4aba2cc80666"
   integrity sha512-Hc9SEcZbIMhhLcvhr1DH+lrrec9SFTiRzfJ7EGSBZiiw994gfkVV6vG0sLWqQQ6DD7V4+OggB+Hn0IRUdDUqvA==
 
-esbuild-css-modules-plugin@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/esbuild-css-modules-plugin/-/esbuild-css-modules-plugin-2.6.0.tgz#195f95aeb2a39865534dcd522ffef1bb7b350ad4"
-  integrity sha512-21uGJG6O1UY+pHwYVzL0w1edzUubF67NotXP0Y9OroaOqymbojax0DT3cvygVbWKBy9Hj9Vn/EWrkHpqOswaCA==
+esbuild-css-modules-plugin@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/esbuild-css-modules-plugin/-/esbuild-css-modules-plugin-2.6.2.tgz#f654066393cf8c3eb85d7dc896bfdcb2baa98d1e"
+  integrity sha512-PxXl7/piBCgyspzHq5Jdcot+JrvuR43A0UvA/KnlUntmnJ1/M1gHdFD8xJUrlOySLmxVZwjwqnJEgf5gMBUdUg==
   dependencies:
     fs-extra "^10.1.0"
     lightningcss "^1.16.0"
