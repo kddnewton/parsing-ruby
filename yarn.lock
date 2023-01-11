@@ -195,10 +195,10 @@ detect-libc@^1.0.3:
   resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
   integrity sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
 
-esbuild-css-modules-plugin@^2.6.3:
-  version "2.6.3"
-  resolved "https://registry.yarnpkg.com/esbuild-css-modules-plugin/-/esbuild-css-modules-plugin-2.6.3.tgz#45a04f2f8910992ab3e721d3bca0e72638a67668"
-  integrity sha512-Bi0NHhoWwW002eTbD0HIO38M/gCE7UEfv0ncSvBjn8F+eGZRUPMdSCYof2jCxxWoerG0xR7bLwDpv/yoPjP7EA==
+esbuild-css-modules-plugin@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/esbuild-css-modules-plugin/-/esbuild-css-modules-plugin-2.7.0.tgz#c11ab5b4561024b04ff3429fc7bb28491010f6d5"
+  integrity sha512-WtPtkJ/78yrP8UAJ6WRe0sX5GuMVzAz7K9ELqGi6Car5AEfJMD9IM1GqOcwUGCWeTFvyfxlV+3JgPznPFfd0kQ==
   dependencies:
     fs-extra "^10.1.0"
     lightningcss "^1.17.1"
