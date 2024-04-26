@@ -173,10 +173,10 @@ detect-libc@^1.0.3:
   resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
   integrity sha512-pGjwhsmsp4kL2RTz08wcOlGN83otlqHeD/Z5T8GXZB+/YcpQ/dgo+lbU8ZsGxV0HIvqqxo9l7mqYwyYMD9bKDg==
 
-esbuild-css-modules-plugin@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/esbuild-css-modules-plugin/-/esbuild-css-modules-plugin-3.1.1.tgz#4e3660e5e3a07ef474343eb25dc4d3383df9f7a1"
-  integrity sha512-Zb8sXfeGuJLXJA7zUayIieI33moPYWmS3eTJsJhF4WHhw0vwoUlgSUYlcuNZFD5klIBKlnwwukDSmVgXHZ+kFQ==
+esbuild-css-modules-plugin@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/esbuild-css-modules-plugin/-/esbuild-css-modules-plugin-3.1.2.tgz#fbe8d12d69b1dc6386d39361e1bb89b89ae6592d"
+  integrity sha512-XRpRuRT3m1Pk456djTvrq1AOEj+OB8sa8PdGN/Yha6eL8Im0TIYPq0CELgQU6DDKkHlYET++3sXZVjiF/kcgQw==
   dependencies:
     lightningcss "^1.24.1"
     lodash-es "^4.17.21"
