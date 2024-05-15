@@ -13,12 +13,12 @@
     "@reach/auto-id": "^0.18.0",
     "@reach/descendants": "^0.18.0",
     "react": "^18.3.1",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/node": "^20.12.11",
     "@types/react": "^18.3.2",
-    "@types/react-dom": "^18.2.25",
+    "@types/react-dom": "^18.3.0",
     "esbuild": "^0.21.2",
     "esbuild-css-modules-plugin": "^3.1.2",
     "typescript": "^5.4.5"
